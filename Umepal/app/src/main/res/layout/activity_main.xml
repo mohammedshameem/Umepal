@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        tools:context="com.qiito.toolbar.MainActivity">
+        tools:context="com.qiito.umepal.activity.MainActivity">
 
     <include layout="@layout/toolbar" />
 

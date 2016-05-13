@@ -4,7 +4,7 @@
     android:padding="10dp"
     android:shape="rectangle" >
 
-    <solid android:color="@color/baby_pink" />
+    <solid android:color="@color/HeaderRed" />
     <padding 
         android:left="5dp"
         />

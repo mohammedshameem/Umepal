@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:background="@color/grey"
-    tools:context="com.qiito.toolbar.MainActivity">
+    tools:context="com.qiito.umepal.activity.MainActivity">
 
 
     <LinearLayout

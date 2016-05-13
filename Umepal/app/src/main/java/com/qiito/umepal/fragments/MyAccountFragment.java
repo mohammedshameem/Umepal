@@ -101,7 +101,7 @@ public class MyAccountFragment extends Fragment {
     private ImageView item_image;
     private ImageView profile_pic;
     private LinearLayout membership_date_layout;
-    private LinearLayout member_saved_layout;
+ //   private LinearLayout member_saved_layout;
     private ImageView edit_profile;
     private ListView likes_list;
     private ListView purchases_list;
@@ -408,7 +408,7 @@ public class MyAccountFragment extends Fragment {
                                     joinmembershiptxt.setText("JOIN MEMBERSHIP NOW");
                                 }
                                 }
-                                member_saved_layout.setVisibility(View.VISIBLE);
+/////////////////                                member_saved_layout.setVisibility(View.VISIBLE);
                                 membership_date_layout.setVisibility(View.VISIBLE);
                                 if (!userBaseHolder.getData().getUser().getCreated().equals("")) {
                                     createdDate.setText(userBaseHolder.getData().getUser().getCreated().substring(0, 10));
@@ -433,7 +433,7 @@ public class MyAccountFragment extends Fragment {
                                 }
 
                                 membership_date_layout.setVisibility(View.GONE);
-                                member_saved_layout.setVisibility(View.GONE);
+////////////////////                                member_saved_layout.setVisibility(View.GONE);
                             }
                         }
                     }
@@ -562,12 +562,12 @@ public class MyAccountFragment extends Fragment {
         relative_web = (RelativeLayout) content.findViewById(R.id.relative_web);
         joinmembershipnow = (LinearLayout) content.findViewById(R.id.joinmembership);
         webview_paypal = (WebView) content.findViewById(R.id.webview_paypal);
-        member_saved_layout = (LinearLayout) content.findViewById(R.id.member_saved_layout);
+//////////        member_saved_layout = (LinearLayout) content.findViewById(R.id.member_saved_layout);
         membership_date_layout = (LinearLayout) content.findViewById(R.id.membership_date_layout);
         createdDate = (TextView) content.findViewById(R.id.created_date);
         expiry_date = (TextView) content.findViewById(R.id.expiry_date);
-        tell_your_friends_btn = (Button) content.findViewById(R.id.tell_your_friends_btn);
-        saved_dollar = (TextView) content.findViewById(R.id.saved_dollar);
+///////////        tell_your_friends_btn = (Button) content.findViewById(R.id.tell_your_friends_btn);
+ //////////       saved_dollar = (TextView) content.findViewById(R.id.saved_dollar);
         //myAccountLayout = (LinearLayout)content.findViewById(R.id.my_account_layout);
         listLayout = (LinearLayout)content.findViewById(R.id.list_layout);
         //myAccountLayout = (LinearLayout)content.findViewById(R.id.my_account_layout);

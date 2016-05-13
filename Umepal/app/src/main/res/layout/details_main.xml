@@ -143,7 +143,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
 
-                        android:background="@color/header_pink"
+                        android:background="@color/HeaderRed"
                         android:gravity="center">
 
                         <TextView
@@ -265,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:text="$00.00"
-                        android:textColor="@color/blue_shade"
+                        android:textColor="@color/HeaderRed"
                         android:textStyle="bold"
                         android:textSize="17dp"
                         android:id="@+id/membership_price"/>
@@ -274,7 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/member"
-                        android:textColor="@color/blue_shade"
+                        android:textColor="@color/HeaderRed"
                         android:textStyle="bold"
                         android:id="@+id/member_word"/>
                     <RelativeLayout

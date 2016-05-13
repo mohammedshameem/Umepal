@@ -209,7 +209,7 @@
                 android:id="@+id/buy_quantity_popup"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@color/header_pink"
+                android:background="@color/HeaderRed"
                 android:text="Buy"
                 android:textAllCaps="false" />
         </LinearLayout>

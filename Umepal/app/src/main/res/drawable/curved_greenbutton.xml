@@ -4,28 +4,28 @@
         <shape android:shape="rectangle"  >
             <corners android:radius="3dip" />
             <stroke android:width="1dip"
-                android:color="@color/header_pink" />
+                android:color="@color/HeaderRed" />
             <gradient android:angle="-90"
-                android:startColor="@color/header_pink"
-                android:endColor="@color/header_pink"  />
+                android:startColor="@color/HeaderRed"
+                android:endColor="@color/HeaderRed"  />
         </shape>
     </item>
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
             <corners android:radius="3dip" />
             <stroke android:width="1dip"
-                android:color="@color/header_pink" />
-            <solid android:color="@color/header_pink"/>
+                android:color="@color/HeaderRed" />
+            <solid android:color="@color/HeaderRed"/>
         </shape>
     </item>
     <item >
         <shape android:shape="rectangle"  >
             <corners android:radius="3dip" />
             <stroke android:width="1dip"
-                android:color="@color/header_pink" />
+                android:color="@color/HeaderRed" />
             <gradient android:angle="-90"
-                android:startColor="@color/header_pink"
-                android:endColor="@color/header_pink" />
+                android:startColor="@color/HeaderRed"
+                android:endColor="@color/HeaderRed" />
         </shape>
     </item>
 </selector>

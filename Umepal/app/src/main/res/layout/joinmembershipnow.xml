@@ -18,7 +18,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/member_strip_height"
-                android:background="@color/blue_shade"
+                android:background="@color/yellownew"
                 android:orientation="vertical">
 
 
@@ -40,7 +40,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/member_tile_heading"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/member_title"
                             android:textStyle="bold" />
 
@@ -48,7 +48,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/join_membership_now"
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/member_data"/>
                     </LinearLayout>
 

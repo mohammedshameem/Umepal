@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context="com.qiito.toolbar.MainActivity">
+    tools:context="com.qiito.umepal.activity.MainActivity">
 
 
     <include layout="@layout/custom_action_bar"></include>

@@ -80,6 +80,8 @@
     <color name="red_cardinal_red">#C03545</color>
     <color name="pink">#FF76A0</color>
     <color name="yellow">#D7E385</color>
+    <color name="yellownew">#F9E400</color>
+
     <color name="yellow_Daizy">#F9F46F</color>
     <color name="yellow_haze">#EEE8A0</color>
     <color name="yellow_glossy">#FFFF00</color>
@@ -149,6 +151,10 @@
     <color name="blue_shade">#629BC6</color>
     <color name="text_dark_gray">#777777</color>
     <color name="colorPrimaryDark">#000000</color>
+
+    <color name="Red"> #E6252A</color>
+    <color name="HeaderRed"> #E6252A</color>
+    <color name="lightRed"> #E6252A</color>
 
 
 

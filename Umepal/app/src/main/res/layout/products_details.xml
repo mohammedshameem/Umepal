@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="com.qiito.toolbar.MainActivity">
+    tools:context="com.qiito.umepal.activity.MainActivity">
 
 
     <LinearLayout
