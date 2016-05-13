@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/custom_action_bar_height"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_action_bar_height"
+        android:background="@color/header_pink"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:id="@+id/back_icon_with_app_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_action_bar_height"
+            android:layout_weight="4"
+            android:gravity="left">
+
+            <ImageView
+                android:id="@+id/back_menu_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/menu_selection_icon_dimen"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:src="@drawable/back_icon" />
+
+            <ImageView
+                android:id="@+id/app_back_image"
+                android:layout_width="@dimen/app_image_dimension"
+                android:layout_height="@dimen/app_image_dimension"
+                android:layout_gravity="center"
+                android:src="@drawable/thousanddays"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/custom_action_bar_height"
+            android:layout_weight="2"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/page_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/heading_confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_header_normal"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cart_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/custom_action_bar_height"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/add_to_cart_icon"
+                android:layout_width="@dimen/search_icon_dimension"
+                android:layout_height="@dimen/search_icon_dimension"
+                android:layout_gravity="center"
+                android:src="@drawable/add_to_cart"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/clear_all_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="4"
+            android:background="@drawable/action_bar_icon_background_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/notification_clear_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/clear_all"
+                android:textColor="#FFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

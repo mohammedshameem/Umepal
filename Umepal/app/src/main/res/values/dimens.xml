@@ -1,0 +1,113 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="splsah_screen_logo_width">230dp</dimen>
+    <dimen name="splsah_screen_logo_height">230dp</dimen>
+    <dimen name="progress_bar_width">80dp</dimen>
+
+    <!-- Splash Screen -->
+
+    <dimen name="splash_screen_margin">20dp</dimen>
+    <dimen name="splash_screen_margin_large">100dp</dimen>
+
+
+    <!-- Custom ActionBar -->
+
+    <dimen name="custom_action_bar_height">50dp</dimen>
+    <dimen name="menu_selection_icon_dimen">24dp</dimen>
+    <dimen name="menu_selection_icon_margin">5dp</dimen>
+    <dimen name="app_image_dimension">40dp</dimen>
+    <dimen name="search_icon_dimension">24dp</dimen>
+
+    <!-- Size of the textview common to all layout -->
+
+    <dimen name="textSize_header_normal">25sp</dimen>
+
+    <!-- For slider menu -->
+
+    <dimen name="menu_items_height">48dp</dimen>
+    <dimen name="menu_item_image">30dp</dimen>
+    <dimen name="profile_icon_width">45dp</dimen>
+    <dimen name="profile_icon_height">45dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+
+    <!-- For login and signup page -->
+
+    <dimen name="login_layout_margin_big">20dp</dimen>
+    <dimen name="login_layout_margin">13dp</dimen>
+    <dimen name="login_layout_margin_small">10dp</dimen>
+    <dimen name="login_layout_margin_smaller">6dp</dimen>
+    <dimen name="login_layout_margin_smallest">2dp</dimen>
+    <dimen name="login_view_height">1dp</dimen>
+    <dimen name="login_edittext_height">40dp</dimen>
+    <dimen name="login_edittext_height_large">50dp</dimen>
+    <dimen name="login_edittext_height_small">30dp</dimen>
+    <dimen name="login_textsize_normal">20sp</dimen>
+    <dimen name="signup_textview_width">120dp</dimen>
+
+
+    <!-- Product Details Details -->
+
+    <dimen name="product_details_details_height">40dp</dimen>
+    <dimen name="product_details_margin_bottom">3dp</dimen>
+    <dimen name="product_details_margin_left">4dp</dimen>
+    <dimen name="product_details_actucal_price_textsize">12sp</dimen>
+    <dimen name="product_details_price_view_height">1dp</dimen>
+    <dimen name="product_details_view_width">38dp</dimen>
+    <dimen name="product_details_price_view_margintop">7dp</dimen>
+    <dimen name="product_details_price_marginleft">2dp</dimen>
+    <dimen name="product_details_price_textsize">18sp</dimen>
+    <dimen name="product_traditional_details_margin">5dp</dimen>
+    <dimen name="product_details_addtocart_textsize">13sp</dimen>
+    <dimen name="product_details_buy_textsize">16sp</dimen>
+    <dimen name="product_details_image_height">200dp</dimen>
+    <dimen name="product_details_view_height">0.5dp</dimen>
+    <dimen name="product_details_traditionalmedicine_margin">15dp</dimen>
+    <dimen name="product_details_arrow_imageicon">15dp</dimen>
+    <dimen name="product_details_imageicon">20dp</dimen>
+    <dimen name="product_details_margin">30dp</dimen>
+    <dimen name="product_details_traditional_medicine_margin">10dp</dimen>
+    <dimen name="product_details_padding">25dp</dimen>
+
+    <!-- Margin  Common to all layout -->
+
+    <dimen name="margin_normal">10dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">15dp</dimen>
+    <dimen name="margin_very_small">5dp</dimen>
+
+    <!-- TextSize Common to all layout -->
+
+    <dimen name="textSize_heading_large">27sp</dimen>
+    <dimen name="textSize_large_dp">18dp</dimen>
+    <dimen name="textSize_large_sp">18sp</dimen>
+    <dimen name="dark_blue_bg_text_size">17sp</dimen>
+    <dimen name="email_id_text_size">15dp</dimen>
+    <dimen name="textsize_small">8sp</dimen>
+    <dimen name="textsize_medium">10sp</dimen>
+    <dimen name="textsize_normal">15sp</dimen>
+
+    <!-- Default padding Common to all layout -->
+    <dimen name="padding_left">20dp</dimen>
+    <dimen name="padding_right">20dp</dimen>
+    <dimen name="padding_top">20dp</dimen>
+    <dimen name="padding_bottom">20dp</dimen>
+    <dimen name="padding_null">0dp</dimen>
+
+    <!--membership strip details-->
+    <dimen name="membership_image">50dp</dimen>
+    <dimen name="member_strip_height">60dp</dimen>
+    <dimen name="member_title">15sp</dimen>
+    <dimen name="member_data">12sp</dimen>
+    <dimen name="textSize_heading">24sp</dimen>
+
+    <!-- product grid-->
+    <dimen name="product_grid_image_width">190dp</dimen>
+    <dimen name="product_grid_image_height">300dp</dimen>
+
+</resources>

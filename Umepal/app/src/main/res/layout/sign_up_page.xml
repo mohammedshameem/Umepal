@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="6">
+
+    <LinearLayout
+        android:id="@+id/login_image_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/padding_null"
+        android:layout_weight="2.5"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/app_bgImage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/bear"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/padding_null"
+        android:layout_weight="3.5"
+        android:gravity="center"
+        android:weightSum="5"
+        android:orientation="vertical"
+        android:visibility="visible"
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_signup_for"
+            android:layout_weight=".38"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_heading_large"
+            android:textColor="@color/text_dark_gray"
+            android:layout_marginTop="0dp"
+            android:paddingBottom="5dp"/>
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_weight=".75"
+            android:layout_marginRight="5dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/heart"
+            android:gravity="center"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_weight="4.13"
+            android:layout_marginLeft="8dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/lufluf_logo"
+            android:gravity="center"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|center"
+        android:id="@+id/signup_edittext_layout"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/login_layout_margin"
+        android:layout_marginRight="@dimen/login_layout_margin"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/edittex_rounded_corner"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="@dimen/signup_textview_width"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/first_name_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:background="@color/light_pink"
+                android:textColorHint="@color/grey"
+                android:textCursorDrawable="@null"
+                android:layout_marginRight="@dimen/login_layout_margin_small"
+                android:cursorVisible="true">
+
+                <requestFocus />
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/edittex_rounded_corner"
+            android:orientation="horizontal"
+            android:layout_marginBottom="3dp">
+
+            <TextView
+                android:layout_width="@dimen/signup_textview_width"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/last_name_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_pink"
+                android:textColor="@color/black"
+                android:inputType="textPersonName"
+                android:textCursorDrawable="@null"
+                android:textColorHint="@color/grey"
+                android:layout_marginRight="@dimen/login_layout_margin_small"
+                android:cursorVisible="true"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/edittex_rounded_corner"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/signup_textview_width"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/email_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_pink"
+                android:inputType="textEmailAddress"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:layout_marginRight="@dimen/login_layout_margin_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/edittex_rounded_corner"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/signup_textview_width"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/password_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_pink"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textCursorDrawable="@null"
+                android:layout_marginRight="@dimen/login_layout_margin_small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/edittex_rounded_corner"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/signup_textview_width"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/confirm_password_edittext"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/light_pink"
+                android:textColor="@color/black"
+                android:inputType="textPassword"
+                android:textColorHint="@color/grey"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@null"
+                android:layout_marginRight="@dimen/login_layout_margin_small"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/login_layout_margin"
+        android:layout_marginRight="@dimen/login_layout_margin"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/signup_button"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/yellow_button"
+            android:text="@string/login_signup"
+            android:textAllCaps="false"
+            android:textColor="@color/button_text_white"
+            android:textSize="@dimen/login_textsize_normal"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/login_view_height"
+        android:background="@color/view_white"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/signup_bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:layout_marginLeft="@dimen/login_layout_margin"
+        android:layout_marginRight="@dimen/login_layout_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/facebook_login_button"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/login_edittext_height"
+            android:background="@drawable/edittext_blue_rounded_corner"
+            android:gravity="center"
+            android:weightSum="3">
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/fb_icon"
+                android:layout_weight=".2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_with_fb"
+                android:textAllCaps="false"
+                android:textSize="20dp"
+                android:layout_weight="2.5"
+                android:gravity="center"
+                android:textColor="@color/button_text_white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:layout_weight="0.5"
+        android:layout_marginLeft="@dimen/login_layout_margin"
+        android:layout_marginRight="@dimen/login_layout_margin"
+        android:gravity="center"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="20dp"
+            android:background="@drawable/edittext_blue_rounded_corner"
+            android:textColor="@color/button_text_white"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+

@@ -1,0 +1,17 @@
+
+
+
+
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:choiceMode="multipleChoice"
+    android:divider="@null"
+    tools:context="com.qiito.umepal.fragments.NavigationDrawerFragment"
+    android:background="@color/header_pink"
+    android:scrollbars="none"
+    android:id="@+id/drawer_listview">
+
+</ListView>
+

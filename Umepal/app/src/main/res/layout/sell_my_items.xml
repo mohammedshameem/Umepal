@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    tools:context="com.qiito.toolbar.MainActivity">
+<include layout="@layout/toolbar"></include>
+
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="6"
+    android:layout_marginTop="8dp">
+        <ListView
+        android:id="@+id/sell_my_items_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+         </ListView>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:gravity="center"
+    android:layout_weight="2">
+         <LinearLayout
+             android:id="@+id/linear_add_item_to_sell"
+           android:layout_width="fill_parent"
+           android:layout_height="40dp"
+           android:gravity="center"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+           android:background="@drawable/yellowbuttonwithgreenborder">
+               <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Add Item to Sell"
+                  android:textSize="22dp"
+                  android:textStyle="bold"/>
+          </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>
+
+
+
+

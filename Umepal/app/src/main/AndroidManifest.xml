@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.btventures.umepal">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.btventures.umepal.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <permission
+        android:name="com.btventures.umepal.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+
+    <application
+        android:name="com.qiito.umepal.Application.TodaysParentApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider993399600701319"
+            android:exported="true" />
+
+        <activity
+            android:name="com.qiito.umepal.activity.Splashscreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.qiito.umepal.activity.NotificationActivity"
+            android:label="Navigation"
+            android:screenOrientation="portrait"/>
+
+        <activity
+
+            android:name="com.qiito.umepal.activity.MainActivity"
+            android:label="Main Activity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.Loginactivity"
+            android:label="@string/title_activity_loginactivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.Forgotpassword"
+            android:label="@string/title_activity_forgotpassword"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.Signupactivity"
+            android:label="@string/title_activity_signupactivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.Loginwithfacebook"
+            android:label="@string/title_activity_loginwithfacebook"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.ProductDetails"
+            android:label="@string/productdetails"
+            android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name="com.qiito.umepal.activity.Checkout"
+            android:label="Checkout"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.qiito.umepal.activity.Edit_Profile"
+            android:label="Edit"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+
+        <activity
+            android:name="com.qiito.umepal.activity.VisitStoreActivity"
+            android:label="Visit Store"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.StoreRatingActivity"
+            android:label="Store Rating"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.qiito.umepal.activity.ReturnPolicy"
+            android:label="Return Policy"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.qiito.umepal.activity.ShoppingCart"
+            android:label="Shopping Cart"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.qiito.umepal.activity.NavigationDrawerActivity"
+            android:label="Return Policy"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.qiito.umepal.activity.SearchProductActivity"
+            android:label="Search Product"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.qiito.umepal.activity.SampleActivity"
+            android:label="Sample"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.qiito.umepal.activity.PopUpActivity"
+            android:label="Sample"
+            android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <!-- Push Notification Using Parse -->
+        <service android:name="com.parse.PushService" />
+
+        <receiver
+            android:name="com.parse.ParseBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                <category android:name="com.btventures.umepal" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+
+</manifest>

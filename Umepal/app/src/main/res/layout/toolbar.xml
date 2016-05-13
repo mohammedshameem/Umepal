@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/header_pink"
+    android:gravity="center_vertical"
+    android:minHeight="50dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:id="@+id/searchlay"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:background="@color/header_pink"
+            android:layout_marginTop="3dp"
+            android:visibility="gone"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/search_text"
+                android:layout_width="190dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/white_button_rounded_corner"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:focusable="true"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/searchicon"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/searchicon" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/app_action_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="6.5"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+
+            android:visibility="visible" />
+
+
+
+
+        <ImageView
+            android:id="@+id/carticon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:src="@drawable/addtocart"
+
+            android:visibility="gone" />
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+
+            android:layout_weight="1"
+            android:src="@drawable/searchicon"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/clear_alls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Clear All"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.Toolbar>
+

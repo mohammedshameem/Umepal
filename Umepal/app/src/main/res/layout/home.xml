@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+        
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white_background"
+        android:orientation="horizontal"
+        android:weightSum="10" >
+
+        <LinearLayout
+            android:id="@+id/linear_promotion"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/PromotionImageid"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/promotion" />
+
+            <TextView
+                android:id="@+id/Promotionid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/promotion"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@color/grey" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout_new"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/CategorynewImageid"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/newicon" />
+
+            <TextView
+                android:id="@+id/Categorynewid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Categorynew"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="7dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/typeid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            android:textColor="@color/darkGrey" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/typeListid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:divider="@null"
+            android:scrollbars="@null"
+            android:layout_marginBottom="6dp"
+            android:scrollingCache="false" 
+             android:cacheColorHint="@color/white">
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

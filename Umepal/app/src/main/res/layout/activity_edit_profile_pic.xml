@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.qiito.umepal.activity.Edit_profile_pic"
+    android:background="#80000000"
+    android:gravity="center">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="150dp"
+    android:gravity="center"
+    android:background="@drawable/whitebuttonroundedcorner"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:weightSum="16">
+
+
+    <LinearLayout
+        android:id="@+id/linear_take_photo_from_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take photo from camera"
+            android:textStyle="bold"
+            android:textSize="18dp"
+
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"></View>
+    <LinearLayout
+        android:id="@+id/linear_choose_from_gallery"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose photo from gallery"
+            android:textStyle="bold"
+            android:textSize="18dp"
+
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:background="@color/grey"></View>
+    <LinearLayout
+        android:id="@+id/linear_remove_photo"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove photo"
+            android:textStyle="bold"
+            android:textSize="18dp"
+
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"></View>
+    <LinearLayout
+        android:id="@+id/linear_cancel_change_pic"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:textSize="18dp"
+
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+</LinearLayout>
+
+</LinearLayout>

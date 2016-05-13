@@ -1,0 +1,31 @@
+
+    <resources>
+        <!-- inherit from the material theme -->
+        <style name="AppTheme" parent="Theme.AppCompat">
+            <!-- Main theme colors -->
+            <!--   your app branding color for the app bar -->
+            <item name="android:colorPrimary">@color/header_pink</item>
+            <!--   darker variant for the status bar and contextual app bars -->
+            <item name="android:colorPrimaryDark">@color/semitransparent</item>
+            <!--   theme UI controls like checkboxes and text fields -->
+            <item name="android:colorAccent">@color/header_pink</item>
+            <item name="windowActionBar">false</item>
+        </style>
+
+        <style name="subcategory_spinner_style">
+            <item name="android:background">@drawable/subcategory_spinner</item>
+            <item name="android:popupBackground">#FFFFFFFF</item>
+        </style>
+
+
+        <style name="StarRatingBar" parent="@android:style/Widget.RatingBar">
+
+            <item name="android:progressDrawable">@color/red_cherry_red</item>
+
+            <item name="android:minHeight">48dip</item>
+
+            <item name="android:maxHeight">48dip</item>
+
+        </style>
+
+    </resources>

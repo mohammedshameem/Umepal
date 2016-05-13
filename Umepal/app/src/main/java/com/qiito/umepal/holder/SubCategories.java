@@ -1,0 +1,25 @@
+package com.qiito.umepal.holder;
+
+/**
+ * Created by abin on 2/9/15.
+ */
+public class SubCategories {
+    private int id;
+    private String name;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

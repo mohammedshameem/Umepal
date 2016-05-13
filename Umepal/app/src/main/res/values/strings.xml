@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">lufluf</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+
+    <string name="checkout">Checkout</string>
+
+
+    <string name="Myaccount"><b><t></t>My Account</b></string>
+    <string name="editprofile"><b><t></t>Edit Profile</b></string>
+    <string name="productdetails"><b><t></t>Product Details</b></string>
+
+
+    <string name="user_name">eddy551</string>
+    <string name="email_id">eddyok9@gmail.com</string>
+    <string name="my_buying">My Buying</string>
+    <string name="home">Home</string>
+    <string name="action_bar_heading">Explore</string>
+    <string name="scrollbar_fade_duration">100</string>
+
+    <string name="app_title">1000Days</string>
+    <string name="baby_title">Baby</string>
+    <string name="myAccount_title">My Account</string>
+    <string name="all">ALL</string>
+
+    <!-- Custom Bar Action Back Button -->
+
+    <string name="heading_confirm">Details</string>
+    <string name="clear_all">Clear All</string>
+
+    <!-- HOME PAGE -->
+
+    <string name="Medium_text">Medium Text</string>
+    <string name="price">$34.90</string>
+
+    <!-- LOGIN PAGE -->
+
+    <string name="login_email">Email</string>
+    <string name="login_fname">First Name</string>
+    <string name="login_lname">Last Name</string>
+    <string name="login_confirm_password">Confirm Password</string>
+    <string name="login_password">Password</string>
+    <string name="login_forgot_password">forgot password?</string>
+    <string name="login">Login</string>
+    <string name="login_to">Login to</string>
+    <string name="login_with_fb">Login With Facebook</string>
+    <string name="login_signup">Sign Up</string>
+    <string name="login_signup_for">Sign Up for</string>
+
+    <!-- FORGOT PASSWORD PAGE -->
+
+    <string name="forgot_pswd_cancel_text">cancel and back to login page</string>
+    <string name="forgot_pswd_reset">Reset Password</string>
+    <string name="forgot_pswd">Forgot Password?</string>
+    <string name="forgot_pswd_token">TOKEN</string>
+    <string name="forgot_reset_pswd">Reset Password</string>
+
+
+    <string name="title">Explore</string>
+
+    <string name="APP_ID">842207449165732</string>
+    <string name="promotion">Promotion</string>
+    <string name="Categorynew">New</string>
+    <string name="type">Types</string>
+    <string name="baby">Baby</string>
+    <string name="nointernet">No Internet</string>
+
+    <string name="product_description1">In Annie Tiang TCM, Prof Joseph Yap and his team utilize techniques and treatments passed down through many generations and traditions. These traditions date back to nearly three hundred years ago</string>
+    <string name="title_activity_splashscreen">Splashscreen</string>
+
+    <string name="Pay_Now">Pa</string>
+    <string name="title_activity_loginactivity">Loginactivity</string>
+    <string name="title_activity_forgotpassword">Forgotpassword</string>
+    <string name="title_activity_signupactivity">Signupactivity</string>
+    <string name="title_activity_loginwithfacebook">Loginwithfacebook</string>
+    <string name="title_activity_logoutpopup">Logoutpopup</string>
+    <string name="title_activity_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
+    <string name="termsandconditions">Terms &amp; Conditions</string>
+    <string name="title_activity_edit_profile">Edit_profile</string>
+    <string name="title_activity_edit_profile_pic">Edit_profile_pic</string>
+
+
+    <string name="facebook_app_id">993399600701319</string>
+
+    <string name="no_notification"> There are no notifications to display!! </string>
+    <string name="notification">Notifications</string>
+
+    <string name="available_at_store">Available at store pickup</string>
+
+    <string-array name="quantity_values" >
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!--NAVIGATION DRAWER + EXPANDABLE   -->
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >\tSearch</item>
+        <item >\tMyAccount</item>
+        <item >\tBrowse</item>
+        <item >\tShopping Cart</item>
+        <item >\tNotification</item>
+        <item >\tOrder History</item>
+        <item >\tInvite Friends</item>
+        <item >\tMembers</item>
+        <item >\tCustomer Support</item>
+        <item >\t\t\tContact Us</item>
+        <item >\t\t\tGeneral terms</item>
+        <item >\tLogOut</item>
+        <item >\tLogin</item>
+    </string-array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <!--Shopping Cart-->
+    <string name="currency">SGD </string>
+    <string name="dollar">$</string>
+
+    <!--Shipping Address popup-->
+    <string name="full_name">Full Name *</string>
+    <string name="street_address">Street Address *</string>
+    <string name="unit">Apt/Suite/Unit(optional)</string>
+    <string name="state">State(optional)</string>
+    <string name="country">Country *</string>
+    <string name="city">City *</string>
+    <string name="postal_code">Zip/Postal Code *</string>
+    <string name="phone">Phone *</string>
+    <string name="continue_shopping">CONTINUE SHOPPING</string>
+    <string name="ship_to">Ship to: </string>
+    <string name="info">* indicates a field is required</string>
+    <string name="singapore">Singapore</string>
+
+    <!-- Product detail-->
+    <string name="store_address">Xminds Info \nAyurveda College Jn \nTrivandrum</string>
+
+    <!--RETURN POLICY-->
+
+     <string name="return_policy">
+   <![CDATA[
+    <html><body><p style="text-align:justify">
+    You may return all products within 7 calendar days of delivery (Please
+safe keep your delivery receipt) if your product received falls under
+one of conditions below:-</p>
+
+<p>1. Product received is not product listed on lufluf by merchant</p>
+<p>2. Product is not authentic and considered to be counterfeit products</p>
+<p>3. Damage on the product that you received which due to manufacture
+defect or damage incurs by delivery.</p>
+
+<p>You can initiate your return/refund process by simply tap on contact us
+and email to us via email address indicated. Please attach with clear
+photo/s as possible and we aim to process all requests within 72 hours
+upon receiving. Refunds are issued back to the original form of payment
+used to purchase the order.</p>
+
+<p>In the event, any form of voucher/gift card is applied to an order, and
+that if order is refunded for any reason, any voucher/gift cards used in
+that order will not be refunded.</p>
+
+<p>At this time, Banyan Tree Ventures cannot refund, reimburse, cover, or
+otherwise be responsible for any fees not paid to Banyan Tree Ventures.
+This includes any customs taxes or VAT, as well as any return shipping
+costs you may incur in the refund process and potential payment handling
+fees.
+   </p></body></html>]]>
+   </string>
+
+   <string name="terms_condition">
+        <![CDATA[
+    <html><body><p style="text-align:justify">
+      <h> lufluf Terms Of Service<h></p>
+
+<p><B>Terms of Service</B></p>
+
+<p>These “Terms of Service” explain the contractual agreement between
+you &#40;&quot;you&quot;, &quot;your&quot;&#41; and Banyan Tree Ventures Pte Ltd. &#40; &quot;Banyan Tree
+Ventures&quot; ,&quot;<a href="http://btventures.com.sg">btventures.com.sg</a>&quot;, &quot;BT Ventures&quot; , &quot;lufluf&quot; , &quot;we&quot; ,
+&quot;us&quot; , &quot;our&quot; &#41;, regarding your use of and access to our mobile app “luf
+luf” (hereafter referred to as the “App”), and any resources,
+features, functionality, or services made available through the Website
+and/or App (hereafter referred to as the "Service"). Banyan Tree
+Ventures reserves the right at any time and in its sole discretion to
+modify or discontinue, temporarily or permanently, the Website, the App
+or the Service (or any part thereof) with or without notice. You agree
+that Banyan Tree Ventures shall not be liable to you or to any third
+party for any claim or loss related to you and arising out of such
+modification, suspension, or discontinuance of the Service.</p>
+
+<p><B>Acceptance</B></p>
+
+<p>Your access to and use of the Website and/or App signifies that you have
+read, understand and agree to be bound by these Terms of Service,
+whether you are or are not a registered user of lufluf, and is subject
+to your compliance with these Terms of Service. Banyan Tree Ventures
+reserves the right to change, add, or delete any portions of the Terms
+of Service from time to time, without liability or prior notice to you,
+and your continued use of the Website and/or App constitutes your
+acceptance of and agreement with any and all such changes. It is your
+responsibility to regularly check the Website or App to determine if
+there have been changes to the Terms of Service and to review such
+changes. If you do not agree to abide by these or any future Terms of
+Service, please do not access or use (or continue to access or use) the
+Website or App. In addition, Banyan Tree Ventures may post additional
+terms, conditions, rules or requirements related to the Website and/or
+App and/or the services and features of either. All such terms,
+conditions, rules, or requirements are or will be incorporated by
+reference into these Terms of Service and you agree to be bound by and
+subject to them. At its sole discretion, Banyan Tree Ventures also may
+offer other services or features governed by different Terms of Service.</p>
+
+<p><B>Customer Care</B></p>
+
+<p>We strive to offer the best customer service for all of our users on
+lufluf. Please feel free to contact lufluf Support at
+<a href="support@btventures.com.sg">support@btventures.com.sg</a> with any questions or concerns and we will be
+happy to help!</p>
+
+<p><B>Refunds & Returns</B></p>
+
+<p>We want you to be completely satisfied with your purchase on lufluf.
+If for any reason you are unhappy, please contact lufluf support at
+<a href="support@btventures.com.sg">support@btventures.com.sg</a></p>
+<p>You may return all products within 15 calendar days of delivery (Please
+safe keep your delivery receipt) if your product received falls under
+one of conditions below:-</p>
+
+<p>1. Product received is not product listed on lufluf by merchant</p>
+<p>2. Product is not authentic and considered to be counterfeit products</p>
+<p>3. Damage on the product that you received which due to manufacture
+defect or damage incurs by delivery.</p>
+
+<p>You can initiate your return/refund process by simply tap on contact us
+and email to us via email address indicated. Please attach with clear
+photo/s as possible and we aim to process all requests within 72 hours
+upon receiving. Refunds are issued back to the original form of payment
+used to purchase the order.</p>
+
+<p>In the event, any form of voucher/gift card is applied to an order, and
+that if order is refunded for any reason, any voucher/gift cards used in
+that order will not be refunded.</p>
+
+<p>At this time, Banyan Tree Ventures cannot refund, reimburse, cover, or
+otherwise be responsible for any fees not paid to Banyan Tree Ventures.
+This includes any customs taxes or VAT, as well as any return shipping
+costs you may incur in the refund process and potential payment handling
+fees.</p>
+
+<p><B>Users</B></p>
+
+<p>lufluf provides users the Service, including various media sharing and
+communication tools, personalized and other content, and e-commerce. You
+understand and agree that the Service may include advertisements and
+that these advertisements help enable lufluf to provide the Service.
+You also understand and agree that the Service may include certain
+communications from lufluf. By using the Website, App or Service, you
+will be automatically deemed to have opted in to receive e-mail
+communication from us. When you sign in for the first time, your
+preferences will be set to automatically publish all social interactions
+to other social networks. However, you will be able to edit these
+preferences at any time under “Settings”.</p>
+<p>Any user IDs, names or passwords associated with your account shall be
+maintained by you as confidential and should not be shared by you with
+anyone not authorized to have access to your personal information. You
+may have multiple accounts on lufluf but lufluf strictly forbids the
+use of multiple accounts for the same sole user or the use of one
+account for multiple users for the purpose of earning more rewards. luf
+luf will not honor rewards from such accounts.</p>
+
+<p>Unless explicitly stated otherwise, any new feature or functionality
+that augments or enhances the current Service, including the release of
+or access to new properties, shall be subject to the Terms of Service.</p>
+
+
+<p><B>Age Verification</B></p>
+
+<p>By registering as a user, you certify that you are 13 years of age or
+older. Children under the age of 13 may not become a lufluf user, and
+parents or legal guardians may not agree to these Terms of Use on their
+behalf. If you are a resident of a state, province or country that
+imposes additional or different age requirements for disclosure of
+personally–identifiable information, by registering as a user, you
+hereby represent that your registration as a user, the provision of your
+personally-identifiable information to us, and our use of such
+personally–identifiable information as stated in our Privacy Policy,
+does not violate the applicable laws or regulations of such state,
+province or country.</p>
+
+
+<p><B>User Communication</B></p>
+
+<p>lufluf has the right, but not the obligation, to monitor, decline,
+edit or remove all or a portion of any postings, submissions or content
+in lufluf&#39;s sole discretion. By using the Website, the App or the
+Service or communicating with lufluf or others by means of your access
+to the Website or App, you consent to receive communications from luf
+luf, including but not limited to, emails, text or Facebook messages,
+and other online, mobile, or conventional methods as exist now or may
+exist in the future. You also agree not to misuse the communication
+tools available to you by means of your access to the Website or App,
+including but not limited to, spamming, spoofing, sending unsolicited
+commercial or other messages, and otherwise sending content that
+violates the Terms of Service.</p>
+<p>Privacy</p>
+<p>By using the Website, App or Service or becoming a registered user, you
+agree to be subject to the terms and conditions set forth in our Privacy
+Policy as below:-</p>
+
+<p><B>Privacy Policy Scope</B></p>
+
+<p>This Privacy Policy identifies and describes the way Banyan Tree
+Ventures uses and protects the information we collect about users. All
+use of Banyan Tree Ventures’ products and services, as well as visits
+to our websites, are subject to this Privacy Policy.</p>
+
+<p>The Information We Collect, How We Collect It, And How We Use It.</p>
+
+<p>We may collect different types of personal and other information based
+on your use of our products and services.</p>
+
+<p>Some examples include:</p>
+
+<p>Contact Information that allows us to communicate with you &#45;&#45; including
+your name, address, and e&#45;mail address;</p>
+<p>Equipment, Performance, Banyan Tree Ventures Websites Usage, Viewing and
+other Technical Information about your use of our network, services,
+products or websites.</p>
+
+<p>We collect information in two primary ways:</p>
+
+<p>You give it to us when you login with your Facebook credential;</p>
+<p>We collect it automatically when you visit our websites or use our
+products and services.</p>
+
+<p>We may use the information we collect in a variety of ways, including:</p>
+
+<p>Providing you with the best user experience possible;</p>
+<p>Providing the services you use, and to respond to your questions;</p>
+<p>Communicating with you regarding service updates, offers, and
+promotions;</p>
+<p>Delivering customized content that may be of interest to you;</p>
+<p>Addressing network integrity and security issues;/<p>
+<p>Investigating, preventing or taking action regarding illegal activities,
+violations of our Terms of Service or Acceptable Use Policies.</p>
+
+<p><B>Online Activity Tracking</B></p>
+
+<p>We collect information about your activity on Banyan Tree Ventures
+websites for a number of purposes using technologies such as cookies,
+user behavior, and server log files.</p>
+<p>We use that information to help tailor the content you see on our site.</p>
+
+<p><B>Information Sharing</B></p>
+
+<p>With Banyan Tree Ventures Products: Subject to applicable legal
+restrictions, Banyan Tree Ventures products may share your Personal
+Information with each other to make sure your experience:</p>
+
+<p>Is as seamless as possible;</p>
+<p>Benefits fully from what Banyan Tree Ventures has to offer.</p>
+
+<p>In Other Circumstances: We may provide Personal Information to
+non&#45;Banyan Tree Ventures companies or other third parties for purposes
+such as:</p>
+
+<p>Responding to 911 calls and other emergencies;</p>
+<p>Complying with court orders and other legal process;</p>
+<p>To assist with identity verification, and to prevent fraud and identity
+theft;</p>
+<p>Enforcing our agreements and property rights.</p>
+
+<p>Additionally, when you complete a purchase with Banyan Tree Ventures’
+lufluf service, we share your submitted shipping address and phone
+number for shipping purposes only. This information is shared with the
+entities fulfilling and shipping your order, such as the merchant and
+the shipping provider.</p>
+
+<p><B>Anonymous &amp; Aggregate Information</B></p>
+
+<p>We collect some information on an anonymous basis. We also may anonymize
+the personal information we collect about you.</p>
+<p>We obtain aggregate data by combining anonymous data that meet certain
+criteria into groups.</p>
+<p>We may share aggregate or anonymous information in various formats with
+trusted non&#45;Banyan Tree Ventures entities, and may work with those
+entities to do research and provide products and services.</p>
+
+<p>Safeguarding Your Information: Our Policy on Data Protection and
+Security</p>
+
+<p>We do not sell your Personal Information to anyone for any purpose.
+Period.</p>
+<p>We maintain information about you in our business records while you are
+a user, or until it is no longer needed for business, tax, or legal
+purposes.</p>
+<p>We have implemented encryption or other appropriate security controls to
+protect Personal Information when stored or transmitted by Banyan Tree
+Ventures.</p>
+<p>We require non&#45;Banyan Tree Ventures companies acting on our behalf to
+protect any Personal Information they may receive in a manner consistent
+with this Policy. We do not allow them to use such information for any
+other purpose.</p>
+
+<p><B>Links to/from Other Web Sites</B></p>
+
+<p>Banyan Tree Ventures is not responsible for the practices employed by
+websites linked to or from our website, nor the information or content
+contained therein. Please remember that when you use a link to go from
+our website to another website, our Privacy Policy is no longer in
+effect. Your browsing and interaction on any other website, including
+those that have a link on our website, is subject to that website’s
+own rules and policies. Please read over those rules and policies before
+proceeding</p>
+
+<p><B>Changes to Our Privacy Policy</B></p>
+
+<p>If we change our privacy policies and procedures, we will post those
+changes on our website to keep you aware of what information we collect,
+how we use it and under what circumstances we may disclose it. Changes
+to this Privacy Policy are effective when they are posted on this page.</p>
+
+<p><B>Ownership</B></p>
+
+<p>The Website, App, and the content and all intellectual property rights
+included in or associated with the Website or App, including, but not
+limited to patents, copyrights, trademarks, service marks, logos, are
+either owned by lufluf or owned by others and licensed to us. All
+rights, title and interest in and to the Website or App and such Content
+remains with us or our licensors. Additionally, you may not remove or
+alter any copyright, trademark, or other intellectual property or
+proprietary rights notice or legend contained on the Website, App or in
+the Content. You agree not to access the Service by any means other than
+through the interface lufluf provides via the Website or App for use
+in accessing the Service. Your use of the Website, App or Service does
+not grant you any right, license or permission of any kind to reproduce
+or use lufluf’s intellectual property.</p>
+
+<p><B>User Feedback and Content Submissions</B></p>
+
+<p>lufluf welcomes your feedback, but if you send us or post or embed on
+the Website, App or via any Service, any feedback, messages or comments;
+your creative or original concepts or ideas; any content, data, text,
+photographs, graphics or other materials; or any confidential,
+proprietary or other information (“Submissions”), you represent and
+warrant to lufluf that you either own the Submission or have the right
+to grant lufluf the license described below. lufluf does not claim
+to own such Submission, only the rights you have licensed to us.</p>
+<p>You agree that in making a Submission, lufluf shall not be required to
+compensate you for any such license or Submission, that any such
+Submission shall not be considered confidential or non&#45;public once
+submitted to lufluf, and that lufluf alone is free to decide whether
+or not to post or use the Submission. In the event a Submission is
+posted or used via the Service, you acknowledge and agree that the
+Submission and its contents become publicly available and, as set forth
+below, can be used by others. Further, by providing a Submission to luf
+luf via the Website, App or otherwise, you: &#40;a&#41; agree not to make any
+Submission that violates in any way the Terms of Service; &#40;b&#41;
+automatically grant lufluf a perpetual, worldwide, unlimited,
+irrevocable, transferable, assignable, sub-licenseable license to use
+the Submission, and exercise all copyright, publicity and other rights
+with respect to any such Submission; &#40;c&#41; subject to existing laws, waive
+any moral rights you or your licensors have in any such Submission; and
+&#40;d&#41; agree to pay for all fees, royalties, or other costs and expenses
+claimed by any third party arising out of you making any Submission. You
+also grant each user of the Service a perpetual, worldwide,
+non&#45;exclusive license to access your Submission through the Service, and
+to use, reproduce, collect, distribute, share, display and perform such
+Submission as permitted through the Service and under these Terms of
+Service.</p>
+<p>lufluf reserves the right to remove content at any time with or
+without notice. Inappropriate content is not permitted on the Website or
+App and will be removed. Inappropriate content includes but is not
+limited to: firearms, alcohol, illegal drugs and drug paraphernalia,
+tobacco and tobacco products, adult or pornographic material, offensive
+material, and obscene material.</p>
+
+<p><B>Termination</B></p>
+
+<p>lufluf shall have the right to terminate your use of the Website, App
+and/or your registration privileges at any time for any reason,
+including, but not limited to, your breach of these Terms of Services,
+or your violation of any law, including, without limitation, violations
+of our intellectual property rights or the intellectual property rights
+of a third party, or violations of other applicable laws and
+regulations. Following any such termination, lufluf shall have no
+further obligations, responsibilities, or liabilities to you or any
+third party. Notwithstanding anything to the contrary contained herein,
+in the event that lufluf terminates your use rights, lufluf shall in
+no way be precluded from pursuing any and all of its additional rights
+and remedies, either at law or in equity, for any claims, damages,
+awards, costs and liabilities occasioned by such breach or violation.</p>
+
+<p><B>Linking and Third Party Content</B></p>
+
+<p>The Website, App and Service may contain links to third–party websites
+not under our control or operation. lufluf or users may provide any
+such links only as a convenience; lufluf does not endorse and is not
+responsible for or have control over the contents of any linked site or
+any link contained in a linked site. The Website and/or App may contain
+news, advertisements, content, image and information published by
+various third–party providers. Use of any such third–party content
+may be conditioned upon such third party’s terms and conditions. You
+are solely responsible for protecting yourself, your device, and your
+systems from worms, viruses, Trojan horses and any other harmful
+content.</p>
+
+<p><B>Copyright Infringement</B></p>
+
+<p>We respects copyright law and has a policy that provides for the
+termination in appropriate circumstances of registered member who
+repeatedly infringe or are believed to be repeatedly infringing the
+rights of copyright holders.</p>
+<p>If you believe that your copyrighted work has been copied in a way that
+constitutes copyright infringement and is accessible on lufluf, please
+notify lufluf&#39;s copyright agent at support&#64;btventures.com.sg When
+filing your report, please provide the following information below:</p>
+
+<p> * An electronic or physical signature of a person authorized to act on
+       behalf of the copyright owner;</p>
+
+<p> * Identification of the copyrighted work that you claim has been
+       infringed;</p>
+
+<p> * Identification of the material that is claimed to be infringing and
+       where it is located on lufluf;</p>
+
+<p> * Information reasonably sufficient to permit lufluf to contact you,
+      such as your address, telephone number, and, e-mail address;</p>
+
+<p> * A statement that you have a good faith belief that use of the material
+       in the manner complained of is not authorized by the copyright owner,
+       its agent, or law; and</p>
+
+<p> * A statement, made under penalty of perjury, that the above information
+       is accurate, and that you are the copyright owner or are authorized to
+       act on behalf of the owner.</p>
+
+<p>Once proper, bona fide infringement notification is received, it is our
+policy:</p>
+
+
+<p> * To remove or disable access to the infringing material;</p>
+
+<p> * To notify the content provider, member or user that we have removed or
+       disabled access to the material;</p>
+
+<p> * That repeat offenders will have the infringing material removed from the
+       system and that we will terminate such content provider’s, member’s
+       or user’s access to the lufluf.</p>
+
+<p><B>Limitation of Liability</B></p>
+
+<p>lufluf shall not be liable to you, and you shall be solely
+responsible, for the selection, use, and suitability of the Website, App
+and the information, content, merchandise and experiences provided via
+the Website and/or App. lufluf shall not be liable to you for any
+direct, indirect, incidental, special, exemplary, punitive, or
+consequential or any other damages in connection with your use of the
+Website or App, or purchase or use of products, merchandise, or
+experiences via the Website or App, including, but not limited to, loss
+of or damage to data or loss of or damage to information, personal
+injury or property damage, however caused, whether based on contract,
+tort, warranty, or other legal theory, even if lufluf has been
+informed in advance of the possibility of such damages and/or such
+damages could have been reasonably foreseen by lufluf. regardless of
+whether any remedy set forth herein fails of its essential purpose.</p>
+Sales, Custom and Value-added taxes
+<p>In an effort to remain compliant with respective consumer legislations,
+we strongly encourage our merchants as well as our end customers to
+maintain good standing with respect to custom and value-added taxes or
+VAT, where applicable.</p>
+<p>Due to separate and applicable tax jurisdictions, the end customers’
+purchases may be subject to specific sales, custom or value-added taxes,
+and the shipping time and associated cost may increase.</p>
+
+
+ </body></html>]]></string>
+
+    <!--membership-->
+    <string name="member_tile_heading">JOIN MEMBERSHIP NOW </string>
+    <string name="join_membership_now"> &amp; enjoy attractive member discount!</string>
+
+    <!--Membership Details-->
+    <string name="member">Member</string>
+    <string name="popular">POPULAR</string>
+    <string name="collect_store">COLLECT AT STORE</string>
+
+
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@drawable/orange_outline_background"
+    android:paddingBottom="@dimen/padding_bottom"
+    android:paddingLeft="@dimen/padding_left"
+    android:paddingTop="@dimen/padding_top"
+    android:paddingRight="@dimen/padding_right"
+    android:id="@+id/invalid_email_popup">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_dialog"
+        android:text="Please enter a valid email id"
+        android:textColor="@color/blue_shade"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/margin_normal"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_dialog"
+        android:text="OK"
+        android:background="@drawable/white_button_with_green_border"
+        android:textColor="@color/blue_shade"/>
+
+</LinearLayout>
