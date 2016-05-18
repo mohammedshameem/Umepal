@@ -9,7 +9,7 @@
     android:choiceMode="multipleChoice"
     android:divider="@null"
     tools:context="com.qiito.umepal.fragments.NavigationDrawerFragment"
-    android:background="@color/header_pink"
+    android:background="@color/HeaderRed"
     android:scrollbars="none"
     android:id="@+id/drawer_listview">
 

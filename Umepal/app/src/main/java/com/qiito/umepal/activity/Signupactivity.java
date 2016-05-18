@@ -30,14 +30,13 @@ public class Signupactivity extends Activity {
 
     private LinearLayout loginWithFacebok;
 
-    private Button loginButton;
-    private Button signupButton;
+   // private Button loginButton;
+   // private Button signupButton;
 
-    private EditText firstName;
     private EditText lastName;
     private EditText email;
-    private EditText password;
-    private EditText confirmPassword;
+   private EditText password;
+   private EditText confirmPassword;
 
     private String androidId;
     private String FirstName;
@@ -69,20 +68,20 @@ public class Signupactivity extends Activity {
 
         /* SIGN UP */
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
+       /* signupButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                checkdetails();
+                //checkdetails();
                 //  include requestCode as parameter and check value fir unique device id
 
 
             }
-        });
+        });*/
 
         /*LOGIN*/
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+       /* loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -91,11 +90,11 @@ public class Signupactivity extends Activity {
                 startActivity(login);
                 finish();
             }
-        });
+        });*/
 
         /* LOGIN WITH FACEBOOK */
 
-        loginWithFacebok.setOnClickListener(new View.OnClickListener() {
+       /* loginWithFacebok.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -103,11 +102,12 @@ public class Signupactivity extends Activity {
                 startActivity(fb);
                 finish();
             }
-        });
+        });*/
     }
 
 
 
+/*
     private void checkdetails() {
 
         if (UtilValidate.isValidFirstname(firstName.getText().toString())){
@@ -193,7 +193,9 @@ public class Signupactivity extends Activity {
             LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,
                     Email, Password, androidId, requestCode);
 
-            /*  SUCCESS LOGIN  */
+            */
+/*  SUCCESS LOGIN  *//*
+
 
         }
         else {
@@ -201,18 +203,19 @@ public class Signupactivity extends Activity {
         }
 
     }
+*/
     /*check details*/
 
     private void initView() {
 
-        loginWithFacebok=(LinearLayout)findViewById(R.id.facebook_login_button);
-        loginButton=(Button)findViewById(R.id.login_button);
-        signupButton=(Button)findViewById(R.id.signup_button);
-        firstName=(EditText)findViewById(R.id.first_name_edittext);
-        lastName=(EditText)findViewById(R.id.last_name_edittext);
-        email=(EditText)findViewById(R.id.email_edittext);
-        password=(EditText)findViewById(R.id.password_edittext);
-        confirmPassword=(EditText)findViewById(R.id.confirm_password_edittext);
+     //   loginWithFacebok=(LinearLayout)findViewById(R.id.facebook_login_button);
+     //   loginButton=(Button)findViewById(R.id.login_button);
+     //   signupButton=(Button)findViewById(R.id.signup_button);
+     //   firstName=(EditText)findViewById(R.id.first_name_edittext);
+    //    lastName=(EditText)findViewById(R.id.last_name_edittext);
+     //   email=(EditText)findViewById(R.id.email_edittext);
+    //    password=(EditText)findViewById(R.id.password_edittext);
+     //   confirmPassword=(EditText)findViewById(R.id.confirm_password_edittext);
     }
 
 

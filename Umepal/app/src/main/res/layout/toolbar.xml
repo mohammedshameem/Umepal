@@ -19,7 +19,7 @@
             android:id="@+id/searchlay"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:background="@color/header_pink"
+            android:background="@color/HeaderRed"
             android:layout_marginTop="3dp"
             android:visibility="gone"
             android:gravity="left"

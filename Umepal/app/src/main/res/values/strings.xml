@@ -150,6 +150,9 @@
     <!-- Product detail-->
     <string name="store_address">Xminds Info \nAyurveda College Jn \nTrivandrum</string>
 
+    <!-- Product detail-->
+    <string name="uploadICpic">Pleace Upload \nYour IC photo</string>
+
     <!--RETURN POLICY-->
 
      <string name="return_policy">

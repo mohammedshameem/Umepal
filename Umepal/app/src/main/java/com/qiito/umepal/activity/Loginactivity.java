@@ -56,7 +56,7 @@ public class Loginactivity extends Activity {
 
     private EditText email;
     private EditText passwordsEdtTxt;
-    private TextView skip;
+//    private TextView skip;
     private String Email;
     private String Password;
     private int loginforbuy;
@@ -64,7 +64,7 @@ public class Loginactivity extends Activity {
     private int id = 0;
     private int Productid = 0;
 
-    private LinearLayout loginWithFacebook;
+ //   private LinearLayout loginWithFacebook;
     private int requestcode = 1;
 
     private boolean emailEmptyFlag;
@@ -86,12 +86,12 @@ public class Loginactivity extends Activity {
         Intent intent = getIntent();
         loginforbuy = intent.getIntExtra("buy", id);
         productId = intent.getIntExtra("productId", id);
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        skip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
 
         email.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -140,14 +140,14 @@ public class Loginactivity extends Activity {
         });
 
          /*LOGINWITH FACEBOOK BUTTON*/
-        loginWithFacebook.setOnClickListener(new View.OnClickListener() {
+       /* loginWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent fb = new Intent(Loginactivity.this, Loginwithfacebook.class);
                 startActivity(fb);
                 finish();
             }
-        });
+        });*/
 
     }
 
@@ -158,13 +158,13 @@ public class Loginactivity extends Activity {
 
     private void initView() {
 
-        email = (EditText) findViewById(R.id.email_edittext);
-        passwordsEdtTxt = (EditText) findViewById(R.id.password_edittext);
-        loginButton = (Button) findViewById(R.id.login_button);
-        forgotPassword = (TextView) findViewById(R.id.forgot_pswd_textview);
-        signupButton = (Button) findViewById(R.id.signup_button);
-        loginWithFacebook = (LinearLayout) findViewById(R.id.facebook_login_layout);
-        skip = (TextView) findViewById(R.id.skip);
+        email = (EditText) findViewById(R.id.emailEditText);
+        passwordsEdtTxt = (EditText) findViewById(R.id.passwordEditText);
+        loginButton = (Button) findViewById(R.id.submitButton);
+        forgotPassword = (TextView) findViewById(R.id.forgotPasswordText);
+        signupButton = (Button) findViewById(R.id.signupButton);
+   //     loginWithFacebook = (LinearLayout) findViewById(R.id.facebook_login_layout);
+   //     skip = (TextView) findViewById(R.id.skip);
 
     }
 

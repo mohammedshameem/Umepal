@@ -48,7 +48,7 @@
     <dimen name="login_edittext_height_large">50dp</dimen>
     <dimen name="login_edittext_height_small">30dp</dimen>
     <dimen name="login_textsize_normal">20sp</dimen>
-    <dimen name="signup_textview_width">120dp</dimen>
+    <dimen name="signup_textview_width">125dp</dimen>
 
 
     <!-- Product Details Details -->
