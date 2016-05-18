@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3.75"
-            android:background="@color/blue_shade"
+            android:background="@color/white"
             android:orientation="vertical"
             android:weightSum="17">
 
@@ -87,6 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textColor="@color/black"
                     android:text="* indicates a field is required"
                     android:textSize="12dp" />
             </LinearLayout>
@@ -104,7 +105,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@drawable/white_button_rounded_corner"
+                    android:background="@drawable/white_button_with_grey_border"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_weight="1">
@@ -133,7 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/white_button_rounded_corner"
+                    android:background="@drawable/white_button_with_grey_border"
                     android:gravity="center_vertical"
                     android:layout_weight="1">
 
@@ -160,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/white_button_rounded_corner"
+                    android:background="@drawable/white_button_with_grey_border"
                     android:gravity="center_vertical"
                     android:layout_weight="1">
 
@@ -198,7 +199,7 @@
                         android:layout_height="35dp"
                         android:layout_marginRight="2dp"
                         android:layout_weight="1.5"
-                        android:background="@drawable/white_button_rounded_corner"
+                        android:background="@drawable/white_button_with_grey_border"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -215,7 +216,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="2dp"
                         android:layout_weight="2.5"
-                        android:background="@drawable/white_button_rounded_corner"
+                        android:background="@drawable/white_button_with_grey_border"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -243,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/white_button_rounded_corner"
+                    android:background="@drawable/white_button_with_grey_border"
                     android:gravity="center_vertical"
                     android:layout_weight="1">
 
@@ -281,7 +282,7 @@
                         android:layout_height="35dp"
                         android:layout_marginRight="2dp"
                         android:layout_weight="2"
-                        android:background="@drawable/white_button_rounded_corner"
+                        android:background="@drawable/white_button_with_grey_border"
                         android:gravity="center_vertical"
                         android:weightSum="5">
 
@@ -313,7 +314,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="2dp"
                         android:layout_weight="2"
-                        android:background="@drawable/white_button_rounded_corner"
+                        android:background="@drawable/white_button_with_grey_border"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -352,7 +353,7 @@
                         android:layout_height="35dp"
                         android:layout_weight="3.5"
                         android:background="@drawable/yellow_button"
-                        android:text="Done"
+                        android:text="CHECKOUT"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="18dp"

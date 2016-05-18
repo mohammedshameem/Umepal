@@ -17,12 +17,14 @@ public interface ApiConstants {
     String MESSAGE = "Un-Authorised";
 
     // PRODUCTION BASEURL
-    static final String BASE_URL = "http://lufluf.btventures.com.sg/";
+    //static final String BASE_URL = "http://lufluf.btventures.com.sg/";
 
     // STAGING BASEURL
 
     //static final String BASE_URL = "http://wws.parentsv4.x-minds.info/";
 
+
+    static final String BASE_URL = "http://umepal-s.x-minds.org/";
 
     interface Facebook {
 

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="2dp"
-        android:background="@drawable/white_button_with_green_border"
+        android:background="@drawable/white_button_with_grey_border"
         android:orientation="horizontal"
         android:weightSum="8" >
 

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,11 +33,20 @@ public class Signupactivity extends Activity {
 
    // private Button loginButton;
    // private Button signupButton;
+    private Button cancelButton;
+    private Button scanQRquoteButton;
+    private Button nextButton;
+    private ImageButton uploadPicButton;
 
-    private EditText lastName;
-    private EditText email;
-   private EditText password;
-   private EditText confirmPassword;
+    private EditText nameEditText;
+    private EditText emailEditText;
+    private EditText ceaEditText;
+    private EditText mobileEditText;
+    private EditText bankEditText;
+    private EditText estateagencyEditText;
+    private EditText bankaccountEditText;
+    private EditText refferalmemberidEditText;
+
 
     private String androidId;
     private String FirstName;
@@ -103,9 +113,15 @@ public class Signupactivity extends Activity {
                 finish();
             }
         });*/
+        cancelButton.setOnClickListener(cancelListener);
     }
 
-
+        View.OnClickListener cancelListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 finish();
+            }
+        };
 
 /*
     private void checkdetails() {
@@ -211,11 +227,16 @@ public class Signupactivity extends Activity {
      //   loginWithFacebok=(LinearLayout)findViewById(R.id.facebook_login_button);
      //   loginButton=(Button)findViewById(R.id.login_button);
      //   signupButton=(Button)findViewById(R.id.signup_button);
-     //   firstName=(EditText)findViewById(R.id.first_name_edittext);
-    //    lastName=(EditText)findViewById(R.id.last_name_edittext);
-     //   email=(EditText)findViewById(R.id.email_edittext);
-    //    password=(EditText)findViewById(R.id.password_edittext);
-     //   confirmPassword=(EditText)findViewById(R.id.confirm_password_edittext);
+        nameEditText =(EditText) findViewById(R.id.nameEditText);
+        emailEditText=(EditText) findViewById(R.id.emailEditText);
+        ceaEditText=(EditText) findViewById(R.id.ceaEditText);
+        mobileEditText=(EditText) findViewById(R.id.mobileEditText);
+        bankEditText=(EditText) findViewById(R.id.bankEditText);
+        estateagencyEditText=(EditText) findViewById(R.id.estateagencyEditText);
+        bankaccountEditText=(EditText) findViewById(R.id.bankaccountEditText);
+        refferalmemberidEditText=(EditText) findViewById(R.id.refferalmemberidEditText);
+        cancelButton = (Button)findViewById(R.id.cancelButton);
+
     }
 
 

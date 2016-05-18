@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_dialog"
         android:text="OK"
-        android:background="@drawable/white_button_with_green_border"
+        android:background="@drawable/white_button_with_grey_border"
         android:textColor="@color/blue_shade"/>
 
 </LinearLayout>
