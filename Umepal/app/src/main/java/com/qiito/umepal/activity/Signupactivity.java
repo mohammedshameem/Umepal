@@ -2,6 +2,7 @@ package com.qiito.umepal.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.util.Log;
@@ -71,23 +72,32 @@ public class Signupactivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_page);
         initView();
-        initManager();
+        //initManager();
 
         androidId= Secure.getString(getApplicationContext().getContentResolver(),
                 Secure.ANDROID_ID);
 
         /* SIGN UP */
 
-       /* signupButton.setOnClickListener(new View.OnClickListener() {
+        nextButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                //checkdetails();
-                //  include requestCode as parameter and check value fir unique device id
 
+                Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
+                next.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                next.putExtra("Name",nameEditText.getText().toString());
+                next.putExtra("Email",emailEditText.getText().toString());
+                next.putExtra("CEA",ceaEditText.getText().toString());
+                next.putExtra("Mobile",mobileEditText.getText().toString());
+                next.putExtra("Bank",bankEditText.getText().toString());
+                next.putExtra("Estateagency",estateagencyEditText.getText().toString());
+                next.putExtra("BankAccount",bankaccountEditText.getText().toString());
+                next.putExtra("RefferalID",refferalmemberidEditText.getText().toString());
 
+                startActivity(next);
             }
-        });*/
+        });
 
         /*LOGIN*/
 
@@ -113,6 +123,7 @@ public class Signupactivity extends Activity {
                 finish();
             }
         });*/
+        scanQRquoteButton.setOnClickListener(scanQRcodeListener);
         cancelButton.setOnClickListener(cancelListener);
     }
 
@@ -120,6 +131,13 @@ public class Signupactivity extends Activity {
             @Override
             public void onClick(View v) {
                  finish();
+            }
+        };
+        View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
             }
         };
 
@@ -224,9 +242,6 @@ public class Signupactivity extends Activity {
 
     private void initView() {
 
-     //   loginWithFacebok=(LinearLayout)findViewById(R.id.facebook_login_button);
-     //   loginButton=(Button)findViewById(R.id.login_button);
-     //   signupButton=(Button)findViewById(R.id.signup_button);
         nameEditText =(EditText) findViewById(R.id.nameEditText);
         emailEditText=(EditText) findViewById(R.id.emailEditText);
         ceaEditText=(EditText) findViewById(R.id.ceaEditText);
@@ -235,7 +250,10 @@ public class Signupactivity extends Activity {
         estateagencyEditText=(EditText) findViewById(R.id.estateagencyEditText);
         bankaccountEditText=(EditText) findViewById(R.id.bankaccountEditText);
         refferalmemberidEditText=(EditText) findViewById(R.id.refferalmemberidEditText);
+
         cancelButton = (Button)findViewById(R.id.cancelButton);
+        scanQRquoteButton = (Button)findViewById(R.id.scanQRquoteButton);
+        nextButton = (Button)findViewById(R.id.nextButton);
 
     }
 

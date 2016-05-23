@@ -70,8 +70,15 @@ public interface ApiConstants {
         String FIRSTNAME = "firstName";
         String LASTNAME = "lastName";
         String EMAIL = "email";
+        String CEA = "cea";
+        String MOBILE = "mobilenumber";
+        String BANK = "bank";
+        String ESTATEAGENCY = "estateagency";
+        String BANKACCOUNT = "bankaccount";
         String PASSWORD = "password";
         String UNIQUEDEVICEID = "uniqueDeviceID";
+        String REFERRALMEMBERID = "referralmember";
+
     }
 
     interface Products {

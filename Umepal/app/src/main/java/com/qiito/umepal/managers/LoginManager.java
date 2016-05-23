@@ -98,7 +98,9 @@ public class LoginManager implements ApiConstants,User {
 	
 	//API CALL FOR SIGNUP
 
-	public void emailSignup(final Activity activity, final AsyncTaskCallBack signUpCallBack, String firstname,String lastname,String email,String password, String uniquedeviceid, final int requestCode)
+	public void emailSignup(final Activity activity, final AsyncTaskCallBack signUpCallBack, String firstname,
+							String lastname,String email,String cea,String mobile,String bank,String estateagency,
+							String bankaccount,String password, String uniquedeviceid,String referralmemberid, final int requestCode)
 	//include requestCode as a paramter
 	{
 		// TODO Auto-generated method stub
@@ -107,8 +109,15 @@ public class LoginManager implements ApiConstants,User {
 		params.put(EmailSignUpRequestParams.FIRSTNAME, firstname);
 		params.put(EmailSignUpRequestParams.LASTNAME, lastname);
 		params.put(EmailSignUpRequestParams.EMAIL, email);
+		params.put(EmailSignUpRequestParams.CEA, cea);
+		params.put(EmailSignUpRequestParams.MOBILE, mobile);
+		params.put(EmailSignUpRequestParams.BANK, bank);
+		params.put(EmailSignUpRequestParams.ESTATEAGENCY, estateagency);
+		params.put(EmailSignUpRequestParams.BANKACCOUNT, bankaccount);
 		params.put(EmailSignUpRequestParams.PASSWORD, password);
 		params.put(EmailSignUpRequestParams.UNIQUEDEVICEID, uniquedeviceid);
+		params.put(EmailSignUpRequestParams.REFERRALMEMBERID, referralmemberid);
+
 
 		TodaysParentAppRestClient.post(EmailSignUpRequestParams.EMAILSIGNUP_URL, params, activity,
 				new AsyncHttpResponseHandler() {
