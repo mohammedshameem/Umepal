@@ -183,17 +183,20 @@ public class LoginManager implements ApiConstants,User {
 
 				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
 				Log.i(TAG, "RESPONSE:" + responseBody);
+				userBaseHolder = new UserBaseHolder();
 
 				if (i == WebResponseConstants.ResponseCode.OK) {
 					Gson gson = new Gson();
+					userBaseHolder = gson.fromJson(responseBody, UserBaseHolder.class);
+
 					Log.e(TAG, "LOGIN RESPONSE " + responseBody);
 					if (UtilValidate.isNotNull(asyncTaskCallBack)) {
-						asyncTaskCallBack.onFinish(i, productCategoryBaseHolder);
+						asyncTaskCallBack.onFinish(i, userBaseHolder);
 					}
 
 
 				} else {
-					asyncTaskCallBack.onFinish(i, productCategoryBaseHolder);
+					asyncTaskCallBack.onFinish(i, userBaseHolder);
 				}
 
 

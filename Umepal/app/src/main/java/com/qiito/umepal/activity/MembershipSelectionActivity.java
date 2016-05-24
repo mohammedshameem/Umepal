@@ -9,13 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.btventures.umepal.R;
+import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
 import com.qiito.umepal.managers.LoginManager;
+import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
 /**
  * Created by abin on 19/5/16.
  */
 public class MembershipSelectionActivity extends Activity {
 
+    private MembershipCallBackClass membershipCallback;
 
     private Button requestpaymentButton;
     private Button paynowButton;
@@ -30,12 +33,16 @@ public class MembershipSelectionActivity extends Activity {
     private TextView membershipfeeText;
 
     private String MembershipId;
+    private String session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.membership_selection_page);
         initViews();
+        initManager();
+        session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
+
         MemAuncheck.setOnClickListener(A_uncheckListener);
         MemBuncheck.setOnClickListener(B_uncheckListener);
         MemCuncheck.setOnClickListener(C_uncheckListener);
@@ -49,11 +56,16 @@ public class MembershipSelectionActivity extends Activity {
 
 
     }
+
+    private void initManager() {
+        membershipCallback=new MembershipCallBackClass();
+    }
+
     View.OnClickListener paynow_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-          //  LoginManager.getInstance().MembershipPaypal();
+            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this,session,MembershipId,membershipCallback);
 
         }
     };
@@ -113,7 +125,7 @@ public class MembershipSelectionActivity extends Activity {
 
     private void initViews() {
         requestpaymentButton = (Button)findViewById(R.id.requestpaymentButton);
-        paynowButton=(Button)findViewById(R.id.payNow_button);
+        paynowButton=(Button)findViewById(R.id.paynowButton);
 
         MemAcheck =(ImageView)findViewById(R.id.checkA);
         MemAuncheck = (ImageView) findViewById(R.id.uncheckA);
@@ -125,5 +137,16 @@ public class MembershipSelectionActivity extends Activity {
         membershipfeeText = (TextView)findViewById(R.id.membershipfeeText);
     }
 
+private class MembershipCallBackClass implements AsyncTaskCallBack{
 
+    @Override
+    public void onFinish(int responseCode, Object result) {
+
+    }
+
+    @Override
+    public void onFinish(int responseCode, String result) {
+
+    }
+}
 }
