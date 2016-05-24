@@ -15,9 +15,9 @@ import org.apache.http.auth.AuthScope;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class TodaysParentAppRestClient {
+public class UMEPALAppRestClient {
 
-	private static final String Tag = TodaysParentAppRestClient.class.getName();
+	private static final String Tag = UMEPALAppRestClient.class.getName();
 
 	private static AsyncHttpClient client = new AsyncHttpClient();
 

@@ -9,7 +9,7 @@ import com.qiito.umepal.Constants.User;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -55,7 +55,7 @@ public class EditProfileManager implements ApiConstants,User {
 		params.put(UserEditProfileRequestParams.PICTURE, pic);
 
 
-		TodaysParentAppRestClient.post(
+		UMEPALAppRestClient.post(
 				UserEditProfileRequestParams.USER_EDIT_PROFILE_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
@@ -141,7 +141,7 @@ public class EditProfileManager implements ApiConstants,User {
 */
 	//	final HttpEntity httpEntity = builder.build();
 
-		TodaysParentAppRestClient.post(
+		UMEPALAppRestClient.post(
 				UserEditProfileRequestParams.USER_EDIT_PROFILE_URL, params,
 				 activity, null, new AsyncHttpResponseHandler() {
 

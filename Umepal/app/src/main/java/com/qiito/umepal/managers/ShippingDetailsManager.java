@@ -10,7 +10,7 @@ import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ShippingDetailsBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 
 import org.apache.http.Header;
 
@@ -54,7 +54,7 @@ public class ShippingDetailsManager implements ApiConstants {
 
         Log.e("*******PARAMS********",""+params);
 
-        TodaysParentAppRestClient.post(ShippingDetailsRequestParams.SHIPPING_DETAILS_URL,params,activity,
+        UMEPALAppRestClient.post(ShippingDetailsRequestParams.SHIPPING_DETAILS_URL,params,activity,
                 new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {

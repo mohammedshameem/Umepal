@@ -14,7 +14,7 @@ import com.qiito.umepal.holder.ShippingDetailsBaseHolder;
 import com.qiito.umepal.holder.ShoppingCartBaseHolder;
 import com.qiito.umepal.holder.ShoppingCartResponseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 import org.apache.http.Header;
@@ -56,7 +56,7 @@ public class ShoppingCartManager implements ApiConstants {
         params.put(ShoppingCartRequestParams.PRODUCT_COLOR,""+color);
         params.put(ShoppingCartRequestParams.PRODUCT_DIMENSION, ""+dimension);
 
-        TodaysParentAppRestClient.post(ShoppingCartRequestParams.ADD_TO_CART_URL, params, activity, new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.post(ShoppingCartRequestParams.ADD_TO_CART_URL, params, activity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
@@ -104,7 +104,7 @@ public class ShoppingCartManager implements ApiConstants {
         params.put(ShoppingCartDeleteRequestParams.SESSION_ID,session_id);
 
 
-        TodaysParentAppRestClient.post(ShoppingCartDeleteRequestParams.DELETE_FROM_CART_URL, params, activity,
+        UMEPALAppRestClient.post(ShoppingCartDeleteRequestParams.DELETE_FROM_CART_URL, params, activity,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -150,7 +150,7 @@ public class ShoppingCartManager implements ApiConstants {
         params.put(GetProductsfromCartRequestParams.USER_ID,userId);
         params.put(GetProductsfromCartRequestParams.SESSION_ID,sessionId);
 
-        TodaysParentAppRestClient.get(GetProductsfromCartRequestParams.GET_PRODUCTS_FROM_CART, params, null,
+        UMEPALAppRestClient.get(GetProductsfromCartRequestParams.GET_PRODUCTS_FROM_CART, params, null,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -205,7 +205,7 @@ public class ShoppingCartManager implements ApiConstants {
         params.put(ShippingDetailsRequestParams.PHONE,shippingAddress.getShippingphone());
 
 
-        TodaysParentAppRestClient.post(ShippingDetailsRequestParams.SHIPPING_DETAILS_URL, params, null,
+        UMEPALAppRestClient.post(ShippingDetailsRequestParams.SHIPPING_DETAILS_URL, params, null,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {

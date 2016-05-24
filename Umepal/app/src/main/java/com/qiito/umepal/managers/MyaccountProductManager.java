@@ -12,7 +12,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 import org.apache.http.Header;
@@ -55,7 +55,7 @@ public class MyaccountProductManager implements ApiConstants{
 
 
 
-            TodaysParentAppRestClient.get(UserProfileRequestParams.USERPROFILE_URL,
+            UMEPALAppRestClient.get(UserProfileRequestParams.USERPROFILE_URL,
                     params, null, new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess(int i, Header[] headers, byte[] bytes) {

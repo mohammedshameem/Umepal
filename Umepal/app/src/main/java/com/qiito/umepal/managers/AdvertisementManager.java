@@ -12,7 +12,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.AdvertisementResponseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -48,7 +48,7 @@ public class AdvertisementManager implements ApiConstants {
 
         RequestParams params = new RequestParams();
 
-        TodaysParentAppRestClient.get(AdvertisementRequestParams.ADS_END_POINT, params, null, new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.get(AdvertisementRequestParams.ADS_END_POINT, params, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 

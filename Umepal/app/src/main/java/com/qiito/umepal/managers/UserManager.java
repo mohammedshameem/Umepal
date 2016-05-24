@@ -21,7 +21,7 @@ import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserLogoutHolder;
 import com.qiito.umepal.holder.UserResponseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -67,7 +67,7 @@ public class UserManager implements ApiConstants {
 		params.put(UserProfileRequestParams.OFFSET,offset+"");
 
 
-		TodaysParentAppRestClient.post(UserProfileRequestParams.USERPROFILE_URL, params, activity,
+		UMEPALAppRestClient.post(UserProfileRequestParams.USERPROFILE_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -115,7 +115,7 @@ public class UserManager implements ApiConstants {
 		RequestParams params = new RequestParams();
 		params.put(userLogoutRequestParams.SESSION_ID, session);
 
-		TodaysParentAppRestClient.post(userLogoutRequestParams.LOGOUT_URL,params,activity,new AsyncHttpResponseHandler() {
+		UMEPALAppRestClient.post(userLogoutRequestParams.LOGOUT_URL,params,activity,new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {
 						String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
@@ -171,7 +171,7 @@ public class UserManager implements ApiConstants {
 		params.put(UserEditProfileRequestParams.CITY, city);
 		params.put(UserEditProfileRequestParams.MOBILE, mobile);
 
-		TodaysParentAppRestClient.post(
+		UMEPALAppRestClient.post(
 				UserEditProfileRequestParams.USER_EDIT_PROFILE_URL, params,
 				activity, new AsyncHttpResponseHandler() {
 					@Override
@@ -255,7 +255,7 @@ public class UserManager implements ApiConstants {
 		Log.e("paramsPic>>>", UserEditProfileRequestParams.PICTURE);
 		//Log.e("manager params&&&&&&>>",""+params);
 
-		TodaysParentAppRestClient.post(UserEditProfileRequestParams.USER_EDIT_PROFILE_URL,httpEntity,null, activity,null,
+		UMEPALAppRestClient.post(UserEditProfileRequestParams.USER_EDIT_PROFILE_URL,httpEntity,null, activity,null,
 				new AsyncHttpResponseHandler() {
 
 			@Override

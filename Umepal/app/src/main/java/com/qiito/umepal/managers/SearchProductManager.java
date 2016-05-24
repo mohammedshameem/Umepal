@@ -12,7 +12,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ProductBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 
@@ -51,7 +51,7 @@ public class SearchProductManager implements ApiConstants {
 
         Log.e("", "paramsss>>>> " + params);
 
-        TodaysParentAppRestClient.get(SearchProductRequestParams.SEARCH_URL, params, null,
+        UMEPALAppRestClient.get(SearchProductRequestParams.SEARCH_URL, params, null,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {

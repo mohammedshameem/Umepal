@@ -11,7 +11,7 @@ import com.qiito.umepal.holder.ForgotPasswordBaseHolder;
 import com.qiito.umepal.holder.ResetPasswordBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -52,7 +52,7 @@ public class LoginManager implements ApiConstants,User {
 		params.put(EmailLoginRequestParams.PASSWORD, password);
 
 
-		TodaysParentAppRestClient.post(EmailLoginRequestParams.EMAILLOGIN_URL, params, activity,
+		UMEPALAppRestClient.post(EmailLoginRequestParams.EMAILLOGIN_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -119,7 +119,7 @@ public class LoginManager implements ApiConstants,User {
 		params.put(EmailSignUpRequestParams.REFERRALMEMBERID, referralmemberid);
 
 
-		TodaysParentAppRestClient.post(EmailSignUpRequestParams.EMAILSIGNUP_URL, params, activity,
+		UMEPALAppRestClient.post(EmailSignUpRequestParams.EMAILSIGNUP_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -167,12 +167,54 @@ public class LoginManager implements ApiConstants,User {
 
 	}
 
+
+	public void membershipPaypal(final Activity activity, String session,
+
+							String membershipID ,final AsyncTaskCallBack asyncTaskCallBack){
+		RequestParams params = new RequestParams();
+		params.put(MembershipPaypalParams.SESSION_ID, session);
+		params.put(MembershipPaypalParams.MEMBERSHIPID, membershipID);
+
+
+		UMEPALAppRestClient.post(MembershipPaypalParams.MEMBERPAYPAL, params, activity, new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int i, Header[] headers, byte[] bytes) {
+
+
+				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+				Log.i(TAG, "RESPONSE:" + responseBody);
+
+				if (i == WebResponseConstants.ResponseCode.OK) {
+					Gson gson = new Gson();
+					Log.e(TAG, "LOGIN RESPONSE " + responseBody);
+					if (UtilValidate.isNotNull(asyncTaskCallBack)) {
+						asyncTaskCallBack.onFinish(i, productCategoryBaseHolder);
+					}
+
+
+				} else {
+					asyncTaskCallBack.onFinish(i, productCategoryBaseHolder);
+				}
+
+
+
+			}
+
+			@Override
+			public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+			}
+		});
+
+	}
+
+
 	public void forgotPassword(Activity activity, String email, final AsyncTaskCallBack forgotPasswordCallBack) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		params.put(ForgotPasswordRequestParams.EMAIL, email);
 		
-		TodaysParentAppRestClient.post(ForgotPasswordRequestParams.FORGOTPASSWORD_URL, params, activity, new AsyncHttpResponseHandler() {
+		UMEPALAppRestClient.post(ForgotPasswordRequestParams.FORGOTPASSWORD_URL, params, activity, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
@@ -216,7 +258,7 @@ public class LoginManager implements ApiConstants,User {
 
 
 
-		TodaysParentAppRestClient.post(RestPasswordRequestParams.RESET_PASSWORD_URL, params, activity, new AsyncHttpResponseHandler() {
+		UMEPALAppRestClient.post(RestPasswordRequestParams.RESET_PASSWORD_URL, params, activity, new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int i, Header[] headers, byte[] bytes) {
 

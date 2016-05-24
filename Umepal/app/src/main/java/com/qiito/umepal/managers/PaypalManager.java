@@ -15,7 +15,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -55,7 +55,7 @@ public class PaypalManager implements ApiConstants {
         Log.i(TAG, "PAYPAL PRODUCT_QUANTITIES" + product_quantities);
         Log.e(TAG,"Params>> "+params);
 
-        TodaysParentAppRestClient.post(
+        UMEPALAppRestClient.post(
                 PayPalRequestParams.PAYPAL_PURCHASE_URL, params,
                 activity, new AsyncHttpResponseHandler() {
                     @Override
@@ -151,7 +151,7 @@ public class PaypalManager implements ApiConstants {
         RequestParams params = new RequestParams();
         params.put(JoinMembershipRequestParams.SESSION_ID, session_id);
 
-        TodaysParentAppRestClient.post(
+        UMEPALAppRestClient.post(
                 JoinMembershipRequestParams.JOIN_MEMBERSHIP, params,
                 activity, new AsyncHttpResponseHandler() {
                     @Override

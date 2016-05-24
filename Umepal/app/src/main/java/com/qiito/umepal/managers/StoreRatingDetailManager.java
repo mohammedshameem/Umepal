@@ -12,7 +12,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.StoreDetailBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 import org.apache.http.Header;
@@ -45,7 +45,7 @@ public class StoreRatingDetailManager implements ApiConstants {
         params.put(StoreRatingRequestParams.SESSION_ID,sessionId);
         params.put(StoreRatingRequestParams.STORE_ID,storeid);
 
-        TodaysParentAppRestClient.get(StoreRatingRequestParams.STORE_RATING_URL, params, null, new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.get(StoreRatingRequestParams.STORE_RATING_URL, params, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
@@ -105,7 +105,7 @@ public class StoreRatingDetailManager implements ApiConstants {
         params.put(StoreRatingRequestParams.RATING,rating);
         params.put(StoreRatingRequestParams.STORE_ID,storeid);
 
-        TodaysParentAppRestClient.post(StoreRatingRequestParams.STORE_RATING_URL, params, activity, null, new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.post(StoreRatingRequestParams.STORE_RATING_URL, params, activity, null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 

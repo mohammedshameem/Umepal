@@ -9,7 +9,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ProductCategoryBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -53,7 +53,7 @@ import java.io.ByteArrayInputStream;
 
             params.put(ProductCategories.SESSION_ID, session_id);
 
-            TodaysParentAppRestClient.get(ProductCategories.GET_CATEGORY, params, null,
+            UMEPALAppRestClient.get(ProductCategories.GET_CATEGORY, params, null,
                     new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess(int i, Header[] headers, byte[] bytes) {

@@ -10,7 +10,7 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ProductDetailsBaseHolder;
 import com.qiito.umepal.holder.ProductLikeHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -56,7 +56,7 @@ public class ProductLikeManager implements ApiConstants{
         Log.e("PRoduct id", ""+product_id);
         Log.e("sesssion id",""+session_id);
 
-        TodaysParentAppRestClient.post(ProductLike.LIKE_URL, params, null,
+        UMEPALAppRestClient.post(ProductLike.LIKE_URL, params, null,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int requestCode, Header[] headers, byte[] bytes) {

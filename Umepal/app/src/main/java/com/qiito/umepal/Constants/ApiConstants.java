@@ -80,7 +80,7 @@ public interface ApiConstants {
         String REFERRALMEMBERID = "referralmember";
 
     }
-    interface MembershipPaypal {
+    interface MembershipPaypalParams {
         String MEMBERPAYPAL = BASE_URL + "api/member-paypal";
         String SESSION_ID = "session_id";
         String MEMBERSHIPID = "membership_id";

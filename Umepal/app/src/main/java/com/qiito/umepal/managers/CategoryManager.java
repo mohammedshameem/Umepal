@@ -8,7 +8,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.CategoryResponseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -50,7 +50,7 @@ public class CategoryManager implements ApiConstants {
 		params.put(Categories.SESSION_ID, session_id);
 
 
-		TodaysParentAppRestClient.post(Categories.GET_CATEGORY_URL, params, activity,
+		UMEPALAppRestClient.post(Categories.GET_CATEGORY_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {

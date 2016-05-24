@@ -10,7 +10,7 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.Utilvalidate.Utils;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -57,7 +57,7 @@ public class FacebookManager implements ApiConstants.Facebook {
 		Log.e("", "longitude:" + String.valueOf(longitude));
 		Log.e("", "fb_id:" + fbid);
 
-		TodaysParentAppRestClient.post(LOGIN_URL, params, activity,
+		UMEPALAppRestClient.post(LOGIN_URL, params, activity,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(int i, Header[] headers, byte[] bytes) {

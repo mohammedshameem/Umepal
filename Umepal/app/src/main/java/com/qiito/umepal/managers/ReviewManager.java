@@ -12,7 +12,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ReviewBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 import org.apache.http.Header;
@@ -51,7 +51,7 @@ public class ReviewManager implements ApiConstants {
         params.put(ReviewProductRequestParams.RATING, rating);
 
 
-       TodaysParentAppRestClient.post(ReviewProductRequestParams.REVIEW_URL,params,activity, new AsyncHttpResponseHandler() {
+       UMEPALAppRestClient.post(ReviewProductRequestParams.REVIEW_URL,params,activity, new AsyncHttpResponseHandler() {
            @Override
            public void onSuccess(int i, Header[] headers, byte[] bytes) {
                String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));

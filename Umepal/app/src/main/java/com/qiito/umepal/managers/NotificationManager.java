@@ -14,7 +14,7 @@ import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.NotificationBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
-import com.qiito.umepal.webservice.TodaysParentAppRestClient;
+import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
 import org.apache.http.Header;
@@ -54,7 +54,7 @@ public class NotificationManager implements ApiConstants {
         // catgory_id,sub_catgory_id,offset
 
 
-        TodaysParentAppRestClient.get(NotificationRequestParams.NOTIFICATION_URL, params, null,
+        UMEPALAppRestClient.get(NotificationRequestParams.NOTIFICATION_URL, params, null,
                 new AsyncHttpResponseHandler() {
 
                     @Override
@@ -132,7 +132,7 @@ public class NotificationManager implements ApiConstants {
 
         Log.e("", "manager params>>>>>>>" + params);
 
-        TodaysParentAppRestClient.post(NotificationDeleteRequestParams.NOTIFICATION_DELETE_URL, params, activity, new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.post(NotificationDeleteRequestParams.NOTIFICATION_DELETE_URL, params, activity, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
 
@@ -167,7 +167,7 @@ public class NotificationManager implements ApiConstants {
         params.put(NotificationDeleteRequestParams.SESSION_ID, session_id);
         params.put(NotificationDeleteRequestParams.NOTIFICATION_ID, "");
 
-        TodaysParentAppRestClient.post(NotificationDeleteRequestParams.NOTIFICATION_DELETE_URL, params, activity,
+        UMEPALAppRestClient.post(NotificationDeleteRequestParams.NOTIFICATION_DELETE_URL, params, activity,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -202,7 +202,7 @@ public class NotificationManager implements ApiConstants {
         RequestParams params = new RequestParams();
         params.put(NotificationRequestParams.SESSION_ID, sessionId);
 
-        TodaysParentAppRestClient.get(NotificationRequestParams.NOTIFICATION_URL, params, null,
+        UMEPALAppRestClient.get(NotificationRequestParams.NOTIFICATION_URL, params, null,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
