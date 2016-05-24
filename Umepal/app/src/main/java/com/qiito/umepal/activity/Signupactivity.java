@@ -47,14 +47,20 @@ public class Signupactivity extends Activity {
     private EditText estateagencyEditText;
     private EditText bankaccountEditText;
     private EditText refferalmemberidEditText;
+    private EditText password;
 
 
     private String androidId;
     private String FirstName;
     private String LastName;
     private String Email;
+    private String CEA;
+    private String MOBILE;
+    private String BANK;
+    private String ESTATEAGENCY;
+    private String BankAccount;
     private String Password;
-    private String ConfirmPassword;
+    private String refferalmemberID;
 
     private boolean firstNameFlag;
     private boolean lastNameFlag;
@@ -72,7 +78,7 @@ public class Signupactivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_page);
         initView();
-        //initManager();
+        initManager();
 
         androidId= Secure.getString(getApplicationContext().getContentResolver(),
                 Secure.ANDROID_ID);
@@ -84,7 +90,17 @@ public class Signupactivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
+                FirstName = nameEditText.getText().toString();
+                Email = emailEditText.getText().toString();
+                CEA = ceaEditText.getText().toString();
+                MOBILE = mobileEditText.getText().toString();
+                BANK = bankEditText.getText().toString();
+                ESTATEAGENCY = estateagencyEditText.getText().toString();
+                BankAccount = bankaccountEditText.getText().toString();
+                refferalmemberID = refferalmemberidEditText.getText().toString();
+                Password = password.getText().toString();
+
+               /* Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
                 next.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 next.putExtra("Name",nameEditText.getText().toString());
                 next.putExtra("Email",emailEditText.getText().toString());
@@ -95,7 +111,10 @@ public class Signupactivity extends Activity {
                 next.putExtra("BankAccount",bankaccountEditText.getText().toString());
                 next.putExtra("RefferalID",refferalmemberidEditText.getText().toString());
 
-                startActivity(next);
+                startActivity(next);*/
+                CHECKDETAILS();
+
+
             }
         });
 
@@ -127,7 +146,33 @@ public class Signupactivity extends Activity {
         cancelButton.setOnClickListener(cancelListener);
     }
 
-        View.OnClickListener cancelListener = new View.OnClickListener() {
+    private void CHECKDETAILS() {
+        LastName="";
+
+        Log.e("1",""+FirstName);
+
+        Log.e("2",""+Email);
+        Log.e("3",""+CEA);
+        Log.e("4",""+MOBILE);
+        Log.e("5",""+BANK);
+        Log.e("6",""+ESTATEAGENCY);
+        Log.e("7",""+BankAccount);
+        Log.e("8",""+androidId);
+        Log.e("9",""+Password);
+        Log.e("0",""+refferalmemberID);
+        Log.e("11","12"+LastName);
+
+        Log.e("11","12");
+
+
+
+
+        LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,
+                Email,CEA,MOBILE,BANK,ESTATEAGENCY,BankAccount, Password,androidId,refferalmemberID, requestCode);
+
+    }
+
+    View.OnClickListener cancelListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  finish();
@@ -141,104 +186,7 @@ public class Signupactivity extends Activity {
             }
         };
 
-/*
-    private void checkdetails() {
 
-        if (UtilValidate.isValidFirstname(firstName.getText().toString())){
-
-            FirstName=firstName.getText().toString();
-            firstNameFlag = true;
-
-            if (UtilValidate.isValidLastname(lastName.getText().toString())){
-
-                LastName = lastName.getText().toString();
-                lastNameFlag = true;
-
-                if (UtilValidate.isValidemail(email.getText().toString())){
-
-                    emailFlag = true;
-                    Email = email.getText().toString();
-
-                    if (UtilValidate.isValidPassword(password.getText().toString())){
-
-                        passwordFlag = true;
-                        Password=password.getText().toString();
-                        if(UtilValidate.isValidPassword(confirmPassword.getText().toString())){
-                            confirmPasswordFlag = true;
-                            ConfirmPassword = confirmPassword.getText().toString();
-
-                            if(password.getText().toString().equals(confirmPassword.getText().toString())){
-
-                                CheckPasswordsFlag = true;
-
-                            }else{
-
-                                password.setError("passwords do not match");
-                                confirmPassword.setError("passwords do not match");
-                            }
-                        }else{
-                            if (confirmPassword.getText().length()<8){
-                                confirmPassword.setError("password lenght should be between 8 and 15");
-                            }
-                            confirmPassword.setError("Please provide value here");
-                        }
-
-                    }else{
-                        if (password.getText().length()<8){
-                            password.setError("password lenght should be between 8 and 15");
-                        }
-
-                    }
-
-                }else{
-                    email.setError("Email should be in the form abc@abc.abc");
-                }
-
-            }else{
-                if (lastName.getText().toString().length()<0){
-                    lastName.setError("Please enter your last name");
-                }
-                else{
-                    lastName.setError("Enter a valid data");
-                }
-            }
-
-        }else{
-            if(firstName.getText().toString().length()<0){
-                firstName.setError("Please enter your first name");
-            }else{
-                firstName.setError("enter valid data");
-            }
-        }
-
-
-
-        if (firstNameFlag && lastNameFlag && emailFlag && passwordFlag && confirmPasswordFlag && CheckPasswordsFlag) {
-
-
-            Log.e("","dsaadsfsdfsfsdfdsfsddddddddddddddddddddd"+FirstName);
-            Log.e("",""+LastName);
-            Log.e("",""+Email);
-            Log.e("",""+Password);
-            Log.e("",""+androidId);
-            Log.e("",""+requestCode);
-
-
-            LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,
-                    Email, Password, androidId, requestCode);
-
-            */
-/*  SUCCESS LOGIN  *//*
-
-
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "FAIL", Toast.LENGTH_LONG).show();
-        }
-
-    }
-*/
-    /*check details*/
 
     private void initView() {
 
@@ -250,6 +198,7 @@ public class Signupactivity extends Activity {
         estateagencyEditText=(EditText) findViewById(R.id.estateagencyEditText);
         bankaccountEditText=(EditText) findViewById(R.id.bankaccountEditText);
         refferalmemberidEditText=(EditText) findViewById(R.id.refferalmemberidEditText);
+        password = (EditText) findViewById(R.id.passwordEditText);
 
         cancelButton = (Button)findViewById(R.id.cancelButton);
         scanQRquoteButton = (Button)findViewById(R.id.scanQRquoteButton);
@@ -316,14 +265,15 @@ public class Signupactivity extends Activity {
 
                     Toast.makeText(getApplicationContext(), "Signup Success", Toast.LENGTH_LONG).show();
 
-                    LoginManager.getInstance().emailLogin(Signupactivity.this, Email, Password, loginCallBackClass, requestcode);
+                  //  LoginManager.getInstance().emailLogin(Signupactivity.this, Email, Password, loginCallBackClass, requestcode);
 
-
+                    Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
+                    startActivity(next);
                 }
             }
 
             else if(userBaseHolder.getStatus().equals("error")) {
-                Toast.makeText(Signupactivity.this,"User already exsists!!!",Toast.LENGTH_LONG).show();
+                Toast.makeText(Signupactivity.this,userBaseHolder.getMessage(),Toast.LENGTH_LONG).show();
             }
 
 
