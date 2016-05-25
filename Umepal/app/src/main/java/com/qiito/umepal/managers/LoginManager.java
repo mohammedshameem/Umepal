@@ -102,7 +102,7 @@ public class LoginManager implements ApiConstants,User {
 
 	public void emailSignup(final Activity activity, final AsyncTaskCallBack signUpCallBack, String firstname,
 							String lastname,String email,String cea,String mobile,String bank,String estateagency,
-							String bankaccount,String password, String uniquedeviceid,String referralmemberid, final int requestCode)
+							String bankaccount,String password, String uniquedeviceid,String referralmemberid,String profilePic, final int requestCode)
 	//include requestCode as a paramter
 	{
 		// TODO Auto-generated method stub
@@ -119,6 +119,7 @@ public class LoginManager implements ApiConstants,User {
 		params.put(EmailSignUpRequestParams.PASSWORD, password);
 		params.put(EmailSignUpRequestParams.UNIQUEDEVICEID, uniquedeviceid);
 		params.put(EmailSignUpRequestParams.REFERRALMEMBERID, referralmemberid);
+		params.put(EmailSignUpRequestParams.PROFILE_PIC,profilePic);
 
 
 		UMEPALAppRestClient.post(EmailSignUpRequestParams.EMAILSIGNUP_URL, params, activity,

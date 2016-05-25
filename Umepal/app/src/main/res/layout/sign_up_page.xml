@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:visibility="visible"
         android:layout_marginTop="20dp">
 
         <LinearLayout
@@ -58,7 +59,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="visible">
 
 
 
@@ -417,8 +419,8 @@
 
                   <LinearLayout
                       android:layout_width="0dp"
-                      android:layout_weight="1.5"
-                      android:gravity="center"
+                      android:layout_weight="1"
+                      android:gravity="left"
                       android:layout_height="wrap_content">
                        <ImageButton
                            android:id="@+id/uploadPicButton"
@@ -430,7 +432,7 @@
                   </LinearLayout>
                   <LinearLayout
                       android:layout_width="0dp"
-                      android:layout_weight="1.5"
+                      android:layout_weight="1.8"
                       android:layout_height="wrap_content">
                        <TextView
                            android:layout_width="wrap_content"

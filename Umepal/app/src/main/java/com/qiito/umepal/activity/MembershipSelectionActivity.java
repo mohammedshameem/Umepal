@@ -7,12 +7,14 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -71,6 +73,10 @@ public class MembershipSelectionActivity extends Activity {
         setContentView(R.layout.membership_selection_page);
         initViews();
         initManager();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
+        }
         session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
 
         MemAuncheck.setOnClickListener(A_uncheckListener);

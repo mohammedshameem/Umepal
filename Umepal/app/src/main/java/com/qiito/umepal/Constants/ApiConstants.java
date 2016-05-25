@@ -78,6 +78,7 @@ public interface ApiConstants {
         String PASSWORD = "password";
         String UNIQUEDEVICEID = "uniqueDeviceID";
         String REFERRALMEMBERID = "referralmember";
+        String PROFILE_PIC = "profilePic";
 
     }
     interface MembershipPaypalParams {

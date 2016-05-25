@@ -3,12 +3,14 @@ package com.qiito.umepal.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -61,14 +63,8 @@ public class Signupactivity extends Activity {
     private String BankAccount;
     private String Password;
     private String refferalmemberID;
+    private String profilePic;
 
-    private boolean firstNameFlag;
-    private boolean lastNameFlag;
-    private boolean emailFlag;
-    private boolean EmailFlag2;
-    private boolean passwordFlag;
-    private boolean confirmPasswordFlag;
-    private boolean CheckPasswordsFlag;
 
     private final  int requestCode = 200;
     private int requestcode=1;
@@ -82,6 +78,10 @@ public class Signupactivity extends Activity {
 
         androidId= Secure.getString(getApplicationContext().getContentResolver(),
                 Secure.ANDROID_ID);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
+        }
 
         /* SIGN UP */
 
@@ -168,14 +168,16 @@ public class Signupactivity extends Activity {
 
 
         LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,
-                Email,CEA,MOBILE,BANK,ESTATEAGENCY,BankAccount, Password,androidId,refferalmemberID, requestCode);
+                Email,CEA,MOBILE,BANK,ESTATEAGENCY,BankAccount, Password,androidId,refferalmemberID,profilePic, requestCode);
 
     }
 
     View.OnClickListener cancelListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 finish();
+               //  finish();
+                Intent intent=new Intent(Signupactivity.this,MembershipSelectionActivity.class);
+                startActivity(intent);
             }
         };
         View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
