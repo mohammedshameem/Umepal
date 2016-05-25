@@ -6,8 +6,10 @@ import android.widget.Toast;
 
 import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Constants.User;
+import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ForgotPasswordBaseHolder;
+import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.holder.ResetPasswordBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
@@ -176,38 +178,71 @@ public class LoginManager implements ApiConstants,User {
 		params.put(MembershipPaypalParams.MEMBERSHIPID, membershipID);
 
 
-		UMEPALAppRestClient.post(MembershipPaypalParams.MEMBERPAYPAL, params, activity, new AsyncHttpResponseHandler() {
-			@Override
-			public void onSuccess(int i, Header[] headers, byte[] bytes) {
+		UMEPALAppRestClient.post(
+				MembershipPaypalParams.MEMBERPAYPAL, params,
+				activity, new AsyncHttpResponseHandler() {
+					@Override
+					public void onSuccess(int i, Header[] headers, byte[] bytes) {
+
+						String responseBody = UtilValidate
+								.getStringFromInputStream(new ByteArrayInputStream(
+										bytes));
 
 
-				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
-				Log.i(TAG, "RESPONSE:" + responseBody);
-				userBaseHolder = new UserBaseHolder();
+						if (i == WebResponseConstants.ResponseCode.OK) {
 
-				if (i == WebResponseConstants.ResponseCode.OK) {
-					Gson gson = new Gson();
-					userBaseHolder = gson.fromJson(responseBody, UserBaseHolder.class);
+							Log.e("","PAYPAL RESPONSE>>>>"+responseBody);
 
-					Log.e(TAG, "LOGIN RESPONSE " + responseBody);
-					if (UtilValidate.isNotNull(asyncTaskCallBack)) {
-						asyncTaskCallBack.onFinish(i, userBaseHolder);
+							PayPalTransactionResponseHolder palTransactionResponseHolder = new PayPalTransactionResponseHolder();
+							Gson gson = new Gson();
+							palTransactionResponseHolder = gson.fromJson(
+									responseBody,
+									PayPalTransactionResponseHolder.class);
+							if (UtilValidate.isNotNull(asyncTaskCallBack)) {
+								asyncTaskCallBack.onFinish(i,
+										palTransactionResponseHolder);
+							}
+
+						}
+						if (i == WebResponseConstants.ResponseCode.UN_AUTHORIZED) {
+
+							PayPalTransactionResponseHolder palTransactionResponseHolder = new PayPalTransactionResponseHolder();
+							Gson gson = new Gson();
+							palTransactionResponseHolder = gson.fromJson(
+									responseBody,
+									PayPalTransactionResponseHolder.class);
+							if (UtilValidate.isNotNull(asyncTaskCallBack)) {
+								asyncTaskCallBack.onFinish(i,
+										palTransactionResponseHolder);
+							}
+
+						}
+
+
 					}
 
-
-				} else {
-					asyncTaskCallBack.onFinish(i, userBaseHolder);
-				}
+					@Override
+					public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
 
 
+//						if (TodaysParentLog.IS_INFO_ENABLED)
+//							Log.i(TAG, "paypal transaction api call FAILED!!! " + content);
 
-			}
+						if (!(NetChecker.isConnected(activity))) {
 
-			@Override
-			public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+							if (!(NetChecker.isConnectedWifi(activity) && NetChecker
+									.isConnectedMobile(activity))) {
 
-			}
-		});
+								Toast.makeText(
+										activity,
+										"please check your internet connection",
+										Toast.LENGTH_SHORT).show();
+							}
+
+						}
+
+					}
+				});
 
 	}
 

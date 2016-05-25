@@ -6,6 +6,7 @@
     android:orientation="vertical"
     >
     <LinearLayout
+        android:id="@+id/membershipselectionpage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -93,7 +94,7 @@
                     android:id="@+id/checkA"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/uncheck_white"
+                    android:src="@drawable/success"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -139,7 +140,7 @@
                     android:id="@+id/checkB"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/uncheck_white"
+                    android:src="@drawable/success"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -188,7 +189,7 @@
                     android:id="@+id/checkC"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/uncheck_white"
+                    android:src="@drawable/success"
                     android:visibility="gone" />
 
             </LinearLayout>
@@ -264,6 +265,34 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/paypal_webviews_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/relative_web"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <WebView
+                android:id="@+id/webview_paypal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:indeterminate="false" />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
