@@ -246,11 +246,11 @@ public class MyAccountFragment extends Fragment {
             }
         });
 
-        if (userObjectHolder.getFacebookId().equalsIgnoreCase("")){
+        /*if (userObjectHolder.getFacebookId().equalsIgnoreCase("")){
             tell_your_friends_btn.setVisibility(View.GONE);
         }else{
-            tell_your_friends_btn.setVisibility(View.VISIBLE);
-            /*invite friends*/
+           // tell_your_friends_btn.setVisibility(View.VISIBLE);
+            *//*invite friends*//*
             tell_your_friends_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -275,7 +275,7 @@ public class MyAccountFragment extends Fragment {
 
                 }
             });
-        }
+        }*/
 
 
         /*MY LIKES*/

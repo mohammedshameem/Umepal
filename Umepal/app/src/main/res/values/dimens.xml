@@ -102,7 +102,7 @@
     <!--membership strip details-->
     <dimen name="membership_image">50dp</dimen>
     <dimen name="member_strip_height">60dp</dimen>
-    <dimen name="member_title">15sp</dimen>
+    <dimen name="member_title">14sp</dimen>
     <dimen name="member_data">12sp</dimen>
     <dimen name="textSize_heading">24sp</dimen>
 

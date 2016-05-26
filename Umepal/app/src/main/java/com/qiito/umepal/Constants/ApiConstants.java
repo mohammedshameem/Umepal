@@ -49,7 +49,7 @@ public interface ApiConstants {
     interface EmailLoginRequestParams {
 
         String EMAILLOGIN_URL = BASE_URL + "api/email-login";
-        String EMAIL = "umeid";
+        String EMAIL = "ume_id";
         String PASSWORD = "password";
 
     }

@@ -14,9 +14,19 @@ public class UserBaseHolder implements Serializable {
 	private int code;
 	private String message;
 	private UserResponseHolder data;
-	
+	private UserObjectHolder user;
+
+
+	public UserResponseHolder getData() {
+		return data;
+	}
+
+	public void setData(UserResponseHolder data) {
+		this.data = data;
+	}
 
 	/**
+
 	 * @return the message
 	 */
 	public String getMessage() {
@@ -55,16 +65,17 @@ public class UserBaseHolder implements Serializable {
 	/**
 	 * @return the data
 	 */
-	public UserResponseHolder getData() {
-		return data;
-	}
-	/**
-	 * @param data the data to set
-	 */
-	public void setData(UserResponseHolder data) {
-		this.data = data;
+
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
-	
-	
+	public UserObjectHolder getUser() {
+		return user;
+	}
+
+	public void setUser(UserObjectHolder user) {
+		this.user = user;
+	}
 }

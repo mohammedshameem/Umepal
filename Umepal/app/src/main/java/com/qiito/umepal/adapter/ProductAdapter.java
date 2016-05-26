@@ -234,7 +234,7 @@ public class ProductAdapter extends BaseAdapter {
         if (sessionId != null) {
             if (!sessionId.equals("")) {
                 if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
-                    if ((DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("true"))) {
+                    if ((DbManager.getInstance().getCurrentUserDetails().is_member())) {
                         viewholder.crossed_dollar_nonmember.setVisibility(View.GONE);
                         viewholder.crossednonmember.setVisibility(View.GONE);
 
@@ -267,12 +267,12 @@ public class ProductAdapter extends BaseAdapter {
                         } else {
                             viewholder.productPrice.setText("0");
                         }
-                        if (DbManager.getInstance().getCurrentUserDetails().getMembership_blocked().equalsIgnoreCase("true")) {
+                       /* if (DbManager.getInstance().getCurrentUserDetails().getMembership_blocked().equalsIgnoreCase("true")) {
                             viewholder.member_layout.setVisibility(View.GONE);
                         } else {
                             viewholder.member_layout.setVisibility(View.VISIBLE);
 
-                        }
+                        }*/
                     }
                 } else {
                     Toast.makeText(activity, "null", Toast.LENGTH_LONG).show();

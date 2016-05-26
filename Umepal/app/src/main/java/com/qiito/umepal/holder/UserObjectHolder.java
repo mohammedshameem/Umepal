@@ -39,6 +39,114 @@ public class UserObjectHolder implements Serializable {
 	private List<PurchasedItems> purchased_items;
 	private List<ProductObject> liked_products;
 
+	private String cea;
+	private String mobilenumber;
+	private String bank;
+	private String estateagency;
+	private String bankaccount;
+	private String referralmember_id;
+	private String referrerId;
+	private String umeId;
+	private String paymentStatus;
+	private boolean is_member;
+	private String session_id;
+
+	public String getExpiryDate() {
+		return ExpiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		ExpiryDate = expiryDate;
+	}
+
+	public String getCea() {
+		return cea;
+	}
+
+	public void setCea(String cea) {
+		this.cea = cea;
+	}
+
+	public String getMobilenumber() {
+		return mobilenumber;
+	}
+
+	public void setMobilenumber(String mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getEstateagency() {
+		return estateagency;
+	}
+
+	public void setEstateagency(String estateagency) {
+		this.estateagency = estateagency;
+	}
+
+	public String getReferralmember_id() {
+		return referralmember_id;
+	}
+
+	public void setReferralmember_id(String referralmember_id) {
+		this.referralmember_id = referralmember_id;
+	}
+
+	public String getBankaccount() {
+		return bankaccount;
+	}
+
+	public void setBankaccount(String bankaccount) {
+		this.bankaccount = bankaccount;
+	}
+
+	public String getReferrerId() {
+		return referrerId;
+	}
+
+	public void setReferrerId(String referrerId) {
+		this.referrerId = referrerId;
+	}
+
+	public String getUmeId() {
+		return umeId;
+	}
+
+	public void setUmeId(String umeId) {
+		this.umeId = umeId;
+	}
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public boolean is_member() {
+		return is_member;
+	}
+
+	public void setIs_member(boolean is_member) {
+		this.is_member = is_member;
+	}
+
+	public String getSession_id() {
+		return session_id;
+	}
+
+	public void setSession_id(String session_id) {
+		this.session_id = session_id;
+	}
+
 	public ShippingAddress getShipping_address() {
 		return shipping_address;
 	}

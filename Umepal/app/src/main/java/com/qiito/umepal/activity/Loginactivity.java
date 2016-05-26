@@ -209,13 +209,15 @@ public class Loginactivity extends Activity {
             final UserBaseHolder userBaseHolder = (UserBaseHolder) result;
             if (UtilValidate.isNotNull(userBaseHolder)) {
 
-                if (userBaseHolder.getStatus().equalsIgnoreCase("error")) {
+                if (userBaseHolder.getStatus().equalsIgnoreCase("failure")) {
                     dialogTransparent.dismiss();
-                    Toast.makeText(Loginactivity.this, "Wrong username or password!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Loginactivity.this, userBaseHolder.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 if (userBaseHolder.getStatus().equalsIgnoreCase("success")) {
                     //fbInvite();
+                   // Toast.makeText(Loginactivity.this, userBaseHolder.getMessage(), Toast.LENGTH_SHORT).show();
+
                     // Log.e("zzz",""+userBaseHolder.getData().getMember_status().getMembershipname());
               /*  if(UtilValidate.isNotNull(userBaseHolder.getData().getUser().getMember_status())){
                     DbManager.getInstance(). deleteMembershipdata();
@@ -223,19 +225,19 @@ public class Loginactivity extends Activity {
                 }*/
                     dialogTransparent.dismiss();
                     DbManager.getInstance().deleteCurrentlyLoggedUserTable();
-                    DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getData().getUser().getId(),
-                            userBaseHolder.getData().getSession_id());
+                    DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getUser().getId(),
+                            userBaseHolder.getUser().getSession_id());
                     DbManager.getInstance().deleteAllRowsFromUserTable();
-                    DbManager.getInstance().insertIntoUserTable(userBaseHolder.getData().getUser());
+                    DbManager.getInstance().insertIntoUserTable(userBaseHolder.getUser());
                     DbManager.getInstance().deleteShippingData();
-                    TodaysParentApp.setShippingAddress(userBaseHolder.getData().getUser().getShipping_address());
-                    if(userBaseHolder.getData().getUser().getShipping_address() != null) {
+                  //  TodaysParentApp.setShippingAddress(userBaseHolder.getUser().getShipping_address());
+                   /* if(userBaseHolder.getData().getUser().getShipping_address() != null) {
                         DbManager.getInstance().insertintoShippingTable(userBaseHolder.getData().getUser().getShipping_address());
 
-                    }
+                    }*/
                     if (UtilValidate.isNotNull(userBaseHolder)) {
 
-                        if (UtilValidate.isNotNull(userBaseHolder.getData().getUser())) {
+                        if (UtilValidate.isNotNull(userBaseHolder.getUser())) {
 
                             /**
                              * PARSE TABLE USER_ID FIELD UPDATION ......
@@ -270,18 +272,19 @@ public class Loginactivity extends Activity {
                                 }
                             });
 
-                            Log.d("LOG", "user_id >>" + userBaseHolder.getData().getUser().getId());
+                            Log.d("LOG", "user_id >>" + userBaseHolder.getUser().getId());
                             Log.d("LOG", "device_id >>" + Utils.getUniqueDeviceId(Loginactivity.this));
                             final ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-                            installation.put("user_id", userBaseHolder.getData().getUser().getId());
+                            installation.put("user_id", userBaseHolder.getUser().getId());
                             installation.put("device_id", Utils.getUniqueDeviceId(Loginactivity.this));
+                            Log.e("device id>>>>",""+Utils.getUniqueDeviceId(Loginactivity.this));
                             installation.saveInBackground();
                             installation.saveInBackground(new SaveCallback() {
 
                                 @Override
                                 public void done(ParseException arg0) {
                                     // TODO Auto-generated method stub
-                                    installation.put("user_id", userBaseHolder.getData().getUser().getId());
+                                    installation.put("user_id", userBaseHolder.getUser().getId());
                                     installation.put("device_id", Utils.getUniqueDeviceId(Loginactivity.this));
                                     installation.saveInBackground();
                                 }
