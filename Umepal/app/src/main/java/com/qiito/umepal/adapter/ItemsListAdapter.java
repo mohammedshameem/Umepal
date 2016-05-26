@@ -58,7 +58,7 @@ public class ItemsListAdapter extends BaseAdapter {
 
 		if (convertView == null) {
 
-			Log.e("","In Items List Adapter");
+			//Log.e("","In Items List Adapter");
 			viewHolder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.my_account_list_item, null);
 			viewHolder.item_image = (ImageView) convertView.findViewById(R.id.item_image);

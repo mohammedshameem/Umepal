@@ -270,4 +270,10 @@ public interface ApiConstants {
         String PHONE = "phone";
         String SESSION_ID = "session_id";
     }
+
+    interface  ListRefereesParams {
+
+        String LIST_REFEREES_URL = BASE_URL + "api/list-referees";
+        String SESSION_ID = "session_id";
+    }
 }

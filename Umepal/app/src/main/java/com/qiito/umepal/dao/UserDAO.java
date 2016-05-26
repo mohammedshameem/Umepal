@@ -81,6 +81,7 @@ public class UserDAO implements User {
 				values.put(User.EXPIRY_DATE, userObject.getExpirydate());
 				values.put(User.MEMBERSHIP_STATUS,userObject.getMembership_status());
 				values.put(User.MEMBERSHIP_BLOCKED, userObject.getMembership_blocked());
+				values.put(User.SESSION_ID, userObject.getSession_id());
 
 
 				// Inserting Row
@@ -170,6 +171,7 @@ public class UserDAO implements User {
 
 						map.put(MEMBERSHIP_BLOCKED, cursor.getString(cursor.getColumnIndex(MEMBERSHIP_BLOCKED)));
 
+						map.put(SESSION_ID, cursor.getString(cursor.getColumnIndex(SESSION_ID)));
 
 					}
 				}
@@ -334,15 +336,7 @@ public class UserDAO implements User {
 			String membershipstatus;
 			String membershipblocked;
 
-			String shippingfullname;
-			String shippingstreetaddress;
-			String shippingunit;
-			String shippingcountry;
-			String shippingstate;
-			String shippingcity;
-			String shippingpostalcode;
-			String shippingphone;
-
+            String sessionId;
 
 			SQLiteDatabase db = dbHelper.getReadableDatabase();
 			Cursor cursor = db.rawQuery(new StringBuffer(SELECT_USER_DETAILS).toString(), null);
@@ -426,6 +420,9 @@ public class UserDAO implements User {
 						membershipblocked= ((cursor.getString(cursor.getColumnIndex(User.MEMBERSHIP_BLOCKED))));
 						userObjectHolder.setMembership_blocked(membershipblocked);
 
+						sessionId= ((cursor.getString(cursor.getColumnIndex(User.SESSION_ID))));
+						userObjectHolder.setSession_id(sessionId);
+
 					}
 				}
 
@@ -495,6 +492,9 @@ public class UserDAO implements User {
 					values.put(User.MEMBERSHIP_STATUS, userObject.getMembership_status());
 				if(UtilValidate.isNotNull(userObject.getMembership_blocked()))
 					values.put(User.MEMBERSHIP_BLOCKED, userObject.getMembership_blocked());
+
+				if(UtilValidate.isNotNull(userObject.getSession_id()))
+					values.put(User.SESSION_ID, userObject.getSession_id());
 
 				db.update(
 						DB_TABLE_NAME,

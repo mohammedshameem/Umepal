@@ -91,6 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				.append(User.EXPIRY_DATE).append(" Varchar(20),")
 				.append(User.MEMBERSHIP_STATUS).append(" Varchar(20),")
 				.append(User.MEMBERSHIP_BLOCKED).append(" Varchar(20),")
+				.append(User.SESSION_ID).append(" Varchar(20),")
 				.append(" FOREIGN KEY ").append("(")
 				.append(User._ID).append(")").append(" REFERENCES ")
 				.append(CurrentlyLoggedUser.DB_TABLE_NAME).append(" ( ")

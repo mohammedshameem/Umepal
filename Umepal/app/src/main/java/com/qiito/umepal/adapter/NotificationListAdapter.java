@@ -65,7 +65,7 @@ public class NotificationListAdapter extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 
-        Log.e("","in notification adapter"+ TodaysParentApp.getNotification_count());
+       // Log.e("","in notification adapter"+ TodaysParentApp.getNotification_count());
 
 		if (convertView == null) {
 

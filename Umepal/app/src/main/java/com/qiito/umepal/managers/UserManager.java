@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
+import com.qiito.umepal.holder.ListRefereeBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserLogoutHolder;
 import com.qiito.umepal.holder.UserResponseHolder;
@@ -34,6 +35,7 @@ public class UserManager implements ApiConstants {
 
 	private UserBaseHolder userBaseHolder;
 	private UserLogoutHolder userLogoutHolder;
+	private ListRefereeBaseHolder listRefereeBaseHolder;
     private UserResponseHolder userResponseHolder;
 
 
@@ -292,5 +294,41 @@ public class UserManager implements ApiConstants {
 		});
 
 	}
+	public void ListReferees(final Activity activity, String session, final AsyncTaskCallBack listrefereesCallback) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		params.put(userLogoutRequestParams.SESSION_ID, session);
 
+		UMEPALAppRestClient.post(ListRefereesParams.LIST_REFEREES_URL,params,activity,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int i, Header[] headers, byte[] bytes) {
+				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+				Log.e("RESPONSE", "RESPONSE" + responseBody);
+				userBaseHolder = new UserBaseHolder();
+				Gson gson = new Gson();
+				listRefereeBaseHolder = gson.fromJson(responseBody,ListRefereeBaseHolder.class);
+				if(UtilValidate.isNotNull(listrefereesCallback)){
+					listrefereesCallback.onFinish(i,listRefereeBaseHolder);
+				}
+			}
+
+			@Override
+			public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+				if (!(NetChecker.isConnected(activity))) {
+
+					if (!(NetChecker.isConnectedWifi(activity) && NetChecker.isConnectedMobile(activity))) {
+
+						Toast.makeText(activity, "Please check your internet connection...", Toast.LENGTH_LONG).show();
+					}
+
+				}
+
+				if (UtilValidate.isNotNull(listrefereesCallback)) {
+
+					listrefereesCallback.onFinish(1, "No Internet");
+				}
+			}
+		});
+	}
 }

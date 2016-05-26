@@ -44,6 +44,7 @@ import com.qiito.umepal.fragments.Contact_us;
 import com.qiito.umepal.fragments.General_terms;
 import com.qiito.umepal.fragments.MyAccountFragment;
 import com.qiito.umepal.fragments.NavigationDrawerFragment;
+import com.qiito.umepal.fragments.NewRefereeFragment;
 import com.qiito.umepal.fragments.Notifica;
 import com.qiito.umepal.fragments.OrderHistory;
 import com.qiito.umepal.fragments.SlidingFragment;
@@ -377,27 +378,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*Browse*/
             case 2:
                 close_keyboard();
-              /*  if(session!=null) {
-                    if (!session.equals("")) {
-                        fragmentTrueFragment="Browse";
-                        toolbar.setVisibility(View.VISIBLE);
-                        action_bar_title.setText("Discover");
-                        action_bar_title.setVisibility(View.VISIBLE);
-                        action.setDisplayShowCustomEnabled(true);
-                        search.setVisibility(View.GONE);
-                        //carticon.setVisibility(View.VISIBLE);
-                        searchicon.setVisibility(View.VISIBLE);
-                        clearAll.setVisibility(View.GONE);
-                        action = getSupportActionBar();
-                        action.setDisplayShowCustomEnabled(true);
-                        action.setCustomView(R.layout.search_bar);
-                        edtSearch = (EditText) action.getCustomView().findViewById(R.id.edtSearch);
-                        Intent intent1 = new Intent(MainActivity.this, MainActivity.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent1);
-                    }
-                }
-*/
+
                 break;
 
             /*My cart*/
@@ -416,76 +397,32 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 searchicon.setVisibility(View.GONE);
                 carticon.setVisibility(View.GONE);
                 clearAll.setVisibility(View.INVISIBLE);
-               /* if(session!=null) {
-                    if (!session.equals("")) {
 
-
-                    }
-                }else {
-                    fragmentTrueFragment="Contact Us";
-                    toolbar.setVisibility(View.VISIBLE);
-                    action_bar_title.setVisibility(View.VISIBLE);
-                    action_bar_title.setText("Contact Us");
-                    searchicon.setVisibility(View.GONE);
-                    clearAll.setVisibility(View.INVISIBLE);
-                    action.setDisplayShowCustomEnabled(false);         *//*Remove Search view*//*
-                    generalTermsFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    generalTermsFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                    generalTermsFragmentTransaction.replace(R.id.container, new Contact_us(), "fragment");
-                    generalTermsFragmentTransaction.commit();
-                }*/
                 break;
 
             /*wallet*/
             case 4:
                 close_keyboard();
-               /* action_bar_title.setVisibility(View.VISIBLE);
-                if(session!=null) {
-                    if (!session.equals("")) {
-                        fragmentTrueFragment="Notification";
-                        action_bar_title.setText("Notification");
-                        search.setVisibility(View.GONE);
-                        action.setDisplayShowCustomEnabled(false);*//*  Remove Search view  *//*
-                        notificationFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        notificationFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                        notificationFragmentTransaction.replace(R.id.container, new Notifica(), "fragment");
-                        carticon.setVisibility(View.GONE);
-                        searchicon.setVisibility(View.GONE);
 
-                        NotificationManager.getInstance().getAllNotification(MainActivity.this,
-                                DbManager.getInstance().getSessionId(),
-                                notificationasynchTaskCallBack, REQUEST_CODE, pDialog);
-                        clearAll.setVisibility(View.VISIBLE);
-                        *//*if(notificationLists.size()>0){
-
-                            clearAll.setVisibility(View.VISIBLE);
-                        }else{
-
-                            clearAll.setVisibility(View.GONE);
-                        }*//*
-
-                        notificationFragmentTransaction.commit();
-                    }
-                }else {
-                    fragmentTrueFragment="General";
-                    toolbar.setVisibility(View.VISIBLE);
-
-                    action_bar_title.setVisibility(View.VISIBLE);
-
-                    action_bar_title.setText("General Terms");
-                    search.setVisibility(View.GONE);
-                    searchicon.setVisibility(View.GONE);
-                    clearAll.setVisibility(View.INVISIBLE);
-                    action.setDisplayShowCustomEnabled(false);         *//*Remove Search view*//*
-                    generalTermsFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    generalTermsFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                    generalTermsFragmentTransaction.replace(R.id.container, new General_terms(), "fragment");
-                    generalTermsFragmentTransaction.commit();
-                }*/
                 break;
 
 /*new refferee*/
             case 5:
+                close_keyboard();
+                fragmentTrueFragment="New Referee";
+                toolbar.setVisibility(View.VISIBLE);
+                action_bar_title.setVisibility(View.VISIBLE);
+                action_bar_title.setText("New Referee");
+                search.setVisibility(View.GONE);
+                action.setDisplayShowCustomEnabled(false);
+                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                myAccountFragmentTransaction.replace(R.id.container, new NewRefereeFragment(), "fragment");
+                myAccountFragmentTransaction.commit();
+                searchicon.setVisibility(View.GONE);
+                carticon.setVisibility(View.GONE);
+                clearAll.setVisibility(View.INVISIBLE);
+
 
             break;
 
@@ -504,14 +441,16 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         DbManager.getInstance().getSessionId(),
                         notificationasynchTaskCallBack, REQUEST_CODE, pDialog);
                 clearAll.setVisibility(View.VISIBLE);
+                notificationFragmentTransaction.commit();
+                Log.e("user","notification");
 
 
-        notificationFragmentTransaction.commit();
-         break;
+                break;
+
                 /*Order History*/
             case 7:
                 close_keyboard();
-
+Log.e("order","history");
                         fragmentTrueFragment="Order History";
                         toolbar.setVisibility(View.VISIBLE);
                         action_bar_title.setVisibility(View.VISIBLE);
@@ -550,7 +489,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 9:
                 close_keyboard();
                 action_bar_title.setVisibility(View.VISIBLE);
-                break;
+               // break;
 
 
 /*Contact Us*/

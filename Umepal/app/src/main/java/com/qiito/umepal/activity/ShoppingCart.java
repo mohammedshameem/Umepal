@@ -529,6 +529,7 @@ public class ShoppingCart extends Activity {
                             totalAmount = 0.00;
                             savingsAmount = 0.00;
 
+/*
                             if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
                                 if ((!DbManager.getInstance().getCurrentUserDetails().getCreated().equals(""))) {
                                     if (DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("true")) {
@@ -562,7 +563,9 @@ public class ShoppingCart extends Activity {
                                         String total = String.format("%.2f", totalAmount);
                                         TodaysParentApp.setItemTotalValue(total);
                                     } else {
-                                    /*  an expired member */
+                                    */
+/*  an expired member *//*
+
                                         //Toast.makeText(ShoppingCart.this,"non member",Toast.LENGTH_SHORT).show();
 
                                         totalAmount = 0.00;
@@ -628,6 +631,7 @@ public class ShoppingCart extends Activity {
                                     TodaysParentApp.setItemTotalValue(total);
                                 }
                             }
+*/
 
 
                             for (int i = 0; i < checkoutProductsList1.size(); i++) {

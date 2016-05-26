@@ -33,7 +33,7 @@
                 android:scrollHorizontally="false"
                 android:singleLine="false"
                 android:text="Are you sure you want to quit ?"
-                android:textColor="@color/red_darkred"
+                android:textColor="@color/white"
                 android:textSize="25sp" />
         </LinearLayout>
 

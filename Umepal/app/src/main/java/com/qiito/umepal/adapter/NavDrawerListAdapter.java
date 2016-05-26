@@ -51,7 +51,7 @@ public class NavDrawerListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.d("","in navDrawerListAdapter");
+     //   Log.d("","in navDrawerListAdapter");
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

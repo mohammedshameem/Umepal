@@ -106,8 +106,8 @@ public class NavigationDrawerFragment extends Fragment {
                 broadCastMsg = intent.getStringExtra("notification_count");
 
 
-                Log.i("", "In NotificationBroadCastReceiver ####### " + DbManager
-                        .getInstance().getOpenNotificationListCount());
+               /* Log.i("", "In NotificationBroadCastReceiver ####### " + DbManager
+                        .getInstance().getOpenNotificationListCount());*/
             }
 
             // Post the UI updating code to our Handler
@@ -238,17 +238,17 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
             @Override
             public void onDrawerClosed(View drawerView) {
-                Log.e("drawer", "closed.......###.......$$$$$$$$$......................");
+               // Log.e("drawer", "closed.......###.......$$$$$$$$$......................");
 
                 super.onDrawerClosed(drawerView);
-                Log.e("drawer", "closed.......###.............................");
+               // Log.e("drawer", "closed.......###.............................");
                 NotificationManager.getInstance().getAllNotification(getActivity(), DbManager.getInstance().getSessionId(),
                         notificationasynchTaskCallBack, REQUEST_CODE, pDialog);
 
                 adapter.notifyDataSetChanged();
 
                 if (!isAdded()) {
-                    Log.e("drawer", "closed....................................");
+                   // Log.e("drawer", "closed....................................");
 
                     return;
                 }
@@ -257,18 +257,18 @@ public class NavigationDrawerFragment extends Fragment {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                Log.e("drawer", "open.......###.......$$$$$$$$$......................");
+               // Log.e("drawer", "open.......###.......$$$$$$$$$......................");
 
                 TodaysParentApp.setIsinwebview("");
 
                 super.onDrawerOpened(drawerView);
-                Log.e("drawer", "opened................############....................");
+                //Log.e("drawer", "opened................############....................");
                 NotificationManager.getInstance().getAllNotification(getActivity(), DbManager.getInstance().getSessionId(),
                         notificationasynchTaskCallBack, REQUEST_CODE, pDialog);
                 adapter.notifyDataSetChanged();
 
                 if (!isAdded()) {
-                    Log.e("drawer", "opened....................................");
+               //     Log.e("drawer", "opened....................................");
 
 
                     return;
@@ -279,7 +279,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         if (mDrawerLayout.isDrawerOpen(mDrawerListView)) {
 
-            Log.d("", "INSIDE OPEN DRAWER");
+            //Log.d("", "INSIDE OPEN DRAWER");
 
         }
 
@@ -355,7 +355,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        Log.e("", "in onCreateOptionsMenu in navigation");
+       // Log.e("", "in onCreateOptionsMenu in navigation");
         //   inflater.inflate(R.menu.menu_main, menu);
         //        mSearchAction = menu.findItem(R.id.action_search);
 // Do something that differs the Activity's menu here
@@ -377,7 +377,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Log.e("", "in onOptionsItemSelected in navigation");
+       // Log.e("", "in onOptionsItemSelected in navigation");
         int id = item.getItemId();
         NotificationManager.getInstance().getAllNotification(getActivity(), DbManager.getInstance().getSessionId(),
                 notificationasynchTaskCallBack, REQUEST_CODE, pDialog);
@@ -487,7 +487,7 @@ public class NavigationDrawerFragment extends Fragment {
         @Override
         public void onFinish(int responseCode, Object result) {
 
-            Log.d("", "in onfinish of notification" + responseCode);
+         //   Log.d("", "in onfinish of notification" + responseCode);
 
             // TODO Auto-generated method stub
             if (UtilValidate.isNotNull(result)) {
@@ -512,11 +512,11 @@ public class NavigationDrawerFragment extends Fragment {
                             TodaysParentApp.setNotificationBaseHoldersList(notificationBaseHolder.getData());
                             TodaysParentApp.setNotification_count(notificationBaseHolder.getData().size());
 
-                            Log.d("", "notificationList size  NAVIGATION DRAWER %%%%%%%% " + notificationBaseHolder.getData().size());
-                            Log.d("", "notificationList size  NAVIGATION DRAWER %%%%%%%% " + TodaysParentApp.getNotificationBaseHoldersList().size());
+                         //   Log.d("", "notificationList size  NAVIGATION DRAWER %%%%%%%% " + notificationBaseHolder.getData().size());
+                          //  Log.d("", "notificationList size  NAVIGATION DRAWER %%%%%%%% " + TodaysParentApp.getNotificationBaseHoldersList().size());
 
                             if (UtilValidate.isNotNull(notificationsListAdapter)) {
-                                Log.e("", "going from navigation drawer fragment");
+                             //   Log.e("", "going from navigation drawer fragment");
                                 notificationsListAdapter.notifyDataSetChanged();
                             }
                             if (UtilValidate.isNotNull(adapter)) {
@@ -530,7 +530,7 @@ public class NavigationDrawerFragment extends Fragment {
                              */
                             Intent notifIntent = new Intent(IntentConstants.NOTIFICATION_INTENT);
                             notifIntent.putExtra("notification_count", String.valueOf(DbManager.getInstance().getOpenNotificationListCount()));
-                            Log.e("notification_count",DbManager.getInstance().getOpenNotificationListCount()+"");
+                          //  Log.e("notification_count",DbManager.getInstance().getOpenNotificationListCount()+"");
                             getActivity().sendBroadcast(notifIntent);
                         } else {
 

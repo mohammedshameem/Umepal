@@ -49,7 +49,7 @@ public class NotificationManager implements ApiConstants {
         RequestParams params = new RequestParams();
         params.put(NotificationRequestParams.SESSION_ID, session_id);
 
-        Log.e("", "get notification" + params);
+       // Log.e("", "get notification" + params);
 
         // catgory_id,sub_catgory_id,offset
 
@@ -65,7 +65,7 @@ public class NotificationManager implements ApiConstants {
 
                         if (i == WebResponseConstants.ResponseCode.OK) {
 
-                            Log.e(TAG, "Notification RESPONSE  " + responseBody);
+                            //Log.e(TAG, "Notification RESPONSE  " + responseBody);
 
 
                             Gson gson = new Gson();
@@ -212,7 +212,7 @@ public class NotificationManager implements ApiConstants {
 
                         if (i == WebResponseConstants.ResponseCode.OK) {
 
-                            Log.e(TAG, "Notification RESPONSE  " + responseBody);
+                            //Log.e(TAG, "Notification RESPONSE  " + responseBody);
 
 
                             Gson gson = new Gson();
@@ -220,14 +220,15 @@ public class NotificationManager implements ApiConstants {
                             notificationBaseHolder = gson.fromJson(responseBody, NotificationBaseHolder.class);
 
                             if (UtilValidate.isNotNull(notificationasynchTaskCallBack)) {
-
-                                notificationasynchTaskCallBack.onFinish(i, notificationBaseHolder);
+                                if (notificationBaseHolder != null) {
+                                    notificationasynchTaskCallBack.onFinish(i, notificationBaseHolder);
+                                }
                             }
 
                         }
                         if (i == WebResponseConstants.ResponseCode.UN_AUTHORIZED) {
 
-                            Log.e(TAG, "unauthorise in manager" + i);
+                         //   Log.e(TAG, "unauthorise in manager" + i);
 
                             notificationBaseHolder = new NotificationBaseHolder();
                             Gson gson = new Gson();
