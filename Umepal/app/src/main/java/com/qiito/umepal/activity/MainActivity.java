@@ -47,6 +47,7 @@ import com.qiito.umepal.fragments.NavigationDrawerFragment;
 import com.qiito.umepal.fragments.NewRefereeFragment;
 import com.qiito.umepal.fragments.Notifica;
 import com.qiito.umepal.fragments.OrderHistory;
+import com.qiito.umepal.fragments.RealTimePaymentFragment;
 import com.qiito.umepal.fragments.SlidingFragment;
 import com.qiito.umepal.holder.Category;
 import com.qiito.umepal.holder.NotificationBaseHolder;
@@ -378,6 +379,20 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*Browse*/
             case 2:
                 close_keyboard();
+                fragmentTrueFragment="RealTimePayment";
+                toolbar.setVisibility(View.VISIBLE);
+                action_bar_title.setVisibility(View.VISIBLE);
+                action_bar_title.setText("Real Time Payment");
+                search.setVisibility(View.GONE);
+                action.setDisplayShowCustomEnabled(false);
+                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                myAccountFragmentTransaction.replace(R.id.container, new RealTimePaymentFragment(), "fragment");
+                myAccountFragmentTransaction.commit();
+                searchicon.setVisibility(View.GONE);
+                carticon.setVisibility(View.GONE);
+                clearAll.setVisibility(View.INVISIBLE);
+
 
                 break;
 
