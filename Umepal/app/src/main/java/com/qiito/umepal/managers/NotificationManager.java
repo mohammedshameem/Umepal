@@ -5,7 +5,7 @@ import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

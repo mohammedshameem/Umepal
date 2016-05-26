@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserObjectHolder;
 
@@ -76,7 +76,7 @@ private View content;
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "contact@btventures.com.sg", null));
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "contact@qiito.com.sg", null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject : ");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Body : ");
                 startActivity(Intent.createChooser(emailIntent, "Contact using"));

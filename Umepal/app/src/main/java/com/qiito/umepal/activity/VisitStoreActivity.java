@@ -16,7 +16,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.adapter.ProductAdapter;
 import com.qiito.umepal.holder.ProductBaseHolder;

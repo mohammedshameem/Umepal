@@ -14,7 +14,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ForgotPasswordBaseHolder;
 import com.qiito.umepal.holder.ResetPasswordBaseHolder;

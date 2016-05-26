@@ -17,7 +17,7 @@ public interface ApiConstants {
     String MESSAGE = "Un-Authorised";
 
     // PRODUCTION BASEURL
-    //static final String BASE_URL = "http://lufluf.btventures.com.sg/";
+    //static final String BASE_URL = "http://lufluf.qiito.com.sg/";
 
     // STAGING BASEURL
 
@@ -49,7 +49,7 @@ public interface ApiConstants {
     interface EmailLoginRequestParams {
 
         String EMAILLOGIN_URL = BASE_URL + "api/email-login";
-        String EMAIL = "email";
+        String EMAIL = "umeid";
         String PASSWORD = "password";
 
     }

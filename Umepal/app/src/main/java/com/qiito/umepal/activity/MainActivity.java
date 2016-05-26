@@ -32,7 +32,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.Constants.IntentConstants;
 import com.qiito.umepal.Constants.Notification;
@@ -540,7 +540,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        "Hey check out my app at:  https://play.google.com/store/apps/details?id=com.btventures.umepal&hl=en");
+                        "Hey check out my app at:  https://play.google.com/store/apps/details?id=com.qiito.umepal&hl=en");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
                 break;

@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.qiito.umepal.Application.TodaysParentApp;
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.adapter.ProductAdapter;
 import com.qiito.umepal.adapter.ProductCategoryAdapter;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;

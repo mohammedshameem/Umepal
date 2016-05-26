@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
 import com.qiito.umepal.holder.ShippingAddress;

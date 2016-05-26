@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.Constants.IntentConstants;
 import com.qiito.umepal.Constants.Notification;
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.adapter.NavDrawerListAdapter;
 import com.qiito.umepal.adapter.NotificationListAdapter;

@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qiito.umepal.Application.TodaysParentApp;
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.fragments.Notifica;
 import com.qiito.umepal.fragments.Notifications;

@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.adapters.WheelViewAdapter;
 import com.qiito.umepal.listeners.OnWheelChangedListener;
 import com.qiito.umepal.listeners.OnWheelClickedListener;

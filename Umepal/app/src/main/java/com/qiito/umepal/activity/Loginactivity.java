@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.facebook.FacebookSdk;
 import com.facebook.applinks.AppLinkData;
 import com.facebook.share.model.AppInviteContent;
@@ -170,13 +170,13 @@ public class Loginactivity extends Activity {
 
     private void checkdetail() {
 
-        if (UtilValidate.isValidemail(email.getText().toString())) {
+        if (!email.getText().toString().equalsIgnoreCase("")) {
 
             emailFlag = true;
             Email = email.getText().toString();
         } else {
             emailFlag = false;
-            email.setError("Invalid email");
+            email.setError("Enter UmeId");
         }
         if (passwordsEdtTxt.getText().length() == 0) {
             passwordEmptyFlag = false;

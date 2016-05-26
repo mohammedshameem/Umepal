@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qiito.umepal.Application.TodaysParentApp;
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.fragments.NavigationDrawerFragment;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.model.NavDrawerItem;

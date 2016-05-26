@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Constants.Notification;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.Utilvalidate.Utils;

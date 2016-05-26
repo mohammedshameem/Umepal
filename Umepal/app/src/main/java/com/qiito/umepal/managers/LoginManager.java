@@ -20,8 +20,10 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.apache.http.Header;
+import org.apache.http.entity.mime.content.FileBody;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 
 
 public class LoginManager implements ApiConstants,User {
@@ -119,8 +121,18 @@ public class LoginManager implements ApiConstants,User {
 		params.put(EmailSignUpRequestParams.PASSWORD, password);
 		params.put(EmailSignUpRequestParams.UNIQUEDEVICEID, uniquedeviceid);
 		params.put(EmailSignUpRequestParams.REFERRALMEMBERID, referralmemberid);
-		params.put(EmailSignUpRequestParams.PROFILE_PIC,profilePic);
 
+		if (UtilValidate.isNotNull(profilePic)) {
+
+			final File file = new File(profilePic);
+			FileBody fb = new FileBody(file);
+
+			Log.e("", "in manager> pic>as file>>" + fb);
+
+			params.put(EmailSignUpRequestParams.PROFILE_PIC,profilePic);
+			//builder.addPart(UserEditProfileRequestParams.PICTURE, fb);
+
+		}
 
 		UMEPALAppRestClient.post(EmailSignUpRequestParams.EMAILSIGNUP_URL, params, activity,
 				new AsyncHttpResponseHandler() {

@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.adapter.ItemsListAdapter;
 import com.qiito.umepal.adapters.MyPurchasesAdapter;
 import com.qiito.umepal.holder.PurchasedItems;

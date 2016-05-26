@@ -90,7 +90,7 @@
                 android:id="@+id/mailid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="contact@btventures.com.sg"
+                android:text="contact@qiito.com.sg"
                 android:textSize="18dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/black"/>

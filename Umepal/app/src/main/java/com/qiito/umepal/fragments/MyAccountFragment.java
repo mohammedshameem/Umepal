@@ -47,7 +47,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.Constants.ApiConstants;
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.activity.Edit_Profile;
 import com.qiito.umepal.activity.ProductDetails;

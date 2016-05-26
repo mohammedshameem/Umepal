@@ -19,7 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.dao.CheckoutDAO;

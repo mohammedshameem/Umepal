@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.managers.DbManager;
@@ -100,18 +100,6 @@ public class Signupactivity extends Activity {
                 refferalmemberID = refferalmemberidEditText.getText().toString();
                 Password = password.getText().toString();
 
-               /* Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
-                next.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                next.putExtra("Name",nameEditText.getText().toString());
-                next.putExtra("Email",emailEditText.getText().toString());
-                next.putExtra("CEA",ceaEditText.getText().toString());
-                next.putExtra("Mobile",mobileEditText.getText().toString());
-                next.putExtra("Bank",bankEditText.getText().toString());
-                next.putExtra("Estateagency",estateagencyEditText.getText().toString());
-                next.putExtra("BankAccount",bankaccountEditText.getText().toString());
-                next.putExtra("RefferalID",refferalmemberidEditText.getText().toString());
-
-                startActivity(next);*/
                 CHECKDETAILS();
 
 
@@ -148,23 +136,6 @@ public class Signupactivity extends Activity {
 
     private void CHECKDETAILS() {
         LastName="";
-
-        Log.e("1",""+FirstName);
-
-        Log.e("2",""+Email);
-        Log.e("3",""+CEA);
-        Log.e("4",""+MOBILE);
-        Log.e("5",""+BANK);
-        Log.e("6",""+ESTATEAGENCY);
-        Log.e("7",""+BankAccount);
-        Log.e("8",""+androidId);
-        Log.e("9",""+Password);
-        Log.e("0",""+refferalmemberID);
-        Log.e("11","12"+LastName);
-
-        Log.e("11","12");
-
-
 
 
         LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,

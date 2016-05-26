@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.btventures.umepal">
+    package="com.qiito.umepal">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,12 +13,12 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="com.btventures.umepal.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.qiito.umepal.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-feature android:name="android.hardware.camera" />
     <permission
-        android:name="com.btventures.umepal.permission.C2D_MESSAGE"
+        android:name="com.qiito.umepal.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
 
@@ -169,7 +169,7 @@
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
                 <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
-                <category android:name="com.btventures.umepal" />
+                <category android:name="com.qiito.umepal" />
             </intent-filter>
         </receiver>
 

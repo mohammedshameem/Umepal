@@ -22,7 +22,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
 import com.qiito.umepal.holder.UserBaseHolder;
@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 
-import static com.btventures.umepal.R.drawable.logo_splash;
+import static com.qiito.umepal.R.drawable.logo_splash;
 
 public class Edit_Profile extends Activity {
 

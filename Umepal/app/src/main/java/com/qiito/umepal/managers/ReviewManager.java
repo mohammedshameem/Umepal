@@ -3,7 +3,7 @@ package com.qiito.umepal.managers;
 import android.app.Activity;
 import android.util.Log;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

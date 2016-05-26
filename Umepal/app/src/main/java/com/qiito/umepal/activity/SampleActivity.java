@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.btventures.umepal.R;
+import com.qiito.umepal.R;
 import com.qiito.umepal.adapters.ArrayWheelAdapter;
 import com.qiito.umepal.listeners.OnWheelChangedListener;
 import com.qiito.umepal.listeners.OnWheelScrollListener;
