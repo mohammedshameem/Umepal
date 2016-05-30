@@ -51,6 +51,16 @@ public class UserObjectHolder implements Serializable {
 	private boolean is_member;
 	private String session_id;
 
+	private String is_recentpurchase;
+
+	public String getIs_recentpurchase() {
+		return is_recentpurchase;
+	}
+
+	public void setIs_recentpurchase(String is_recentpurchase) {
+		this.is_recentpurchase = is_recentpurchase;
+	}
+
 	public String getExpiryDate() {
 		return ExpiryDate;
 	}

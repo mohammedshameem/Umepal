@@ -304,6 +304,9 @@ public class Loginactivity extends Activity {
                         }
 
                     }
+                }else {
+                    dialogTransparent.dismiss();
+                    Toast.makeText(Loginactivity.this,userBaseHolder.getMessage(),Toast.LENGTH_SHORT).show();
                 }
 
 

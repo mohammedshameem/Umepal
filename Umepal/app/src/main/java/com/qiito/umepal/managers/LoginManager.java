@@ -183,12 +183,13 @@ public class LoginManager implements ApiConstants,User {
 	}
 
 
-	public void membershipPaypal(final Activity activity, String session,
+	public void membershipPaypal(final Activity activity,
 
-							String membershipID ,final AsyncTaskCallBack asyncTaskCallBack){
+							String membershipID ,String reffereeID,final AsyncTaskCallBack asyncTaskCallBack){
 		RequestParams params = new RequestParams();
-		params.put(MembershipPaypalParams.SESSION_ID, session);
 		params.put(MembershipPaypalParams.MEMBERSHIPID, membershipID);
+		params.put(MembershipPaypalParams.REFFEREE_ID, reffereeID);
+
 
 
 		UMEPALAppRestClient.post(

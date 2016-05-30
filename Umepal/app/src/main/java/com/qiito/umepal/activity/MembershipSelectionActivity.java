@@ -35,7 +35,9 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.dao.CheckoutDAO;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
+import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
+import com.qiito.umepal.managers.UserManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.WebResponseConstants;
 
@@ -45,6 +47,7 @@ import com.qiito.umepal.webservice.WebResponseConstants;
 public class MembershipSelectionActivity extends Activity {
 
     private MembershipCallBackClass membershipCallback;
+    private RequestForPayment requestForPayment;
 
     private Button requestpaymentButton;
     private Button paynowButton;
@@ -65,7 +68,8 @@ public class MembershipSelectionActivity extends Activity {
     private LinearLayout membershipselectionpage;
     private LinearLayout paypal_webviews_layout;
     private ProgressBar progressBar1;
-
+    private String reffer_ID;
+    private String refferee_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,19 +93,35 @@ public class MembershipSelectionActivity extends Activity {
 
         paynowButton.setOnClickListener(paynow_Listener);
 
-
+        requestpaymentButton.setOnClickListener(requestforpaymentListener);
 
     }
 
     private void initManager() {
         membershipCallback=new MembershipCallBackClass();
+        requestForPayment= new RequestForPayment();
     }
 
     View.OnClickListener paynow_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            refferee_ID = "1";
+            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this,MembershipId,refferee_ID,membershipCallback);
 
-            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this,session,MembershipId,membershipCallback);
+        }
+    };
+
+    View.OnClickListener requestforpaymentListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.e("UME ID",":::"+DbManager.getInstance().getCurrentUserDetails().getUmeId());
+            Log.e("Reffer ID",":::"+DbManager.getInstance().getCurrentUserDetails().getReferrerId());
+            Log.e("Refferal ID",":::"+DbManager.getInstance().getCurrentUserDetails().getReferralmember_id());
+
+            refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
+            reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferralmember_id();
+
+            UserManager.getInstance().RequestforpaymentParams(MembershipSelectionActivity.this,reffer_ID,refferee_ID,MembershipId,requestForPayment);
 
         }
     };
@@ -196,6 +216,22 @@ public class MembershipSelectionActivity extends Activity {
 
 
     }
+
+    private class RequestForPayment implements AsyncTaskCallBack{
+
+        @Override
+        public void onFinish(int responseCode, Object result) {
+
+
+
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+
+        }
+    }
+
 
 private class MembershipCallBackClass implements AsyncTaskCallBack{
 

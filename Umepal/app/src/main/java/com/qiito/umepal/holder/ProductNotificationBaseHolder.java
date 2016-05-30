@@ -12,6 +12,51 @@ public class ProductNotificationBaseHolder {
 	private String dcraetedDate;
 	private String notification_type;
 
+	private String paymentStatus;
+	private String membershipPrice;
+	private String membershipType;
+	private String membershipId;
+	private int user_id;
+
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public String getMembershipPrice() {
+		return membershipPrice;
+	}
+
+	public void setMembershipPrice(String membershipPrice) {
+		this.membershipPrice = membershipPrice;
+	}
+
+	public String getMembershipType() {
+		return membershipType;
+	}
+
+	public void setMembershipType(String membershipType) {
+		this.membershipType = membershipType;
+	}
+
+	public String getMembershipId() {
+		return membershipId;
+	}
+
+	public void setMembershipId(String membershipId) {
+		this.membershipId = membershipId;
+	}
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
 	public int getId() {
 		return id;

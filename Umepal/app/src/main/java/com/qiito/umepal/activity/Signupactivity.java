@@ -1,6 +1,7 @@
 package com.qiito.umepal.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.zxing.Result;
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.UserBaseHolder;
@@ -24,10 +26,10 @@ import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-
-public class Signupactivity extends Activity {
+public class Signupactivity extends Activity implements ZXingScannerView.ResultHandler{
 
     private SignUpCallBack signUpCallBack;
     private LoginCallBackClass loginCallBackClass;
@@ -64,7 +66,7 @@ public class Signupactivity extends Activity {
     private String Password;
     private String refferalmemberID;
     private String profilePic;
-
+    private ZXingScannerView mScannerView;
 
     private final  int requestCode = 200;
     private int requestcode=1;
@@ -155,11 +157,17 @@ public class Signupactivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
+                QrScanner(v);
             }
         };
 
+    public void QrScanner(View view){
 
+        mScannerView = new ZXingScannerView(Signupactivity.this);
+        Signupactivity.this.setContentView(mScannerView);
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
+    }
 
     private void initView() {
 
@@ -212,6 +220,25 @@ public class Signupactivity extends Activity {
     public void onBackPressed() {
 
         super.onBackPressed();
+        if(mScannerView.isShown()){
+            Log.e("camera ","shown");
+            mScannerView.stopCamera();
+        }else {
+            Log.e("camera ","hide");
+
+              finish();
+        }
+    }
+
+
+    @Override
+    public void handleResult(Result result) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Signupactivity.this);
+        builder.setTitle("Scan Result");
+        builder.setMessage(result.getText());
+        AlertDialog alert1 = builder.create();
+        alert1.show();
+
     }
 
     public class SignUpCallBack implements AsyncTaskCallBack {

@@ -13,19 +13,19 @@ public class UserResponseHolder implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String session_id;
 	private UserObjectHolder user;
-	private MembershipObject membership;
+	//private MembershipObject membership;
 
 	//private List<PurchasedItem> purchased_items;
 	//private List<LikedItem> liked_products;
 
 
-	public MembershipObject getMembership() {
+	/*public MembershipObject getMembership() {
 		return membership;
 	}
 
 	public void setMembership(MembershipObject membership) {
 		this.membership = membership;
-	}
+	}*/
 
 	public String getSession_id() {
 		return session_id;

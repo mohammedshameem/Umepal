@@ -331,4 +331,47 @@ public class UserManager implements ApiConstants {
 			}
 		});
 	}
+
+
+	public void RequestforpaymentParams(final Activity activity, String reffer_id,String refferee_id,
+										String membership_id,final AsyncTaskCallBack listrefereesCallback) {
+		// TODO Auto-generated method stub
+		RequestParams params = new RequestParams();
+		params.put(Requestforpayment.REFFER_ID, reffer_id);
+		params.put(Requestforpayment.REFFEREE_ID, refferee_id);
+		params.put(Requestforpayment.MEMBERSHIP_ID, membership_id);
+
+
+		UMEPALAppRestClient.post(Requestforpayment.REQUEST_FOR_PAYMENT,params,activity,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int i, Header[] headers, byte[] bytes) {
+				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+				Log.e("RESPONSE", "RESPONSE" + responseBody);
+				userBaseHolder = new UserBaseHolder();
+				Gson gson = new Gson();
+				listRefereeBaseHolder = gson.fromJson(responseBody,ListRefereeBaseHolder.class);
+				if(UtilValidate.isNotNull(listrefereesCallback)){
+					listrefereesCallback.onFinish(i,listRefereeBaseHolder);
+				}
+			}
+
+			@Override
+			public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+				if (!(NetChecker.isConnected(activity))) {
+
+					if (!(NetChecker.isConnectedWifi(activity) && NetChecker.isConnectedMobile(activity))) {
+
+						Toast.makeText(activity, "Please check your internet connection...", Toast.LENGTH_LONG).show();
+					}
+
+				}
+
+				if (UtilValidate.isNotNull(listrefereesCallback)) {
+
+					listrefereesCallback.onFinish(1, "No Internet");
+				}
+			}
+		});
+	}
 }

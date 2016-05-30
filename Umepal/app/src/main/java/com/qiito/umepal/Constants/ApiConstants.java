@@ -85,6 +85,7 @@ public interface ApiConstants {
         String MEMBERPAYPAL = BASE_URL + "api/member-paypal";
         String SESSION_ID = "session_id";
         String MEMBERSHIPID = "membership_id";
+        String REFFEREE_ID = "refferee_id";
     }
     interface Products {
 
@@ -275,5 +276,15 @@ public interface ApiConstants {
 
         String LIST_REFEREES_URL = BASE_URL + "api/list-referees";
         String SESSION_ID = "session_id";
+    }
+
+    interface Requestforpayment {
+
+        String REQUEST_FOR_PAYMENT = BASE_URL + "api/reffer-notification";
+        String REFFER_ID = "reffer_id";
+        String REFFEREE_ID = "referee_id";
+        String MEMBERSHIP_ID = "membership_id";
+
+
     }
 }
