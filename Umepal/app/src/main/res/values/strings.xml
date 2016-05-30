@@ -172,6 +172,19 @@
     <!-- Product detail-->
     <string name="uploadICpic">Pleace Upload \nYour IC photo</string>
 
+    <!-- Wallet -->
+    <string name="top_up">TOP UP</string>
+    <string name="upgrade_membership">UPGRADE\nMEMBERSHIP</string>
+    <string name="total_available_balance">Total Available Balance</string>
+    <string name="total_lebadger_balance">Total LeBadger Balance</string>
+    <string name="rebates">Rebates</string>
+    <string name="commissions">Commissions</string>
+    <string name="wallet_price">$ 15.40</string>
+    <string name="rebate_statement">Rebate Statement</string>
+    <string name="month">March 2016</string>
+    <string name="rebate_gotten">Rebate gotten via own spending</string>
+    <string name="commissions_statement">Commisions Statement</string>
+
     <!--RETURN POLICY-->
 
      <string name="return_policy">
