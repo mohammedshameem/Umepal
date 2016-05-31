@@ -392,9 +392,9 @@ public class MyAccountFragment extends Fragment {
                         //userBaseHolder = userBaseHolder.getData().getUser();
                         DbManager.getInstance().deleteAllRowsFromUserTable();
                         DbManager.getInstance().insertIntoUserTable(userBaseHolder.getData().getUser());
-                        if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getExpirydate())) {
+                        if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getExpiryDate())) {
                             /*  member */
-                            if (!userBaseHolder.getData().getUser().getExpirydate().equalsIgnoreCase("")) {
+                            if (!userBaseHolder.getData().getUser().getExpiryDate().equalsIgnoreCase("")) {
                              /*  check  Member  blocked  */
                                 /*** is a member ***/
                                // joinmembershipnow.setVisibility(View.GONE);
@@ -413,7 +413,7 @@ public class MyAccountFragment extends Fragment {
                                 if (!userBaseHolder.getData().getUser().getCreated().equals("")) {
                                     createdDate.setText(userBaseHolder.getData().getUser().getCreated().substring(0, 10));
                                 }
-                                expiry_date.setText(userBaseHolder.getData().getUser().getExpirydate().substring(0, 10));
+                                expiry_date.setText(userBaseHolder.getData().getUser().getExpiryDate().substring(0, 10));
                             }
                             /*  non member */
                             if(userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("false")) {

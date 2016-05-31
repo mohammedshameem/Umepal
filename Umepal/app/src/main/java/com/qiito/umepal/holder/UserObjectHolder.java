@@ -6,7 +6,7 @@ import java.util.List;
 public class UserObjectHolder implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -29,6 +29,21 @@ public class UserObjectHolder implements Serializable {
 	private int isDeleted;
 	private int status;
 	private String createdDate;
+	private String cea;
+	private int mobilenumber;
+	private String bank;
+	private String estateagency;
+	private int bankaccount;
+	private String referralmember_id;
+	private int referrerId;
+	private String umeId;
+	private String paymentStatus;
+	private String is_recentpurchase;
+	private boolean is_member;
+	private int membershipId;
+	private String membershipType;
+	private String membershipPrice;
+	private String session_id;
 
 	private String created;
 	private String ExpiryDate;
@@ -39,62 +54,169 @@ public class UserObjectHolder implements Serializable {
 	private List<PurchasedItems> purchased_items;
 	private List<ProductObject> liked_products;
 
-	private String cea;
-	private String mobilenumber;
-	private String bank;
-	private String estateagency;
-	private String bankaccount;
-	private String referralmember_id;
-	private String referrerId;
-	private String umeId;
-	private String paymentStatus;
-	private boolean is_member;
-	private String session_id;
 
-	private String membershipPrice;
-	private String membershipType;
-	private int membershipId;
-
-	public String getMembershipPrice() {
-		return membershipPrice;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
 
-	public void setMembershipPrice(String membershipPrice) {
-		this.membershipPrice = membershipPrice;
+	public int getId() {
+		return id;
 	}
 
-	public String getMembershipType() {
-		return membershipType;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setMembershipType(String membershipType) {
-		this.membershipType = membershipType;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public int getMembershipId() {
-		return membershipId;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public void setMembershipId(int membershipId) {
-		this.membershipId = membershipId;
+	public String getLastName() {
+		return lastName;
 	}
 
-	private String is_recentpurchase;
-
-	public String getIs_recentpurchase() {
-		return is_recentpurchase;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public void setIs_recentpurchase(String is_recentpurchase) {
-		this.is_recentpurchase = is_recentpurchase;
+	public String getEmail() {
+		return email;
 	}
 
-	public String getExpiryDate() {
-		return ExpiryDate;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void setExpiryDate(String expiryDate) {
-		ExpiryDate = expiryDate;
+	public String getFacebookId() {
+		return facebookId;
+	}
+
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getShippingname() {
+		return shippingname;
+	}
+
+	public void setShippingname(String shippingname) {
+		this.shippingname = shippingname;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getAddressLine1() {
+		return addressLine1;
+	}
+
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
+	}
+
+	public String getAddressLine2() {
+		return addressLine2;
+	}
+
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPin() {
+		return pin;
+	}
+
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+
+	public String getUniqueDeviceId() {
+		return uniqueDeviceId;
+	}
+
+	public void setUniqueDeviceId(String uniqueDeviceId) {
+		this.uniqueDeviceId = uniqueDeviceId;
+	}
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	public int getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public int getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(int isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public String getCea() {
@@ -105,11 +227,11 @@ public class UserObjectHolder implements Serializable {
 		this.cea = cea;
 	}
 
-	public String getMobilenumber() {
+	public int getMobilenumber() {
 		return mobilenumber;
 	}
 
-	public void setMobilenumber(String mobilenumber) {
+	public void setMobilenumber(int mobilenumber) {
 		this.mobilenumber = mobilenumber;
 	}
 
@@ -129,6 +251,14 @@ public class UserObjectHolder implements Serializable {
 		this.estateagency = estateagency;
 	}
 
+	public int getBankaccount() {
+		return bankaccount;
+	}
+
+	public void setBankaccount(int bankaccount) {
+		this.bankaccount = bankaccount;
+	}
+
 	public String getReferralmember_id() {
 		return referralmember_id;
 	}
@@ -137,19 +267,11 @@ public class UserObjectHolder implements Serializable {
 		this.referralmember_id = referralmember_id;
 	}
 
-	public String getBankaccount() {
-		return bankaccount;
-	}
-
-	public void setBankaccount(String bankaccount) {
-		this.bankaccount = bankaccount;
-	}
-
-	public String getReferrerId() {
+	public int getReferrerId() {
 		return referrerId;
 	}
 
-	public void setReferrerId(String referrerId) {
+	public void setReferrerId(int referrerId) {
 		this.referrerId = referrerId;
 	}
 
@@ -169,12 +291,44 @@ public class UserObjectHolder implements Serializable {
 		this.paymentStatus = paymentStatus;
 	}
 
+	public String getIs_recentpurchase() {
+		return is_recentpurchase;
+	}
+
+	public void setIs_recentpurchase(String is_recentpurchase) {
+		this.is_recentpurchase = is_recentpurchase;
+	}
+
 	public boolean is_member() {
 		return is_member;
 	}
 
 	public void setIs_member(boolean is_member) {
 		this.is_member = is_member;
+	}
+
+	public int getMembershipId() {
+		return membershipId;
+	}
+
+	public void setMembershipId(int membershipId) {
+		this.membershipId = membershipId;
+	}
+
+	public String getMembershipType() {
+		return membershipType;
+	}
+
+	public void setMembershipType(String membershipType) {
+		this.membershipType = membershipType;
+	}
+
+	public String getMembershipPrice() {
+		return membershipPrice;
+	}
+
+	public void setMembershipPrice(String membershipPrice) {
+		this.membershipPrice = membershipPrice;
 	}
 
 	public String getSession_id() {
@@ -185,28 +339,20 @@ public class UserObjectHolder implements Serializable {
 		this.session_id = session_id;
 	}
 
-	public ShippingAddress getShipping_address() {
-		return shipping_address;
+	public String getCreated() {
+		return created;
 	}
 
-	public void setShipping_address(ShippingAddress shipping_address) {
-		this.shipping_address = shipping_address;
+	public void setCreated(String created) {
+		this.created = created;
 	}
 
-	public String getExpirydate() {
+	public String getExpiryDate() {
 		return ExpiryDate;
 	}
 
-	public void setExpirydate(String expirydate) {
-		ExpiryDate = expirydate;
-	}
-
-	public String getMembership_blocked() {
-		return membership_blocked;
-	}
-
-	public void setMembership_blocked(String membership_blocked) {
-		this.membership_blocked = membership_blocked;
+	public void setExpiryDate(String expiryDate) {
+		ExpiryDate = expiryDate;
 	}
 
 	public String getMembership_status() {
@@ -217,253 +363,21 @@ public class UserObjectHolder implements Serializable {
 		this.membership_status = membership_status;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-	/**
-	 * @return the firstName
-	 */
-	public String getFirstName() {
-		return firstName;
-	}
-	/**
-	 * @param firstName the firstName to set
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName() {
-		return lastName;
-	}
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	/**
-	 * @return the facebookId
-	 */
-	public String getFacebookId() {
-		return facebookId;
-	}
-	/**
-	 * @param facebookId the facebookId to set
-	 */
-	public void setFacebookId(String facebookId) {
-		this.facebookId = facebookId;
-	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public String getMembership_blocked() {
+		return membership_blocked;
 	}
 
-	public String getShippingname() {
-		return shippingname;
+	public void setMembership_blocked(String membership_blocked) {
+		this.membership_blocked = membership_blocked;
 	}
 
-	public void setShippingname(String shippingname) {
-		this.shippingname = shippingname;
+	public ShippingAddress getShipping_address() {
+		return shipping_address;
 	}
 
-	/**
-	 * @return the telephone
-	 */
-	public String getTelephone() {
-		return telephone;
+	public void setShipping_address(ShippingAddress shipping_address) {
+		this.shipping_address = shipping_address;
 	}
-	/**
-	 * @param telephone the telephone to set
-	 */
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	/**
-	 * @return the addressLine1
-	 */
-	public String getAddressLine1() {
-		return addressLine1;
-	}
-	/**
-	 * @param addressLine1 the addressLine1 to set
-	 */
-	public void setAddressLine1(String addressLine1) {
-		this.addressLine1 = addressLine1;
-	}
-	/**
-	 * @return the addressLine2
-	 */
-	public String getAddressLine2() {
-		return addressLine2;
-	}
-	/**
-	 * @param addressLine2 the addressLine2 to set
-	 */
-	public void setAddressLine2(String addressLine2) {
-		this.addressLine2 = addressLine2;
-	}
-	/**
-	 * @return the city
-	 */
-	public String getCity() {
-		return city;
-	}
-	/**
-	 * @param city the city to set
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
-	/**
-	 * @return the state
-	 */
-	public String getState() {
-		return state;
-	}
-	/**
-	 * @param state the state to set
-	 */
-	public void setState(String state) {
-		this.state = state;
-	}
-	/**
-	 * @return the country
-	 */
-	public String getCountry() {
-		return country;
-	}
-	/**
-	 * @param country the country to set
-	 */
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	/**
-	 * @return the pin
-	 */
-	public String getPin() {
-		return pin;
-	}
-	/**
-	 * @param pin the pin to set
-	 */
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
-	/**
-	 * @return the uniqueDeviceId
-	 */
-	public String getUniqueDeviceId() {
-		return uniqueDeviceId;
-	}
-	/**
-	 * @param uniqueDeviceId the uniqueDeviceId to set
-	 */
-	public void setUniqueDeviceId(String uniqueDeviceId) {
-		this.uniqueDeviceId = uniqueDeviceId;
-	}
-	/**
-	 * @return the profilePic
-	 */
-	public String getProfilePic() {
-		return profilePic;
-	}
-
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
-	/**
-	 * @param profilePic the profilePic to set
-
-	 */
-	public void setProfilePic(String profilePic) {
-		this.profilePic = profilePic;
-	}
-	/**
-	 * @return the isAdmin
-	 */
-	public int getIsAdmin() {
-		return isAdmin;
-	}
-	/**
-	 * @param isAdmin the isAdmin to set
-	 */
-	public void setIsAdmin(int isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-	/**
-	 * @return the isDeleted
-	 */
-	public int getIsDeleted() {
-		return isDeleted;
-	}
-	/**
-	 * @param isDeleted the isDeleted to set
-	 */
-	public void setIsDeleted(int isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-	/**
-	 * @return the status
-	 */
-	public int getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public String getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getCreated() {
-		return created;
-	}
-
-	public void setCreated(String created) {
-		this.created = created;
-	}
-
-
 
 	public List<PurchasedItems> getPurchased_items() {
 		return purchased_items;
