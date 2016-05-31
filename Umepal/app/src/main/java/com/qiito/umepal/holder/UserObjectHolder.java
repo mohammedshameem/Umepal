@@ -51,6 +51,34 @@ public class UserObjectHolder implements Serializable {
 	private boolean is_member;
 	private String session_id;
 
+	private String membershipPrice;
+	private String membershipType;
+	private int membershipId;
+
+	public String getMembershipPrice() {
+		return membershipPrice;
+	}
+
+	public void setMembershipPrice(String membershipPrice) {
+		this.membershipPrice = membershipPrice;
+	}
+
+	public String getMembershipType() {
+		return membershipType;
+	}
+
+	public void setMembershipType(String membershipType) {
+		this.membershipType = membershipType;
+	}
+
+	public int getMembershipId() {
+		return membershipId;
+	}
+
+	public void setMembershipId(int membershipId) {
+		this.membershipId = membershipId;
+	}
+
 	private String is_recentpurchase;
 
 	public String getIs_recentpurchase() {

@@ -21,12 +21,12 @@ import com.facebook.FacebookSdk;
 import com.facebook.applinks.AppLinkData;
 import com.facebook.share.model.AppInviteContent;
 import com.facebook.share.widget.AppInviteDialog;
-import com.parse.FindCallback;
+/*import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.SaveCallback;
+import com.parse.SaveCallback;*/
 import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.Utilvalidate.Utils;
@@ -246,7 +246,7 @@ public class Loginactivity extends Activity {
                             /**
                              * Retrieving all rows from parse based on user_id ...
                              */
-
+/*
                             ParseQuery<ParseObject> query = ParseQuery.getQuery("_Installation");
                             query.whereEqualTo("device_id", Utils.getUniqueDeviceId(Loginactivity.this) + "");
                             query.findInBackground(new FindCallback<ParseObject>() {
@@ -270,15 +270,16 @@ public class Loginactivity extends Activity {
                                         Log.d("", "Error ##### " + e.getMessage());
                                     }
                                 }
-                            });
+                            });*/
 
-                            Log.d("LOG", "user_id >>" + userBaseHolder.getUser().getId());
+                          /*  Log.d("LOG", "user_id >>" + userBaseHolder.getUser().getId());
                             Log.d("LOG", "device_id >>" + Utils.getUniqueDeviceId(Loginactivity.this));
                             final ParseInstallation installation = ParseInstallation.getCurrentInstallation();
                             installation.put("user_id", userBaseHolder.getUser().getId());
                             installation.put("device_id", Utils.getUniqueDeviceId(Loginactivity.this));
                             Log.e("device id>>>>",""+Utils.getUniqueDeviceId(Loginactivity.this));
-                            installation.saveInBackground();
+                            installation.saveInBackground();*/
+/*
                             installation.saveInBackground(new SaveCallback() {
 
                                 @Override
@@ -289,6 +290,7 @@ public class Loginactivity extends Activity {
                                     installation.saveInBackground();
                                 }
                             });
+*/
 
                             /**
                              *  END OF PARSE TABLE USER_ID FIELD UPDATION...........

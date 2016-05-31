@@ -10,10 +10,10 @@ import android.content.res.Configuration;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.parse.Parse;
+/*import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.SaveCallback;
+import com.parse.SaveCallback;*/
 import com.qiito.umepal.holder.Category;
 import com.qiito.umepal.holder.CategoryResponseHolder;
 import com.qiito.umepal.holder.ProductNotificationBaseHolder;
@@ -72,7 +72,7 @@ public class TodaysParentApp extends Application {
 		super.onCreate();
 		TodaysParentApp.context = getApplicationContext();
 		String  android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-		Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
+		/*Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
 		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
 		installation.saveInBackground(new SaveCallback() {
 			@Override
@@ -84,7 +84,7 @@ public class TodaysParentApp extends Application {
 				}
 			}
 
-		});;
+		});;*/
         /*ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         //If you would like all objects to be private by default, remove this line.
