@@ -149,12 +149,12 @@ public class MyAccountFragment extends Fragment {
         userObjectHolder = DbManager.getInstance().getCurrentUserDetails();
         profile_name.setText(userObjectHolder.getFirstName() + " " + userObjectHolder.getLastName());
         city.setText(userObjectHolder.getCity());
-        joinedDate = userObjectHolder.getCreatedDate().substring(0, userObjectHolder.getCreatedDate().length() - 8);
-        joined_date.setText(joinedDate);
-        Log.e("userobjectholder>>", userObjectHolder.getProfilePic());
-        if ((userObjectHolder.getProfilePic() != null) && (!userObjectHolder.getProfilePic().isEmpty())) {
+//        joinedDate = userObjectHolder.getCreatedDate().substring(0, userObjectHolder.getCreatedDate().length() - 8);
+ //       joined_date.setText(joinedDate);
+//        Log.e("userobjectholder>>", userObjectHolder.getProfilePic());
+       /* if ((userObjectHolder.getProfilePic() != null) && (!userObjectHolder.getProfilePic().isEmpty())) {
             Picasso.with(getActivity()).load(userObjectHolder.getProfilePic()).placeholder(R.drawable.logo_splash).error(R.drawable.logo_splash).fit().into(profile_pic);
-        }
+        }*/
         session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
         offset = 0;
         super.onResume();

@@ -285,6 +285,12 @@ public interface ApiConstants {
         String REFFEREE_ID = "referee_id";
         String MEMBERSHIP_ID = "membership_id";
 
+    }
+    interface RefferNotification {
+        String REFFER_NOTIFICATION_URL = BASE_URL +"api/reffer-notification";
+        String REFFER_ID = "reffer_id";//pass umeid of referer)
+        String REFFEREE_ID = "referee_id";
+        String MEMBERSHIP_ID = "membership_id";
 
     }
 }

@@ -26,6 +26,7 @@ import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
+import me.dm7.barcodescanner.core.CameraPreview;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
@@ -67,6 +68,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     private String refferalmemberID;
     private String profilePic;
     private ZXingScannerView mScannerView;
+    private CameraPreview cameraPreview;
 
     private final  int requestCode = 200;
     private int requestcode=1;
@@ -220,13 +222,17 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     public void onBackPressed() {
 
         super.onBackPressed();
-        if(mScannerView.isShown()){
-            Log.e("camera ","shown");
-            mScannerView.stopCamera();
-        }else {
-            Log.e("camera ","hide");
+        if(mScannerView!=null) {
+            if (mScannerView.isShown()) {
+                Log.e("camera ", "shown");
+                mScannerView.stopCamera();
+                Intent intent=new Intent(Signupactivity.this,Signupactivity.class);
+                startActivity(intent);
+            } else {
+                Log.e("camera ", "hide");
 
-              finish();
+                finish();
+            }
         }
     }
 

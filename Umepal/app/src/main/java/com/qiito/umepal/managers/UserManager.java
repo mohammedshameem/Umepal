@@ -18,6 +18,7 @@ import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ListRefereeBaseHolder;
+import com.qiito.umepal.holder.NotificationBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserLogoutHolder;
 import com.qiito.umepal.holder.UserResponseHolder;
@@ -37,7 +38,7 @@ public class UserManager implements ApiConstants {
 	private UserLogoutHolder userLogoutHolder;
 	private ListRefereeBaseHolder listRefereeBaseHolder;
     private UserResponseHolder userResponseHolder;
-
+    private NotificationBaseHolder notificationBaseHolder;
 
 	/**
 	 * Default Constructor
@@ -374,4 +375,6 @@ public class UserManager implements ApiConstants {
 			}
 		});
 	}
+
+
 }

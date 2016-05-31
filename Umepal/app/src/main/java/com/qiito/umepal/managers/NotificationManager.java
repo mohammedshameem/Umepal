@@ -13,6 +13,7 @@ import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.NotificationBaseHolder;
+import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.UMEPALAppRestClient;
 import com.qiito.umepal.webservice.WebResponseConstants;
@@ -29,6 +30,9 @@ public class NotificationManager implements ApiConstants {
     private static NotificationManager mInstance = null;
 
     private NotificationBaseHolder notificationBaseHolder;
+
+    private UserBaseHolder userBaseHolder;
+
 
     public static NotificationManager getInstance() {
 
@@ -296,5 +300,46 @@ public class NotificationManager implements ApiConstants {
 
 
                 });
+    }
+    public void getRefferNotification(final Activity activity, String reffer_id,String refferee_id,
+                                         String membership_id,final AsyncTaskCallBack reffernotificationCallBack) {
+        // TODO Auto-generated method stub
+        RequestParams params = new RequestParams();
+        params.put(RefferNotification.REFFER_ID, reffer_id);
+        params.put(RefferNotification.REFFEREE_ID, refferee_id);
+        params.put(RefferNotification.MEMBERSHIP_ID, membership_id);
+
+
+        UMEPALAppRestClient.get(RefferNotification.REFFER_NOTIFICATION_URL,params,null,new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+                Log.e("RESPONSE", "RESPONSE" + responseBody);
+                userBaseHolder = new UserBaseHolder();
+                Gson gson = new Gson();
+                notificationBaseHolder = gson.fromJson(responseBody,NotificationBaseHolder.class);
+                if(UtilValidate.isNotNull(reffernotificationCallBack)){
+                    reffernotificationCallBack.onFinish(i,notificationBaseHolder);
+                }
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+                if (!(NetChecker.isConnected(activity))) {
+
+                    if (!(NetChecker.isConnectedWifi(activity) && NetChecker.isConnectedMobile(activity))) {
+
+                        Toast.makeText(activity, "Please check your internet connection...", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                if (UtilValidate.isNotNull(reffernotificationCallBack)) {
+
+                    reffernotificationCallBack.onFinish(1, "No Internet");
+                }
+            }
+        });
     }
 }
