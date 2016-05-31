@@ -548,7 +548,9 @@ public class NavigationDrawerFragment extends Fragment {
                             Intent notifIntent = new Intent(IntentConstants.NOTIFICATION_INTENT);
                             notifIntent.putExtra("notification_count", String.valueOf(DbManager.getInstance().getOpenNotificationListCount()));
                           //  Log.e("notification_count",DbManager.getInstance().getOpenNotificationListCount()+"");
-                            getActivity().sendBroadcast(notifIntent);
+                            if(getActivity()!=null){
+                                getActivity().sendBroadcast(notifIntent);
+                            }
                         } else {
 
                             /**
