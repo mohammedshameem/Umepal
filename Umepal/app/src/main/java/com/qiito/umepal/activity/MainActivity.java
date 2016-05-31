@@ -341,24 +341,71 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*** Shopping Cart ***/
             case 1:
                 close_keyboard();
-                search.setVisibility(View.GONE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action.setDisplayShowCustomEnabled(false);/*  Remove Search view  */
-                carticon.setVisibility(View.GONE);
-                searchicon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivityForResult(intent, 1);
-                /*if(session!=null) {
+                if(session!=null){
+                    if(!session.equalsIgnoreCase("")){
+                        search.setVisibility(View.GONE);
+                        action_bar_title.setVisibility(View.VISIBLE);
+                        action.setDisplayShowCustomEnabled(false);/*  Remove Search view  */
+                        carticon.setVisibility(View.GONE);
+                        searchicon.setVisibility(View.GONE);
+                        clearAll.setVisibility(View.INVISIBLE);
+                        Intent intent = new Intent(MainActivity.this, ShoppingCart.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivityForResult(intent, 1);
+                    }
+                }else {
+                    fragmentTrueFragment = "INVITE";
+                    toolbar.setVisibility(View.VISIBLE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    search.setVisibility(View.GONE);
+                    action.setDisplayShowCustomEnabled(false);  //Remove Search view
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,
+                            "Hey check out my app at:  https://play.google.com/store/apps/details?id=com.qiito.umepal&hl=en");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                }
 
-                    if (!session.equals("")) {
-                        fragmentTrueFragment="MyAccount";
+
+                break;
+
+            /*** Real Time Payment ***/
+            case 2:
+                close_keyboard();
+                if(session!=null) {
+                    if (!session.equalsIgnoreCase("")) {
+                        fragmentTrueFragment = "RealTimePayment";
+                        toolbar.setVisibility(View.VISIBLE);
+                        action_bar_title.setVisibility(View.VISIBLE);
+                        action_bar_title.setText("Real Time Payment");
+                        search.setVisibility(View.GONE);
+                        action.setDisplayShowCustomEnabled(false);
+                        myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                        myAccountFragmentTransaction.replace(R.id.container, new RealTimePaymentFragment(), "fragment");
+                        myAccountFragmentTransaction.commit();
+                        searchicon.setVisibility(View.GONE);
+                        carticon.setVisibility(View.GONE);
+                        clearAll.setVisibility(View.INVISIBLE);
+                    }
+                }else {
+
+                }
+
+                break;
+
+            /*** My Account ***/
+            case 3:
+                close_keyboard();
+                if(session!=null) {
+                    if (!session.equalsIgnoreCase("")) {
+                        fragmentTrueFragment = "MyAccount";
                         toolbar.setVisibility(View.VISIBLE);
                         action_bar_title.setVisibility(View.VISIBLE);
                         action_bar_title.setText("My Account");
                         search.setVisibility(View.GONE);
-                        action.setDisplayShowCustomEnabled(false);   Remove Search view
+                        action.setDisplayShowCustomEnabled(false);
                         myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
                         myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
                         myAccountFragmentTransaction.replace(R.id.container, new MyAccountFragment(), "fragment");
@@ -366,75 +413,68 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         searchicon.setVisibility(View.GONE);
                         carticon.setVisibility(View.GONE);
                         clearAll.setVisibility(View.INVISIBLE);
-                        //notificationCount.setVisibility(View.GONE);
-
                     }
                 }else {
-
-                }*/
-                break;
-
-            /*** Real Time Payment ***/
-            case 2:
-                close_keyboard();
-                fragmentTrueFragment = "RealTimePayment";
-                toolbar.setVisibility(View.VISIBLE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action_bar_title.setText("Real Time Payment");
-                search.setVisibility(View.GONE);
-                action.setDisplayShowCustomEnabled(false);
-                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                myAccountFragmentTransaction.replace(R.id.container, new RealTimePaymentFragment(), "fragment");
-                myAccountFragmentTransaction.commit();
-                searchicon.setVisibility(View.GONE);
-                carticon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
-
-
-                break;
-
-            /*** My Account ***/
-            case 3:
-                close_keyboard();
-                fragmentTrueFragment = "MyAccount";
-                toolbar.setVisibility(View.VISIBLE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action_bar_title.setText("My Account");
-                search.setVisibility(View.GONE);
-                action.setDisplayShowCustomEnabled(false);
-                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                myAccountFragmentTransaction.replace(R.id.container, new MyAccountFragment(), "fragment");
-                myAccountFragmentTransaction.commit();
-                searchicon.setVisibility(View.GONE);
-                carticon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
+                    fragmentTrueFragment = "Contact Us";
+                    close_keyboard();
+                    toolbar.setVisibility(View.VISIBLE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    action_bar_title.setText("Contact Us");
+                    searchicon.setVisibility(View.GONE);
+                    carticon.setVisibility(View.GONE);
+                    clearAll.setVisibility(View.INVISIBLE);
+                    action.setDisplayShowCustomEnabled(false);         /*Remove Search view*/
+                    generalTermsFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    generalTermsFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                    generalTermsFragmentTransaction.replace(R.id.container, new Contact_us(), "fragment");
+                    generalTermsFragmentTransaction.commit();
+                }
 
                 break;
 
             /*wallet*/
             case 4:
                 close_keyboard();
-                fragmentTrueFragment = "Wallet";
-                toolbar.setVisibility(View.VISIBLE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action_bar_title.setText("WALLET");
-                search.setVisibility(View.GONE);
-                action.setDisplayShowCustomEnabled(false);
-                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                myAccountFragmentTransaction.replace(R.id.container, new WalletFragment(), "fragment");
-                myAccountFragmentTransaction.commit();
-                searchicon.setVisibility(View.GONE);
-                carticon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
-
+                if(session!=null) {
+                    if (!session.equalsIgnoreCase("")) {
+                        fragmentTrueFragment = "Wallet";
+                        toolbar.setVisibility(View.VISIBLE);
+                        action_bar_title.setVisibility(View.VISIBLE);
+                        action_bar_title.setText("WALLET");
+                        search.setVisibility(View.GONE);
+                        action.setDisplayShowCustomEnabled(false);
+                        myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                        myAccountFragmentTransaction.replace(R.id.container, new WalletFragment(), "fragment");
+                        myAccountFragmentTransaction.commit();
+                        searchicon.setVisibility(View.GONE);
+                        carticon.setVisibility(View.GONE);
+                        clearAll.setVisibility(View.INVISIBLE);
+                    }
+                }else {
+                    fragmentTrueFragment = "General";
+                    close_keyboard();
+                    toolbar.setVisibility(View.VISIBLE);
+                    clearAll.setVisibility(View.INVISIBLE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    carticon.setVisibility(View.GONE);
+                    searchicon.setVisibility(View.GONE);
+                    action_bar_title.setText("General Terms");
+                    search.setVisibility(View.GONE);
+                    action.setDisplayShowCustomEnabled(false);         /*Remove Search view*/
+                    generalTermsFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    generalTermsFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                    generalTermsFragmentTransaction.replace(R.id.container, new General_terms(), "fragment");
+                    generalTermsFragmentTransaction.commit();
+                }
                 break;
 
             /*new refferee*/
             case 5:
                 close_keyboard();
+                if(session!=null){
+                    if(!session.equalsIgnoreCase("")){
+
                 fragmentTrueFragment = "New Referee";
                 toolbar.setVisibility(View.VISIBLE);
                 action_bar_title.setVisibility(View.VISIBLE);
@@ -448,8 +488,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 searchicon.setVisibility(View.GONE);
                 carticon.setVisibility(View.GONE);
                 clearAll.setVisibility(View.INVISIBLE);
-
-
+                    }
+                }else {
+                    loginPopup();
+                }
                 break;
 
             /*** Notification ***/

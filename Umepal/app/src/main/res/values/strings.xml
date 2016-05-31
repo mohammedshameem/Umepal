@@ -142,6 +142,8 @@
         <item >\t\t\tContact Us</item>
         <item >\t\t\tGeneral terms</item>
         <item >\tLogOut</item>
+        <item >\tLogIn</item>
+
     </string-array>
 
 

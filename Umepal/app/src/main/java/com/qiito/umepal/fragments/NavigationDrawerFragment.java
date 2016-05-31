@@ -209,7 +209,7 @@ public class NavigationDrawerFragment extends Fragment {
         /*mDrawerListView.setAdapter(new DrawerAdapter(this.getActivity(), drawerItems,NavigationDrawerFragment.this));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);*/
             }
-        }/*else {
+        }else {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], 0));
             // Customer Support
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], 0));
@@ -219,7 +219,6 @@ public class NavigationDrawerFragment extends Fragment {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], 0));
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[12], 0));
         }
-*/
         adapter = new NavDrawerListAdapter(getActivity(),
         navDrawerItems, NavigationDrawerFragment.this);
         mDrawerListView.setAdapter(adapter);
@@ -447,30 +446,48 @@ public class NavigationDrawerFragment extends Fragment {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[12], 0));
         }
 */
+        if(session!=null) {
+            if (!session.equals("")) {
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], 0));
+                // Photos
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], 0));
+                // Communities, Will add a counter here
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], 0));
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], 0));
-        // Photos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], 0));
-        // Communities, Will add a counter here
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], 0));
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], 0, true, DbManager.getInstance().getOpenNotificationListCount() + ""));
+                // Pages
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], 0));
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], 0));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], 0, true, DbManager.getInstance().getOpenNotificationListCount() + ""));
-        // Pages
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], 0));
+                // What's hot, We  will add a counter here
 
-        // What's hot, We  will add a counter here
-
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], 0));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], 0));
 
 
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], 0));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], 0));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[12], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[12], 0));
+            }else {
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], 0));
 
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], 0));
+                navDrawerItems.add(new NavDrawerItem(navMenuTitles[13], 0));
+
+            }
+        }else {
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], 0));
+
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], 0));
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], 0));
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], 0));
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[13], 0));
+
+        }
 
         adapter = new NavDrawerListAdapter(getActivity(),
                 navDrawerItems, NavigationDrawerFragment.this);
