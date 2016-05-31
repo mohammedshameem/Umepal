@@ -46,8 +46,10 @@ import com.qiito.umepal.managers.PaypalManager;
 import com.qiito.umepal.managers.ShoppingCartManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.WebResponseConstants;
+
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by shiya on 16/12/15.
  */
@@ -107,12 +109,12 @@ public class ShoppingCart extends Activity {
     private boolean cityvalidationFlag = false;
     private boolean phoneNoValidationFlag = false;
     private ShippingAddressHolder shippingDetailsHolder;
-    private int requestcode=1;
+    private int requestcode = 1;
     private List<ShoppingCartList> shoppingcartList;
-    private boolean stockCountFlag=false;
-    private boolean flag=true;
+    private boolean stockCountFlag = false;
+    private boolean flag = true;
     private StringBuilder builder;
-    private int count=0;
+    private int count = 0;
 
 
     public ShoppingCart() {
@@ -160,7 +162,7 @@ public class ShoppingCart extends Activity {
         checkout_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stockCountFlag=true;
+                stockCountFlag = true;
                 ShoppingCartManager.getInstance().getfromcart(ShoppingCart.this, cartproductsCallback, userId, session_id);
 
 
@@ -298,7 +300,7 @@ public class ShoppingCart extends Activity {
             // TODO Auto-generated method stub
             // dialog.dismiss();
             PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
-            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+responseHolder.getMessage());
+            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + responseHolder.getMessage());
             if (UtilValidate.isNotNull(responseHolder)) {
                 if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
                     if (UtilValidate.isNotNull(responseHolder.getData())) {
@@ -472,44 +474,41 @@ public class ShoppingCart extends Activity {
 
             if (shoppingCartBaseHolder.getStatus().equalsIgnoreCase("success")) {
 
-                if(stockCountFlag){
+                if (stockCountFlag) {
                     stockCountFlag = false;
-                    flag=true;
-                    builder=new StringBuilder();
-                    count=0;
-                    flag=true;
+                    flag = true;
+                    builder = new StringBuilder();
+                    count = 0;
+                    flag = true;
                     if (shoppingCartBaseHolder.getMessage().getCartdetails().size() > 0) {
-                    for (int i = 0; i < shoppingCartBaseHolder.getMessage().getCartdetails().size(); i++) {
-                        shoppingcartList = new ArrayList<>();
-                        shoppingcartList = shoppingCartBaseHolder.getMessage().getCartdetails();
-                        if (shoppingcartList.get(i).getStockCount().equalsIgnoreCase("0")) {
-                            count++;
-                            flag=false;
-                            if(count==1){
-                                builder.append(shoppingcartList.get(i).getName() );
-                            }
-                            else{
-                                builder.append(","+shoppingcartList.get(i).getName());
-                            }
+                        for (int i = 0; i < shoppingCartBaseHolder.getMessage().getCartdetails().size(); i++) {
+                            shoppingcartList = new ArrayList<>();
+                            shoppingcartList = shoppingCartBaseHolder.getMessage().getCartdetails();
+                            if (shoppingcartList.get(i).getStockCount().equalsIgnoreCase("0")) {
+                                count++;
+                                flag = false;
+                                if (count == 1) {
+                                    builder.append(shoppingcartList.get(i).getName());
+                                } else {
+                                    builder.append("," + shoppingcartList.get(i).getName());
+                                }
 
                             }
                         }
-                        if(!flag){
-                            if(count==1){
-                                Toast.makeText(ShoppingCart.this, builder.toString()+" is out of stock!", Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                Toast.makeText(ShoppingCart.this, builder.toString()+" are out of stock!", Toast.LENGTH_LONG).show();
+                        if (!flag) {
+                            if (count == 1) {
+                                Toast.makeText(ShoppingCart.this, builder.toString() + " is out of stock!", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(ShoppingCart.this, builder.toString() + " are out of stock!", Toast.LENGTH_LONG).show();
                             }
 
                         }
                     }
-                    if(flag){
+                    if (flag) {
                         initiatePopupWindow();
                     }
 
-                }
-                else {
+                } else {
 
                     if (UtilValidate.isNotNull(shoppingCartBaseHolder.getMessage() != null)) {
                         if (shoppingCartBaseHolder.getMessage().getCartdetails().isEmpty()) {
@@ -680,7 +679,7 @@ public class ShoppingCart extends Activity {
                 }
             }
             if (!isStorePickupOnly) {
-                Intent in=new Intent(ShoppingCart.this,PopUpActivity.class);
+                Intent in = new Intent(ShoppingCart.this, PopUpActivity.class);
                 startActivityForResult(in, requestcode);
             } else {
                 makePayment();
@@ -743,24 +742,23 @@ public class ShoppingCart extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("RESULT_OK", "" + requestCode+resultCode);
-        if(callbackManager!=null){
+        Log.e("RESULT_OK", "" + requestCode + resultCode);
+        if (callbackManager != null) {
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
 
-            if (requestCode == 1) {
-                if(resultCode == Activity.RESULT_OK){
-                    makePayment();
-                }
-                if (resultCode == Activity.RESULT_CANCELED) {
-                    //Write your code if there's no result
-
-                }
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                makePayment();
             }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+
+            }
+        }
 
 
     }
-
 
 
 }

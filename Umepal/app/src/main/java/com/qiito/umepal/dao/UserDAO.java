@@ -321,11 +321,11 @@ public class UserDAO implements User {
             int status;
             String createdDate;
             String cea;
-            int mobilenumber;
+            String mobilenumber;
             String bank;
             String estateagency;
-            int bankaccount;
-            int referrerId;
+            String bankaccount;
+            String referrerId;
             String umeId;
             String paymentStatus;
             String is_recentpurchase;
@@ -408,7 +408,7 @@ public class UserDAO implements User {
                         cea = cursor.getString(cursor.getColumnIndex(User.CEA));
                         userObjectHolder.setCea(cea);
 
-                        mobilenumber = cursor.getInt(cursor.getColumnIndex(User.MOBILE_NUMBER));
+                        mobilenumber = cursor.getString(cursor.getColumnIndex(User.MOBILE_NUMBER));
                         userObjectHolder.setMobilenumber(mobilenumber);
 
                         bank = cursor.getString(cursor.getColumnIndex(User.BANK));
@@ -417,10 +417,10 @@ public class UserDAO implements User {
                         estateagency = cursor.getString(cursor.getColumnIndex(User.ESTATEAGENCY));
                         userObjectHolder.setEstateagency(estateagency);
 
-                        bankaccount = cursor.getInt(cursor.getColumnIndex(User.BANKACCOUNT));
+                        bankaccount = cursor.getString(cursor.getColumnIndex(User.BANKACCOUNT));
                         userObjectHolder.setBankaccount(bankaccount);
 
-                        referrerId = cursor.getInt(cursor.getColumnIndex(User.REFERRERID));
+                        referrerId = cursor.getString(cursor.getColumnIndex(User.REFERRERID));
                         userObjectHolder.setReferrerId(referrerId);
 
                         umeId = cursor.getString(cursor.getColumnIndex(User.UMEID));

@@ -82,11 +82,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private List<ProductNotificationBaseHolder> productNotificationList = new ArrayList<>();
     private List<Category> categorynames = new ArrayList<>();
     private String fragmentTrueFragment = "Browse";
-
     //private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
-
     private List<ProductNotificationBaseHolder> notificationLists = new ArrayList<ProductNotificationBaseHolder>();
-
     private FragmentTransaction searchFragmentTransaction;
     private FragmentTransaction myAccountFragmentTransaction;
     private FragmentTransaction browseFragmentTransaction;

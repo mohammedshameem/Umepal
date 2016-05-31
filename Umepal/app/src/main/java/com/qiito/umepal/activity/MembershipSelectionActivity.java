@@ -98,15 +98,15 @@ public class MembershipSelectionActivity extends Activity {
     }
 
     private void initManager() {
-        membershipCallback=new MembershipCallBackClass();
-        requestForPayment= new RequestForPayment();
+        membershipCallback = new MembershipCallBackClass();
+        requestForPayment = new RequestForPayment();
     }
 
     View.OnClickListener paynow_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             refferee_ID = "1";
-            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this,MembershipId,refferee_ID,membershipCallback);
+            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this, MembershipId, refferee_ID, membershipCallback);
 
         }
     };
@@ -114,14 +114,14 @@ public class MembershipSelectionActivity extends Activity {
     View.OnClickListener requestforpaymentListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e("UME ID",":::"+DbManager.getInstance().getCurrentUserDetails().getUmeId());
-            Log.e("Reffer ID",":::"+DbManager.getInstance().getCurrentUserDetails().getReferrerId());
-            Log.e("Refferal ID",":::"+DbManager.getInstance().getCurrentUserDetails().getReferralmember_id());
+            Log.e("UME ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getUmeId());
+            Log.e("Reffer ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferrerId());
+            Log.e("Refferal ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferralmember_id());
 
             refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
             reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferralmember_id();
 
-            UserManager.getInstance().RequestforpaymentParams(MembershipSelectionActivity.this,reffer_ID,refferee_ID,MembershipId,requestForPayment);
+            UserManager.getInstance().RequestforpaymentParams(MembershipSelectionActivity.this, reffer_ID, refferee_ID, MembershipId, requestForPayment);
 
         }
     };
@@ -129,12 +129,14 @@ public class MembershipSelectionActivity extends Activity {
     View.OnClickListener A_uncheckListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-              MembershipId = "1";
-              MemAuncheck.setVisibility(View.GONE);
-              MemAcheck.setVisibility(View.VISIBLE);
+            MembershipId = "1";
+            MemAuncheck.setVisibility(View.GONE);
+            MemAcheck.setVisibility(View.VISIBLE);
 
-              MemBcheck.setVisibility(View.GONE);MemCcheck.setVisibility(View.GONE);
-              MemBuncheck.setVisibility(View.VISIBLE);MemCuncheck.setVisibility(View.VISIBLE);
+            MemBcheck.setVisibility(View.GONE);
+            MemCcheck.setVisibility(View.GONE);
+            MemBuncheck.setVisibility(View.VISIBLE);
+            MemCuncheck.setVisibility(View.VISIBLE);
 
 
             membershipfeeText.setText("150");
@@ -147,8 +149,10 @@ public class MembershipSelectionActivity extends Activity {
             MemBuncheck.setVisibility(View.GONE);
             MemBcheck.setVisibility(View.VISIBLE);
 
-            MemAcheck.setVisibility(View.GONE);MemCcheck.setVisibility(View.GONE);
-            MemAuncheck.setVisibility(View.VISIBLE);MemCuncheck.setVisibility(View.VISIBLE);
+            MemAcheck.setVisibility(View.GONE);
+            MemCcheck.setVisibility(View.GONE);
+            MemAuncheck.setVisibility(View.VISIBLE);
+            MemCuncheck.setVisibility(View.VISIBLE);
 
 
             membershipfeeText.setText("200");
@@ -161,9 +165,10 @@ public class MembershipSelectionActivity extends Activity {
             MemCuncheck.setVisibility(View.GONE);
             MemCcheck.setVisibility(View.VISIBLE);
 
-            MemAcheck.setVisibility(View.GONE);MemBcheck.setVisibility(View.GONE);
-            MemAuncheck.setVisibility(View.VISIBLE);MemBuncheck.setVisibility(View.VISIBLE);
-
+            MemAcheck.setVisibility(View.GONE);
+            MemBcheck.setVisibility(View.GONE);
+            MemAuncheck.setVisibility(View.VISIBLE);
+            MemBuncheck.setVisibility(View.VISIBLE);
 
 
             membershipfeeText.setText("180");
@@ -175,7 +180,6 @@ public class MembershipSelectionActivity extends Activity {
         public void onClick(View v) {
             MemAuncheck.setVisibility(View.VISIBLE);
             MemAcheck.setVisibility(View.GONE);
-
 
 
         }
@@ -197,31 +201,30 @@ public class MembershipSelectionActivity extends Activity {
 
 
     private void initViews() {
-        requestpaymentButton = (Button)findViewById(R.id.requestpaymentButton);
-        paynowButton=(Button)findViewById(R.id.paynowButton);
+        requestpaymentButton = (Button) findViewById(R.id.requestpaymentButton);
+        paynowButton = (Button) findViewById(R.id.paynowButton);
 
-        MemAcheck =(ImageView)findViewById(R.id.checkA);
+        MemAcheck = (ImageView) findViewById(R.id.checkA);
         MemAuncheck = (ImageView) findViewById(R.id.uncheckA);
-        MemBcheck = (ImageView)findViewById(R.id.checkB);
-        MemBuncheck = (ImageView)findViewById(R.id.uncheckB);
-        MemCcheck = (ImageView)findViewById(R.id.checkC);
-        MemCuncheck =(ImageView)findViewById(R.id.uncheckC);
+        MemBcheck = (ImageView) findViewById(R.id.checkB);
+        MemBuncheck = (ImageView) findViewById(R.id.uncheckB);
+        MemCcheck = (ImageView) findViewById(R.id.checkC);
+        MemCuncheck = (ImageView) findViewById(R.id.uncheckC);
 
-        membershipfeeText = (TextView)findViewById(R.id.membershipfeeText);
+        membershipfeeText = (TextView) findViewById(R.id.membershipfeeText);
 
         webview_paypal = (WebView) findViewById(R.id.webview_paypal);
-        membershipselectionpage = (LinearLayout)findViewById(R.id.membershipselectionpage);
-        paypal_webviews_layout = (LinearLayout)findViewById(R.id.paypal_webviews_layout);
-        progressBar1 = (ProgressBar)findViewById(R.id.progressBar1);
+        membershipselectionpage = (LinearLayout) findViewById(R.id.membershipselectionpage);
+        paypal_webviews_layout = (LinearLayout) findViewById(R.id.paypal_webviews_layout);
+        progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
 
 
     }
 
-    private class RequestForPayment implements AsyncTaskCallBack{
+    private class RequestForPayment implements AsyncTaskCallBack {
 
         @Override
         public void onFinish(int responseCode, Object result) {
-
 
 
         }
@@ -233,61 +236,61 @@ public class MembershipSelectionActivity extends Activity {
     }
 
 
-private class MembershipCallBackClass implements AsyncTaskCallBack{
+    private class MembershipCallBackClass implements AsyncTaskCallBack {
 
-    @Override
-    public void onFinish(int responseCode, Object result) {
-        // TODO Auto-generated method stub
-        // dialog.dismiss();
-        PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
-        Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+responseHolder.getMessage());
-        if (UtilValidate.isNotNull(responseHolder)) {
-            if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
-                if (UtilValidate.isNotNull(responseHolder.getData())) {
-                    Log.e("$$", "response not null");
-                    paypal_webviews_layout.setVisibility(View.VISIBLE);
-                    membershipselectionpage.setVisibility(View.GONE);
-                    progressBar1.setVisibility(View.VISIBLE);
-                    final String URL = responseHolder.getData().getTransaction_url().toString();
-                    MembershipSelectionActivity.this.runOnUiThread(new Runnable() {
+        @Override
+        public void onFinish(int responseCode, Object result) {
+            // TODO Auto-generated method stub
+            // dialog.dismiss();
+            PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
+            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + responseHolder.getMessage());
+            if (UtilValidate.isNotNull(responseHolder)) {
+                if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
+                    if (UtilValidate.isNotNull(responseHolder.getData())) {
+                        Log.e("$$", "response not null");
+                        paypal_webviews_layout.setVisibility(View.VISIBLE);
+                        membershipselectionpage.setVisibility(View.GONE);
+                        progressBar1.setVisibility(View.VISIBLE);
+                        final String URL = responseHolder.getData().getTransaction_url().toString();
+                        MembershipSelectionActivity.this.runOnUiThread(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            webview_paypal.clearCache(true);
-                            webview_paypal.clearHistory();
-                            webview_paypal.getSettings().setJavaScriptEnabled(true);
-                            webview_paypal.getSettings().setBuiltInZoomControls(true);
-                            webview_paypal.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-                            webview_paypal.getSettings().setLoadWithOverviewMode(true);
-                            webview_paypal.getSettings().setUseWideViewPort(true);
-                            webview_paypal.getSettings().setUserAgentString("Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
-                            webview_paypal.setWebViewClient(new WebViewClient() {
+                            @Override
+                            public void run() {
+                                // TODO Auto-generated method stub
+                                webview_paypal.clearCache(true);
+                                webview_paypal.clearHistory();
+                                webview_paypal.getSettings().setJavaScriptEnabled(true);
+                                webview_paypal.getSettings().setBuiltInZoomControls(true);
+                                webview_paypal.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+                                webview_paypal.getSettings().setLoadWithOverviewMode(true);
+                                webview_paypal.getSettings().setUseWideViewPort(true);
+                                webview_paypal.getSettings().setUserAgentString("Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
+                                webview_paypal.setWebViewClient(new WebViewClient() {
 
-                                @Override
-                                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                                    // TODO Auto-generated method stub
-                                    super.onPageStarted(view, url, favicon);
-                                }
+                                    @Override
+                                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                                        // TODO Auto-generated method stub
+                                        super.onPageStarted(view, url, favicon);
+                                    }
 
-                                @Override
-                                public void onPageFinished(WebView view, String url) {
-                                    // TODO Auto-generated method stub
-                                    super.onPageFinished(view, url);
-                                    progressBar1.setVisibility(View.GONE);
+                                    @Override
+                                    public void onPageFinished(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        super.onPageFinished(view, url);
+                                        progressBar1.setVisibility(View.GONE);
 
-                                }
+                                    }
 
-                                @Override
-                                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                    // TODO Auto-generated method stub
-                                    if (url.contains(ApiConstants.BASE_URL + "api/paypal/nsuccess")) {
-                                        paypal_webviews_layout.setVisibility(View.GONE);
-                                        //Toast.makeText(MembershipSelectionActivity.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
+                                    @Override
+                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        if (url.contains(ApiConstants.BASE_URL + "api/paypal/success")) {
+                                            paypal_webviews_layout.setVisibility(View.GONE);
+                                            Toast.makeText(MembershipSelectionActivity.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
                                        /* Intent returnToHome = new Intent(MembershipSelectionActivity.this, MainActivity.class);
                                         startActivity(returnToHome);*/
 
-                                        membershipselectionpage.setVisibility(View.VISIBLE);
+                                            membershipselectionpage.setVisibility(View.VISIBLE);
 
                                             LayoutInflater inflater = (LayoutInflater) MembershipSelectionActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                                             View popupView = inflater.inflate(R.layout.payment_completed_popup, null);
@@ -295,99 +298,98 @@ private class MembershipCallBackClass implements AsyncTaskCallBack{
                                             //popupWindow.setAnimationStyle(R.style.dialog_animation);
                                             popupWindow.update();
                                             popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
-                                           // popupWindow.setAnimationStyle(R.style.dialog_animation);
+                                            // popupWindow.setAnimationStyle(R.style.dialog_animation);
                                             final Button close = (Button) popupView.findViewById(R.id.closeButton);
 
 
-                                                close.setOnClickListener(new View.OnClickListener() {
+                                            close.setOnClickListener(new View.OnClickListener() {
 
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        // TODO Auto-generated method stub
-                                                        popupWindow.dismiss();
-                                                    }
-                                                });
+                                                @Override
+                                                public void onClick(View v) {
+                                                    // TODO Auto-generated method stub
+                                                    popupWindow.dismiss();
+                                                }
+                                            });
 
 
+                                            //finish();
+                                        } else {
+                                            view.loadUrl(url);
+                                        }
 
-                                        //finish();
-                                    } else {
-                                        view.loadUrl(url);
+                                        return true;
                                     }
 
-                                    return true;
-                                }
+                                    @Override
+                                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                                        // TODO Auto-generated method stub
+                                        super.onReceivedSslError(view, handler, error);
+                                    }
 
-                                @Override
-                                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                                    // TODO Auto-generated method stub
-                                    super.onReceivedSslError(view, handler, error);
-                                }
-
-                                @Override
-                                public void onLoadResource(WebView view, String url) {
-                                    // TODO Auto-generated method stub
-                                    super.onLoadResource(view, url);
-                                    if (url.equalsIgnoreCase("http://wws.parentsv4.x-minds.info/api/paypal/cancel")) {
+                                    @Override
+                                    public void onLoadResource(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        super.onLoadResource(view, url);
+                                        if (url.equalsIgnoreCase("http://umepal-s.x-minds.org/api/paypal/cancel")) {
                                        /* Intent in = new Intent(MembershipSelectionActivity.this, ShoppingCart.class);
                                         startActivity(in);
                                         finish();*/
-                                        Toast.makeText(MembershipSelectionActivity.this, "Problem !!!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MembershipSelectionActivity.this, "Problem !!!", Toast.LENGTH_LONG).show();
+
+                                        }
+
 
                                     }
 
-
-                                }
-
-                            });
-                            webview_paypal.loadUrl(URL);
-                        }
-                    });
+                                });
+                                webview_paypal.loadUrl(URL);
+                            }
+                        });
 
 
-                } else {
+                    } else {
+                    }
+
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_AUTHORIZED) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.METHODNOT_ALLOWED) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.NOT_ACCEPTABLE) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.PRECONDITIONFAILED) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.SERVICE_UNAVAILABLE) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_SUCCESSFULL) {
+
+                    Toast.makeText(MembershipSelectionActivity.this,
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 }
 
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_AUTHORIZED) {
 
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.METHODNOT_ALLOWED) {
-
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.NOT_ACCEPTABLE) {
-
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.PRECONDITIONFAILED) {
-
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.SERVICE_UNAVAILABLE) {
-
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_SUCCESSFULL) {
-
-                Toast.makeText(MembershipSelectionActivity.this,
-                        "" + responseHolder.getMessage(),
-                        Toast.LENGTH_SHORT).show();
             }
-
 
         }
 
-    }
+        @Override
+        public void onFinish(int responseCode, String result) {
 
-    @Override
-    public void onFinish(int responseCode, String result) {
-
+        }
     }
-}
 }

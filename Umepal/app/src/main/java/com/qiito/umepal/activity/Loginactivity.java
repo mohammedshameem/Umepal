@@ -135,7 +135,7 @@ public class Loginactivity extends Activity {
             public void onClick(View view) {
                 Intent signup = new Intent(Loginactivity.this, Signupactivity.class);
                 startActivity(signup);
-                finish();
+
             }
         });
 

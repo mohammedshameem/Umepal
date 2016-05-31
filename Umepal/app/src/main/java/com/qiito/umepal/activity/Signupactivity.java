@@ -30,15 +30,15 @@ import me.dm7.barcodescanner.core.CameraPreview;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-public class Signupactivity extends Activity implements ZXingScannerView.ResultHandler{
+public class Signupactivity extends Activity implements ZXingScannerView.ResultHandler {
 
     private SignUpCallBack signUpCallBack;
     private LoginCallBackClass loginCallBackClass;
 
     private LinearLayout loginWithFacebok;
 
-   // private Button loginButton;
-   // private Button signupButton;
+    // private Button loginButton;
+    // private Button signupButton;
     private Button cancelButton;
     private Button scanQRquoteButton;
     private Button nextButton;
@@ -70,8 +70,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     private ZXingScannerView mScannerView;
     private CameraPreview cameraPreview;
 
-    private final  int requestCode = 200;
-    private int requestcode=1;
+    private final int requestCode = 200;
+    private int requestcode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         initView();
         initManager();
 
-        androidId= Secure.getString(getApplicationContext().getContentResolver(),
+        androidId = Secure.getString(getApplicationContext().getContentResolver(),
                 Secure.ANDROID_ID);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -139,33 +139,33 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     }
 
     private void CHECKDETAILS() {
-        LastName="";
+        LastName = "";
 
 
         LoginManager.getInstance().emailSignup(Signupactivity.this, signUpCallBack, FirstName, LastName,
-                Email,CEA,MOBILE,BANK,ESTATEAGENCY,BankAccount, Password,androidId,refferalmemberID,profilePic, requestCode);
+                Email, CEA, MOBILE, BANK, ESTATEAGENCY, BankAccount, Password, androidId, refferalmemberID, profilePic, requestCode);
 
     }
 
     View.OnClickListener cancelListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               //  finish();
-                Intent intent=new Intent(Signupactivity.this,MembershipSelectionActivity.class);
-                startActivity(intent);
-            }
-        };
-        View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
+            //  finish();
+            Intent intent = new Intent(Signupactivity.this, MembershipSelectionActivity.class);
+            startActivity(intent);
+        }
+    };
+    View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
-                QrScanner(v);
-            }
-        };
+            QrScanner(v);
+        }
+    };
 
-    public void QrScanner(View view){
+    public void QrScanner(View view) {
 
-        mScannerView = new ZXingScannerView(Signupactivity.this);
+
         Signupactivity.this.setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
@@ -173,22 +173,21 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
     private void initView() {
 
-        nameEditText =(EditText) findViewById(R.id.nameEditText);
-        emailEditText=(EditText) findViewById(R.id.emailEditText);
-        ceaEditText=(EditText) findViewById(R.id.ceaEditText);
-        mobileEditText=(EditText) findViewById(R.id.mobileEditText);
-        bankEditText=(EditText) findViewById(R.id.bankEditText);
-        estateagencyEditText=(EditText) findViewById(R.id.estateagencyEditText);
-        bankaccountEditText=(EditText) findViewById(R.id.bankaccountEditText);
-        refferalmemberidEditText=(EditText) findViewById(R.id.refferalmemberidEditText);
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        emailEditText = (EditText) findViewById(R.id.emailEditText);
+        ceaEditText = (EditText) findViewById(R.id.ceaEditText);
+        mobileEditText = (EditText) findViewById(R.id.mobileEditText);
+        bankEditText = (EditText) findViewById(R.id.bankEditText);
+        estateagencyEditText = (EditText) findViewById(R.id.estateagencyEditText);
+        bankaccountEditText = (EditText) findViewById(R.id.bankaccountEditText);
+        refferalmemberidEditText = (EditText) findViewById(R.id.refferalmemberidEditText);
         password = (EditText) findViewById(R.id.passwordEditText);
 
-        cancelButton = (Button)findViewById(R.id.cancelButton);
-        scanQRquoteButton = (Button)findViewById(R.id.scanQRquoteButton);
-        nextButton = (Button)findViewById(R.id.nextButton);
+        cancelButton = (Button) findViewById(R.id.cancelButton);
+        scanQRquoteButton = (Button) findViewById(R.id.scanQRquoteButton);
+        nextButton = (Button) findViewById(R.id.nextButton);
 
     }
-
 
 
     @Override
@@ -212,27 +211,28 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     }
 
 
-
     private void initManager() {
         signUpCallBack = new SignUpCallBack();
         loginCallBackClass = new LoginCallBackClass();
+        mScannerView = new ZXingScannerView(Signupactivity.this);
     }
 
     @Override
     public void onBackPressed() {
 
         super.onBackPressed();
-        if(mScannerView!=null) {
+        if (mScannerView != null) {
             if (mScannerView.isShown()) {
                 Log.e("camera ", "shown");
                 mScannerView.stopCamera();
-                Intent intent=new Intent(Signupactivity.this,Signupactivity.class);
+                Intent intent = new Intent(Signupactivity.this, Signupactivity.class);
                 startActivity(intent);
             } else {
                 Log.e("camera ", "hide");
 
                 finish();
             }
+
         }
     }
 
@@ -253,8 +253,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         @Override
         public void onFinish(int responseCode, Object result) {
             UserBaseHolder userBaseHolder = (UserBaseHolder) result;
-            if(userBaseHolder.getStatus().equals("success")) {
-                Log.e("","In callBack success");
+            if (userBaseHolder.getStatus().equals("success")) {
+                Log.e("", "In callBack success");
 
                 if (userBaseHolder != null) {
 
@@ -271,15 +271,13 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
                     Toast.makeText(getApplicationContext(), "Signup Success", Toast.LENGTH_LONG).show();
 
-                  //  LoginManager.getInstance().emailLogin(Signupactivity.this, Email, Password, loginCallBackClass, requestcode);
+                    //  LoginManager.getInstance().emailLogin(Signupactivity.this, Email, Password, loginCallBackClass, requestcode);
 
-                    Intent next = new Intent(Signupactivity.this,MembershipSelectionActivity.class);
+                    Intent next = new Intent(Signupactivity.this, MembershipSelectionActivity.class);
                     startActivity(next);
                 }
-            }
-
-            else if(userBaseHolder.getStatus().equals("error")) {
-                Toast.makeText(Signupactivity.this,userBaseHolder.getMessage(),Toast.LENGTH_LONG).show();
+            } else if (userBaseHolder.getStatus().equals("error")) {
+                Toast.makeText(Signupactivity.this, userBaseHolder.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 
@@ -287,24 +285,23 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
         @Override
         public void onFinish(int responseCode, String result) {
-            Toast.makeText(Signupactivity.this,""+result,Toast.LENGTH_SHORT).show();
+            Toast.makeText(Signupactivity.this, "" + result, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public class LoginCallBackClass implements AsyncTaskCallBack{
+    public class LoginCallBackClass implements AsyncTaskCallBack {
 
 
         @Override
         public void onFinish(int responseCode, Object result) {
 
-            UserBaseHolder userBaseHolder = (UserBaseHolder)result;
-            if(UtilValidate.isNotNull(userBaseHolder)){
+            UserBaseHolder userBaseHolder = (UserBaseHolder) result;
+            if (UtilValidate.isNotNull(userBaseHolder)) {
 
-                if(userBaseHolder.getStatus().equalsIgnoreCase("error")) {
+                if (userBaseHolder.getStatus().equalsIgnoreCase("error")) {
 
 
-                }
-                else {
+                } else {
 
                     DbManager.getInstance().deleteCurrentlyLoggedUserTable();
                     DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getData().getUser().getId(),
@@ -312,7 +309,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
                     DbManager.getInstance().deleteAllRowsFromUserTable();
                     DbManager.getInstance().insertIntoUserTable(userBaseHolder.getData().getUser());
                     DbManager.getInstance().deleteShippingData();
-                    if(userBaseHolder.getData().getUser().getShipping_address() != null) {
+                    if (userBaseHolder.getData().getUser().getShipping_address() != null) {
                         DbManager.getInstance().insertintoShippingTable(userBaseHolder.getData().getUser().getShipping_address());
 
                     }
@@ -323,10 +320,9 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
                 }
                 finish();
-            }
-            else{
+            } else {
                 //Toast.makeText(Loginactivity.this,"Please try again ",Toast.LENGTH_SHORT).show();
-                }
+            }
         }
 
         @Override
