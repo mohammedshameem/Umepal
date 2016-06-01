@@ -196,7 +196,7 @@ public class ShoppingCart extends Activity {
         } else {
             checkoutProductsList1 = itemlist;
             totalAmount = 0.00;
-            if (DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("false")) {
+            if (DbManager.getInstance().getCurrentUserDetails().is_member()) {
 
                 /* expired or not a member */
 
@@ -232,7 +232,7 @@ public class ShoppingCart extends Activity {
 
             }
             savingsAmount = 0.00;
-            if (DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("false")) {
+            if (DbManager.getInstance().getCurrentUserDetails().is_member()) {
                 for (int i = 0; i < checkoutProductsList1.size(); i++) {
                     double pp = Double.parseDouble(checkoutProductsList1.get(i).getPromoprice());
                     double p = Double.parseDouble(checkoutProductsList1.get(i).getPrice());

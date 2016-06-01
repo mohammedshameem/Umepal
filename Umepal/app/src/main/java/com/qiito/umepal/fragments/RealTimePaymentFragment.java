@@ -48,10 +48,10 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     private void initViews() {
         memberID = (EditText) view.findViewById(R.id.memberIdEdittext);
         scanQRcode = (Button)view.findViewById(R.id.scanQRCodeButton);
+        mScannerView = new ZXingScannerView(getActivity());
     }
     public void QrScanner(View view){
 
-        mScannerView = new ZXingScannerView(getActivity());
         getActivity().setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
