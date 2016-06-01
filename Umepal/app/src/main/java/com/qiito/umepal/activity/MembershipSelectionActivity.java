@@ -105,8 +105,8 @@ public class MembershipSelectionActivity extends Activity {
     View.OnClickListener paynow_Listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
-            Log.e("ID ID ID",""+DbManager.getInstance().getCurrentUserDetails().getUmeId());
+            refferee_ID = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
+            Log.e("ID ID ID",""+DbManager.getInstance().getCurrentUserDetails().getId());
             LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this, MembershipId, refferee_ID, membershipCallback);
 
         }
@@ -285,7 +285,6 @@ public class MembershipSelectionActivity extends Activity {
                                     @Override
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                         // TODO Auto-generated method stub
-                                        Log.e("URL",""+url);
                                         if (url.contains(ApiConstants.BASE_URL + "api/paypal/nmembersuccess")) {
                                             paypal_webviews_layout.setVisibility(View.GONE);
                                             Toast.makeText(MembershipSelectionActivity.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
@@ -332,7 +331,6 @@ public class MembershipSelectionActivity extends Activity {
                                     public void onLoadResource(WebView view, String url) {
                                         // TODO Auto-generated method stub
                                         super.onLoadResource(view, url);
-                                        Log.e("URL",""+url);
 
                                         if (url.equalsIgnoreCase("http://umepal-s.x-minds.org/api/paypal/cancel")) {
                                        /* Intent in = new Intent(MembershipSelectionActivity.this, ShoppingCart.class);

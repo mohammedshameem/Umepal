@@ -197,10 +197,9 @@ public class LoginManager implements ApiConstants, User {
                                 .getStringFromInputStream(new ByteArrayInputStream(
                                         bytes));
 
-
                         if (i == WebResponseConstants.ResponseCode.OK) {
 
-                            Log.e("", "PAYPAL RESPONSE>>>>" + responseBody);
+                            Log.e("response", "PAYPAL RESPONSE>>>>" + responseBody);
 
                             PayPalTransactionResponseHolder palTransactionResponseHolder = new PayPalTransactionResponseHolder();
                             Gson gson = new Gson();
@@ -214,6 +213,7 @@ public class LoginManager implements ApiConstants, User {
 
                         }
                         if (i == WebResponseConstants.ResponseCode.UN_AUTHORIZED) {
+                            Log.e("response", "un auth RESPONSE>>>>" + responseBody);
 
                             PayPalTransactionResponseHolder palTransactionResponseHolder = new PayPalTransactionResponseHolder();
                             Gson gson = new Gson();
