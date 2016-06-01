@@ -70,6 +70,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
     private final int requestCode = 200;
     private int requestcode = 1;
+    private  String reffereid;
+    private  Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         setContentView(R.layout.sign_up_page);
         initView();
         initManager();
-
+        intent=getIntent();
         androidId = Secure.getString(getApplicationContext().getContentResolver(),
                 Secure.ANDROID_ID);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -165,9 +167,9 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         @Override
         public void onClick(View v) {
 
-            QrScanner(v);
-            //   Intent cam = new Intent(Signupactivity.this,QRcodeScanner.class);
-            // startActivity(cam);
+            //QrScanner(v);
+               Intent cam = new Intent(Signupactivity.this,QRcodeScanner.class);
+               startActivity(cam);
               /*  QRcodeScanner qRcodeScanner= new QRcodeScanner();
                 qRcodeScanner.onClick(v);*/
         }
@@ -175,9 +177,36 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     public void QrScanner(View view) {
 
 
-        Signupactivity.this.setContentView(mScannerView);
+        setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            Log.e("reffereID",""+data.getStringExtra("reffereID"));
+
+                reffereid=intent.getStringExtra("reffereID");
+                Log.e("ID ","RID"+reffereid);
+                refferalmemberidEditText.setText(reffereid);
+
+
+
+
+        }else {
+            Log.e("ID ","RID result");
+        }
+
+
+
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+
     }
 
     private void initView() {
@@ -342,5 +371,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
         }
     }
+    public class refferID{
 
+    }
 }
