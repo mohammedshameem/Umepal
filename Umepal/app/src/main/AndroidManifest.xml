@@ -119,6 +119,9 @@
         <activity android:name="com.qiito.umepal.activity.ShoppingCart"
             android:label="Shopping Cart"
             android:screenOrientation="portrait"/>
+        <activity android:name="com.qiito.umepal.activity.QRcodeScanner"
+            android:label="QR code"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.qiito.umepal.activity.NavigationDrawerActivity"
             android:label="Return Policy"
@@ -140,9 +143,9 @@
             android:value="@string/facebook_app_id" />
 
         <!-- Push Notification Using Parse -->
-        <service android:name="com.parse.PushService" />
+     <!--   <service android:name="com.parse.PushService" />-->
 
-        <receiver
+     <!--   <receiver
             android:name="com.parse.ParseBroadcastReceiver"
             android:exported="false">
             <intent-filter>
@@ -150,8 +153,8 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-
-        <receiver
+-->
+     <!--   <receiver
             android:name="com.parse.ParsePushBroadcastReceiver"
             android:exported="false" >
             <intent-filter>
@@ -159,19 +162,19 @@
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
-        <receiver
+      <!--  <receiver
             android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                &lt;!&ndash; IMPORTANT: Change "com.parse.starter" to match your app's package name. &ndash;&gt;
                 <category android:name="com.qiito.umepal" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
 
     </application>

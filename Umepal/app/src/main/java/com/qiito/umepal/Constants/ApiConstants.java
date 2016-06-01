@@ -86,6 +86,7 @@ public interface ApiConstants {
         String SESSION_ID = "session_id";
         String MEMBERSHIPID = "membership_id";
         String REFFEREE_ID = "refferee_id";
+        String REFFERER_ID = "refferer_id";
     }
     interface Products {
 

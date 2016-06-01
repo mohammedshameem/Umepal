@@ -90,17 +90,18 @@ public class NotificationListAdapter extends BaseAdapter {
 
 				}
 				else if (notificationBaseHoldersList.get(position).getNotification_type().equals("2")){
-					message.append("You have commented on ");
-
+					//message.append("You have commented on ");
+                     message.append(notificationBaseHoldersList.get(position).getMessage());
+					 viewHolder.notificationMessage.setText(message);
 				}
 				else if (notificationBaseHoldersList.get(position).getNotification_type().equals("3")){
 					message.append("You have purchased ");
 
 				}
-				if (UtilValidate.isNotNull(notificationBaseHoldersList.get(position).getProduct().getName())){
+				/*if (UtilValidate.isNotNull(notificationBaseHoldersList.get(position).getProduct().getName())){
 					message.append(notificationBaseHoldersList.get(position).getProduct().getName());
 					viewHolder.notificationMessage.setText(message);
-				}
+				}*/
 			}
 			else{
 				viewHolder.notificationMessage.setText(notificationBaseHoldersList.get(position).getDescription());
@@ -125,7 +126,10 @@ public class NotificationListAdapter extends BaseAdapter {
 
 
 			if(UtilValidate.isNotNull(notificationBaseHoldersList.get(position).getUser_profilePic())){
-				Picasso.with(activity).load(notificationBaseHoldersList.get(position).getUser_profilePic()).into(viewHolder.profile_image);
+				Log.e("pic","notification"+notificationBaseHoldersList.get(position).getUser_profilePic());
+				if(!notificationBaseHoldersList.get(position).getUser_profilePic().equalsIgnoreCase("")){
+					Picasso.with(activity).load(notificationBaseHoldersList.get(position).getUser_profilePic()).into(viewHolder.profile_image);
+				}
 			}else {Picasso.with(activity).load(R.drawable.logo_splash).into(viewHolder.profile_image);}
 		}
 		notifyDataSetChanged();

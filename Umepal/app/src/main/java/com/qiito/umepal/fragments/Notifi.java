@@ -62,6 +62,9 @@ public class Notifi extends Fragment {
     private ProgressDialog pDialog;
     private NotificationBaseHolder notificationBaseHolder;
     private NavDrawerListAdapter adapter;
+    private String refferID;
+    private String reffereeID;
+    private String membershipID;
 
 
     @Override
@@ -76,7 +79,9 @@ public class Notifi extends Fragment {
     public void onResume() {
         super.onResume();
         NotificationManager.getInstance().getAllNotification(getActivity(), notificationCallBack, DbManager.getInstance().getSessionId());
-       /* TodaysParentApp.setNotification_count(notificationBaseHolder.getData().size());
+        NotificationManager.getInstance().getRefferNotification(getActivity(),refferID,reffereeID,membershipID, notificationCallBack);
+
+        /* TodaysParentApp.setNotification_count(notificationBaseHolder.getData().size());
         Log.d("","LIST COUNT ON RESUME"+notificationBaseHolder.getData().size());*/
     }
 

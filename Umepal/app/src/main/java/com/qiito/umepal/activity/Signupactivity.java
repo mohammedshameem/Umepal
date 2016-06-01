@@ -26,7 +26,6 @@ import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
-import me.dm7.barcodescanner.core.CameraPreview;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
@@ -68,7 +67,6 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     private String refferalmemberID;
     private String profilePic;
     private ZXingScannerView mScannerView;
-    private CameraPreview cameraPreview;
 
     private final int requestCode = 200;
     private int requestcode = 1;
@@ -148,6 +146,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     }
 
     View.OnClickListener cancelListener = new View.OnClickListener() {
+
         @Override
         public void onClick(View v) {
             //  finish();
@@ -155,14 +154,24 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
             startActivity(intent);
         }
     };
-    View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
+   /* View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             QrScanner(v);
         }
-    };
+    };*/
+    View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
+            QrScanner(v);
+            //   Intent cam = new Intent(Signupactivity.this,QRcodeScanner.class);
+            // startActivity(cam);
+              /*  QRcodeScanner qRcodeScanner= new QRcodeScanner();
+                qRcodeScanner.onClick(v);*/
+        }
+    };
     public void QrScanner(View view) {
 
 
@@ -239,11 +248,13 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
     @Override
     public void handleResult(Result result) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Signupactivity.this);
+       /* AlertDialog.Builder builder = new AlertDialog.Builder(Signupactivity.this);
         builder.setTitle("Scan Result");
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
-        alert1.show();
+        alert1.show();*/
+        mScannerView.stopCamera();
+        refferalmemberidEditText.setText(result.getText());
 
     }
 
