@@ -469,10 +469,10 @@ public class ProductDetails extends FragmentActivity {
                     if (UtilValidate.isNotNull(productObject.getAvailability())) {
                         Availability = productObject.getAvailability();
                     }
-                    if(popupWindow!=null){
+                    if (popupWindow != null) {
                         popupWindow.dismiss();
                     }
-                    if(productObject.getStockCount()!=null||productObject.getStockCount().equalsIgnoreCase("")) {
+                    if (productObject.getStockCount() != null || productObject.getStockCount().equalsIgnoreCase("")) {
                         if (Integer.parseInt(productObject.getStockCount()) > 0) {
                             getQuantity(ProductDetails.this, userid, productId, productName, productPrice, productImage,
                                     storeName, shippingCharge, EstimatedArrival, Availability, savedPrice);
@@ -537,17 +537,16 @@ public class ProductDetails extends FragmentActivity {
                     if (UtilValidate.isNotNull(productObject.getAvailability())) {
                         Availability = productObject.getAvailability();
                     }
-                    if(popupWindow!=null){
+                    if (popupWindow != null) {
                         popupWindow.dismiss();
                     }
 
-                    if(Integer.parseInt(productObject.getStockCount())>0){
+                    if (Integer.parseInt(productObject.getStockCount()) > 0) {
                         getQuantity(ProductDetails.this, userid, productId, productName, productPrice, productImage,
                                 storeName, shippingCharge, EstimatedArrival, Availability, savedPrice);
 
-                    }
-                    else{
-                        Toast.makeText(ProductDetails.this,productObject.getName()+" is out of stock!",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(ProductDetails.this, productObject.getName() + " is out of stock!", Toast.LENGTH_LONG).show();
                     }
 
 
@@ -882,7 +881,7 @@ public class ProductDetails extends FragmentActivity {
                         });
                     } else {
                         colorLayout.setVisibility(View.GONE);
-                       // Toast.makeText(ProductDetails.this, "No color informations are available!!", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(ProductDetails.this, "No color informations are available!!", Toast.LENGTH_LONG).show();
                     }
 
                     if (UtilValidate.isNotEmpty(productObject.getDimension())) {
@@ -1040,7 +1039,7 @@ public class ProductDetails extends FragmentActivity {
             if (productDetailsBaseHolder != null) {
 
                 if (productDetailsBaseHolder.getStatus().equals("success")) {
-                    productObject=productDetailsBaseHolder.getData().getProduct();
+                    productObject = productDetailsBaseHolder.getData().getProduct();
 
                     pricelayout.setVisibility(View.VISIBLE);
 
@@ -1053,7 +1052,7 @@ public class ProductDetails extends FragmentActivity {
                     if (sessionId != null) {
                         if (!sessionId.equals("")) {
                             if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
-                                if ((DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("true"))) {
+                                if ((DbManager.getInstance().getCurrentUserDetails().is_member())) {
                                     // is a member
                                     nonmember_crosseddoller.setVisibility(View.GONE);
                                     if (productObject.getDiscountprice() != null) {
@@ -1226,7 +1225,7 @@ public class ProductDetails extends FragmentActivity {
                                     continue_readingTxtlayout.setVisibility(View.VISIBLE);
                                 }
                             }
-                            if (productObject.getStockCount() != ""||productObject.getStockCount()!=null) {
+                            if (productObject.getStockCount() != "" || productObject.getStockCount() != null) {
                                 stock_count = productObject.getStockCount().toString();
                                 numberOfItemLeft.setText(stock_count);
                             } else {
@@ -1314,7 +1313,7 @@ public class ProductDetails extends FragmentActivity {
                                 likeGreen.setVisibility(View.VISIBLE);
                                 likeGray.setVisibility(View.GONE);
 
-                            }else{
+                            } else {
                                 likeGreen.setVisibility(View.GONE);
                                 likeGray.setVisibility(View.VISIBLE);
                             }
@@ -1778,9 +1777,9 @@ public class ProductDetails extends FragmentActivity {
     };
 
     private void loginPopup() {
-        Intent login=new Intent(ProductDetails.this, Loginactivity.class);
-        login.putExtra("buy",1);
-        login.putExtra("productId",product_id);
+        Intent login = new Intent(ProductDetails.this, Loginactivity.class);
+        login.putExtra("buy", 1);
+        login.putExtra("productId", product_id);
         startActivity(login);
         /*try {
 

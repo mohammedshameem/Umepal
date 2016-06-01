@@ -97,18 +97,18 @@ public class ShoppingCart extends Activity {
     private String userId;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
-    private LayoutInflater inflater;
+    /*private LayoutInflater inflater;
     private PopupWindow popupWindow;
-    private View shippingDetailLayout;
+    private View shippingDetailLayout;*/
     private boolean isStorePickupOnly = true;
-    private ImageView closeimg;
+    /*private ImageView closeimg;
     private TextView cancel;
     private TextView continueShopping;
     private boolean firstNameValidationFlag = false;
     private boolean streetAddressValidationFlag = false;
     private boolean cityvalidationFlag = false;
     private boolean phoneNoValidationFlag = false;
-    private ShippingAddressHolder shippingDetailsHolder;
+    private ShippingAddressHolder shippingDetailsHolder;*/
     private int requestcode = 1;
     private List<ShoppingCartList> shoppingcartList;
     private boolean stockCountFlag = false;
@@ -127,7 +127,7 @@ public class ShoppingCart extends Activity {
         initViews();
         initManagers();
 
-        FacebookSdk.sdkInitialize(ShoppingCart.this);
+        //FacebookSdk.sdkInitialize(ShoppingCart.this);
         heading.setText("Shopping Cart");
         heading.setVisibility(View.VISIBLE);
         userObjectHolder = DbManager.getInstance().getCurrentUserDetails();
@@ -351,7 +351,7 @@ public class ShoppingCart extends Activity {
                                             Toast.makeText(ShoppingCart.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
                                             Intent returnToHome = new Intent(ShoppingCart.this, MainActivity.class);
                                             startActivity(returnToHome);
-                                            if (!userObjectHolder.getFacebookId().equals("")) {
+                                            /*if (!userObjectHolder.getFacebookId().equals("")) {
                                                 for (int i = 0; i <= checkoutProductsList1.size() - 1; i++) {
                                                     callbackManager = CallbackManager.Factory.create();
                                                     shareDialog = new ShareDialog(ShoppingCart.this);
@@ -360,12 +360,12 @@ public class ShoppingCart extends Activity {
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder().setImageUrl(Uri.parse(checkoutProductsList1.get(i).getImage().toString()))
                                                                 .setContentTitle("lufluf")
                                                                 .setContentDescription(userObjectHolder.getFirstName() + " has purchased " + checkoutProductsList1.get(i).getName() + " from lufluf")
-                                                                .setContentUrl(null/*Uri.parse("https://play.google.com/store/apps/details?id=com.qiito.aromania&hl=en")*/)
+                                                                .setContentUrl(null*//*Uri.parse("https://play.google.com/store/apps/details?id=com.qiito.aromania&hl=en")*//*)
                                                                 .build();
                                                         shareDialog.show(linkContent);
                                                     }
                                                 }
-                                            }
+                                            }*/
                                             finish();
                                         } else {
                                             view.loadUrl(url);
@@ -384,7 +384,7 @@ public class ShoppingCart extends Activity {
                                     public void onLoadResource(WebView view, String url) {
                                         // TODO Auto-generated method stub
                                         super.onLoadResource(view, url);
-                                        if (url.equalsIgnoreCase("http://wws.parentsv4.x-minds.info/api/paypal/cancel")) {
+                                        if (url.equalsIgnoreCase(" http://umepal-s.x-minds.org/api/paypal/cancel")) {
                                             Intent in = new Intent(ShoppingCart.this, ShoppingCart.class);
                                             startActivity(in);
                                             finish();
@@ -528,8 +528,8 @@ public class ShoppingCart extends Activity {
                             totalAmount = 0.00;
                             savingsAmount = 0.00;
 
-/*
-                            if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
+
+                            /*if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
                                 if ((!DbManager.getInstance().getCurrentUserDetails().getCreated().equals(""))) {
                                     if (DbManager.getInstance().getCurrentUserDetails().getMembership_status().equalsIgnoreCase("true")) {
                                         Log.e("***MEMBER***", "LOGGED IN");
@@ -563,9 +563,9 @@ public class ShoppingCart extends Activity {
                                         TodaysParentApp.setItemTotalValue(total);
                                     } else {
                                     */
-/*  an expired member *//*
+                                        /*  an expired member */
 
-                                        //Toast.makeText(ShoppingCart.this,"non member",Toast.LENGTH_SHORT).show();
+                                        /*Toast.makeText(ShoppingCart.this,"non member",Toast.LENGTH_SHORT).show();
 
                                         totalAmount = 0.00;
                                         total.setText(" Total : ");
@@ -629,18 +629,28 @@ public class ShoppingCart extends Activity {
                                     String total = String.format("%.2f", totalAmount);
                                     TodaysParentApp.setItemTotalValue(total);
                                 }
-                            }
-*/
-
+                            }*/
 
                             for (int i = 0; i < checkoutProductsList1.size(); i++) {
-                                Double product_quantity = Double.parseDouble(checkoutProductsList1.get(i).getQuantity());
-                                Double shippingAmount = Double.parseDouble(checkoutProductsList1.get(i).getShippingcharge());
-                                shippingamount = product_quantity * shippingAmount;
+                                amount = Double.parseDouble(checkoutProductsList1.get(i).getQuantity()) *
+                                        Double.parseDouble(checkoutProductsList1.get(i).getDiscountprice());
+                                totalAmount = totalAmount + amount;
+                            }
+                            TodaysParentApp.setItemTotalValue(String.format("%.2f", totalAmount));
+
+                            for (int i = 0; i < checkoutProductsList1.size(); i++) {
+                                shippingamount = Double.parseDouble(checkoutProductsList1.get(i).getQuantity()) *
+                                        Double.parseDouble(checkoutProductsList1.get(i).getShippingcharge());
                                 shippingTotalAmount = shippingTotalAmount + shippingamount;
                             }
-                            String shiptotal = String.format("%.2f", shippingTotalAmount);
-                            TodaysParentApp.setShippingValue(shiptotal);
+                            TodaysParentApp.setShippingValue(String.format("%.2f", shippingTotalAmount));
+
+                            for (int j = 0; j < checkoutProductsList1.size(); j++) {
+                                double savedamount = Double.parseDouble(checkoutProductsList1.get(j).getPrice()) - Double.parseDouble(checkoutProductsList1.get(j).getDiscountprice());
+                                double tot = savedamount * Double.parseDouble(checkoutProductsList1.get(j).getQuantity());
+                                savingsAmount = savingsAmount + tot;
+
+                            }
                             orderTotal = totalAmount + shippingTotalAmount;
                             String saving = String.format("%.2f", savingsAmount);
                             savings.setText(" " + saving);
@@ -723,12 +733,12 @@ public class ShoppingCart extends Activity {
         }
     }
 
-    private View.OnClickListener cancelListener = new View.OnClickListener() {
+    /*private View.OnClickListener cancelListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             popupWindow.dismiss();
         }
-    };
+    };*/
 
     private void makePayment() {
         session_id = currentlyLoggedUserDAO.getSessionId();

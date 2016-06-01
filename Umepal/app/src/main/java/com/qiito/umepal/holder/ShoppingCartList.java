@@ -7,6 +7,8 @@ public class ShoppingCartList {
     private int id;
     private String name;
     private String quantity;
+    private String product_color;
+    private String product_dimension;
     private String description;
     private String price;
     private String discount;
@@ -14,8 +16,6 @@ public class ShoppingCartList {
     private int status;
     private String image;
     private String color;
-    private String product_color;
-    private String product_dimension;
     private String productForAge;
     private String promoprice;
     private String uniqueid;
@@ -39,6 +39,7 @@ public class ShoppingCartList {
     private String shipping_time;
     private int collect_at_store;
     private String storePhone;
+    private String secondryPhone;
 
 
     public int getId() {
@@ -320,5 +321,13 @@ public class ShoppingCartList {
 
     public void setProduct_dimension(String product_dimension) {
         this.product_dimension = product_dimension;
+    }
+
+    public String getSecondryPhone() {
+        return secondryPhone;
+    }
+
+    public void setSecondryPhone(String secondryPhone) {
+        this.secondryPhone = secondryPhone;
     }
 }
