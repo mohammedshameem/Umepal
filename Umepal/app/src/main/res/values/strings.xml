@@ -189,11 +189,11 @@
 
     <!-- Shopping Cart Success Popup-->
     <string name="success">Success</string>
-    <string name="message_text">Congratulations to become our member.  Let's enjoy  attractive member discount from today onwards.</string>
+    <string name="message_text">Congratulations to become our member.  Let\'s enjoy  attractive member discount from today onwards.</string>
 
 
     <!-- Sell My Item -->
-    <string name="cant_sell">Oops, you can't sell your item yet!</string>
+    <string name="cant_sell">Oops, you can\'t sell your item yet!</string>
     <string name="upgrade_text">Upgrade your membership and start selling now!</string>
     <!--RETURN POLICY-->
 
