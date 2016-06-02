@@ -54,7 +54,7 @@
                         android:layout_weight="4"
                         android:gravity="left|top"
                         android:text="Name"
-                        android:textColor="@color/blue_shade"
+                        android:textColor="@color/Red"
                         android:textSize="@dimen/review_name"
                         android:textStyle="bold" />
 

@@ -62,7 +62,7 @@ public class MembershipSelectionActivity extends Activity {
     private TextView membershipfeeText;
 
     private String MembershipId;
-    private String session;
+    //private String session;
 
     private WebView webview_paypal;
     private LinearLayout membershipselectionpage;
@@ -81,7 +81,7 @@ public class MembershipSelectionActivity extends Activity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
         }
-        session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
+        //session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
 
         MemAuncheck.setOnClickListener(A_uncheckListener);
         MemBuncheck.setOnClickListener(B_uncheckListener);

@@ -24,16 +24,16 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:background="@color/todaysparent_grey"
+            android:background="@color/grey"
             android:orientation="vertical"
-            android:layout_weight="7.5">
+            android:layout_weight="7.75">
 
             <ListView
                 android:id="@+id/shopping_cart_listview"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                android:dividerHeight="3dp">
+                android:divider="@color/grey">
             </ListView>
 
 
@@ -42,10 +42,10 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:background="@color/blue_shade"
+            android:background="@color/Red"
             android:id="@+id/checkout_button_layout"
             android:orientation="vertical"
-            android:layout_weight="2.5">
+            android:layout_weight="2.25">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -119,11 +119,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="@dimen/margin_normal"
-                android:background="@drawable/yellow_button"
+                android:background="@drawable/white_button_rounded_corner"
                 android:text="@string/checkout"
-                android:textColor="@color/white"
+                android:textColor="@color/Red"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:elevation="3dp"/>
 
         </LinearLayout>
 

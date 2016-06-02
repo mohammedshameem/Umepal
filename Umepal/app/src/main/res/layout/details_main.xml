@@ -13,7 +13,6 @@
 
 
     <com.gc.materialdesign.views.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

@@ -278,8 +278,7 @@ public class Checkout extends Activity {
                                             payNow.setVisibility(View.VISIBLE);
                                             CheckoutDAO.getInstance().deleteAllCheckout();
                                             Toast.makeText(Checkout.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
-                                            Intent returnToHome = new Intent(Checkout.this,
-                                                    Checkout.class);
+                                            Intent returnToHome = new Intent(Checkout.this, Checkout.class);
                                             startActivity(returnToHome);
                                             finish();
 

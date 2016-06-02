@@ -129,12 +129,13 @@ public interface ApiConstants {
 
         String USER_EDIT_PROFILE_URL = BASE_URL + "api/user-editprofile";
         String SESSION = "session_id";
-        String FIRSTNAME = "firstname";
-        String LASTNAME = "lastname";
+        String FIRSTNAME = "firstName";
+        String LASTNAME = "lastName";
         String EMAIL = "email";
         String CITY = "city";
-        String MOBILE = "mobile";
-        String PICTURE = "pic";
+        String MOBILE = "mobilenumber";
+        String PICTURE = "profilePic";
+        String UNIQUE_DEVICE_ID = "uniqueDeviceID";
     }
 
     interface ProductDetailsRequestParams {

@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ import java.io.ByteArrayOutputStream;
 
 import static com.qiito.umepal.R.drawable.logo_splash;
 
-public class Edit_Profile extends Activity {
+public class EditProfileActivity extends Activity {
 
     private static final int CAMERA_REQUEST = 1888;
     private static int RESULT_LOAD_IMG = 1;
@@ -55,25 +56,15 @@ public class Edit_Profile extends Activity {
 
     private ImageView profile_pic;
     private ImageView back_menu_icon;
-    //private ImageView profile_picture;
-
-    //private Button close;
     private Button Save;
 
-    /*private String imgDecodableString;
-    private String profilePicPath;
-    private String encodedimage;
-    private String photoString;*/
     private String FirstName;
     private String LastName;
     private String City;
     private String Email;
     private String Mobile;
     private String picturePath = null;
-
-    //private File imageFile;
-
-    //private int requestcode = 100;
+    private String androidId;
 
     private boolean userNameFlag;
     private boolean firstNameFlag;
@@ -84,7 +75,7 @@ public class Edit_Profile extends Activity {
     private boolean mobile_no_minimum_flag;
 
 
-    private static final String TAG = Edit_Profile.class.getName();
+    private static final String TAG = EditProfileActivity.class.getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +84,9 @@ public class Edit_Profile extends Activity {
         initView();
         initManager();
         setVisibilities();
+
+        androidId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
 
         page_heading.setText("Edit Profile ");
 
@@ -131,17 +125,17 @@ public class Edit_Profile extends Activity {
         if (UtilValidate.isNotEmpty(DbManager.getInstance().getCurrentUserDetails().getProfilePic())) {
             if (DbManager.getInstance().getCurrentUserDetails().getProfilePic() != "") {
 
-                Picasso.with(Edit_Profile.this)
+                Picasso.with(EditProfileActivity.this)
                         .load(DbManager.getInstance().getCurrentUserDetails().getProfilePic().toString())
                         .placeholder(R.drawable.logo_splash)
                         .error(R.drawable.logo_splash).fit()
                         .into(profile_pic);
 
             } else {
-                Picasso.with(Edit_Profile.this).load(R.drawable.logo_splash).into(profile_pic);
+                Picasso.with(EditProfileActivity.this).load(R.drawable.logo_splash).into(profile_pic);
             }
         } else {
-            Picasso.with(Edit_Profile.this).load(R.drawable.logo_splash).into(profile_pic);
+            Picasso.with(EditProfileActivity.this).load(R.drawable.logo_splash).into(profile_pic);
 
         }
 
@@ -156,7 +150,7 @@ public class Edit_Profile extends Activity {
 
     private void initiatePopupWindow() {
         try {
-            LayoutInflater inflater = (LayoutInflater) Edit_Profile.this
+            LayoutInflater inflater = (LayoutInflater) EditProfileActivity.this
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.activity_edit_profile_pic, null);
 
@@ -184,14 +178,14 @@ public class Edit_Profile extends Activity {
                     ImageView i = (ImageView) findViewById(R.id.image_editprofile);
                     /*if empty*/
                     if (i.getDrawable().getConstantState() == getResources().getDrawable(logo_splash).getConstantState()) {
-                        Toast.makeText(Edit_Profile.this, "Empty !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "Empty !", Toast.LENGTH_SHORT).show();
                         pwindo.dismiss();
                     } else if (Integer.parseInt((String) i.getTag()) != logo_splash) {
                         i.setImageResource(logo_splash);
-                        Toast.makeText(Edit_Profile.this, "Removed..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "Removed..", Toast.LENGTH_SHORT).show();
                         pwindo.dismiss();
                     } else {
-                        Toast.makeText(Edit_Profile.this, "error..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "error..", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -276,7 +270,7 @@ public class Edit_Profile extends Activity {
 
                 } else {
 
-                    Toast.makeText(Edit_Profile.this,
+                    Toast.makeText(EditProfileActivity.this,
                             "No file choosed...", Toast.LENGTH_SHORT).show();
 
                 }
@@ -327,7 +321,7 @@ public class Edit_Profile extends Activity {
 
                 } else {
 
-                    Toast.makeText(Edit_Profile.this,
+                    Toast.makeText(EditProfileActivity.this,
                             "No file choosed...", Toast.LENGTH_SHORT).show();
 
                 }
@@ -435,8 +429,6 @@ public class Edit_Profile extends Activity {
             mobile_no_minimum_flag = true;
         }
 
-
-        //String photo = "http:/" + profilePicPath;
         Log.e("PHOTO", ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + picturePath);
 
         if (userNameFlag && firstNameFlag && lastNameFlag && cityFlag && emailFlag &&
@@ -446,15 +438,15 @@ public class Edit_Profile extends Activity {
             if (picturePath!=null) {
                 Log.e("^^","manager call with image");
 
-                UserManager.getInstance().userEditProfilewithImage(Edit_Profile.this, session_id, FirstName,
-                        LastName, Email, City, Mobile, picturePath, edit_profilecallback);
+                UserManager.getInstance().userEditProfilewithImage(EditProfileActivity.this, session_id, FirstName,
+                        LastName, Email, City, Mobile, picturePath,androidId, edit_profilecallback);
             }
             else{
                 Log.e("**","manager call without image");
-                UserManager.getInstance().userEditProfile(Edit_Profile.this,session_id,FirstName,LastName,Email,City,
-                        Mobile,"",edit_profilecallback);
+                UserManager.getInstance().userEditProfile(EditProfileActivity.this,session_id,FirstName,LastName,Email,City,
+                        Mobile,"",androidId,edit_profilecallback);
             }
-            Toast.makeText(Edit_Profile.this, "saving..", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditProfileActivity.this, "saving..", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -471,24 +463,16 @@ public class Edit_Profile extends Activity {
                     DbManager.getInstance().deleteAllRowsFromUserTable();
                     DbManager.getInstance().insertIntoUserTable(userBaseHolder.getData().getUser());
 
-
-                    Log.e("**", "PROFILE PIC IN USERBASE HOLDER :" + userBaseHolder.getData().getUser().getProfilePic());
-                    Log.e("**", "PROFILE NAME IN USERBASE HOLDER :" + userBaseHolder.getData().getUser().getFirstName().toString());
-                    Log.e("**", "First Name :::" + DbManager.getInstance().getCurrentUserDetails().getFirstName().toString());
-                    Log.e("**", "Email  :::" + DbManager.getInstance().getCurrentUserDetails().getEmail());
-                    Log.e("**", "Password :::" + DbManager.getInstance().getCurrentUserDetails().getPassword().toString());
-                    Log.e("**", "#################  Status ::" + userBaseHolder.getStatus());
-                    Log.e("@@", "$$$$ profile pic  " + DbManager.getInstance().getCurrentUserDetails().getProfilePic().toString());
-                    Toast.makeText(Edit_Profile.this, "Saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                     finish();
 
                 } else {
-                    Toast.makeText(Edit_Profile.this, " ! ! ! " + userBaseHolder.getStatus(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, " ! ! ! " + userBaseHolder.getStatus(), Toast.LENGTH_SHORT).show();
                 }
 
 
             } else {
-                Toast.makeText(Edit_Profile.this, "Please try again ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfileActivity.this, "Please try again ", Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -152,7 +152,7 @@ public class UserManager implements ApiConstants {
 
 	// Editing User Details
 	public void userEditProfile(final Activity activity, String session, String firstName, String lastName, String email, String city,
-			String mobile, String picturePath,final AsyncTaskCallBack userEditProfileCallBack) {
+			String mobile, String picturePath, String uniqueDeviceID,final AsyncTaskCallBack userEditProfileCallBack) {
 		// TODO Auto-generated method stub
 
 		/*
@@ -173,6 +173,7 @@ public class UserManager implements ApiConstants {
 		params.put(UserEditProfileRequestParams.EMAIL, email);
 		params.put(UserEditProfileRequestParams.CITY, city);
 		params.put(UserEditProfileRequestParams.MOBILE, mobile);
+		params.put(UserEditProfileRequestParams.UNIQUE_DEVICE_ID,uniqueDeviceID);
 
 		UMEPALAppRestClient.post(
 				UserEditProfileRequestParams.USER_EDIT_PROFILE_URL, params,
@@ -211,7 +212,7 @@ public class UserManager implements ApiConstants {
 
 	// Editing User Details
 	public void userEditProfilewithImage(final Activity activity, String session, String firstName, String lastName, String email, String city,
-			String mobile, String picturePath, final AsyncTaskCallBack userEditProfileCallBack) {
+			String mobile, String picturePath, String uniqueDeviceID, final AsyncTaskCallBack userEditProfileCallBack) {
 		// TODO Auto-generated method stub
 
 		Log.e("managerPicPath>>>>>>>>",picturePath);
@@ -233,6 +234,7 @@ public class UserManager implements ApiConstants {
 		builder.addTextBody(UserEditProfileRequestParams.EMAIL, email);
 		builder.addTextBody(UserEditProfileRequestParams.CITY, city);
 		builder.addTextBody(UserEditProfileRequestParams.MOBILE, mobile);
+		builder.addTextBody(UserEditProfileRequestParams.UNIQUE_DEVICE_ID,uniqueDeviceID);
 
 		final HttpEntity httpEntity = builder.build();
 

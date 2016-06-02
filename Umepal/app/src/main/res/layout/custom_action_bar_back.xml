@@ -34,7 +34,7 @@
                 android:layout_width="@dimen/app_image_dimension"
                 android:layout_height="@dimen/app_image_dimension"
                 android:layout_gravity="center"
-                android:src="@drawable/thousanddays"
+                android:src="@drawable/login_logo"
                 android:visibility="gone" />
         </LinearLayout>
 

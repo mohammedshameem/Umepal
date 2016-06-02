@@ -115,7 +115,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
             viewHolder.shippingChargesKeyword = (TextView) view.findViewById(R.id.shipping_charges_keyword);
             viewHolder.shippingChargeDollar = (TextView) view.findViewById(R.id.shipping_charges_dollar);
             viewHolder.storePickup = (TextView) view.findViewById(R.id.store_pickup);
-            viewHolder.memberKeyword = (LinearLayout) view.findViewById(R.id.member_keyword);
+            //viewHolder.memberKeyword = (LinearLayout) view.findViewById(R.id.member_keyword);
 
             view.setTag(viewHolder);
         } else {
@@ -137,17 +137,19 @@ public class ShoppingCartAdapter extends BaseAdapter {
         }
 
         if (UtilValidate.isNotNull(DbManager.getInstance().getCurrentUserDetails())) {
+
+            /*** User is a member ***/
             if ((DbManager.getInstance().getCurrentUserDetails().is_member())) {
 
                 Log.e("user", "is a member");
                 if (UtilValidate.isNotNull(itemList.get(position).getDiscountprice())) {
-                    viewHolder.individualPrice.setText(" " + itemList.get(position).getDiscountprice());
-                    viewHolder.memberKeyword.setVisibility(View.VISIBLE);
+                    viewHolder.individualPrice.setText(activity.getString(R.string.currency) + " " + itemList.get(position).getDiscountprice());
+                    //viewHolder.memberKeyword.setVisibility(View.VISIBLE);
                     price = Double.parseDouble(itemList.get(position).getDiscountprice());
                 } else {
                     if (UtilValidate.isNotNull(itemList.get(position).getPrice())) {
                         Log.e("price<<", itemList.get(position).getPrice());
-                        viewHolder.individualPrice.setText(" " + itemList.get(position).getPromoprice());
+                        viewHolder.individualPrice.setText(activity.getString(R.string.currency) + " " + itemList.get(position).getPromoprice());
                         price = Double.parseDouble(itemList.get(position).getPromoprice());
                     }
                 }
@@ -159,11 +161,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
                 totalAmount = price * Quantity;
 
                 String total = String.format("%.2f", totalAmount);
-                viewHolder.totalPrice.setText(" " + total);
-                // totalAmount = price * Quantity;
-
-                //String total = String.format("%.2f", totalAmount);
-                //viewHolder.totalPrice.setText(" " + total);
+                viewHolder.totalPrice.setText(activity.getString(R.string.currency) + " " + total + " \nmember");
 
 
             } else {
@@ -172,14 +170,14 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
                 if (UtilValidate.isNotNull(itemList.get(position).getPrice())) {
                     Log.e("price<<", itemList.get(position).getPrice());
-                    viewHolder.individualPrice.setText(" " + itemList.get(position).getPromoprice());
+                    viewHolder.individualPrice.setText(activity.getString(R.string.currency) + " " + itemList.get(position).getPromoprice());
                     price = Double.parseDouble(itemList.get(position).getPromoprice());
                 }
 
                 totalAmount = price * Quantity;
 
                 String total = String.format("%.2f", totalAmount);
-                viewHolder.totalPrice.setText(" " + total);
+                viewHolder.totalPrice.setText(activity.getString(R.string.currency) + " " + total);
 
             }
 
@@ -192,14 +190,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
             }
         }
 
-        /*if (UtilValidate.isNotNull(itemList.get(position).getQuantity())) {
-            viewHolder.quantity.setText(itemList.get(position).getQuantity());
-            Quantity = Double.parseDouble(itemList.get(position).getQuantity());
-        }*/
-        /*totalAmount = price * Quantity;
-
-        String total = String.format("%.2f", totalAmount);
-        viewHolder.totalPrice.setText(" " + total);*/
         if (UtilValidate.isNotNull(itemList.get(position).getShippingcharge())) {
             if (UtilValidate.isNotNull(itemList.get(position).getQuantity())) {
                 double totalShipping = Double.parseDouble(itemList.get(position).getShippingcharge()) * Double.parseDouble(itemList.get(position).getQuantity());
@@ -251,18 +241,18 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
         TotalAmount = Double.parseDouble(TodaysParentApp.getItemTotalValue());
         shippingamount = Double.parseDouble(TodaysParentApp.getShippingValue());
-        viewHolder.itemTotal.setText(" " + (TodaysParentApp.getItemTotalValue()));
-        viewHolder.shippingTotal.setText(" " + TodaysParentApp.getShippingValue());
+        viewHolder.itemTotal.setText(activity.getString(R.string.currency) + " " + (TodaysParentApp.getItemTotalValue()));
+        viewHolder.shippingTotal.setText(activity.getString(R.string.currency) + " " + TodaysParentApp.getShippingValue());
 
 
         orderTotal = TotalAmount + shippingamount;
         String OrderTotal = String.format("%.2f", orderTotal);
-        viewHolder.orderTotal.setText(" " + TodaysParentApp.getOrderTotalValue());
+        viewHolder.orderTotal.setText(activity.getString(R.string.currency) + " " + TodaysParentApp.getOrderTotalValue());
         TodaysParentApp.setOrderTotalValue(OrderTotal);
 
         convertedPrice = orderTotal * DollarConvert;
         String Converted = String.format("%.2f", convertedPrice);
-        viewHolder.convertPrice.setText(Converted);
+        viewHolder.convertPrice.setText(Converted + " USD");
 
 
         viewHolder.removeItem.setOnClickListener(new View.OnClickListener() {
@@ -278,15 +268,15 @@ public class ShoppingCartAdapter extends BaseAdapter {
                     deleteFromCartCallBack = new DeleteFromCartCallBack();
                     String session_id = DbManager.getInstance().getSessionId();
                     ShoppingCartManager.getInstance().deleteFromCart(activity, deleteFromCartCallBack, userId, productId, session_id);
-                    viewHolder.itemTotal.setText(" " + TodaysParentApp.getItemTotalValue());
-                    viewHolder.shippingTotal.setText(" " + TodaysParentApp.getShippingValue());
+                    viewHolder.itemTotal.setText(activity.getString(R.string.currency) + " " + TodaysParentApp.getItemTotalValue());
+                    viewHolder.shippingTotal.setText(activity.getString(R.string.currency) + " " + TodaysParentApp.getShippingValue());
                     TotalAmount = Double.parseDouble(TodaysParentApp.getItemTotalValue());
                     shippingamount = Double.parseDouble(TodaysParentApp.getShippingValue());
 
                     orderTotal = TotalAmount + shippingamount;
                     String OrderTotal = String.format("%.2f", orderTotal);
                     TodaysParentApp.setOrderTotalValue(OrderTotal);
-                    viewHolder.orderTotal.setText(" " + orderTotal);
+                    viewHolder.orderTotal.setText(activity.getString(R.string.currency) + " " + orderTotal);
                     itemList.remove(position);
                     shoppingCartActivity.decrementPrice(itemList, totalPrice, savings, shoppingCart, emptyCart);
 
@@ -338,7 +328,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
         TextView shippingChargeDollar;
         TextView storePickup;
         LinearLayout orderSummary;
-        LinearLayout memberKeyword;
+        //LinearLayout memberKeyword;
 
 
     }

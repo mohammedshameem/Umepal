@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:text="View all ratings"
                     android:layout_marginTop="@dimen/margin_very_small"
-                    android:textColor="@color/blue_shade"
+                    android:textColor="@color/Red"
                     android:textSize="@dimen/textsize_medium"
                     android:id="@+id/store_view_all_ratings"/>
 

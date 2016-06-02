@@ -90,7 +90,7 @@
             android:label="Checkout"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.qiito.umepal.activity.Edit_Profile"
+            android:name="com.qiito.umepal.activity.EditProfileActivity"
             android:label="Edit"
             android:screenOrientation="portrait"/>
 

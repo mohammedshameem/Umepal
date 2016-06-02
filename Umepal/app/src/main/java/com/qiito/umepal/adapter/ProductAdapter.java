@@ -116,8 +116,9 @@ public class ProductAdapter extends BaseAdapter {
         //this.likeCallBack = likeCallBack;
         //likeCallBackk = new LikeCallBack();
     }
+
     public ProductAdapter(Activity activity, List<ProductObject> productList, AsyncTaskCallBack addToCartCallBack,
-                          AsyncTaskCallBack likeCallBack,AdapterViewItemListener productLikeListener) {
+                          AsyncTaskCallBack likeCallBack, AdapterViewItemListener productLikeListener) {
         // TODO Auto-generated constructor stub
         this.activity = activity;
         this.productList = productList;
@@ -192,10 +193,10 @@ public class ProductAdapter extends BaseAdapter {
             viewholder.likeCount = (TextView) convertView.findViewById(R.id.like_count);
             viewholder.onlyLeft = (TextView) convertView.findViewById(R.id.only_left_number);
             viewholder.crossed_price = (TextView) convertView.findViewById(R.id.crossed_dollar_price);
-            viewholder.offer_time_left_minute_1 = (TextView) convertView.findViewById(R.id.time_num1);
-            viewholder.offer_time_left_minute_2 = (TextView) convertView.findViewById(R.id.time_num2);
-            viewholder.offer_time_left_second_1 = (TextView) convertView.findViewById(R.id.time_num3);
-            viewholder.offer_time_left_second_2 = (TextView) convertView.findViewById(R.id.time_num4);
+            //viewholder.offer_time_left_minute_1 = (TextView) convertView.findViewById(R.id.time_num1);
+            //viewholder.offer_time_left_minute_2 = (TextView) convertView.findViewById(R.id.time_num2);
+            //viewholder.offer_time_left_second_1 = (TextView) convertView.findViewById(R.id.time_num3);
+            //viewholder.offer_time_left_second_2 = (TextView) convertView.findViewById(R.id.time_num4);
             viewholder.hourlydeal = (TextView) convertView.findViewById(R.id.hourlydeal);
 
             viewholder.membertxt = (TextView) convertView.findViewById(R.id.membertxt);
@@ -360,7 +361,7 @@ public class ProductAdapter extends BaseAdapter {
 
         /*TIMER*/
 
-        if (productList.get(position).getOfferDate()!= null && !productList.get(position).getOfferDate().equalsIgnoreCase("")) {
+        if (productList.get(position).getOfferDate() != null && !productList.get(position).getOfferDate().equalsIgnoreCase("")) {
             viewholder.counter.setVisibility(View.VISIBLE);
             viewholder.hourlydeal.setVisibility(View.VISIBLE);
             viewholder.timerlayout.setVisibility(View.VISIBLE);
@@ -369,7 +370,7 @@ public class ProductAdapter extends BaseAdapter {
             viewholder.imageview_yellow_head.setVisibility(View.VISIBLE);
             viewholder.discountLinear.setVisibility(View.VISIBLE);
             viewholder.raceTimeCounterTextView.setRaceStartTime(productList.get(position).getOfferDate());
-        }else{
+        } else {
             viewholder.counter.setVisibility(View.GONE);
             viewholder.hourlydeal.setVisibility(View.GONE);
             viewholder.timerlayout.setVisibility(View.GONE);
@@ -384,12 +385,12 @@ public class ProductAdapter extends BaseAdapter {
 
         if (UtilValidate.isEmpty(only_left)) {
         } else {
-            viewholder.onlyLeft.setText(only_left);
+            viewholder.onlyLeft.setText("Only " + only_left + " left");
         }
 
 		/*set num of likes*/
 
-        if (productList.get(position).getLike_count() >=0) {
+        if (productList.get(position).getLike_count() >= 0) {
 
             // int like = TodaysParentApp.getLike_count();
             viewholder.likeCount.setText("" + productList.get(position).getLike_count());
@@ -408,8 +409,8 @@ public class ProductAdapter extends BaseAdapter {
                 float d = Float.parseFloat(discount);
                 Math.round(d);
                 String dd = String.valueOf(Math.round(d));
-                viewholder.discount.setText(dd);
-                viewholder.discountwithoutdeal.setText(dd);
+                viewholder.discount.setText("-" + dd + "%");
+                viewholder.discountwithoutdeal.setText("-" + dd + "%");
 
             }
         }
@@ -446,7 +447,7 @@ public class ProductAdapter extends BaseAdapter {
                             if (productList.get(position).getId() != 0) {
                                 productId = String.valueOf(productList.get(position).getId());
                             }
-                            if(popupWindow!=null){
+                            if (popupWindow != null) {
                                 popupWindow.dismiss();
                             }
 
@@ -473,7 +474,7 @@ public class ProductAdapter extends BaseAdapter {
                                     popupWindow.dismiss();
                                 }
                             });
-                            if(productList.get(position).getStockCount()!=null||productList.get(position).getStockCount().equalsIgnoreCase("")) {
+                            if (productList.get(position).getStockCount() != null || productList.get(position).getStockCount().equalsIgnoreCase("")) {
 
                                 if (!productList.get(position).getStockCount().equalsIgnoreCase("0")) {
                                     int i = Integer.parseInt(productList.get(position).getStockCount());
@@ -598,7 +599,7 @@ public class ProductAdapter extends BaseAdapter {
                             }
                             //ProductLikeManager.getInstance().setLike(activity, productId, sessionId, likeCallBackk);
 
-                            Log.e("name",""+productList.get(position).getName());
+                            Log.e("name", "" + productList.get(position).getName());
                             //allitems.likeProduct(productList.get(position), position);
                             /*if (productList.get(position).getIs_liked() == 1) {
                                 viewholder.likegreenImg.setVisibility(View.VISIBLE);
@@ -788,10 +789,10 @@ public class ProductAdapter extends BaseAdapter {
         private TextView likeCount;
         private TextView onlyLeft;
         private TextView crossed_price;
-        private TextView offer_time_left_minute_1;
-        private TextView offer_time_left_minute_2;
-        private TextView offer_time_left_second_1;
-        private TextView offer_time_left_second_2;
+        //private TextView offer_time_left_minute_1;
+        //private TextView offer_time_left_minute_2;
+        //private TextView offer_time_left_second_1;
+        //private TextView offer_time_left_second_2;
         private ImageView productGridImage;
         private ImageView productIcon;
         private ImageView popularImage;
@@ -841,19 +842,19 @@ public class ProductAdapter extends BaseAdapter {
                         Log.e("@@", "product liked!!!!!");
                         Log.e("@@", "like position" + Position);
 
-                        count =productList.get(Position).getLike_count()+1;
+                        count = productList.get(Position).getLike_count() + 1;
 
                     }
                     if (productLikeHolder.getCode() == 0) {
                         Log.e("@@", "product unliked!!!!!");
                         Log.e("@@", "unlike position" + Position);
-                        count = productList.get(Position).getLike_count()-1;
+                        count = productList.get(Position).getLike_count() - 1;
 
                     }
                     productList.get(Position).setIs_liked(productLikeHolder.getCode());
                     productList.get(Position).setLike_count(count);
                     Log.e("count >>", "new count>>>" + count);
-                    Log.e("LIKEE","LIKE: "+productList.get(Position).getLike_count());
+                    Log.e("LIKEE", "LIKE: " + productList.get(Position).getLike_count());
                     ProductAdapter.this.notifyDataSetChanged();
                 } else {
 

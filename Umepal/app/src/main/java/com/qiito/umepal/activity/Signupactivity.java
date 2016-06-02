@@ -80,8 +80,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         initView();
         initManager();
         intent=getIntent();
-        androidId = Secure.getString(getApplicationContext().getContentResolver(),
-                Secure.ANDROID_ID);
+        androidId = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));

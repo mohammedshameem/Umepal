@@ -164,8 +164,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:orientation="vertical"
                         android:gravity="clip_vertical"
+                        android:orientation="vertical"
                         android:padding="@dimen/margin_very_small">
 
                         <TextView
@@ -173,16 +173,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" store pickup"
-                            android:visibility="gone"
-                            android:textColor="@color/orange_safety_orange"/>
+                            android:textColor="@color/orange_safety_orange"
+                            android:visibility="gone" />
+
                         <TextView
                             android:id="@+id/shopinfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Shop info"
-                            android:textSize="10dp"
                             android:layout_marginLeft="10dp"
-                            android:textColor="@color/black"/>
+                            android:text="Shop info"
+                            android:textColor="@color/black"
+                            android:textSize="10dp" />
+
                         <TextView
                             android:id="@+id/productAvailability"
                             android:layout_width="wrap_content"
@@ -422,8 +424,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="Details..   "
-
-                android:textColor="@color/blue_shade" />
+                android:textColor="@color/Red" />
 
             <!--no use-->
             <TextView

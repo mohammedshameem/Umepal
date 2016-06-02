@@ -49,22 +49,17 @@ public class NotificationActivity extends Activity {
     private NotificationListAdapter notificationListAdapter;
 
     private List<ProductNotificationBaseHolder> notificationBaseHoldersListtoshow;
-    private List<AdvertisementData> advertisementList;
+    //private List<AdvertisementData> advertisementList;
 
-    private LinearLayout back_icon_with_app_image;
+    //private LinearLayout back_icon_with_app_image;
     private LinearLayout linear_notification;
     private LinearLayout cart_layout;
 
-
     private TextView notification_clear_all_layout;
     private TextView page_heading;
-
     private ImageView add_to_cart_icon;
-
     private ListView listview_notification;
-
     private ProgressDialog dialog;
-
     private String sessionid;
     private String notificationid;
 

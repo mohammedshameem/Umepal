@@ -34,7 +34,7 @@
               <ImageView
                   android:layout_width="150dp"
                   android:layout_height="150dp"
-                  android:background="@drawable/baby"/>
+                  android:background="@drawable/login_logo"/>
         </LinearLayout>
 
         <LinearLayout
@@ -79,7 +79,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/login_edittext_height"
                 android:background="@drawable/white_background"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -111,7 +111,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal"
-                android:layout_marginBottom="3dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="@dimen/signup_textview_width"
@@ -138,7 +138,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/login_edittext_height"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal">
 
@@ -167,7 +167,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/login_edittext_height"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal">
 
@@ -196,7 +196,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/login_edittext_height"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal">
 
@@ -222,7 +222,7 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_marginBottom="3dp"
+                android:layout_marginBottom="5dp"
                 android:layout_height="@dimen/login_edittext_height"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal">
@@ -252,7 +252,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal"
-                android:layout_marginBottom="3dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="@dimen/signup_textview_width"
@@ -279,7 +279,7 @@
                 android:layout_height="@dimen/login_edittext_height"
                 android:background="@drawable/white_background"
                 android:orientation="horizontal"
-                android:layout_marginBottom="3dp">
+                android:layout_marginBottom="5dp">
 
                 <TextView
                     android:layout_width="@dimen/signup_textview_width"

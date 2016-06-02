@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,12 +35,7 @@ public class Forgotpassword extends Activity {
     private String mailId;
 
     private Button Token;
-    private Button OK;
     private Button resetPassword;
-
-    private PopupWindow popupWindow;
-    private View invalidMailLayout;
-    private LayoutInflater invalidMailLayoutInflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

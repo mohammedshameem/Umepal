@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.adapter.ProductAdapter;
@@ -51,14 +52,9 @@ public class Allitems extends Fragment {
     ProductBaseHolder productBaseHolder = new ProductBaseHolder();
 
 
-    private MenuItem mSearchAction;
-    private boolean disableButtonFlag = false;
     private ProductCallBack productCallBack;
-    private UserObjectHolder userObjectHolder;
     private ProductAdapter productAdapter;
-    //private LikeCallBack likeCallBack;
     private ProductLikeHolder productLikeHolder;
-    //private UnlikeCallBack unlikeCallBack;
     private AddToCartCallBack addToCartCallBack;
     private int requestCode = 200;
 
@@ -67,15 +63,9 @@ public class Allitems extends Fragment {
     private int offset = 0;
     private int limit = 10;
     private int Position;
-    private int Id;
-    private int unlikePosition;
     private List<ProductObject> productsList = new ArrayList<>();
-    private List<String> times = new ArrayList<>();
     private List<ProductObject> productsList1 = new ArrayList<>();
     private Dialog dialogTransparent;
-    private Date offerdate;
-    private ImageView like_product_img;
-    private ImageView liked_product_image;
     private TextView noitems;
 
     private LinearLayout progressbarPaginationlinear;
@@ -85,12 +75,6 @@ public class Allitems extends Fragment {
     List<UpdateClockTimer> s1 = new ArrayList<UpdateClockTimer>();
 
     private View content;
-    private String productId;
-    private String productName;
-    private String productPrice;
-    private String productImage;
-    private String Quantity = "1";
-    private String userId;
     private String sessionId;
     private int currentFirstVisibleItem;
     private int currentVisibleItemCount;
@@ -98,15 +82,10 @@ public class Allitems extends Fragment {
     private boolean isLoading = true;
     private int currenttotalItemCount;
     private int mPreviousTotal = 0;
-    private boolean mLoading = true;
     private boolean mLastPage = false;
     private int mCurrentPage = 0;
     private int mVisibleThreshold = 5;
-
     private ImageView likegreenImg;
-
-
-    private TextView offer_time_left_minute_1;
     private android.os.Handler handler = new android.os.Handler();
     private int ProductId;
     private ProductObject productObject;
@@ -129,7 +108,6 @@ public class Allitems extends Fragment {
         this.activity = activity;
         this.categoryId = categoryId;
         this.subcategory = subcategory;
-        //productsList=new ArrayList<>();
         clearTimer();
         gridView = (GridView) activity.findViewById(R.id.productGridView);
 
@@ -152,9 +130,6 @@ public class Allitems extends Fragment {
 
         ProductManager.getInstance().getAllProducts(activity, productCallBack, sessionId, categoryId, subcategory, offset, limit);
 
-        Log.e("resume>> ", "id>>" + productId);
-        //ProductLikeManager.getInstance().setLike(activity, productId, DbManager.getInstance().getSessionId(), likeCallBack);
-       // productAdapter.notifyDataSetChanged();
         super.onResume();
 
     }
@@ -169,7 +144,6 @@ public class Allitems extends Fragment {
         Log.e("on pause......", TAG);
         clearTimer();
 
-        //productAdapter.notifyDataSetChanged();
         super.onPause();
     }
 
@@ -178,12 +152,6 @@ public class Allitems extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         Log.e("on activity created...", TAG);
 
-      /*  dialogTransparent = new Dialog(getActivity(), android.R.style.Theme_Black);
-        progressview = LayoutInflater.from(getActivity()).inflate(R.layout.progrssview, null);
-        dialogTransparent.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogTransparent.getWindow().setBackgroundDrawableResource(R.color.transparent);
-        dialogTransparent.setContentView(progressview);
-        dialogTransparent.show();*/
         super.onActivityCreated(savedInstanceState);
         clearTimer();
 
@@ -202,17 +170,6 @@ public class Allitems extends Fragment {
         clearTimer();
         Log.e(TAG, "in on creat>>>>>>>>>>>>>>...." + categoryId);
 
-       /* dialogTransparent = new Dialog(getActivity(), android.R.style.Theme_Black);
-        progressview = LayoutInflater.from(getActivity()).inflate(R.layout.progrssview, null);
-        dialogTransparent.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogTransparent.getWindow().setBackgroundDrawableResource(R.color.transparent);
-        dialogTransparent.setContentView(progressview);
-        dialogTransparent.show();
-
-
-        ProductManager.getInstance().getAllProducts(activity, productCallBack, sessionId, categoryId, subcategory, offset, limit);
-        productAdapter.notifyDataSetChanged();
-*/
         return content;
     }
 
@@ -234,9 +191,7 @@ public class Allitems extends Fragment {
 
     private void initManager() {
         productCallBack = new ProductCallBack();
-        //likeCallBack = new LikeCallBack();
         productLikeHolder = new ProductLikeHolder();
-        //unlikeCallBack = new UnlikeCallBack();
         productLikeListener = new ProductLikeListener();
     }
 
@@ -246,13 +201,10 @@ public class Allitems extends Fragment {
         noitems = (TextView) content.findViewById(R.id.noitems);
         likegreenImg = (ImageView) content.findViewById(R.id.likegreenImg);
         progressbarPaginationlinear = (LinearLayout) content.findViewById(R.id.progressbarPaginationlayout);
-        offer_time_left_minute_1 = (TextView) content.findViewById(R.id.time_num1);
         likegreyImg = (ImageView) content.findViewById(R.id.likegreyImg);
 
-        productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack, likeCallBack,productLikeListener);
-        //productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack);
+        productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack, likeCallBack, productLikeListener);
         addToCartCallBack = new AddToCartCallBack();
-        //gridView.setEmptyView(getActivity().findViewById(R.id.noitems));
         gridView.setAdapter(productAdapter);
         productAdapter.notifyDataSetChanged();
         clearTimer();
@@ -277,12 +229,10 @@ public class Allitems extends Fragment {
                 if (productBaseHolder.getData() != null) {
                     if (UtilValidate.isNotEmpty(productBaseHolder.getData().getProducts())) {
 
-                        // dialogTransparent.dismiss();
                         if ((productsList.size() == 0) || (offset == 0)) {
                             productsList.clear();
                             productsList.addAll(productBaseHolder.getData().getProducts());
-                            productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack, likeCallBack,productLikeListener);
-                            //productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack);
+                            productAdapter = new ProductAdapter(getActivity(), productsList, addToCartCallBack, likeCallBack, productLikeListener);
 
                             gridView.setAdapter(productAdapter);
                             productAdapter.notifyDataSetChanged();
@@ -361,27 +311,6 @@ public class Allitems extends Fragment {
         }
     }
 
-
-    /*public void likeProduct(ProductObject product, int position) {
-
-        Log.e("name ++++", "" + product.getName());
-        Log.e("like count ++++", "" + product.getLike_count());
-
-        productObject = product;
-        ProductId = productObject.getId();
-        Position = position;
-        //productId = String.valueOf(productObject);
-        likeCallBack = new LikeCallBack();
-        Log.e("position from adaper", "" + Position);
-        Log.e("position from adaper", "" + Id);
-
-
-        ProductLikeManager.getInstance().setLike(activity, String.valueOf(ProductId), DbManager.getInstance().getSessionId(), likeCallBack);
-        Log.e("id", "" + String.valueOf(ProductId));
-
-    }*/
-
-
     @Override
     public void onDestroy() {
         clearTimer();
@@ -410,8 +339,8 @@ public class Allitems extends Fragment {
 
                         try {
 
-                            count = productObject.getLike_count()+1;
-                           // String likecount = String.valueOf(count + 1);
+                            count = productObject.getLike_count() + 1;
+                            // String likecount = String.valueOf(count + 1);
                             Log.e("count >>" + count, "new count>>>" + count);
                         } catch (IndexOutOfBoundsException e) {
                         }
@@ -424,7 +353,7 @@ public class Allitems extends Fragment {
                         Log.e(".size", "" + productObject.getName());
 
                         try {
-                            count = productObject.getLike_count()-1;
+                            count = productObject.getLike_count() - 1;
                             //int unlike = count - 1;
                             Log.e("like>>>" + productObject.getLike_count(), "unlike>>" + count);
                         } catch (IndexOutOfBoundsException e) {
@@ -435,7 +364,6 @@ public class Allitems extends Fragment {
                     productsList.get(Position).setIs_liked(productLikeHolder.getCode());
                     productsList.get(Position).setLike_count(count);
                     productAdapter.notifyDataSetChanged();
-                    //ProductManager.getInstance().getAllProducts(activity, productCallBack, DbManager.getInstance().getSessionId(), categoryId, subcategory, offset, limit);
                 } else {
                     dialogTransparent.dismiss();
                 }
@@ -450,7 +378,6 @@ public class Allitems extends Fragment {
 
         @Override
         public void onFinish(int responseCode, String result) {
-            //dialogTransparent.dismiss();
 
         }
     }

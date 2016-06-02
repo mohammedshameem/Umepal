@@ -273,19 +273,12 @@ public class ProductDetails extends FragmentActivity {
         userObjectHolder = DbManager.getInstance().getCurrentUserDetails();
         Intent intent = getIntent();
 
-        FacebookSdk.sdkInitialize(this);
+        //FacebookSdk.sdkInitialize(this);
 
         product_id = intent.getIntExtra("productid", id);
 
 
         int fromPurchases = intent.getIntExtra("PURCHASES", purchaseID);
-
-        /*int estimatedSHIPPING = intent.getIntExtra("estimatedShipping", estimatedShipping);
-
-        final String availability = intent.getStringExtra("availability");
-        String estimatedarrival = intent.getStringExtra("estimatedArrival");
-        String shipsfrom = intent.getStringExtra("shipsFromAddress");
-        String returnpolicy = intent.getStringExtra("returnPolicy");*/
 
         if (fromPurchases == 1) {
             linear_shipping_details.setVisibility(View.VISIBLE);
@@ -638,16 +631,6 @@ public class ProductDetails extends FragmentActivity {
             }
         });
 
-
-     /*   scroll.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                view.getParent().requestDisallowInterceptTouchEvent(true);
-
-                return false;
-            }
-        });*/
-
         viewAllRatings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -714,15 +697,6 @@ public class ProductDetails extends FragmentActivity {
         sessionId = DbManager.getInstance().getSessionId();
         ProductDetailsManager.getInstance().getProductDetails(ProductDetails.this,
                 pdt_id, sessionId, productCallBack);
-
-        /*if (backViewAllReviews.getVisibility() == View.VISIBLE){
-
-            Log.e("","in resume>>"+backViewAllReviews.getVisibility());
-            viewAllReviews.setVisibility(View.GONE);
-            backViewAllReviews.setVisibility(View.VISIBLE);
-        }*/
-
-
     }
 
     private void initManager() {
@@ -902,88 +876,15 @@ public class ProductDetails extends FragmentActivity {
                     } else {
 
                         sizeLayout.setVisibility(View.GONE);
-                        //Toast.makeText(ProductDetails.this, "No dimension informations are available!!", Toast.LENGTH_LONG).show();
                     }
 
                     buy.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            productImage = pdtImage;
-
-                            Log.e(">>", "userid>>>" + userid);
-                            Log.e(">>", "pdtID>>>" + productId);
-                            Log.e(">>", "pdtName>>>" + productName);
-                            Log.e(">>", "pdtprice>>>" + productPrice);
-                            Log.e(">>", "pdtQuantity>>>" + numbers);
-                            Log.e(">>", "pdtimage>>>" + productImage);
-                            Log.e(">>", "store name>>>>" + StoreName);
-                            Log.e(">>", "availability??????????" + avail);
-                            Log.e(">>", "SAVINGS>>" + SavedPrice);
-
-                            if (userId != "") {
-                                userid = userId;
-
-                            }
-                            if (pdtId != "") {
-                                productId = pdtId;
-
-                            }
-                            if (pdtName != "") {
-                                productName = pdtName;
-                            }
-                            if (pdtPrice != "") {
-                                productPrice = pdtPrice;
-
-                            }
-                            if (pdtImage != "") {
-                                productImage = pdtImage;
-
-                            }
-                            if (StoreName != "") {
-                                storeName = StoreName;
-
-                            } else {
-                                storeName = "(null)";
-                            }
-                            if (shipingcharge != "") {
-                                shippingCharge = shipingcharge;
-
-                            } else {
-                                shippingCharge = "";
-                            }
-
-                            if (estmarrive != "") {
-                                EstimatedArrival = estmarrive;
-
-                            } else {
-                                EstimatedArrival = "";
-                            }
-
-                            if (avail != "") {
-                                Availability = avail;
-
-                            } else {
-                                Availability = "";
-                            }
-                            if (SavedPrice != "") {
-                                savedPrice = SavedPrice;
-                            } else {
-                                savedPrice = "";
-                            }
-
-                    /*if (Integer.parseInt(strQuantity) > Integer.parseInt(productObject.getStockCount())) {
-                        Toast.makeText(ProductDetails.this, "Stock Count is " + productObject.getStockCount() + "!! You have enter a bigger value", Toast.LENGTH_LONG).show();
-                    }*/
-
-                            numbers = quantity.getText().toString();
-                            colours = color.getText().toString();
-                            dimen = size.getText().toString();
-
                             ShoppingCartManager.getInstance().addToCart(ProductDetails.this, addToCartCallBack,
-                                    userId, productId, numbers, colours, dimen, sessionId);
+                                    userId, pdtId, quantity.getText().toString(), color.getText().toString(), size.getText().toString(), sessionId);
                             popupWindow.dismiss();
-
 
                         }
                     });
@@ -1199,7 +1100,7 @@ public class ProductDetails extends FragmentActivity {
                                     Math.round(d);
                                     String dd = String.valueOf(Math.round(d));
 
-                                    productDiscountText.setText(dd);
+                                    productDiscountText.setText("-" + dd + "%");
                                 }
                             }
 
@@ -1525,8 +1426,8 @@ public class ProductDetails extends FragmentActivity {
 
     private class LikeCallBack implements AsyncTaskCallBack {
 
-        private CallbackManager callbackManager;
-        private ShareDialog shareDialog;
+        //private CallbackManager callbackManager;
+        //private ShareDialog shareDialog;
         private String name;
 
         @Override
@@ -1549,7 +1450,7 @@ public class ProductDetails extends FragmentActivity {
                     userObjectHolder = DbManager.getInstance().getCurrentUserDetails();
                     name = userObjectHolder.getFirstName() + " " + userObjectHolder.getLastName();
 
-                    if (!userObjectHolder.getFacebookId().equals("")) {
+                    /*if (!userObjectHolder.getFacebookId().equals("")) {
                         callbackManager = CallbackManager.Factory.create();
                         shareDialog = new ShareDialog(ProductDetails.this);
                         if (ShareDialog.canShow(ShareLinkContent.class)) {
@@ -1566,7 +1467,7 @@ public class ProductDetails extends FragmentActivity {
                         }
                     } else {
                         Log.e("**", "Not logged with fb");
-                    }
+                    }*/
 
                 }
 

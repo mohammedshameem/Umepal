@@ -17,6 +17,6 @@
 
       <stroke
         android:width="2dip"
-        android:color="@color/baby_pink" />
+        android:color="@color/HeaderRed" />
 
 </shape>

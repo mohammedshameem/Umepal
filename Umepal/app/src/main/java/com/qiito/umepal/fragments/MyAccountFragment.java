@@ -1,4 +1,5 @@
-package com.qiito.umepal.fragments; /**
+package com.qiito.umepal.fragments;
+/**
  * Created by abin on 5/8/15.
  */
 
@@ -49,7 +50,7 @@ import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
-import com.qiito.umepal.activity.Edit_Profile;
+import com.qiito.umepal.activity.EditProfileActivity;
 import com.qiito.umepal.activity.ProductDetails;
 import com.qiito.umepal.adapters.MyLikesAdapter;
 import com.qiito.umepal.adapters.MyPurchasesAdapter;
@@ -66,7 +67,11 @@ import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.qiito.umepal.Utilvalidate.NetChecker.isConnected;
@@ -75,50 +80,50 @@ public class MyAccountFragment extends Fragment {
 
 
     private UserProfileCallback userProfileCallBack;
-    private MyaccountProductManager myaccountProductManager;
+    //private MyaccountProductManager myaccountProductManager;
     private MyLikesAdapter myLikesAdapter;
     private MyPurchasesAdapter myPurchasesAdapter;
     private UserObjectHolder userObjectHolder;
-    private UserBaseHolder userBaseHolder;
+    //private UserBaseHolder userBaseHolder;
     //private MyProfileBaseclass myProfileBaseclass;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
     private FragmentTransaction myAccountFragmentTransaction;
     private TextView my_likes_btn;
     private TextView my_purchaces_btn;
-    private LinearLayout shippingDetails;
-    private LinearLayout search_layout;
+    //private LinearLayout shippingDetails;
+    //private LinearLayout search_layout;
     private ProgressDialog progress;
     private TextView profile_name;
     private TextView city;
     private TextView joined_date;
-    private TextView num_of_followers;
-    private TextView num_of_following;
-    private TextView quantity;
-    private TextView No_items;
+    //private TextView num_of_followers;
+    //private TextView num_of_following;
+    //private TextView quantity;
+    //private TextView No_items;
     private ProgressBar progressBar;
     private View content;
-    private ImageView item_image;
+    //private ImageView item_image;
     private ImageView profile_pic;
-    private LinearLayout membership_date_layout;
- //   private LinearLayout member_saved_layout;
+    //private LinearLayout membership_date_layout;
+    //private LinearLayout member_saved_layout;
     private ImageView edit_profile;
     private ListView likes_list;
     private ListView purchases_list;
     private String joinedDate;
-    private TextView createdDate;
-    private TextView expiry_date;
-    private Activity activity;
+    //private TextView createdDate;
+    //private TextView expiry_date;
+    //private Activity activity;
     private List<ProductObject> likesitem = new ArrayList<>();
     private List<PurchasedItems> purchasesitemlist = new ArrayList<>();
     private String session;
     private PaymentTransactionDetailCallBack paymentTransactionDetailCallBack;
-    private TextView saved_dollar;
-    private double you_saved = 0.00;
+    //private TextView saved_dollar;
+    //private double you_saved = 0.00;
     private int offset;
     private Dialog dialogTransparent;
     private View progressview;
-    private TextView menu_heading;
+    //private TextView menu_heading;
     private AlertDialog.Builder builder;
     private AlertDialog alert;
     private LinearLayout membership;
@@ -128,10 +133,11 @@ public class MyAccountFragment extends Fragment {
     private LinearLayout myAccountLayout;
     private TextView joinmembershiptxt;
     private Button join_button;
-    private Button tell_your_friends_btn;
+    //private Button tell_your_friends_btn;
     private Toolbar toolbar;
     private LinearLayout listLayout;
-    private boolean likeListClick=true;
+    private boolean likeListClick = true;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
 
     public MyAccountFragment() {
 
@@ -140,7 +146,7 @@ public class MyAccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
+        //FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
     }
 
     @Override
@@ -149,12 +155,26 @@ public class MyAccountFragment extends Fragment {
         userObjectHolder = DbManager.getInstance().getCurrentUserDetails();
         profile_name.setText(userObjectHolder.getFirstName() + " " + userObjectHolder.getLastName());
         city.setText(userObjectHolder.getCity());
-//        joinedDate = userObjectHolder.getCreatedDate().substring(0, userObjectHolder.getCreatedDate().length() - 8);
- //       joined_date.setText(joinedDate);
-//        Log.e("userobjectholder>>", userObjectHolder.getProfilePic());
-       /* if ((userObjectHolder.getProfilePic() != null) && (!userObjectHolder.getProfilePic().isEmpty())) {
-            Picasso.with(getActivity()).load(userObjectHolder.getProfilePic()).placeholder(R.drawable.logo_splash).error(R.drawable.logo_splash).fit().into(profile_pic);
-        }*/
+        joinedDate = userObjectHolder.getCreatedDate().substring(0, userObjectHolder.getCreatedDate().length() - 8);
+        joined_date.setText(joinedDate);
+        /*Date date = sdf.parse(joinedDate);
+
+        Log.e("DATE >> "," >> "+date);*/
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = formatter.parse(joinedDate);
+            Log.e("DATE >> ", "" + date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.e("userobjectholder>>", userObjectHolder.getProfilePic());
+        if ((userObjectHolder.getProfilePic() != null) && (!userObjectHolder.getProfilePic().isEmpty())) {
+            Picasso.with(getActivity()).load(userObjectHolder.getProfilePic())
+                    .placeholder(R.drawable.logo_splash)
+                    .error(R.drawable.logo_splash).fit().into(profile_pic);
+        }
         session = CurrentlyLoggedUserDAO.getInstance().getSessionId();
         offset = 0;
         super.onResume();
@@ -227,7 +247,7 @@ public class MyAccountFragment extends Fragment {
             }
         });
 
-        callbackManager = CallbackManager.Factory.create();
+        /*callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(getActivity());
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
             @Override
@@ -244,7 +264,7 @@ public class MyAccountFragment extends Fragment {
             public void onError(FacebookException error) {
 
             }
-        });
+        });*/
 
         /*if (userObjectHolder.getFacebookId().equalsIgnoreCase("")){
             tell_your_friends_btn.setVisibility(View.GONE);
@@ -283,7 +303,7 @@ public class MyAccountFragment extends Fragment {
         my_likes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                likeListClick=true;
+                likeListClick = true;
                 my_likes_btn.setBackgroundResource(R.drawable.curved_greenbutton);
                 my_likes_btn.setTextColor(getResources().getColor(R.color.white));
                 my_purchaces_btn.setBackgroundResource(R.color.transparent);
@@ -298,7 +318,7 @@ public class MyAccountFragment extends Fragment {
         likes_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if(likeListClick){
+                if (likeListClick) {
                     Intent likes = new Intent(getActivity(), ProductDetails.class);
                     likes.putExtra("productid", likesitem.get(position).getId());
                     startActivity(likes);
@@ -312,7 +332,7 @@ public class MyAccountFragment extends Fragment {
         my_purchaces_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                likeListClick=false;
+                likeListClick = false;
                 my_likes_btn.setBackgroundResource(R.color.transparent);
                 my_purchaces_btn.setBackgroundResource(R.drawable.curved_greenbutton);
                 my_likes_btn.setTextColor(getResources().getColor(R.color.dark_gray));
@@ -347,7 +367,7 @@ public class MyAccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent edit = new Intent(getActivity(), Edit_Profile.class);
+                Intent edit = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(edit);
             }
         });
@@ -367,7 +387,7 @@ public class MyAccountFragment extends Fragment {
 
             if (userBaseHolder.getStatus().equals("success")) {
                 //myAccountLayout.setVisibility(View.VISIBLE);
-                if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getPurchased_items())) {
+                /*if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getPurchased_items())) {
                     for (int i = 0; i < userBaseHolder.getData().getUser().getPurchased_items().size(); i++) {
                         String savings = userBaseHolder.getData().getUser().getPurchased_items().get(i).getSavings();
                         double sav = Double.parseDouble(savings);
@@ -375,7 +395,7 @@ public class MyAccountFragment extends Fragment {
                         String a = String.format("%.2f", you_saved);
                         saved_dollar.setText("$ " + a + " !");
                     }
-                }
+                }*/
                 if (userBaseHolder.getData().getUser() != null) {
 
                     DbManager.getInstance().updateUserTable(userBaseHolder.getData().getUser());
@@ -392,32 +412,32 @@ public class MyAccountFragment extends Fragment {
                         //userBaseHolder = userBaseHolder.getData().getUser();
                         DbManager.getInstance().deleteAllRowsFromUserTable();
                         DbManager.getInstance().insertIntoUserTable(userBaseHolder.getData().getUser());
-                        if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getExpiryDate())) {
-                            /*  member */
+                        /*if (UtilValidate.isNotNull(userBaseHolder.getData().getUser().getExpiryDate())) {
+                            *//*  member *//*
                             if (!userBaseHolder.getData().getUser().getExpiryDate().equalsIgnoreCase("")) {
-                             /*  check  Member  blocked  */
-                                /*** is a member ***/
-                               // joinmembershipnow.setVisibility(View.GONE);
-                               // String boolean_value = String.valueOf(DbManager.getInstance().getCurrentUserDetails().getMembership_blocked());
+                             *//*  check  Member  blocked  *//*
+                                *//*** is a member ***//*
+                                // joinmembershipnow.setVisibility(View.GONE);
+                                // String boolean_value = String.valueOf(DbManager.getInstance().getCurrentUserDetails().getMembership_blocked());
                                 if (userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("true")) {
                                     joinmembershipnow.setVisibility(View.GONE);
-                                }else if(userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("false")) {
-                                    if(!userBaseHolder.getData().getUser().getMembership_blocked().equalsIgnoreCase("true")){
-                                    joinmembershipnow.setVisibility(View.VISIBLE);
-                                    join_button.setText("Join");
-                                    joinmembershiptxt.setText("JOIN MEMBERSHIP NOW");
+                                } else if (userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("false")) {
+                                    if (!userBaseHolder.getData().getUser().getMembership_blocked().equalsIgnoreCase("true")) {
+                                        joinmembershipnow.setVisibility(View.VISIBLE);
+                                        join_button.setText("Join");
+                                        joinmembershiptxt.setText("JOIN MEMBERSHIP NOW");
+                                    }
                                 }
-                                }
-/////////////////                                member_saved_layout.setVisibility(View.VISIBLE);
+                                //member_saved_layout.setVisibility(View.VISIBLE);
                                 membership_date_layout.setVisibility(View.VISIBLE);
                                 if (!userBaseHolder.getData().getUser().getCreated().equals("")) {
                                     createdDate.setText(userBaseHolder.getData().getUser().getCreated().substring(0, 10));
                                 }
                                 expiry_date.setText(userBaseHolder.getData().getUser().getExpiryDate().substring(0, 10));
                             }
-                            /*  non member */
-                            if(userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("false")) {
-                             /*  check  Member  blocked  */
+                            *//*  non member *//*
+                            if (userBaseHolder.getData().getUser().getMembership_status().equalsIgnoreCase("false")) {
+                             *//*  check  Member  blocked  *//*
                                 joinmembershipnow.setVisibility(View.VISIBLE);
                                 //String boolean_value = String.valueOf(DbManager.getInstance().getCurrentUserDetails().getMembership_blocked());
                                 if (userBaseHolder.getData().getUser().getMembership_blocked().equalsIgnoreCase("true")) {
@@ -425,7 +445,7 @@ public class MyAccountFragment extends Fragment {
                                     LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                                             WindowManager.LayoutParams.MATCH_PARENT,
                                             0, 8.5f);
-                                    param.setMargins(8,5,8,5);
+                                    param.setMargins(8, 5, 8, 5);
                                     listLayout.setLayoutParams(param);
 
                                 } else {
@@ -433,9 +453,9 @@ public class MyAccountFragment extends Fragment {
                                 }
 
                                 membership_date_layout.setVisibility(View.GONE);
-////////////////////                                member_saved_layout.setVisibility(View.GONE);
+                                //member_saved_layout.setVisibility(View.GONE);
                             }
-                        }
+                        }*/
                     }
                 }
 
@@ -475,7 +495,7 @@ public class MyAccountFragment extends Fragment {
                     if (userBaseHolder.getData().getUser().getProfilePic() != "") {
 
 
-                        Picasso.with(activity)
+                        Picasso.with(getActivity())
                                 .load(userBaseHolder.getData().getUser().getProfilePic())
                                 .placeholder(R.drawable.logo_splash)
                                 .error(R.drawable.logo_splash).fit()
@@ -530,17 +550,17 @@ public class MyAccountFragment extends Fragment {
 
     private void initManagers() {
         userObjectHolder = new UserObjectHolder();
-        userBaseHolder = new UserBaseHolder();
+        //userBaseHolder = new UserBaseHolder();
         userProfileCallBack = new UserProfileCallback();
         //myProfileBaseclass = new MyProfileBaseclass();
-        myaccountProductManager = new MyaccountProductManager();
+        //myaccountProductManager = new MyaccountProductManager();
         paymentTransactionDetailCallBack = new PaymentTransactionDetailCallBack();
     }
 
 
     private void initViews() {
 
-        search_layout = (LinearLayout) content.findViewById(R.id.search_layout);
+        //search_layout = (LinearLayout) content.findViewById(R.id.search_layout);
 
         profile_name = (TextView) content.findViewById(R.id.my_account_username);
         city = (TextView) content.findViewById(R.id.my_account_user_location);
@@ -553,25 +573,25 @@ public class MyAccountFragment extends Fragment {
         edit_profile = (ImageView) content.findViewById(R.id.edit_profile_imgview);
         likes_list = (ListView) content.findViewById(R.id.list_view_my_likes);
         purchases_list = (ListView) content.findViewById(R.id.list_view_my_likes);
-        quantity = (TextView) content.findViewById(R.id.item_quantity);
-        menu_heading = (TextView) content.findViewById(R.id.menu_heading);
-        shippingDetails = (LinearLayout) content.findViewById(R.id.linear_shipping_details);
+        //quantity = (TextView) content.findViewById(R.id.item_quantity);
+        //menu_heading = (TextView) content.findViewById(R.id.menu_heading);
+        //shippingDetails = (LinearLayout) content.findViewById(R.id.linear_shipping_details);
         membership = (LinearLayout) content.findViewById(R.id.joinmembership);
         join_button = (Button) content.findViewById(R.id.join_button);
         progressBar = (ProgressBar) content.findViewById(R.id.progressBar2);
         relative_web = (RelativeLayout) content.findViewById(R.id.relative_web);
         joinmembershipnow = (LinearLayout) content.findViewById(R.id.joinmembership);
         webview_paypal = (WebView) content.findViewById(R.id.webview_paypal);
-//////////        member_saved_layout = (LinearLayout) content.findViewById(R.id.member_saved_layout);
-        membership_date_layout = (LinearLayout) content.findViewById(R.id.membership_date_layout);
-        createdDate = (TextView) content.findViewById(R.id.created_date);
-        expiry_date = (TextView) content.findViewById(R.id.expiry_date);
-///////////        tell_your_friends_btn = (Button) content.findViewById(R.id.tell_your_friends_btn);
- //////////       saved_dollar = (TextView) content.findViewById(R.id.saved_dollar);
+        //member_saved_layout = (LinearLayout) content.findViewById(R.id.member_saved_layout);
+        //membership_date_layout = (LinearLayout) content.findViewById(R.id.membership_date_layout);
+        //createdDate = (TextView) content.findViewById(R.id.created_date);
+        //expiry_date = (TextView) content.findViewById(R.id.expiry_date);
+        //tell_your_friends_btn = (Button) content.findViewById(R.id.tell_your_friends_btn);
+        //saved_dollar = (TextView) content.findViewById(R.id.saved_dollar);
         //myAccountLayout = (LinearLayout)content.findViewById(R.id.my_account_layout);
-        listLayout = (LinearLayout)content.findViewById(R.id.list_layout);
+        listLayout = (LinearLayout) content.findViewById(R.id.list_layout);
         //myAccountLayout = (LinearLayout)content.findViewById(R.id.my_account_layout);
-        joinmembershiptxt = (TextView)content.findViewById(R.id.joinmembershiptxt);
+        joinmembershiptxt = (TextView) content.findViewById(R.id.joinmembershiptxt);
 
     }
 
@@ -640,16 +660,10 @@ public class MyAccountFragment extends Fragment {
 
                         Log.e("$$", "response not null");
                         progressBar.setVisibility(View.VISIBLE);
-
                         webview_paypal.setVisibility(View.VISIBLE);
-
                         TodaysParentApp.setIsinwebview("yes");
-
-                        final String URL = responseHolder.getData()
-                                .getTransaction_url().toString();
-
-                        Log.e("URL>>",URL);
-
+                        final String URL = responseHolder.getData().getTransaction_url().toString();
+                        Log.e("URL>>", URL);
 
                         getActivity().runOnUiThread(new Runnable() {
 
@@ -689,11 +703,11 @@ public class MyAccountFragment extends Fragment {
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                         // TODO Auto-generated method stub
 
-                                        Log.e("url>>",url);
+                                        Log.e("url>>", url);
 
                                         if (url.contains(ApiConstants.BASE_URL + "api/paypal/success")) {
 
-                                            Log.e("%%%%","SUCCESS");
+                                            Log.e("%%%%", "SUCCESS");
                                             //myAccountLayout.setVisibility(View.VISIBLE);
                                             webview_paypal.setVisibility(View.GONE);
                                             //myAccountLayout.setVisibility(View.VISIBLE);

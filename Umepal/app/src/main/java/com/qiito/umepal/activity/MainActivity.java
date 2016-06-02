@@ -72,11 +72,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private boolean disableButtonFlag = false;
     private DeleteAllNotificationCallBack deleteAllNotificationCallBack;
     private NotificationListAdapter notificationListAdapter;
-    private Notifica notifica;
+    //private Notifica notifica;
     private LogoutCallBack logoutCallback;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private NavDrawerListAdapter adapter;
-    private NotificationBaseHolder notificationBaseHolder;
+    //private NotificationBaseHolder notificationBaseHolder;
     private NotificationAsynchTaskCallBack notificationasynchTaskCallBack;
     private NotificationListAdapter notificationsListAdapter;
     private List<ProductNotificationBaseHolder> productNotificationList = new ArrayList<>();
@@ -86,19 +86,20 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private List<ProductNotificationBaseHolder> notificationLists = new ArrayList<ProductNotificationBaseHolder>();
     private FragmentTransaction searchFragmentTransaction;
     private FragmentTransaction myAccountFragmentTransaction;
-    private FragmentTransaction browseFragmentTransaction;
-    private FragmentTransaction shoppingCartFragmentTransaction;
+    //private FragmentTransaction browseFragmentTransaction;
+    //private FragmentTransaction shoppingCartFragmentTransaction;
     private FragmentTransaction notificationFragmentTransaction;
     private FragmentTransaction orderHistoryFragmentTransaction;
-    private FragmentTransaction customerSupportFragmentTransaction;
-    private FragmentTransaction inviteFriendsFragmentTransaction;
-    private FragmentTransaction contactusFragmentTransaction;
+    //private FragmentTransaction customerSupportFragmentTransaction;
+    //private FragmentTransaction inviteFriendsFragmentTransaction;
+    //private FragmentTransaction contactusFragmentTransaction;
     private FragmentTransaction generalTermsFragmentTransaction;
-    private FragmentTransaction searchTransation;
+    //private FragmentTransaction searchTransation;
     private Dialog dialogTransparent;
     private View progressview;
-    private ProgressDialog pDialog, deleteDialog;
-    private LinearLayout search_layout;
+    private ProgressDialog pDialog;
+    //private ProgressDialog deleteDialog;
+    //private LinearLayout search_layout;
     private LinearLayout search;
     private LinearLayout yesLinear;
     private LinearLayout cancelLinear;
@@ -125,9 +126,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private String session;
     private static final String TAG = Notifica.class.getName();
     private static final int REQUEST_CODE = 1;
-    private String appLinkURL = "https://fb.me/999378886770057";
-    private String previewImageURL = "";
-    private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
+    //private String appLinkURL = "https://fb.me/999378886770057";
+    //private String previewImageURL = "";
+    //private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -275,7 +276,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private void initView() {
         action_bar_title = (TextView) findViewById(R.id.app_action_bar_title);
         search = (LinearLayout) findViewById(R.id.searchlay);
-        search_layout = (LinearLayout) findViewById(R.id.search_layout);
+        //search_layout = (LinearLayout) findViewById(R.id.search_layout);
         carticon = (ImageView) findViewById(R.id.carticon);
         searchicon = (ImageView) findViewById(R.id.search);
         dosearchicon = (ImageView) findViewById(R.id.searchicon);
@@ -338,8 +339,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*** Shopping Cart ***/
             case 1:
                 close_keyboard();
-                if(session!=null){
-                    if(!session.equalsIgnoreCase("")){
+                if (session != null) {
+                    if (!session.equalsIgnoreCase("")) {
                         search.setVisibility(View.GONE);
                         action_bar_title.setVisibility(View.VISIBLE);
                         action.setDisplayShowCustomEnabled(false);/*  Remove Search view  */
@@ -350,7 +351,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivityForResult(intent, 1);
                     }
-                }else {
+                } else {
                     fragmentTrueFragment = "INVITE";
                     toolbar.setVisibility(View.VISIBLE);
                     action_bar_title.setVisibility(View.VISIBLE);
@@ -370,7 +371,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*** Real Time Payment ***/
             case 2:
                 close_keyboard();
-                if(session!=null) {
+                if (session != null) {
                     if (!session.equalsIgnoreCase("")) {
                         fragmentTrueFragment = "RealTimePayment";
                         toolbar.setVisibility(View.VISIBLE);
@@ -386,7 +387,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         carticon.setVisibility(View.GONE);
                         clearAll.setVisibility(View.INVISIBLE);
                     }
-                }else {
+                } else {
 
                 }
 
@@ -395,7 +396,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*** My Account ***/
             case 3:
                 close_keyboard();
-                if(session!=null) {
+                if (session != null) {
                     if (!session.equalsIgnoreCase("")) {
                         fragmentTrueFragment = "MyAccount";
                         toolbar.setVisibility(View.VISIBLE);
@@ -411,7 +412,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         carticon.setVisibility(View.GONE);
                         clearAll.setVisibility(View.INVISIBLE);
                     }
-                }else {
+                } else {
                     fragmentTrueFragment = "Contact Us";
                     close_keyboard();
                     toolbar.setVisibility(View.VISIBLE);
@@ -432,7 +433,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*wallet*/
             case 4:
                 close_keyboard();
-                if(session!=null) {
+                if (session != null) {
                     if (!session.equalsIgnoreCase("")) {
                         fragmentTrueFragment = "Wallet";
                         toolbar.setVisibility(View.VISIBLE);
@@ -448,7 +449,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                         carticon.setVisibility(View.GONE);
                         clearAll.setVisibility(View.INVISIBLE);
                     }
-                }else {
+                } else {
                     fragmentTrueFragment = "General";
                     close_keyboard();
                     toolbar.setVisibility(View.VISIBLE);
@@ -469,24 +470,24 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*new refferee*/
             case 5:
                 close_keyboard();
-                if(session!=null){
-                    if(!session.equalsIgnoreCase("")){
+                if (session != null) {
+                    if (!session.equalsIgnoreCase("")) {
 
-                fragmentTrueFragment = "New Referee";
-                toolbar.setVisibility(View.VISIBLE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action_bar_title.setText("New Referee");
-                search.setVisibility(View.GONE);
-                action.setDisplayShowCustomEnabled(false);
-                myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                myAccountFragmentTransaction.replace(R.id.container, new NewRefereeFragment(), "fragment");
-                myAccountFragmentTransaction.commit();
-                searchicon.setVisibility(View.GONE);
-                carticon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
+                        fragmentTrueFragment = "New Referee";
+                        toolbar.setVisibility(View.VISIBLE);
+                        action_bar_title.setVisibility(View.VISIBLE);
+                        action_bar_title.setText("New Referee");
+                        search.setVisibility(View.GONE);
+                        action.setDisplayShowCustomEnabled(false);
+                        myAccountFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        myAccountFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                        myAccountFragmentTransaction.replace(R.id.container, new NewRefereeFragment(), "fragment");
+                        myAccountFragmentTransaction.commit();
+                        searchicon.setVisibility(View.GONE);
+                        carticon.setVisibility(View.GONE);
+                        clearAll.setVisibility(View.INVISIBLE);
                     }
-                }else {
+                } else {
                     loginPopup();
                 }
                 break;
@@ -557,7 +558,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 // break;
 
 
-            /*** Contact Us ***/
+                /*** Contact Us ***/
             case 10:
 
                 fragmentTrueFragment = "Contact Us";
@@ -601,8 +602,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                     if (!session.equals("")) {
                         initiatePopupWindow();
                     }
-                }else{
-                    Toast.makeText(MainActivity.this,"no session id",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "no session id", Toast.LENGTH_LONG).show();
                 }
 
         }

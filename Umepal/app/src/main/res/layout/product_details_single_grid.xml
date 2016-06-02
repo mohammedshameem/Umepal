@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/startLinearLayout"
     android:layout_width="190dp"
@@ -10,7 +9,6 @@
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="com.qiito.umepal.activity.MainActivity">
-
 
     <LinearLayout
         android:id="@+id/product_image_layout"
@@ -23,7 +21,6 @@
             android:id="@+id/relative_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <!--baby image-->
             <ImageView
@@ -50,7 +47,7 @@
                 android:layout_width="80dp"
                 android:layout_height="52dp"
                 android:layout_marginLeft="1dp"
-                android:src="@drawable/discountsmall" />
+                android:src="@drawable/rect" />
 
             <LinearLayout
                 android:id="@+id/discountlinear_without_deal"
@@ -62,23 +59,13 @@
                 android:rotation="-35">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-" />
-
-                <TextView
                     android:id="@+id/discountwithoutdeal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="-0%"
+                    android:textColor="@color/white"
                     android:textSize="15dp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:textSize="14dp" />
 
             </LinearLayout>
 
@@ -93,23 +80,12 @@
                 android:visibility="gone">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-" />
-
-                <TextView
                     android:id="@+id/discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="15"
                     android:textSize="11dp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="%"
-                    android:textSize="11dp" />
 
             </LinearLayout>
 
@@ -137,9 +113,7 @@
                         android:text="Hourly Deal!"
                         android:textColor="@color/white"
                         android:textSize="11dp"
-
                         android:visibility="gone" />
-
 
                 </LinearLayout>
 
@@ -150,93 +124,18 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="2.1"
                     android:orientation="horizontal">
+
                     <com.qiito.umepal.timer.RaceTimeCounterTextView
                         android:id="@+id/timer"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:text="14:12:01"
                         android:gravity="center"
+                        android:text="14:12:01"
                         android:textColor="@color/white"
                         android:textIsSelectable="false"
                         android:textSize="12dp" />
-
-                    <!--first num-->
-
-                    <TextView
-                        android:id="@+id/time_num1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="3dp"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="10dp" />
-
-                    <!--second num-->
-                    <TextView
-                        android:id="@+id/time_num2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:background="@android:color/white"
-                        android:gravity="center"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:paddingTop="1dp"
-                        android:text="1"
-                        android:textColor="@android:color/holo_orange_dark"
-                        android:textSize="12dp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:paddingTop="1dp"
-                        android:text=":"
-                        android:textColor="@android:color/white"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <!--third num-->
-                    <TextView
-                        android:id="@+id/time_num3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:background="@android:color/white"
-                        android:gravity="center"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:paddingTop="1dp"
-                        android:text="2"
-                        android:textColor="@android:color/holo_orange_dark"
-                        android:textSize="12dp"
-                        android:visibility="gone" />
-
-                    <!--fourth num-->
-                    <TextView
-                        android:id="@+id/time_num4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="2dp"
-                        android:background="@android:color/white"
-                        android:gravity="center"
-                        android:paddingBottom="1dp"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:paddingTop="1dp"
-                        android:text="3"
-                        android:textColor="@android:color/holo_orange_dark"
-                        android:textSize="12dp"
-                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -259,13 +158,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Only"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
-                    <TextView
                         android:id="@+id/only_left_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,24 +166,8 @@
                         android:textSize="11dp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="left"
-                        android:textSize="11dp"
-                        android:textStyle="bold" />
-
                 </LinearLayout>
             </LinearLayout>
-            <!--<ImageView
-                android:id="@+id/product_gridicon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="false"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="100dp"
-                android:src="@drawable/icon"/>-->
 
         </RelativeLayout>
     </LinearLayout>
@@ -305,7 +181,6 @@
         android:layout_weight="2"
         android:orientation="vertical"
         android:weightSum="5">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -431,8 +306,7 @@
                 android:id="@+id/crosseddollar"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                >
+                android:layout_marginRight="2dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -481,15 +355,14 @@
 
         <!--buttons-->
         <LinearLayout
+            android:id="@+id/popular_editor_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="gone"
-            android:weightSum="7"
-            android:id="@+id/popular_editor_layout">
-
+            android:weightSum="7">
 
 
             <LinearLayout
@@ -560,9 +433,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
+                        android:singleLine="true"
                         android:text="EDITOR'S PICK"
                         android:textSize="7dp"
-                        android:singleLine="true"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -577,10 +450,10 @@
             android:layout_height="0dp"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
+            android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:background="@color/grey"
             android:gravity="center"
-            android:layout_marginTop="4dp"
             android:visibility="visible">
 
             <TextView
@@ -628,18 +501,18 @@
 
 
                 <LinearLayout
+                    android:id="@+id/likeLayout"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.5"
-                    android:gravity="center"
-                    android:id="@+id/likeLayout">
+                    android:gravity="center">
 
                     <ImageView
                         android:id="@+id/likegreyImg"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:background="@drawable/heartsmall"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/likegreenImg"
@@ -656,15 +529,15 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                <TextView
-                    android:id="@+id/like_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="0"
-                    android:textColor="@color/darkgrey"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/like_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="0"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
