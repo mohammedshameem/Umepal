@@ -81,6 +81,7 @@ public interface ApiConstants {
         String PROFILE_PIC = "profilePic";
 
     }
+
     interface MembershipPaypalParams {
         String MEMBERPAYPAL = BASE_URL + "api/member-paypal";
         String SESSION_ID = "session_id";
@@ -88,6 +89,7 @@ public interface ApiConstants {
         String REFFEREE_ID = "refferee_id";
         String REFFERER_ID = "refferer_id";
     }
+
     interface Products {
 
         String GET_PRODUCTS = BASE_URL + "api/list-all-products";
@@ -274,7 +276,7 @@ public interface ApiConstants {
         String SESSION_ID = "session_id";
     }
 
-    interface  ListRefereesParams {
+    interface ListRefereesParams {
 
         String LIST_REFEREES_URL = BASE_URL + "api/list-referees";
         String SESSION_ID = "session_id";
@@ -288,11 +290,18 @@ public interface ApiConstants {
         String MEMBERSHIP_ID = "membership_id";
 
     }
+
     interface RefferNotification {
-        String REFFER_NOTIFICATION_URL = BASE_URL +"api/reffer-notification";
+        String REFFER_NOTIFICATION_URL = BASE_URL + "api/reffer-notification";
         String REFFER_ID = "reffer_id";//pass umeid of referer)
         String REFFEREE_ID = "referee_id";
         String MEMBERSHIP_ID = "membership_id";
 
+    }
+
+    interface VerifyMember {
+        String VERIFY_MEMBER_URL = BASE_URL + "api/member/details";
+        String SESSION_ID = "session_id";
+        String MEMBER_ID = "member_id";
     }
 }

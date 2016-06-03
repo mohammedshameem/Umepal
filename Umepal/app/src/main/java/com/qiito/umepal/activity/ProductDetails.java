@@ -1685,7 +1685,7 @@ public class ProductDetails extends FragmentActivity {
         /*try {
 
             LayoutInflater inflater = (LayoutInflater) ProductDetails.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View logoutLayout = inflater.inflate(R.layout.logout_popup, null);
+            View logoutLayout = inflater.inflate(R.layout.message_popup, null);
 
             final PopupWindow pwindo = new PopupWindow(logoutLayout, WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT, true);

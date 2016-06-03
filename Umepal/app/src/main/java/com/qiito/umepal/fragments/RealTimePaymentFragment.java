@@ -1,6 +1,8 @@
 package com.qiito.umepal.fragments;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 import com.qiito.umepal.R;
+import com.qiito.umepal.activity.TransferPaymentActivity;
+import com.qiito.umepal.holder.UserBaseHolder;
+import com.qiito.umepal.managers.DbManager;
+import com.qiito.umepal.managers.RealTimePaymentManager;
+import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -25,6 +34,8 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     private EditText memberID;
     private Button scanQRcode;
     private ZXingScannerView mScannerView;
+    private TextView verifyText;
+    private VerifyCallBack verifyCallBack;
 
     @Nullable
     @Override
@@ -33,6 +44,7 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         initViews();
 
         scanQRcode.setOnClickListener(scanqrcodeListener);
+        verifyText.setOnClickListener(verifyListener);
         return view;
 
     }
@@ -44,11 +56,22 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         }
     };
 
+    View.OnClickListener verifyListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            RealTimePaymentManager.getInstance().verifyMember(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(),memberID.getText().toString(),verifyCallBack);
+
+        }
+    };
+
 
     private void initViews() {
         memberID = (EditText) view.findViewById(R.id.memberIdEdittext);
         scanQRcode = (Button)view.findViewById(R.id.scanQRCodeButton);
         mScannerView = new ZXingScannerView(getActivity());
+        verifyText = (TextView) view.findViewById(R.id.verify_text);
+        verifyCallBack = new VerifyCallBack();
     }
     public void QrScanner(View view){
 
@@ -76,5 +99,33 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         AlertDialog alert1 = builder.create();
         alert1.show();
 
+    }
+
+    private class VerifyCallBack implements AsyncTaskCallBack {
+        @Override
+        public void onFinish(int responseCode, Object result) {
+            UserBaseHolder userBaseHolder = (UserBaseHolder) result;
+
+            Log.e("inside","verify call back");
+            if (userBaseHolder.getStatus().equalsIgnoreCase("success")){
+                Toast.makeText(getActivity(),"verified",Toast.LENGTH_LONG).show();
+                StringBuilder sb = new StringBuilder();
+                if (userBaseHolder.getData().getUser().getFirstName() != ""){
+                    sb.append(userBaseHolder.getData().getUser().getFirstName() + " ");
+                    if (userBaseHolder.getData().getUser().getLastName() != ""){
+                        sb.append(userBaseHolder.getData().getUser().getLastName());
+                    }
+                }
+                Intent intent = new Intent(getActivity(), TransferPaymentActivity.class);
+                intent.putExtra("name", sb.toString());
+                startActivity(intent);
+            }
+
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+
+        }
     }
 }

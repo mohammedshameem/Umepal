@@ -156,6 +156,8 @@
     <color name="HeaderRed"> #E6252A</color>
     <color name="lightRed"> #E6252A</color>
     <color name="background_grey">#C6C7C9</color>
+    <color name="light_red">#F55E4E</color>
+    <color name="slight_red">#ffe6e6</color>
 
 
 

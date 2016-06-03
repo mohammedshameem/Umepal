@@ -100,6 +100,8 @@ public class Loginactivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent signup = new Intent(Loginactivity.this, Signupactivity.class);
+                signup.putExtra("buy",loginforbuy);
+                signup.putExtra("productId",productId);
                 startActivity(signup);
 
             }

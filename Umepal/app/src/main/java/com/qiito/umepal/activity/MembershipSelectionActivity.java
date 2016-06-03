@@ -35,6 +35,7 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.dao.CheckoutDAO;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
+import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.managers.UserManager;
@@ -48,6 +49,7 @@ public class MembershipSelectionActivity extends Activity {
 
     private MembershipCallBackClass membershipCallback;
     private RequestForPayment requestForPayment;
+    private LoginCallBackClass loginCallBackClass;
 
     private Button requestpaymentButton;
     private Button paynowButton;
@@ -70,6 +72,11 @@ public class MembershipSelectionActivity extends Activity {
     private ProgressBar progressBar1;
     private String reffer_ID;
     private String refferee_ID;
+    private int requestcode = 1;
+    private String password;
+    private int loginforbuy;
+    private int productId;
+    private int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +84,11 @@ public class MembershipSelectionActivity extends Activity {
         setContentView(R.layout.membership_selection_page);
         initViews();
         initManager();
+        if (getIntent().hasExtra("password")){
+            password = getIntent().getStringExtra("password");
+        }
+        loginforbuy = getIntent().getIntExtra("buy", id);
+        productId = getIntent().getIntExtra("productId", id);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
@@ -119,8 +131,9 @@ public class MembershipSelectionActivity extends Activity {
             Log.e("Reffer ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferrerId());
             Log.e("Refferal ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferralmember_id());
 
+
             refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
-            reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferralmember_id();
+            reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferrerId();
 
             UserManager.getInstance().RequestforpaymentParams(MembershipSelectionActivity.this, reffer_ID, refferee_ID, MembershipId, requestForPayment);
 
@@ -244,7 +257,7 @@ public class MembershipSelectionActivity extends Activity {
             // TODO Auto-generated method stub
             // dialog.dismiss();
             PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
-            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + responseHolder.getMessage());
+            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>    " + responseHolder.getStatus() + " ### "+responseHolder.getMessage()+"  >>> "+responseHolder.getData());
             if (UtilValidate.isNotNull(responseHolder)) {
                 if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
                     if (UtilValidate.isNotNull(responseHolder.getData())) {
@@ -308,6 +321,9 @@ public class MembershipSelectionActivity extends Activity {
                                                 public void onClick(View v) {
                                                     // TODO Auto-generated method stub
                                                     popupWindow.dismiss();
+                                                    refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
+                                                    Log.e("PASSWORD >> ",""+password);
+                                                    LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);
                                                 }
                                             });
 
@@ -392,6 +408,63 @@ public class MembershipSelectionActivity extends Activity {
         @Override
         public void onFinish(int responseCode, String result) {
 
+        }
+    }
+
+    public class LoginCallBackClass implements AsyncTaskCallBack {
+
+
+        @Override
+        public void onFinish(int responseCode, Object result) {
+
+            final UserBaseHolder userBaseHolder = (UserBaseHolder) result;
+            if (UtilValidate.isNotNull(userBaseHolder)) {
+
+                if (userBaseHolder.getStatus().equalsIgnoreCase("failure")) {
+                    //dialogTransparent.dismiss();
+                    Toast.makeText(MembershipSelectionActivity.this, userBaseHolder.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+                if (userBaseHolder.getStatus().equalsIgnoreCase("success")) {
+
+                    //dialogTransparent.dismiss();
+                    DbManager.getInstance().deleteCurrentlyLoggedUserTable();
+                    DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getUser().getId(),
+                            userBaseHolder.getUser().getSession_id());
+                    DbManager.getInstance().deleteAllRowsFromUserTable();
+                    DbManager.getInstance().insertIntoUserTable(userBaseHolder.getUser());
+                    DbManager.getInstance().deleteShippingData();
+
+                    if (UtilValidate.isNotNull(userBaseHolder)) {
+
+                        if (UtilValidate.isNotNull(userBaseHolder.getUser())) {
+
+                            if (loginforbuy == 1) {
+                                finish();
+                            } else {
+                                Intent i = new Intent(MembershipSelectionActivity.this, MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
+
+                        }
+
+                    }
+                } else {
+                    //dialogTransparent.dismiss();
+                    Toast.makeText(MembershipSelectionActivity.this, userBaseHolder.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            } else {
+                Toast.makeText(MembershipSelectionActivity.this, "Please try again ", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+
+            //dialogTransparent.dismiss();
         }
     }
 }

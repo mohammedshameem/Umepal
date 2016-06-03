@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qiito.umepal.R;
@@ -26,6 +27,7 @@ public class NewRefereeFragment extends Fragment {
     private ListRefereesCallBack listRefereesCallBack;
     private String session;
     private ListRefereeBaseHolder listRefereeBaseHolder;
+    private TextView noRefereeText;
 
     ListView newRefList;
 
@@ -46,12 +48,12 @@ public class NewRefereeFragment extends Fragment {
         content = inflater.inflate(R.layout.new_referee_page, container, false);
         initView();
 
-        listRefereesCallBack=new ListRefereesCallBack();
+        listRefereesCallBack = new ListRefereesCallBack();
         listRefereeBaseHolder = new ListRefereeBaseHolder();
         session = DbManager.getInstance().getCurrentUserDetails().getSession_id();
 
 
-        UserManager.getInstance().ListReferees(getActivity(),session,listRefereesCallBack);
+        UserManager.getInstance().ListReferees(getActivity(), session, listRefereesCallBack);
 
 
         return content;
@@ -59,7 +61,8 @@ public class NewRefereeFragment extends Fragment {
     }
 
     private void initView() {
-        newRefList= (ListView) content.findViewById(R.id.list_view_my_likes);
+        newRefList = (ListView) content.findViewById(R.id.list_view_my_likes);
+        noRefereeText = (TextView) content.findViewById(R.id.no_referee_text);
 
     }
 
@@ -67,28 +70,34 @@ public class NewRefereeFragment extends Fragment {
 
         @Override
         public void onFinish(int responseCode, Object result) {
-            listRefereeBaseHolder = (ListRefereeBaseHolder)result;
+            listRefereeBaseHolder = (ListRefereeBaseHolder) result;
 
 
-            if(listRefereeBaseHolder.getStatus().equalsIgnoreCase("success")){
-                if(result!=null) {
-                    newRefList.setAdapter(new NewRefereeAdapter(getActivity(),listRefereeBaseHolder.getData()));
-                }
-                else {
+            if (listRefereeBaseHolder.getStatus().equalsIgnoreCase("success")) {
+                if (listRefereeBaseHolder.getData() != null) {
+                    if (listRefereeBaseHolder.getData().size()>0) {
+                        newRefList.setAdapter(new NewRefereeAdapter(getActivity(), listRefereeBaseHolder.getData()));
+                    }else{
+                        noRefereeText.setVisibility(View.VISIBLE);
+                        newRefList.setVisibility(View.GONE);
+                    }
+                } else {
+                    noRefereeText.setVisibility(View.VISIBLE);
+                    newRefList.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), "There is No Data to show", Toast.LENGTH_SHORT).show();
                 }
 
 
-                Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(getActivity(),"fail",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
 
             }
         }
 
         @Override
         public void onFinish(int responseCode, String result) {
-            Toast.makeText(getActivity(),"fail",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "fail", Toast.LENGTH_SHORT).show();
 
         }
     }

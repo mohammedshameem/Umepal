@@ -7,32 +7,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="6"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="6">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:gravity="center"
-                android:background="@drawable/white_with_grey_border">
-                 <EditText
-                     android:id="@+id/memberIdEdittext"
-                     android:layout_width="match_parent"
-                     android:layout_height="45dp"
-                     android:hint="Member ID"
-                     android:textColor="@color/black"
-                     android:textColorHint="@color/gray"
-                     android:background="@color/white"
-                     android:layout_marginLeft="10dp"
-                     android:layout_marginRight="10dp"/>
+                android:background="@drawable/white_with_grey_border"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/memberIdEdittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:hint="Member ID"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray" />
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -43,16 +47,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:orientation="horizontal"
-                android:weightSum="5"
                 android:layout_margin="15dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="5">
 
                 <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -63,19 +68,22 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="OR"
-                        android:textColor="@color/dark_gray"/>
+                        android:textColor="@color/dark_gray" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -89,28 +97,47 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:gravity="center">
+
             <Button
                 android:id="@+id/scanQRCodeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/curved_white_red"
                 android:text="Scan QR Code"
-                android:textAllCaps="false"
-                android:background="@drawable/curved_white_red"/>
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Verify"
+                android:textSize="18sp"
+                android:textColor="@color/Red"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:id="@+id/verify_text"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="00.0"
-                android:textColor="@color/blue_shade"
+                android:textColor="@color/Red"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>

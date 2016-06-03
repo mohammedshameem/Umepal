@@ -70,8 +70,11 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
     private final int requestCode = 200;
     private int requestcode = 1;
-    private  String reffereid;
-    private  Intent intent;
+    private String reffereid;
+    private Intent intent;
+    private int loginforbuy;
+    private int productId;
+    private int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +82,9 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         setContentView(R.layout.sign_up_page);
         initView();
         initManager();
-        intent=getIntent();
+        intent = getIntent();
+        loginforbuy = intent.getIntExtra("buy", id);
+        productId = intent.getIntExtra("productId", id);
         androidId = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -153,26 +158,28 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
             //  finish();
             Intent intent = new Intent(Signupactivity.this, MembershipSelectionActivity.class);
             startActivity(intent);
+            finish();
         }
     };
-   /* View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+    /* View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
 
-            QrScanner(v);
-        }
-    };*/
+             QrScanner(v);
+         }
+     };*/
     View.OnClickListener scanQRcodeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             //QrScanner(v);
-               Intent cam = new Intent(Signupactivity.this,QRcodeScanner.class);
-               startActivity(cam);
+            Intent cam = new Intent(Signupactivity.this, QRcodeScanner.class);
+            startActivity(cam);
               /*  QRcodeScanner qRcodeScanner= new QRcodeScanner();
                 qRcodeScanner.onClick(v);*/
         }
     };
+
     public void QrScanner(View view) {
 
 
@@ -185,19 +192,16 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
-            Log.e("reffereID",""+data.getStringExtra("reffereID"));
+            Log.e("reffereID", "" + data.getStringExtra("reffereID"));
 
-                reffereid=intent.getStringExtra("reffereID");
-                Log.e("ID ","RID"+reffereid);
-                refferalmemberidEditText.setText(reffereid);
-
-
+            reffereid = intent.getStringExtra("reffereID");
+            Log.e("ID ", "RID" + reffereid);
+            refferalmemberidEditText.setText(reffereid);
 
 
-        }else {
-            Log.e("ID ","RID result");
+        } else {
+            Log.e("ID ", "RID result");
         }
-
 
 
     }
@@ -313,6 +317,9 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
                     //  LoginManager.getInstance().emailLogin(Signupactivity.this, Email, Password, loginCallBackClass, requestcode);
 
                     Intent next = new Intent(Signupactivity.this, MembershipSelectionActivity.class);
+                    next.putExtra("password", Password);
+                    next.putExtra("buy", loginforbuy);
+                    next.putExtra("productId", productId);
                     startActivity(next);
                 }
             } else if (userBaseHolder.getStatus().equals("error")) {
@@ -370,7 +377,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
         }
     }
-    public class refferID{
+
+    public class refferID {
 
     }
 }

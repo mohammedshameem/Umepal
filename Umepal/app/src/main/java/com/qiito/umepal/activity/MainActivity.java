@@ -620,7 +620,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         try {
 
             inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            logoutLayout = inflater.inflate(R.layout.logout_popup, null);
+            logoutLayout = inflater.inflate(R.layout.exit_pop_up, null);
 
             pwindo = new PopupWindow(logoutLayout, WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT, true);
@@ -629,7 +629,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
             /*LOGOUT*/
             yesLinear = (LinearLayout) logoutLayout.findViewById(R.id.yes_linear);
+            TextView displayText = (TextView) logoutLayout.findViewById(R.id.display_text);
 
+            displayText.setText("Do you want to Logout ?");
             yesLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -773,6 +775,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
             /*QUIT*/
             yesLinear = (LinearLayout) layout.findViewById(R.id.yes_linear);
+            TextView displayText = (TextView) layout.findViewById(R.id.display_text);
+
+            displayText.setText("Are you sure you want to quit ?");
 
             yesLinear.setOnClickListener(new View.OnClickListener() {
                 @Override
