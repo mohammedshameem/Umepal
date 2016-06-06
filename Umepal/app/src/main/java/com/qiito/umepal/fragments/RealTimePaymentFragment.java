@@ -17,10 +17,13 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 import com.qiito.umepal.R;
+import com.qiito.umepal.activity.QRcodeScanner;
 import com.qiito.umepal.activity.TransferPaymentActivity;
 import com.qiito.umepal.holder.UserBaseHolder;
+import com.qiito.umepal.listeners.ClickListener;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.RealTimePaymentManager;
+import com.qiito.umepal.util.YesNoPopUp;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -36,13 +39,18 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     private ZXingScannerView mScannerView;
     private TextView verifyText;
     private VerifyCallBack verifyCallBack;
+    private Intent intent;
+    private String memberid;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.real_time_payment_page, container, false);
         initViews();
-
+        intent =getActivity().getIntent();
+        memberid=intent.getStringExtra("reffereID");
+        Log.e("memberid","memberid"+memberid);
+        memberID.setText(memberid);
         scanQRcode.setOnClickListener(scanqrcodeListener);
         verifyText.setOnClickListener(verifyListener);
         return view;
@@ -52,7 +60,11 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     View.OnClickListener scanqrcodeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-           QrScanner(v);
+           //QrScanner(v);
+            Intent cam = new Intent(getActivity(), QRcodeScanner.class);
+            cam.putExtra("from","fromRealTimePayment");
+            startActivity(cam);
+
         }
     };
 
@@ -65,6 +77,12 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         }
     };
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("memberid!!",""+memberid);
+        memberid=intent.getStringExtra("reffereID");
+    }
 
     private void initViews() {
         memberID = (EditText) view.findViewById(R.id.memberIdEdittext);
@@ -87,17 +105,34 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     }
 
     @Override
-    public void handleResult(Result result) {
+    public void handleResult(final Result result) {
 
         Log.e("handler", result.getText()); // Prints scan results
         Log.e("handler", result.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
 
         // show the scanner result into dialog box.
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+       /* AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Scan Result");
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
-        alert1.show();
+        alert1.show();*/
+
+            mScannerView.stopCamera();
+            YesNoPopUp yesNoPopUp=new YesNoPopUp("ID: "+result.getText(), getActivity(), new ClickListener<Boolean>() {
+                @Override
+                public void onClick(Boolean aBoolean) {
+                    if(aBoolean){
+
+                        memberID.setText(result.getText());
+
+                        mScannerView.stopCamera();
+                    }else {
+                        onResume();
+                    }
+                }
+            });
+            yesNoPopUp.show();
+
 
     }
 

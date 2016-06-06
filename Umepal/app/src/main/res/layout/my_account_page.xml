@@ -151,6 +151,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="2dp"
                 android:src="@drawable/edit_prof_img" />
+            <ImageView
+                android:id="@+id/qrcode_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/edit_prof_img" />
+
 
         </LinearLayout>
     </LinearLayout>

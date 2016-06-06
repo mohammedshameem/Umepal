@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -172,6 +173,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         initView();
         initManager();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
+        }
         searchicon.setVisibility(View.VISIBLE);
         clearAll.setVisibility(View.INVISIBLE);
         session = CurrentlyLoggedUserDAO.getInstance().getSessionId();

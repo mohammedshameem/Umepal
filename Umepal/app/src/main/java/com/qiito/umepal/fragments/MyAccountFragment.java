@@ -52,6 +52,7 @@ import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.activity.EditProfileActivity;
 import com.qiito.umepal.activity.ProductDetails;
+import com.qiito.umepal.activity.QRcodeActivity;
 import com.qiito.umepal.adapters.MyLikesAdapter;
 import com.qiito.umepal.adapters.MyPurchasesAdapter;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
@@ -138,6 +139,7 @@ public class MyAccountFragment extends Fragment {
     private LinearLayout listLayout;
     private boolean likeListClick = true;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
+    private ImageView qrcode_button;
 
     public MyAccountFragment() {
 
@@ -246,7 +248,15 @@ public class MyAccountFragment extends Fragment {
                 //webview_paypal.setVisibility(View.VISIBLE);
             }
         });
-
+        qrcode_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent qrcode=new Intent(getActivity(), QRcodeActivity.class);
+                Log.e("ume id ,.,.,",""+userObjectHolder.getUmeId());
+                qrcode.putExtra("UMEID",userObjectHolder.getUmeId());
+                startActivity(qrcode);
+            }
+        });
         /*callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(getActivity());
         shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
@@ -592,6 +602,7 @@ public class MyAccountFragment extends Fragment {
         listLayout = (LinearLayout) content.findViewById(R.id.list_layout);
         //myAccountLayout = (LinearLayout)content.findViewById(R.id.my_account_layout);
         joinmembershiptxt = (TextView) content.findViewById(R.id.joinmembershiptxt);
+        qrcode_button = (ImageView)content.findViewById(R.id.qrcode_button);
 
     }
 

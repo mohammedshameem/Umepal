@@ -122,6 +122,9 @@
         <activity android:name="com.qiito.umepal.activity.QRcodeScanner"
             android:label="QR code"
             android:screenOrientation="portrait"/>
+        <activity android:name="com.qiito.umepal.activity.QRcodeActivity"
+            android:label="QR code"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.qiito.umepal.activity.NavigationDrawerActivity"
             android:label="Return Policy"

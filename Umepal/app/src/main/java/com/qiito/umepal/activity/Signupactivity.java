@@ -83,8 +83,11 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         initView();
         initManager();
         intent = getIntent();
-        loginforbuy = intent.getIntExtra("buy", id);
-        productId = intent.getIntExtra("productId", id);
+        getIntentValues();
+
+        setText();
+
+
         androidId = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -142,6 +145,33 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         cancelButton.setOnClickListener(cancelListener);
     }
 
+    private void setText() {
+        nameEditText.setText(FirstName);
+        emailEditText.setText(Email);
+        ceaEditText.setText(CEA);
+        mobileEditText.setText(MOBILE);
+        bankEditText.setText(BANK);
+        estateagencyEditText.setText(ESTATEAGENCY);
+        bankaccountEditText.setText(BankAccount);
+        refferalmemberidEditText.setText(refferalmemberID);
+        password.setText(Password);
+
+    }
+
+    private void getIntentValues() {
+        loginforbuy = intent.getIntExtra("buy", id);
+        productId = intent.getIntExtra("productId", id);
+        FirstName=intent.getStringExtra("Name");
+        Email=intent.getStringExtra("Email");
+        CEA=intent.getStringExtra("CEA");
+        MOBILE=intent.getStringExtra("Mobile");
+        BANK=intent.getStringExtra("Bank");
+        ESTATEAGENCY=intent.getStringExtra("Estateagency");
+        BankAccount=intent.getStringExtra("BankAccount");
+        Password=intent.getStringExtra("Password");
+        refferalmemberID = intent.getStringExtra("reffereID");
+    }
+
     private void CHECKDETAILS() {
         LastName = "";
 
@@ -174,6 +204,15 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
 
             //QrScanner(v);
             Intent cam = new Intent(Signupactivity.this, QRcodeScanner.class);
+            cam.putExtra("Name",nameEditText.getText().toString());
+            cam.putExtra("Email",emailEditText.getText().toString());
+            cam.putExtra("CEA",ceaEditText.getText().toString());
+            cam.putExtra("Mobile",mobileEditText.getText().toString());
+            cam.putExtra("Bank",bankEditText.getText().toString());
+            cam.putExtra("Estateagency",estateagencyEditText.getText().toString());
+            cam.putExtra("BankAccount",bankaccountEditText.getText().toString());
+            cam.putExtra("Password",password.getText().toString());
+            cam.putExtra("from","signup");
             startActivity(cam);
               /*  QRcodeScanner qRcodeScanner= new QRcodeScanner();
                 qRcodeScanner.onClick(v);*/

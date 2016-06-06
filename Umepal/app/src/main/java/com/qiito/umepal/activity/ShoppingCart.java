@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -118,7 +120,10 @@ public class ShoppingCart extends Activity {
         setContentView(R.layout.shopping_cart_page);
         initViews();
         initManagers();
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
+        }
         //FacebookSdk.sdkInitialize(ShoppingCart.this);
         heading.setText("Shopping Cart");
         heading.setVisibility(View.VISIBLE);

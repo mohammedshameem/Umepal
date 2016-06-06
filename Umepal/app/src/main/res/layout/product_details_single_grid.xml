@@ -28,8 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginRight="1.4dp"
+                android:layout_marginTop="2.2dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/logo_splash" />
 
