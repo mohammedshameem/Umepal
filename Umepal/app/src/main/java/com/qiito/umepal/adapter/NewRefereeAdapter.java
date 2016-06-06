@@ -26,12 +26,15 @@ public class NewRefereeAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private ViewHolder viewHolder;
+    Context context;
     private List<UserObjectHolder> newRefereeList;
 
     public NewRefereeAdapter(Activity activity, List<UserObjectHolder> newRefereeList) {
         //this.newRefereeFragmentoObject = newRefereeFragmentoObject;
         this.activity = activity;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+       //New Code
+        //inflater = LayoutInflater.from(this.context);
 
         this.newRefereeList=newRefereeList;
     }
@@ -56,6 +59,8 @@ public class NewRefereeAdapter extends BaseAdapter {
         if(convertView==null){
             viewHolder = new ViewHolder();
             convertView = inflater.inflate(R.layout.new_reffree_listitem, null);
+            //New Code
+            //convertView = inflater.inflate(R.layout.layout_list_item, parent, false);
             viewHolder.pic= (ImageView) convertView.findViewById(R.id.pic);
             viewHolder.name= (TextView) convertView.findViewById(R.id.name);
             viewHolder.confirmButton= (Button) convertView.findViewById(R.id.confirmButton);
