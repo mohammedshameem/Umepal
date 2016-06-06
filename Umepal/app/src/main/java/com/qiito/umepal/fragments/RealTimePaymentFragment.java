@@ -153,6 +153,7 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
                 }
                 Intent intent = new Intent(getActivity(), TransferPaymentActivity.class);
                 intent.putExtra("name", sb.toString());
+                intent.putExtra("member_id",userBaseHolder.getData().getUser().getId());
                 startActivity(intent);
             }
 

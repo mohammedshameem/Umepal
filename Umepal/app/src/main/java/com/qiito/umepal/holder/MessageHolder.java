@@ -1,6 +1,6 @@
 package com.qiito.umepal.holder;
 
-public class ErrorHolder {
+public class MessageHolder {
 
 	private String status;
 	private int code;

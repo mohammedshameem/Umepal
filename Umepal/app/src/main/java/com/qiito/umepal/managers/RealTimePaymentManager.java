@@ -10,6 +10,7 @@ import com.loopj.android.http.RequestParams;
 import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
+import com.qiito.umepal.holder.MessageHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.UMEPALAppRestClient;
@@ -25,6 +26,7 @@ public class RealTimePaymentManager implements ApiConstants {
 
     private static final String TAG = "RealTimePaymentManager";
     private UserBaseHolder userBaseHolder;
+    private MessageHolder messageHolder;
 
     private static RealTimePaymentManager realTimePaymentManager;
 
@@ -39,14 +41,14 @@ public class RealTimePaymentManager implements ApiConstants {
 
 
     public void verifyMember(final Activity activity, String session_id, String member_id,
-                            final AsyncTaskCallBack verifyCallBack) {
+                             final AsyncTaskCallBack verifyCallBack) {
         // TODO Auto-generated method stub
         RequestParams params = new RequestParams();
-        params.put(VerifyMember.SESSION_ID, session_id);
-        params.put(VerifyMember.MEMBER_ID,member_id);
+        params.put(VerifyMemberParams.SESSION_ID, session_id);
+        params.put(VerifyMemberParams.MEMBER_ID, member_id);
 
 
-        UMEPALAppRestClient.post(VerifyMember.VERIFY_MEMBER_URL, params, activity,
+        UMEPALAppRestClient.post(VerifyMemberParams.VERIFY_MEMBER_URL, params, activity,
                 new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int i, Header[] headers, byte[] bytes) {
@@ -59,10 +61,10 @@ public class RealTimePaymentManager implements ApiConstants {
 
                         Gson gson = new Gson();
 
-                        userBaseHolder = gson.fromJson(responseBody,UserBaseHolder.class);
+                        userBaseHolder = gson.fromJson(responseBody, UserBaseHolder.class);
 
                         if (UtilValidate.isNotNull(verifyCallBack)) {
-                            verifyCallBack.onFinish(i,userBaseHolder);
+                            verifyCallBack.onFinish(i, userBaseHolder);
 
 
                         }
@@ -86,5 +88,58 @@ public class RealTimePaymentManager implements ApiConstants {
                         }
                     }
                 });
+    }
+
+    public void RealTimePayment(final Activity activity, final String session_id, final int member_id, final String price, final AsyncTaskCallBack paymentCallBack) {
+
+        RequestParams params = new RequestParams();
+        params.put(RealTimePaymentParams.SESSION_ID, session_id);
+        params.put(RealTimePaymentParams.MEMBER_ID, member_id);
+        params.put(RealTimePaymentParams.PRICE, price);
+
+        Log.e(" Payment params >> ", ">> " + params);
+
+
+        UMEPALAppRestClient.post(RealTimePaymentParams.REAL_TIME_PAYMENT_URL, params, activity,
+                new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int i, Header[] headers, byte[] bytes) {
+
+
+                        String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+
+
+                        Log.i(TAG, "RESPONSE" + responseBody);
+
+                        Gson gson = new Gson();
+
+                        messageHolder = gson.fromJson(responseBody, MessageHolder.class);
+
+                        if (UtilValidate.isNotNull(paymentCallBack)) {
+                            paymentCallBack.onFinish(i, messageHolder);
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+
+                        if (!(NetChecker.isConnected(activity))) {
+
+                            if (!(NetChecker.isConnectedWifi(activity) && NetChecker.isConnectedMobile(activity))) {
+
+                                Toast.makeText(activity, "Please check your internet connection...", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                        if (UtilValidate.isNotNull(paymentCallBack)) {
+
+                            paymentCallBack.onFinish(1, "No Internet");
+                        }
+                    }
+                });
+
     }
 }

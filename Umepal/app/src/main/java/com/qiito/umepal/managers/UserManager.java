@@ -340,12 +340,12 @@ public class UserManager implements ApiConstants {
 										String membership_id,final AsyncTaskCallBack listrefereesCallback) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
-		params.put(Requestforpayment.REFFER_ID, reffer_id);
-		params.put(Requestforpayment.REFFEREE_ID, refferee_id);
-		params.put(Requestforpayment.MEMBERSHIP_ID, membership_id);
+		params.put(RequestForPaymentParams.REFFER_ID, reffer_id);
+		params.put(RequestForPaymentParams.REFFEREE_ID, refferee_id);
+		params.put(RequestForPaymentParams.MEMBERSHIP_ID, membership_id);
 
 
-		UMEPALAppRestClient.post(Requestforpayment.REQUEST_FOR_PAYMENT,params,activity,new AsyncHttpResponseHandler() {
+		UMEPALAppRestClient.post(RequestForPaymentParams.REQUEST_FOR_PAYMENT,params,activity,new AsyncHttpResponseHandler() {
 			@Override
 			public void onSuccess(int i, Header[] headers, byte[] bytes) {
 				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));

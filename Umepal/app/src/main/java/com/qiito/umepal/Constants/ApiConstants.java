@@ -282,7 +282,7 @@ public interface ApiConstants {
         String SESSION_ID = "session_id";
     }
 
-    interface Requestforpayment {
+    interface RequestForPaymentParams {
 
         String REQUEST_FOR_PAYMENT = BASE_URL + "api/reffer-notification";
         String REFFER_ID = "reffer_id";
@@ -291,7 +291,7 @@ public interface ApiConstants {
 
     }
 
-    interface RefferNotification {
+    interface RefferNotificationParams {
         String REFFER_NOTIFICATION_URL = BASE_URL + "api/reffer-notification";
         String REFFER_ID = "reffer_id";//pass umeid of referer)
         String REFFEREE_ID = "referee_id";
@@ -299,9 +299,21 @@ public interface ApiConstants {
 
     }
 
-    interface VerifyMember {
+    interface VerifyMemberParams {
         String VERIFY_MEMBER_URL = BASE_URL + "api/member/details";
         String SESSION_ID = "session_id";
         String MEMBER_ID = "member_id";
+    }
+
+    interface RealTimePaymentParams{
+        String REAL_TIME_PAYMENT_URL = BASE_URL + "api/member/pay/realtime";
+        String SESSION_ID = "session_id";
+        String MEMBER_ID = "member_id";
+        String PRICE = "price";
+    }
+
+    interface WalletDataParams{
+        String WALLET_DATA_URL = BASE_URL + "api/list-creditBalance";
+        String SESSION_ID = "session_id";
     }
 }

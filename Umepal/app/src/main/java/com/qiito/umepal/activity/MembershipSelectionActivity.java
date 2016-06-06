@@ -74,7 +74,7 @@ public class MembershipSelectionActivity extends Activity {
     private String refferee_ID;
     private int requestcode = 1;
     private String password;
-    private int loginforbuy;
+    private int loginforbuy = 0;
     private int productId;
     private int id = 0;
 
@@ -84,11 +84,16 @@ public class MembershipSelectionActivity extends Activity {
         setContentView(R.layout.membership_selection_page);
         initViews();
         initManager();
-        if (getIntent().hasExtra("password")){
+        if (getIntent().hasExtra("password")) {
             password = getIntent().getStringExtra("password");
         }
-        loginforbuy = getIntent().getIntExtra("buy", id);
-        productId = getIntent().getIntExtra("productId", id);
+        if (getIntent().hasExtra("buy")) {
+            loginforbuy = getIntent().getIntExtra("buy", id);
+        }
+        if (getIntent().hasExtra("productId")) {
+            productId = getIntent().getIntExtra("productId", id);
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.HeaderRed));
@@ -118,7 +123,7 @@ public class MembershipSelectionActivity extends Activity {
         @Override
         public void onClick(View v) {
             refferee_ID = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
-            Log.e("ID ID ID",""+DbManager.getInstance().getCurrentUserDetails().getId());
+            Log.e("ID ID ID", "" + DbManager.getInstance().getCurrentUserDetails().getId());
             LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this, MembershipId, refferee_ID, membershipCallback);
 
         }
@@ -230,7 +235,7 @@ public class MembershipSelectionActivity extends Activity {
         webview_paypal = (WebView) findViewById(R.id.webview_paypal);
         membershipselectionpage = (LinearLayout) findViewById(R.id.membershipselectionpage);
         paypal_webviews_layout = (LinearLayout) findViewById(R.id.paypal_webviews_layout);
-        progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+        progressBar1 = (ProgressBar) findViewById(R.id.progress_bar);
 
 
     }
@@ -257,7 +262,7 @@ public class MembershipSelectionActivity extends Activity {
             // TODO Auto-generated method stub
             // dialog.dismiss();
             PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
-            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>    " + responseHolder.getStatus() + " ### "+responseHolder.getMessage()+"  >>> "+responseHolder.getData());
+            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>    " + responseHolder.getStatus() + " ### " + responseHolder.getMessage() + "  >>> " + responseHolder.getData());
             if (UtilValidate.isNotNull(responseHolder)) {
                 if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
                     if (UtilValidate.isNotNull(responseHolder.getData())) {
@@ -299,6 +304,7 @@ public class MembershipSelectionActivity extends Activity {
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                         // TODO Auto-generated method stub
                                         if (url.contains(ApiConstants.BASE_URL + "api/paypal/nmembersuccess")) {
+                                            view.loadUrl(url);
                                             paypal_webviews_layout.setVisibility(View.GONE);
                                             Toast.makeText(MembershipSelectionActivity.this, "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
 
@@ -322,7 +328,7 @@ public class MembershipSelectionActivity extends Activity {
                                                     // TODO Auto-generated method stub
                                                     popupWindow.dismiss();
                                                     refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
-                                                    Log.e("PASSWORD >> ",""+password);
+                                                    Log.e("PASSWORD >> ", "" + password);
                                                     LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);
                                                 }
                                             });
@@ -439,11 +445,11 @@ public class MembershipSelectionActivity extends Activity {
 
                         if (UtilValidate.isNotNull(userBaseHolder.getUser())) {
 
-                            if (loginforbuy == 1) {
-                                finish();
-                            } else {
+                            if (loginforbuy == 0) {
                                 Intent i = new Intent(MembershipSelectionActivity.this, MainActivity.class);
                                 startActivity(i);
+                                finish();
+                            } else {
                                 finish();
                             }
 

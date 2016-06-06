@@ -305,12 +305,12 @@ public class NotificationManager implements ApiConstants {
                                          String membership_id,final AsyncTaskCallBack reffernotificationCallBack) {
         // TODO Auto-generated method stub
         RequestParams params = new RequestParams();
-        params.put(RefferNotification.REFFER_ID, reffer_id);
-        params.put(RefferNotification.REFFEREE_ID, refferee_id);
-        params.put(RefferNotification.MEMBERSHIP_ID, membership_id);
+        params.put(RefferNotificationParams.REFFER_ID, reffer_id);
+        params.put(RefferNotificationParams.REFFEREE_ID, refferee_id);
+        params.put(RefferNotificationParams.MEMBERSHIP_ID, membership_id);
 
 
-        UMEPALAppRestClient.get(RefferNotification.REFFER_NOTIFICATION_URL,params,null,new AsyncHttpResponseHandler() {
+        UMEPALAppRestClient.get(RefferNotificationParams.REFFER_NOTIFICATION_URL,params,null,new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));

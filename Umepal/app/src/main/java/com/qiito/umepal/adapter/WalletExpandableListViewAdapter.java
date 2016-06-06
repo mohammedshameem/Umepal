@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qiito.umepal.R;
+import com.qiito.umepal.holder.RebateDetailsHolder;
+import com.qiito.umepal.holder.RebateListHolder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,13 +24,13 @@ import java.util.List;
 public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     private Activity activity;
-    private List<String> listDataHeader; // header titles
+    private List<RebateListHolder> listDataHeader = new ArrayList<>(); // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> listDataChild;
+    private HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild = new HashMap<>();
 
     private ViewHolder viewHolder;
 
-    public WalletExpandableListViewAdapter(Activity activity, List<String> listDataHeader, HashMap<String, List<String>> listDataChild) {
+    public WalletExpandableListViewAdapter(Activity activity, List<RebateListHolder> listDataHeader, HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild) {
 
         this.activity = activity;
         this.listDataHeader = listDataHeader;
@@ -50,25 +53,35 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final RebateDetailsHolder rebatedetail = (RebateDetailsHolder) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
 
             viewHolder = new ViewHolder();
             LayoutInflater infalInflater = (LayoutInflater) this.activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.expandablelist_child, null);
+            viewHolder.rebateSpendAmount = (TextView) convertView.findViewById(R.id.rebate_spend_amount);
+
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        if (rebatedetail.getPrice() != null) {
+            if (!rebatedetail.getPrice().equalsIgnoreCase("")) {
+                viewHolder.rebateSpendAmount.setText(rebatedetail.getPrice());
+            }
+        }
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listDataChild.get(this.listDataHeader.get(groupPosition)).size();
+
+        Log.e("child data size >> ", " >> " + listDataChild.get(groupPosition).size());
+        return this.listDataChild.get(this.listDataHeader.get(groupPosition))
+                .size();
     }
 
     @Override
@@ -115,6 +128,27 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
             viewHolder.arrow_down.setVisibility(View.GONE);
             viewHolder.arrow_right.setVisibility(View.VISIBLE);
         }
+
+        if (listDataHeader.get(groupPosition).getTotal() != null) {
+            if (!listDataHeader.get(groupPosition).getTotal().equalsIgnoreCase("")) {
+                viewHolder.statementPrice.setText(listDataHeader.get(groupPosition).getTotal());
+            }
+        }
+
+        if (listDataHeader.get(groupPosition).getMonth() != null) {
+            if (!listDataHeader.get(groupPosition).getMonth().equalsIgnoreCase("")) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(listDataHeader.get(groupPosition).getMonth());
+                if (listDataHeader.get(groupPosition).getYear() != null) {
+                    if (!listDataHeader.get(groupPosition).getYear().equalsIgnoreCase("")) {
+                        sb.append(" " + listDataHeader.get(groupPosition).getYear());
+                    }
+                }
+
+                viewHolder.month.setText(sb.toString());
+            }
+        }
+
         return convertView;
     }
 
@@ -134,6 +168,7 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
         private ImageView arrow_right;
         private TextView statementPrice;
         private TextView month;
+        private TextView rebateSpendAmount;
 
     }
 

@@ -19,13 +19,14 @@
 
 
         <style name="StarRatingBar" parent="@android:style/Widget.RatingBar">
-
             <item name="android:progressDrawable">@color/red_cherry_red</item>
-
             <item name="android:minHeight">48dip</item>
-
             <item name="android:maxHeight">48dip</item>
+        </style>
 
+        <style name="dialog_animation">
+            <item name="android:windowEnterAnimation">@anim/slide_down_speed</item>
+            <item name="android:windowExitAnimation">@anim/zoom_out</item>
         </style>
 
     </resources>
