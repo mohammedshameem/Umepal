@@ -294,7 +294,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         mCurrentSelectedPosition = position;
 
-        if (position == 7) {
+        if (position == 9) {
 
         } else {
             if (mDrawerListView != null) {

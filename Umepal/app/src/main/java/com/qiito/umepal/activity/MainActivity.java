@@ -517,21 +517,23 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             /*Order History*/
             case 7:
                 close_keyboard();
-                Log.e("order", "history");
-                fragmentTrueFragment = "Order History";
-                toolbar.setVisibility(View.VISIBLE);
-                action_bar_title.setVisibility(View.VISIBLE);
-                action_bar_title.setText("Order History");
-                search.setVisibility(View.GONE);
-                action.setDisplayShowCustomEnabled(false);
-                orderHistoryFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                carticon.setVisibility(View.GONE);
-                searchicon.setVisibility(View.GONE);
-                clearAll.setVisibility(View.INVISIBLE);
-                orderHistoryFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
-                orderHistoryFragmentTransaction.replace(R.id.container, new OrderHistory(), "fragment");
-                orderHistoryFragmentTransaction.commit();
+                if (session != null) {
+                    Log.e("order", "history");
+                    fragmentTrueFragment = "Order History";
+                    toolbar.setVisibility(View.VISIBLE);
+                    action_bar_title.setVisibility(View.VISIBLE);
+                    action_bar_title.setText("Order History");
+                    search.setVisibility(View.GONE);
+                    action.setDisplayShowCustomEnabled(false);
+                    orderHistoryFragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    orderHistoryFragmentTransaction.setCustomAnimations(R.anim.left, R.anim.slideoutleft);
+                    orderHistoryFragmentTransaction.replace(R.id.container, new OrderHistory(), "fragment");
+                    orderHistoryFragmentTransaction.commit();
+                    carticon.setVisibility(View.GONE);
+                    searchicon.setVisibility(View.GONE);
+                    clearAll.setVisibility(View.INVISIBLE);
 
+                }
 
                 break;
 
@@ -555,7 +557,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 9:
                 close_keyboard();
                 action_bar_title.setVisibility(View.VISIBLE);
-                // break;
+                break;
 
 
                 /*** Contact Us ***/
