@@ -21,7 +21,7 @@
             android:textColor="#7F7F7F"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:id="@+id/textView2"
+            android:id="@+id/membershipTypeTxt"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"/>
 
