@@ -55,7 +55,6 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.activity.EditProfileActivity;
 import com.qiito.umepal.activity.ProductDetails;
 import com.qiito.umepal.activity.QRcodeActivity;
-import com.qiito.umepal.adapter.MembershipTypeAdapter;
 import com.qiito.umepal.adapters.MyLikesAdapter;
 import com.qiito.umepal.adapters.MyPurchasesAdapter;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
@@ -129,7 +128,6 @@ public class MyAccountFragment extends Fragment {
     private boolean likeListClick = true;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
     private ImageView qrcode_button;
-    private MembershipTypeAdapter membershipTypeAdapter;
     private LayoutInflater vi;
 
     public MyAccountFragment() {
@@ -851,8 +849,7 @@ public class MyAccountFragment extends Fragment {
                     }
                 }
 
-               // membershipTypeAdapter = new MembershipTypeAdapter(getActivity(),membershipBaseHolder);
-               // listView.setAdapter(membershipTypeAdapter);
+
 
                 close.setOnClickListener(new View.OnClickListener() {
 
