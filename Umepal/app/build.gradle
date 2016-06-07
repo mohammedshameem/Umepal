@@ -55,5 +55,6 @@ android {
         //compile fileTree(dir: 'libs', include: 'Parse-*.jar')
         compile "com.google.android.gms:play-services-gcm:8.3.0"
         compile 'me.dm7.barcodescanner:zxing:1.8.4'
+        compile 'com.victor:lib:1.0.1'
     }
 }

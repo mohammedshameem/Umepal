@@ -305,15 +305,21 @@ public interface ApiConstants {
         String MEMBER_ID = "member_id";
     }
 
-    interface RealTimePaymentParams{
+    interface RealTimePaymentParams {
         String REAL_TIME_PAYMENT_URL = BASE_URL + "api/member/pay/realtime";
         String SESSION_ID = "session_id";
         String MEMBER_ID = "member_id";
         String PRICE = "price";
     }
 
-    interface WalletDataParams{
+    interface WalletDataParams {
         String WALLET_DATA_URL = BASE_URL + "api/list-creditBalance";
         String SESSION_ID = "session_id";
+    }
+
+    interface TopUpParams {
+        String TOP_UP_URL = BASE_URL +"api/member-credit-topup";
+        String SESSION_ID = "session_id";
+        String CREDIT_AMOUNT = "credit_amount";
     }
 }

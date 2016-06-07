@@ -26,22 +26,24 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
     private Activity activity;
     private List<RebateListHolder> listDataHeader = new ArrayList<>(); // header titles
     // child data in format of header title, child title
-    private HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild = new HashMap<>();
+    //private HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild = new HashMap<>();
+
 
     private ViewHolder viewHolder;
 
-    public WalletExpandableListViewAdapter(Activity activity, List<RebateListHolder> listDataHeader, HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild) {
+    public WalletExpandableListViewAdapter(Activity activity, List<RebateListHolder> listDataHeader) {
 
         this.activity = activity;
         this.listDataHeader = listDataHeader;
-        this.listDataChild = listDataChild;
+        // this.listDataChild = listDataChild;
 
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this.listDataChild.get(this.listDataHeader.get(groupPosition))
-                .get(childPosititon);
+
+        //listDataHeader.get(groupPosition).getDetails().get(childPosititon)
+        return listDataHeader.get(groupPosition).getDetails().get(childPosititon);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         if (rebatedetail.getPrice() != null) {
             if (!rebatedetail.getPrice().equalsIgnoreCase("")) {
-                viewHolder.rebateSpendAmount.setText(rebatedetail.getPrice());
+                viewHolder.rebateSpendAmount.setText(activity.getString(R.string.dollar) + " " + rebatedetail.getPrice());
             }
         }
         return convertView;
@@ -79,9 +81,8 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
 
-        Log.e("child data size >> ", " >> " + listDataChild.get(groupPosition).size());
-        return this.listDataChild.get(this.listDataHeader.get(groupPosition))
-                .size();
+        //listDataHeader.get(groupPosition).getDetails().size()
+        return listDataHeader.get(groupPosition).getDetails().size();
     }
 
     @Override
@@ -131,7 +132,7 @@ public class WalletExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         if (listDataHeader.get(groupPosition).getTotal() != null) {
             if (!listDataHeader.get(groupPosition).getTotal().equalsIgnoreCase("")) {
-                viewHolder.statementPrice.setText(listDataHeader.get(groupPosition).getTotal());
+                viewHolder.statementPrice.setText(activity.getString(R.string.dollar) + "" + listDataHeader.get(groupPosition).getTotal());
             }
         }
 

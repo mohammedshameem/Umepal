@@ -1,25 +1,42 @@
 package com.qiito.umepal.fragments;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.R;
+import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.adapter.WalletExpandableListViewAdapter;
 import com.qiito.umepal.adapter.WalletListViewAdapter;
+import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.holder.RebateDetailsHolder;
 import com.qiito.umepal.holder.RebateListHolder;
 import com.qiito.umepal.holder.WalletBaseHolder;
 import com.qiito.umepal.managers.DbManager;
+import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.managers.WalletManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
+import com.qiito.umepal.webservice.WebResponseConstants;
+import com.victor.loading.rotate.RotateLoading;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,25 +65,24 @@ public class WalletFragment extends Fragment {
     private List<String> price;
     private WalletCallBack walletCallBack = new WalletCallBack();
     private WalletBaseHolder walletBaseHolder = new WalletBaseHolder();
-    private List<RebateListHolder> rebateList = new ArrayList<>();
-    private List<RebateDetailsHolder> rebateDetails = new ArrayList<>();
-    private HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> rebateDataPrepared;
+    private WebView webview_paypal;
+    private LinearLayout walletMainLayout;
+    private LinearLayout paypal_webviews_layout;
+    private ProgressBar progressBar1;
+    private RotateLoading rotateLoading;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         content = inflater.inflate(R.layout.wallet_layout, container, false);
         initViews();
-
+        rotateLoading.start();
         WalletManager.getInstance().getWalletData(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), walletCallBack);
         expandableListView.setVisibility(View.VISIBLE);
         listView.setVisibility(View.GONE);
         rebatesLayout.setOnClickListener(rebateClickListener);
         commissionsLayout.setOnClickListener(commissionClickListener);
-
-        //prepareListData();
-        /*walletExpandableListViewAdapter = new WalletExpandableListViewAdapter(getActivity(), listDataHeader, listDataChild);
-        expandableListView.setAdapter(walletExpandableListViewAdapter);*/
+        topUpLayout.setOnClickListener(topUpListner);
 
         price = new ArrayList<>();
 
@@ -95,6 +111,11 @@ public class WalletFragment extends Fragment {
         commissionsView = (View) content.findViewById(R.id.commissions_view);
         expandableListView = (ExpandableListView) content.findViewById(R.id.expandable_listview);
         listView = (ListView) content.findViewById(R.id.listview);
+        webview_paypal = (WebView) content.findViewById(R.id.webview_paypal);
+        walletMainLayout = (LinearLayout) content.findViewById(R.id.membershipselectionpage);
+        paypal_webviews_layout = (LinearLayout) content.findViewById(R.id.paypal_webviews_layout);
+        progressBar1 = (ProgressBar) content.findViewById(R.id.progress_bar);
+        rotateLoading = (RotateLoading)content.findViewById(R.id.rotateloading_history);
 
     }
 
@@ -119,44 +140,14 @@ public class WalletFragment extends Fragment {
         }
     };
 
-    /*private void prepareListData() {
-        listDataHeader = new ArrayList<RebateListHolder>();
-        listDataChild = new HashMap<List<RebateListHolder>, List<RebateDetailsHolder>>();
+    View.OnClickListener topUpListner = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
+            //WalletManager.getInstance().topUp();
 
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
-    }*/
+        }
+    };
 
     private class WalletCallBack implements AsyncTaskCallBack {
         @Override
@@ -190,8 +181,7 @@ public class WalletFragment extends Fragment {
 
                                 if (!walletBaseHolder.getData().getRebate().isEmpty()) {
 
-                                    prepareData();
-                                    walletExpandableListViewAdapter = new WalletExpandableListViewAdapter(getActivity(), rebateList,rebateDataPrepared);
+                                    walletExpandableListViewAdapter = new WalletExpandableListViewAdapter(getActivity(), walletBaseHolder.getData().getRebate());
                                     expandableListView.setAdapter(walletExpandableListViewAdapter);
 
 
@@ -211,6 +201,7 @@ public class WalletFragment extends Fragment {
                     }
                 }
             }
+            rotateLoading.stop();
         }
 
         @Override
@@ -220,21 +211,142 @@ public class WalletFragment extends Fragment {
     }
 
 
-    private void prepareData() {
+    private class MembershipCallBackClass implements AsyncTaskCallBack {
 
-        rebateDataPrepared = new HashMap<>();
+        @Override
+        public void onFinish(int responseCode, Object result) {
+            // TODO Auto-generated method stub
+            // dialog.dismiss();
+            PayPalTransactionResponseHolder responseHolder = (PayPalTransactionResponseHolder) result;
+            Log.e("$$", " in call back of payment>>>>>>>>>>>>>>>>>>>>>>    " + responseHolder.getStatus() + " ### " + responseHolder.getMessage() + "  >>> " + responseHolder.getData());
+            if (UtilValidate.isNotNull(responseHolder)) {
+                if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.OK) {
+                    if (UtilValidate.isNotNull(responseHolder.getData())) {
+                        Log.e("$$", "response not null");
+                        paypal_webviews_layout.setVisibility(View.VISIBLE);
+                        walletMainLayout.setVisibility(View.GONE);
+                        progressBar1.setVisibility(View.VISIBLE);
+                        final String URL = responseHolder.getData().getTransaction_url().toString();
+                        getActivity().runOnUiThread(new Runnable() {
 
-        for (int i = 0; i < walletBaseHolder.getData().getRebate().size(); i++) {
-            rebateList.add(walletBaseHolder.getData().getRebate().get(i));
-        }
+                            @Override
+                            public void run() {
+                                // TODO Auto-generated method stub
+                                webview_paypal.clearCache(true);
+                                webview_paypal.clearHistory();
+                                webview_paypal.getSettings().setJavaScriptEnabled(true);
+                                webview_paypal.getSettings().setBuiltInZoomControls(true);
+                                webview_paypal.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+                                webview_paypal.getSettings().setLoadWithOverviewMode(true);
+                                webview_paypal.getSettings().setUseWideViewPort(true);
+                                webview_paypal.getSettings().setUserAgentString("Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
+                                webview_paypal.setWebViewClient(new WebViewClient() {
 
-        for (int i = 0; i < walletBaseHolder.getData().getRebate().size(); i++) {
-            for (int j =0 ; j<walletBaseHolder.getData().getRebate().get(i).getDetails().size();j++)
-            {
-                rebateDetails.add(walletBaseHolder.getData().getRebate().get(i).getDetails().get(j));
+                                    @Override
+                                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                                        // TODO Auto-generated method stub
+                                        super.onPageStarted(view, url, favicon);
+                                    }
+
+                                    @Override
+                                    public void onPageFinished(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        super.onPageFinished(view, url);
+                                        progressBar1.setVisibility(View.GONE);
+
+                                    }
+
+                                    @Override
+                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        if (url.contains(ApiConstants.BASE_URL + "api/paypal/nmembersuccess")) {
+                                            view.loadUrl(url);
+                                            paypal_webviews_layout.setVisibility(View.GONE);
+                                            Toast.makeText(getActivity(), "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
+
+
+                                            walletMainLayout.setVisibility(View.VISIBLE);
+
+                                            //finish();
+                                        } else {
+                                            view.loadUrl(url);
+                                        }
+
+                                        return true;
+
+                                    }
+
+                                    @Override
+                                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                                        // TODO Auto-generated method stub
+                                        super.onReceivedSslError(view, handler, error);
+                                    }
+
+                                    @Override
+                                    public void onLoadResource(WebView view, String url) {
+                                        // TODO Auto-generated method stub
+                                        super.onLoadResource(view, url);
+
+                                        if (url.equalsIgnoreCase("http://umepal-s.x-minds.org/api/paypal/cancel")) {
+                                       /* Intent in = new Intent(getActivity(), ShoppingCart.class);
+                                        startActivity(in);
+                                        finish();*/
+                                            Toast.makeText(getActivity(), "Problem !!!", Toast.LENGTH_LONG).show();
+
+                                        }
+
+
+                                    }
+
+                                });
+                                webview_paypal.loadUrl(URL);
+                            }
+                        });
+
+
+                    } else {
+                    }
+
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_AUTHORIZED) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.METHODNOT_ALLOWED) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.NOT_ACCEPTABLE) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.PRECONDITIONFAILED) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.SERVICE_UNAVAILABLE) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                } else if (responseHolder.getCode() == WebResponseConstants.CodeFromApi.UN_SUCCESSFULL) {
+
+                    Toast.makeText(getActivity(),
+                            "" + responseHolder.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
             }
 
-            rebateDataPrepared.put(rebateList , rebateDetails);
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+
         }
     }
 }
