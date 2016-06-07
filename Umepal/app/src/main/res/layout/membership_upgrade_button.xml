@@ -9,27 +9,29 @@
         android:layout_marginLeft="10dp"
         android:background="@drawable/curved_red"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:gravity="center_horizontal"
             android:textColor="#7F7F7F"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:layout_marginLeft="2dp"
             android:id="@+id/membershipTypeTxt"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"/>
 
         <TextView
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="15dp"
             android:layout_height="wrap_content"
             android:text="New Text"
+            android:layout_marginLeft="2dp"
             android:gravity="center_horizontal"
             android:textSize="15sp"
             android:layout_marginRight="3dp"
