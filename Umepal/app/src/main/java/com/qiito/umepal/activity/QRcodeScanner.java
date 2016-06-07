@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.zxing.Result;
 import com.qiito.umepal.R;
+import com.qiito.umepal.fragments.RealTimePaymentFragment;
 import com.qiito.umepal.listeners.ClickListener;
 import com.qiito.umepal.util.YesNoPopUp;
 
@@ -59,17 +60,10 @@ public class QRcodeScanner extends Activity implements ZXingScannerView.ResultHa
         BankAccount=intent.getStringExtra("BankAccount");
         Password=intent.getStringExtra("Password");
         from=intent.getStringExtra("from");
-        Log.e("Cam ::","resume ");
     }
 
     @Override
     public void handleResult(final Result result) {
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(QRcodeScanner.this);
-        builder.setTitle("Scan Result");
-        builder.setMessage(result.getText());
-        AlertDialog alert1 = builder.create();
-        alert1.show();*/
-
         mScannerView.stopCamera();
         YesNoPopUp yesNoPopUp=new YesNoPopUp("ID: "+result.getText(), QRcodeScanner.this, new ClickListener<Boolean>() {
             @Override
@@ -78,13 +72,11 @@ public class QRcodeScanner extends Activity implements ZXingScannerView.ResultHa
 
                         if(from.equalsIgnoreCase("fromRealTimePayment")){
 
-
-                            Intent intent = new Intent();
+                            Intent intent = new Intent(QRcodeScanner.this,MainActivity.class);
                             intent.putExtra("reffereID",result.getText());
-                           //setResult(RESULT_OK, intent);
-                            startActivityForResult(intent,1);
+                            intent.putExtra("withQRresult","true");
+                            startActivity(intent);
                             finish();
-
 
                         }else {
                             finish();
@@ -98,9 +90,6 @@ public class QRcodeScanner extends Activity implements ZXingScannerView.ResultHa
                             intent.putExtra("Estateagency",ESTATEAGENCY);
                             intent.putExtra("BankAccount",BankAccount);
                             intent.putExtra("Password",Password);
-                            //Log.e("result ",""+result.getText());
-                            //startActivityForResult(intent,1);
-                            //onActivityResult(1,1,intent);
                             startActivity(intent);
                         }
 

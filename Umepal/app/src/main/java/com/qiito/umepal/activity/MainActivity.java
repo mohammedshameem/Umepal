@@ -127,6 +127,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private String session;
     private static final String TAG = Notifica.class.getName();
     private static final int REQUEST_CODE = 1;
+    private String withQRresult;
+    private String QRresult;
     //private String appLinkURL = "https://fb.me/999378886770057";
     //private String previewImageURL = "";
     //private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
@@ -135,7 +137,13 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent intent=getIntent();
+        QRresult = intent.getStringExtra("reffereID");
+        if(intent.hasExtra("withQRresult")){
+            withQRresult = intent.getStringExtra("withQRresult");
+        }else {
+            withQRresult="";
+        }
         if (isConnected(MainActivity.this)) {
 
         } else {
@@ -265,8 +273,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         searchicon.setVisibility(View.VISIBLE);
         action_bar_title.setText("Discover");
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, new SlidingFragment()).commit();
+        if(withQRresult.equalsIgnoreCase("true")){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, new RealTimePaymentFragment(QRresult)).commit();
+
+        }else {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.container, new SlidingFragment()).commit();
+        }
 
 
     }
@@ -970,7 +984,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 clearAll.setVisibility(View.VISIBLE);
 
             }
-
         }
     }
 

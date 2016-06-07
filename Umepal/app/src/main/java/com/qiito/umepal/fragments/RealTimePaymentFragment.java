@@ -1,5 +1,6 @@
 package com.qiito.umepal.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -31,6 +32,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 /**
  * Created by abin on 26/5/16.
  */
+@SuppressLint("ValidFragment")
 public class RealTimePaymentFragment extends Fragment implements ZXingScannerView.ResultHandler{
 
     private View view;
@@ -41,29 +43,32 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     private VerifyCallBack verifyCallBack;
     private Intent intent;
     private String memberid;
+    private String memberId;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.real_time_payment_page, container, false);
         initViews();
-        intent =getActivity().getIntent();
-        memberid=intent.getStringExtra("reffereID");
-        Log.e("memberid","memberid"+memberid);
-        memberID.setText(memberid);
+        memberID.setText(memberId);
         scanQRcode.setOnClickListener(scanqrcodeListener);
         verifyText.setOnClickListener(verifyListener);
         return view;
 
     }
 
+     public RealTimePaymentFragment(){}
+
+      public RealTimePaymentFragment(String a){
+          this.memberId = a;
+      }
+
     View.OnClickListener scanqrcodeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-           //QrScanner(v);
             Intent cam = new Intent(getActivity(), QRcodeScanner.class);
             cam.putExtra("from","fromRealTimePayment");
-            startActivity(cam);
+            startActivityForResult(cam,1);
 
         }
     };
@@ -80,8 +85,6 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("memberid!!",""+memberid);
-        memberid=intent.getStringExtra("reffereID");
     }
 
     private void initViews() {
@@ -90,12 +93,6 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         mScannerView = new ZXingScannerView(getActivity());
         verifyText = (TextView) view.findViewById(R.id.verify_text);
         verifyCallBack = new VerifyCallBack();
-    }
-    public void QrScanner(View view){
-
-        getActivity().setContentView(mScannerView);
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
     }
 
     @Override
@@ -107,31 +104,21 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
     @Override
     public void handleResult(final Result result) {
 
-        Log.e("handler", result.getText()); // Prints scan results
-        Log.e("handler", result.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
+        mScannerView.stopCamera();
+        YesNoPopUp yesNoPopUp=new YesNoPopUp("ID: "+result.getText(), getActivity(), new ClickListener<Boolean>() {
+            @Override
+            public void onClick(Boolean aBoolean) {
+                if(aBoolean){
 
-        // show the scanner result into dialog box.
-       /* AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Scan Result");
-        builder.setMessage(result.getText());
-        AlertDialog alert1 = builder.create();
-        alert1.show();*/
+                    memberID.setText(result.getText());
 
-            mScannerView.stopCamera();
-            YesNoPopUp yesNoPopUp=new YesNoPopUp("ID: "+result.getText(), getActivity(), new ClickListener<Boolean>() {
-                @Override
-                public void onClick(Boolean aBoolean) {
-                    if(aBoolean){
-
-                        memberID.setText(result.getText());
-
-                        mScannerView.stopCamera();
-                    }else {
-                        onResume();
-                    }
+                    mScannerView.stopCamera();
+                }else {
+                    onResume();
                 }
-            });
-            yesNoPopUp.show();
+            }
+        });
+        yesNoPopUp.show();
 
 
     }
@@ -164,4 +151,6 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
 
         }
     }
+
+
 }
