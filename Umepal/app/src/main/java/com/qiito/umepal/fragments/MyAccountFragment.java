@@ -64,6 +64,7 @@ import com.qiito.umepal.holder.UserObjectHolder;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.MyaccountProductManager;
 import com.qiito.umepal.managers.PaypalManager;
+import com.qiito.umepal.managers.UserManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.WebResponseConstants;
 import com.squareup.picasso.Picasso;
@@ -81,6 +82,8 @@ public class MyAccountFragment extends Fragment {
 
 
     private UserProfileCallback userProfileCallBack;
+    private UserBaseHolder userBaseHolder;
+    private ListAllMembershipCallBack listAllMembershipCallBack;
     //private MyaccountProductManager myaccountProductManager;
     private MyLikesAdapter myLikesAdapter;
     private MyPurchasesAdapter myPurchasesAdapter;
@@ -232,6 +235,12 @@ public class MyAccountFragment extends Fragment {
         }else{
             membership.setVisibility(View.VISIBLE);
         }*/
+        if(DbManager.getInstance().getCurrentUserDetails().getMembershipType().equalsIgnoreCase("ADVANCE")){
+            joinmembershipnow.setVisibility(View.GONE);
+        }else {
+            joinmembershipnow.setVisibility(View.VISIBLE);
+
+        }
         //joinmembershipnow.setVisibility(View.VISIBLE);
         relative_web.setVisibility(View.GONE);
 
@@ -241,11 +250,12 @@ public class MyAccountFragment extends Fragment {
             public void onClick(View v) {
                 joinmembershipnow.setVisibility(View.GONE);
                 //myAccountLayout.setVisibility(View.GONE);
-                toolbar.setVisibility(View.GONE);
-                relative_web.setVisibility(View.VISIBLE);
-                webview_paypal.setVisibility(View.VISIBLE);
-                PaypalManager.getInstance().joinviaPaypal(getActivity(), session, paymentTransactionDetailCallBack);
+               // toolbar.setVisibility(View.GONE);
+               // relative_web.setVisibility(View.VISIBLE);
+              //  webview_paypal.setVisibility(View.VISIBLE);
+              //  PaypalManager.getInstance().joinviaPaypal(getActivity(), session, paymentTransactionDetailCallBack);
                 //webview_paypal.setVisibility(View.VISIBLE);
+                UserManager.getInstance().ListAllMembership(getActivity(),listAllMembershipCallBack);
             }
         });
         qrcode_button.setOnClickListener(new View.OnClickListener() {
@@ -562,6 +572,8 @@ public class MyAccountFragment extends Fragment {
         userObjectHolder = new UserObjectHolder();
         //userBaseHolder = new UserBaseHolder();
         userProfileCallBack = new UserProfileCallback();
+        userBaseHolder =new UserBaseHolder();
+        listAllMembershipCallBack = new ListAllMembershipCallBack();
         //myProfileBaseclass = new MyProfileBaseclass();
         //myaccountProductManager = new MyaccountProductManager();
         paymentTransactionDetailCallBack = new PaymentTransactionDetailCallBack();
@@ -817,5 +829,25 @@ public class MyAccountFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
+    }
+
+    private class ListAllMembershipCallBack implements AsyncTaskCallBack{
+        @Override
+        public void onFinish(int responseCode, Object result) {
+            userBaseHolder =(UserBaseHolder)result;
+            if(userBaseHolder.getStatus().equalsIgnoreCase("success")){
+                Log.e("::::::","success>>>>>");
+            }else {
+                Log.e("::::::","error>>>>>");
+
+            }
+
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+            Log.e("::::::","finish>>>>>");
+
+        }
     }
 }

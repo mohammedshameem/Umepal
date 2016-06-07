@@ -322,4 +322,7 @@ public interface ApiConstants {
         String SESSION_ID = "session_id";
         String CREDIT_AMOUNT = "credit_amount";
     }
+    interface ListAllMembershipParams {
+        String LIST_ALL_MEMBERSHIP = BASE_URL +"api/list-all-memberships";
+    }
 }

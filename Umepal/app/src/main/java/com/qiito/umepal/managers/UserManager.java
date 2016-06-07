@@ -378,5 +378,40 @@ public class UserManager implements ApiConstants {
 		});
 	}
 
+	public void ListAllMembership(final Activity activity,final AsyncTaskCallBack listallmembershipCallBack) {
+		// TODO Auto-generated method stub
 
+
+		UMEPALAppRestClient.get(ListAllMembershipParams.LIST_ALL_MEMBERSHIP,null,null,new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int i, Header[] headers, byte[] bytes) {
+				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
+				Log.e("RESPONSE", "RESPONSE" + responseBody);
+				userBaseHolder = new UserBaseHolder();
+				Gson gson = new Gson();
+				userBaseHolder = gson.fromJson(responseBody,UserBaseHolder.class);
+				if(UtilValidate.isNotNull(listallmembershipCallBack)){
+					listallmembershipCallBack.onFinish(i,userBaseHolder);
+				}
+			}
+
+			@Override
+			public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+				if (!(NetChecker.isConnected(activity))) {
+
+					if (!(NetChecker.isConnectedWifi(activity) && NetChecker.isConnectedMobile(activity))) {
+
+						Toast.makeText(activity, "Please check your internet connection...", Toast.LENGTH_LONG).show();
+					}
+
+				}
+
+				if (UtilValidate.isNotNull(listallmembershipCallBack)) {
+
+					listallmembershipCallBack.onFinish(1, "No Internet");
+				}
+			}
+		});
+	}
 }
