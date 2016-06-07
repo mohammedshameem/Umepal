@@ -178,7 +178,7 @@ public class DbManager {
 	}
 	public void insertintoMembership(MembershipBaseHolder membershipBaseHolder) {
 
-		MembershipDao.getInstance().insertMembershipDetails(membershipBaseHolder);
+		//MembershipDao.getInstance().insertMembershipDetails(membershipBaseHolder);
 	}
 
 

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -34,6 +35,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -53,15 +55,18 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.activity.EditProfileActivity;
 import com.qiito.umepal.activity.ProductDetails;
 import com.qiito.umepal.activity.QRcodeActivity;
+import com.qiito.umepal.adapter.MembershipTypeAdapter;
 import com.qiito.umepal.adapters.MyLikesAdapter;
 import com.qiito.umepal.adapters.MyPurchasesAdapter;
 import com.qiito.umepal.dao.CurrentlyLoggedUserDAO;
+import com.qiito.umepal.holder.MembershipBaseHolder;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.holder.ProductObject;
 import com.qiito.umepal.holder.PurchasedItems;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserObjectHolder;
 import com.qiito.umepal.managers.DbManager;
+import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.managers.MyaccountProductManager;
 import com.qiito.umepal.managers.PaypalManager;
 import com.qiito.umepal.managers.UserManager;
@@ -82,52 +87,34 @@ public class MyAccountFragment extends Fragment {
 
 
     private UserProfileCallback userProfileCallBack;
-    private UserBaseHolder userBaseHolder;
+    private MembershipBaseHolder membershipBaseHolder;
     private ListAllMembershipCallBack listAllMembershipCallBack;
-    //private MyaccountProductManager myaccountProductManager;
     private MyLikesAdapter myLikesAdapter;
     private MyPurchasesAdapter myPurchasesAdapter;
     private UserObjectHolder userObjectHolder;
-    //private UserBaseHolder userBaseHolder;
-    //private MyProfileBaseclass myProfileBaseclass;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
     private FragmentTransaction myAccountFragmentTransaction;
     private TextView my_likes_btn;
     private TextView my_purchaces_btn;
-    //private LinearLayout shippingDetails;
-    //private LinearLayout search_layout;
     private ProgressDialog progress;
     private TextView profile_name;
     private TextView city;
     private TextView joined_date;
-    //private TextView num_of_followers;
-    //private TextView num_of_following;
-    //private TextView quantity;
-    //private TextView No_items;
     private ProgressBar progressBar;
     private View content;
-    //private ImageView item_image;
     private ImageView profile_pic;
-    //private LinearLayout membership_date_layout;
-    //private LinearLayout member_saved_layout;
     private ImageView edit_profile;
     private ListView likes_list;
     private ListView purchases_list;
     private String joinedDate;
-    //private TextView createdDate;
-    //private TextView expiry_date;
-    //private Activity activity;
     private List<ProductObject> likesitem = new ArrayList<>();
     private List<PurchasedItems> purchasesitemlist = new ArrayList<>();
     private String session;
     private PaymentTransactionDetailCallBack paymentTransactionDetailCallBack;
-    //private TextView saved_dollar;
-    //private double you_saved = 0.00;
     private int offset;
     private Dialog dialogTransparent;
     private View progressview;
-    //private TextView menu_heading;
     private AlertDialog.Builder builder;
     private AlertDialog alert;
     private LinearLayout membership;
@@ -137,12 +124,13 @@ public class MyAccountFragment extends Fragment {
     private LinearLayout myAccountLayout;
     private TextView joinmembershiptxt;
     private Button join_button;
-    //private Button tell_your_friends_btn;
     private Toolbar toolbar;
     private LinearLayout listLayout;
     private boolean likeListClick = true;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy");
     private ImageView qrcode_button;
+    private MembershipTypeAdapter membershipTypeAdapter;
+    private LayoutInflater vi;
 
     public MyAccountFragment() {
 
@@ -151,7 +139,6 @@ public class MyAccountFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
     }
 
     @Override
@@ -162,9 +149,6 @@ public class MyAccountFragment extends Fragment {
         city.setText(userObjectHolder.getCity());
         joinedDate = userObjectHolder.getCreatedDate().substring(0, userObjectHolder.getCreatedDate().length() - 8);
         joined_date.setText(joinedDate);
-        /*Date date = sdf.parse(joinedDate);
-
-        Log.e("DATE >> "," >> "+date);*/
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -226,29 +210,20 @@ public class MyAccountFragment extends Fragment {
 
         MyaccountProductManager.getInstance().getProducts(getActivity(), userProfileCallBack, session, offset);
 
-       /* if(UtilValidate.isNotNull(DbManager.getInstance().getIsdisplayed())) {
-            if(DbManager.getInstance().getIsdisplayed().equals("1")){
-                membership.setVisibility(View.GONE);
-            }else{
-                membership.setVisibility(View.VISIBLE);
-            }
-        }else{
-            membership.setVisibility(View.VISIBLE);
-        }*/
+
         if(DbManager.getInstance().getCurrentUserDetails().getMembershipType().equalsIgnoreCase("ADVANCE")){
             joinmembershipnow.setVisibility(View.GONE);
         }else {
             joinmembershipnow.setVisibility(View.VISIBLE);
 
         }
-        //joinmembershipnow.setVisibility(View.VISIBLE);
         relative_web.setVisibility(View.GONE);
 
         /*join membership*/
         join_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinmembershipnow.setVisibility(View.GONE);
+               // joinmembershipnow.setVisibility(View.GONE);
                 //myAccountLayout.setVisibility(View.GONE);
                // toolbar.setVisibility(View.GONE);
                // relative_web.setVisibility(View.VISIBLE);
@@ -572,7 +547,7 @@ public class MyAccountFragment extends Fragment {
         userObjectHolder = new UserObjectHolder();
         //userBaseHolder = new UserBaseHolder();
         userProfileCallBack = new UserProfileCallback();
-        userBaseHolder =new UserBaseHolder();
+        membershipBaseHolder =new MembershipBaseHolder();
         listAllMembershipCallBack = new ListAllMembershipCallBack();
         //myProfileBaseclass = new MyProfileBaseclass();
         //myaccountProductManager = new MyaccountProductManager();
@@ -834,9 +809,61 @@ public class MyAccountFragment extends Fragment {
     private class ListAllMembershipCallBack implements AsyncTaskCallBack{
         @Override
         public void onFinish(int responseCode, Object result) {
-            userBaseHolder =(UserBaseHolder)result;
-            if(userBaseHolder.getStatus().equalsIgnoreCase("success")){
+            membershipBaseHolder =(MembershipBaseHolder) result;
+            if(membershipBaseHolder.getStatus().equalsIgnoreCase("success")){
                 Log.e("::::::","success>>>>>");
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.membership_upgrade_dialog, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                //popupWindow.setAnimationStyle(R.style.dialog_animation);
+                popupWindow.update();
+                popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+                // popupWindow.setAnimationStyle(R.style.dialog_animation);
+                final Button close = (Button) popupView.findViewById(R.id.cancel_button);
+                final LinearLayout linearLayout=(LinearLayout) popupView.findViewById(R.id.membership_detail_layout);
+
+                linearLayout.removeAllViews();
+
+                vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final LinearLayout layout = new LinearLayout(getActivity());
+                layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+
+                if (membershipBaseHolder != null) {
+                    for (int i = 0; i < membershipBaseHolder.getData().size(); i++) {
+                        final int pos = i;
+                        View v = vi.inflate(R.layout.membership_upgrade_button, null);
+                        final TextView membership = (TextView) v.findViewById(R.id.membershipTypeTxt);
+                        final TextView price = (TextView)v.findViewById(R.id.textView);
+
+                        if (membershipBaseHolder.getData().get(i)!=null) {
+                            if (membershipBaseHolder.getData().get(i).getMembershipname()!= null) {
+                                membership.setText(membershipBaseHolder.getData().get(i).getMembershipname());
+                            }
+                            if (membershipBaseHolder.getData().get(i).getPrice()!= null) {
+                                price.setText(membershipBaseHolder.getData().get(i).getPrice());
+                            }
+
+                            linearLayout.addView(v, i,
+                                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        }
+                    }
+                }
+
+               // membershipTypeAdapter = new MembershipTypeAdapter(getActivity(),membershipBaseHolder);
+               // listView.setAdapter(membershipTypeAdapter);
+
+                close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        popupWindow.dismiss();
+                    }
+                });
+
+
             }else {
                 Log.e("::::::","error>>>>>");
 
