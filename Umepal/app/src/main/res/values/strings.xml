@@ -645,6 +645,9 @@ and the shipping time and associated cost may increase.</p>
     <string name="member">Member</string>
     <string name="popular">POPULAR</string>
     <string name="collect_store">COLLECT AT STORE</string>
+    <string name="upgrade_your_membership">Upgrade Your Membership!</string>
+    <string name="cancel">Cancel</string>
+    <string name="upgrade_button">Upgrade</string>
 
 
 </resources>
