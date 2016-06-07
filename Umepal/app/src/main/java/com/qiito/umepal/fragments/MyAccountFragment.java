@@ -830,21 +830,29 @@ public class MyAccountFragment extends Fragment {
 
                 if (membershipBaseHolder != null) {
                     for (int i = 0; i < membershipBaseHolder.getData().size(); i++) {
-                        final int pos = i;
-                        View v = vi.inflate(R.layout.membership_upgrade_button, null);
-                        final TextView membership = (TextView) v.findViewById(R.id.membershipTypeTxt);
-                        final TextView price = (TextView)v.findViewById(R.id.textView);
+                        Log.e("1111111",""+DbManager.getInstance().getCurrentUserDetails().getMembershipType());
+                        Log.e("2222222",""+membershipBaseHolder.getData().get(i).getMembershipname());
 
-                        if (membershipBaseHolder.getData().get(i)!=null) {
-                            if (membershipBaseHolder.getData().get(i).getMembershipname()!= null) {
-                                membership.setText(membershipBaseHolder.getData().get(i).getMembershipname());
-                            }
-                            if (membershipBaseHolder.getData().get(i).getPrice()!= null) {
-                                price.setText(membershipBaseHolder.getData().get(i).getPrice());
-                            }
+                        if (DbManager.getInstance().getCurrentUserDetails().getMembershipType() == membershipBaseHolder.getData().get(i).getMembershipname()) {
+                            continue;
+                        } else {
 
-                            linearLayout.addView(v, i,
-                                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                            final int pos = i;
+                            View v = vi.inflate(R.layout.membership_upgrade_button, null);
+                            final TextView membership = (TextView) v.findViewById(R.id.membershipTypeTxt);
+                            final TextView price = (TextView) v.findViewById(R.id.textView);
+
+                            if (membershipBaseHolder.getData().get(i) != null) {
+                                if (membershipBaseHolder.getData().get(i).getMembershipname() != null) {
+                                    membership.setText(membershipBaseHolder.getData().get(i).getMembershipname());
+                                }
+                                if (membershipBaseHolder.getData().get(i).getPrice() != null) {
+                                    price.setText(membershipBaseHolder.getData().get(i).getPrice());
+                                }
+                            }
+                                linearLayout.addView(v, i,
+                                        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
                         }
                     }
                 }
