@@ -16,6 +16,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -74,6 +75,8 @@ public class WalletFragment extends Fragment {
     private TopUpCallBack topUpCallBack;
     private ListAllMembershipCallBack listAllMembershipCallBack;
     private MembershipBaseHolder membershipBaseHolder;
+    private LayoutInflater vi;
+    private String reffereeId;
 
 
     @Override
@@ -84,6 +87,11 @@ public class WalletFragment extends Fragment {
         WalletManager.getInstance().getWalletData(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), walletCallBack);
         expandableListView.setVisibility(View.VISIBLE);
         listView.setVisibility(View.GONE);
+        if (DbManager.getInstance().getCurrentUserDetails().getMembershipId() == 1) {
+            upgradeMembershipLayout.setVisibility(View.GONE);
+        } else {
+            upgradeMembershipLayout.setVisibility(View.VISIBLE);
+        }
         rebatesLayout.setOnClickListener(rebateClickListener);
         commissionsLayout.setOnClickListener(commissionClickListener);
         topUpLayout.setOnClickListener(topUpListner);
@@ -148,7 +156,7 @@ public class WalletFragment extends Fragment {
 
             LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View popupView = inflater.inflate(R.layout.top_up_popup, null);
-            final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
             popupWindow.update();
             popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
             final EditText amount = (EditText) popupView.findViewById(R.id.amount_edit_text);
@@ -214,6 +222,8 @@ public class WalletFragment extends Fragment {
                                 if (walletBaseHolder.getData().getLedger_amount() != "") {
 
                                     totalLeBadgerBalance.setText(getString(R.string.dollar) + " " + walletBaseHolder.getData().getLedger_amount());
+                                }else {
+                                    totalLeBadgerBalance.setText("$ 00.00");
                                 }
                             }
 
@@ -301,6 +311,21 @@ public class WalletFragment extends Fragment {
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                         // TODO Auto-generated method stub
                                         if (url.contains(ApiConstants.BASE_URL + "api/paypal/creditnsuccess")) {
+                                            view.loadUrl(url);
+                                            Log.e("inside success", ">>>>>>>");
+                                            paypal_webviews_layout.setVisibility(View.GONE);
+                                            walletMainLayout.setVisibility(View.VISIBLE);
+                                            Toast.makeText(getActivity(), "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
+                                            rotateLoading.start();
+                                            WalletManager.getInstance().getWalletData(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), walletCallBack);
+
+                                            //finish();
+                                        } else {
+                                            view.loadUrl(url);
+                                        }
+
+
+                                        if (url.contains(ApiConstants.BASE_URL + "api/paypal/nmembersuccess")) {
                                             view.loadUrl(url);
                                             Log.e("inside success", ">>>>>>>");
                                             paypal_webviews_layout.setVisibility(View.GONE);
@@ -403,17 +428,61 @@ public class WalletFragment extends Fragment {
 
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View popupView = inflater.inflate(R.layout.membership_upgrade_dialog, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
                 popupWindow.update();
                 popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
                 final Button cancel = (Button) popupView.findViewById(R.id.cancel_button);
                 final LinearLayout membershipDetailLayout = (LinearLayout) popupView.findViewById(R.id.membership_detail_layout);
 
+                membershipDetailLayout.removeAllViews();
+
+                vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final LinearLayout layout = new LinearLayout(getActivity());
+                layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+
                 if (membershipBaseHolder.getData() != null) {
                     if (!membershipBaseHolder.getData().isEmpty()) {
 
+                        for (int i = 0; i < membershipBaseHolder.getData().size(); i++) {
+
+                            Log.e("DB >> " + DbManager.getInstance().getCurrentUserDetails().getMembershipType(), "  $$ object >> " + membershipBaseHolder.getData().get(i).getMembershipname());
+                            if (DbManager.getInstance().getCurrentUserDetails().getMembershipType().equalsIgnoreCase(membershipBaseHolder.getData().get(i).getMembershipname())) {
+                                continue;
+                            } else {
+                                final int pos = i;
+                                View v = vi.inflate(R.layout.membership_upgrade_button, null);
+                                final TextView membershipName = (TextView) v.findViewById(R.id.membershipTypeTxt);
+                                final TextView membershipPrice = (TextView) v.findViewById(R.id.textView);
+                                final Button upgradeButton = (Button) v.findViewById(R.id.button);
+
+                                membershipName.setText(membershipBaseHolder.getData().get(i).getMembershipname());
+                                membershipPrice.setText(membershipBaseHolder.getData().get(i).getPrice());
+
+                                upgradeButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        popupWindow.dismiss();
+                                        reffereeId = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
+                                        LoginManager.getInstance().membershipPaypal(getActivity(), String.valueOf(membershipBaseHolder.getData().get(pos).getId()), reffereeId, topUpCallBack);
+                                    }
+                                });
+
+
+                                membershipDetailLayout.addView(v, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                            }
+
+                        }
+
                     }
                 }
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });
 
 
             } else {
@@ -429,4 +498,7 @@ public class WalletFragment extends Fragment {
 
         }
     }
+
 }
+
+

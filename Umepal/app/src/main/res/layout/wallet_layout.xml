@@ -323,7 +323,9 @@
                     <ExpandableListView
                         android:id="@+id/expandable_listview"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:divider="@color/dark_grey_for_bg"
+                        android:dividerHeight="0dp"/>
 
                     <ListView
                         android:id="@+id/listview"

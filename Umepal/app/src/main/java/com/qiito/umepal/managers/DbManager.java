@@ -176,11 +176,10 @@ public class DbManager {
 	public void deleteMembershipdata() {
 		MembershipDao.getInstance().deleteMembershipdata();
 	}
-	public void insertintoMembership(MembershipBaseHolder membershipBaseHolder) {
+	/*public void insertintoMembership(MembershipBaseHolder membershipBaseHolder) {
 
 		//MembershipDao.getInstance().insertMembershipDetails(membershipBaseHolder);
-	}
-
+	}*/
 
 	/******
 	 * ShippingData Table Operation

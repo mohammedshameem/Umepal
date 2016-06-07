@@ -59,7 +59,7 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/curved_red"
+                android:background="@drawable/white_button_with_red_border"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/Red"
