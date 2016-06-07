@@ -18,6 +18,7 @@ import com.qiito.umepal.Constants.ApiConstants;
 import com.qiito.umepal.Utilvalidate.NetChecker;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ListRefereeBaseHolder;
+import com.qiito.umepal.holder.MembershipBaseHolder;
 import com.qiito.umepal.holder.NotificationBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.UserLogoutHolder;
@@ -39,6 +40,7 @@ public class UserManager implements ApiConstants {
 	private ListRefereeBaseHolder listRefereeBaseHolder;
     private UserResponseHolder userResponseHolder;
     private NotificationBaseHolder notificationBaseHolder;
+	private MembershipBaseHolder membershipBaseHolder;
 
 	/**
 	 * Default Constructor
@@ -387,11 +389,11 @@ public class UserManager implements ApiConstants {
 			public void onSuccess(int i, Header[] headers, byte[] bytes) {
 				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
 				Log.e("RESPONSE", "RESPONSE" + responseBody);
-				userBaseHolder = new UserBaseHolder();
+				membershipBaseHolder = new MembershipBaseHolder();
 				Gson gson = new Gson();
-				userBaseHolder = gson.fromJson(responseBody,UserBaseHolder.class);
+				membershipBaseHolder = gson.fromJson(responseBody,MembershipBaseHolder.class);
 				if(UtilValidate.isNotNull(listallmembershipCallBack)){
-					listallmembershipCallBack.onFinish(i,userBaseHolder);
+					listallmembershipCallBack.onFinish(i,membershipBaseHolder);
 				}
 			}
 

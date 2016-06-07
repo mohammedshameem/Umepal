@@ -73,34 +73,23 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private boolean disableButtonFlag = false;
     private DeleteAllNotificationCallBack deleteAllNotificationCallBack;
     private NotificationListAdapter notificationListAdapter;
-    //private Notifica notifica;
     private LogoutCallBack logoutCallback;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private NavDrawerListAdapter adapter;
-    //private NotificationBaseHolder notificationBaseHolder;
     private NotificationAsynchTaskCallBack notificationasynchTaskCallBack;
     private NotificationListAdapter notificationsListAdapter;
     private List<ProductNotificationBaseHolder> productNotificationList = new ArrayList<>();
     private List<Category> categorynames = new ArrayList<>();
     private String fragmentTrueFragment = "Browse";
-    //private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
     private List<ProductNotificationBaseHolder> notificationLists = new ArrayList<ProductNotificationBaseHolder>();
     private FragmentTransaction searchFragmentTransaction;
     private FragmentTransaction myAccountFragmentTransaction;
-    //private FragmentTransaction browseFragmentTransaction;
-    //private FragmentTransaction shoppingCartFragmentTransaction;
     private FragmentTransaction notificationFragmentTransaction;
     private FragmentTransaction orderHistoryFragmentTransaction;
-    //private FragmentTransaction customerSupportFragmentTransaction;
-    //private FragmentTransaction inviteFriendsFragmentTransaction;
-    //private FragmentTransaction contactusFragmentTransaction;
     private FragmentTransaction generalTermsFragmentTransaction;
-    //private FragmentTransaction searchTransation;
     private Dialog dialogTransparent;
     private View progressview;
     private ProgressDialog pDialog;
-    //private ProgressDialog deleteDialog;
-    //private LinearLayout search_layout;
     private LinearLayout search;
     private LinearLayout yesLinear;
     private LinearLayout cancelLinear;
@@ -129,9 +118,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     private static final int REQUEST_CODE = 1;
     private String withQRresult;
     private String QRresult;
-    //private String appLinkURL = "https://fb.me/999378886770057";
-    //private String previewImageURL = "";
-    //private List<ProductNotificationBaseHolder> notificationList = new ArrayList<ProductNotificationBaseHolder>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +155,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             builder.setNegativeButton("Cancel",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            // dialogTransparent.show();
                             dialog.cancel();
                         }
                     });

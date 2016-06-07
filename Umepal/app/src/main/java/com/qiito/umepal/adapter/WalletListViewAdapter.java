@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qiito.umepal.R;
+import com.qiito.umepal.holder.RebateDetailsHolder;
+import com.qiito.umepal.holder.RebateListHolder;
 
 import java.util.List;
 
@@ -20,21 +22,21 @@ import java.util.List;
 public class WalletListViewAdapter extends BaseAdapter {
 
     private Activity activity;
-    private List<String> price;
+    private List<RebateListHolder> commissionList;
     private LayoutInflater inflater;
     private ViewHolder viewholder;
 
-    public WalletListViewAdapter(Activity activity, List<String> price){
+    public WalletListViewAdapter(Activity activity, List<RebateListHolder> commissionList){
 
         this.activity = activity;
-        this.price = price;
+        this.commissionList = commissionList;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     @Override
     public int getCount() {
-        return price.size();
+        return commissionList.size();
     }
 
     @Override
@@ -69,7 +71,24 @@ public class WalletListViewAdapter extends BaseAdapter {
         lp.weight = 1;
         viewholder.amountLayout.setLayoutParams(lp);
 
-        viewholder.statementPrice.setText(price.get(position));
+        if (commissionList.get(position).getTotal() != null) {
+
+            viewholder.statementPrice.setText(commissionList.get(position).getTotal());
+        }
+
+        if (commissionList.get(position).getMonth() != null) {
+            if (!commissionList.get(position).getMonth().equalsIgnoreCase("")) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(commissionList.get(position).getMonth());
+                if (commissionList.get(position).getYear() != null) {
+                    if (!commissionList.get(position).getYear().equalsIgnoreCase("")) {
+                        sb.append(" " + commissionList.get(position).getYear());
+                    }
+                }
+
+                viewholder.month.setText(sb.toString());
+            }
+        }
 
         return view;
     }

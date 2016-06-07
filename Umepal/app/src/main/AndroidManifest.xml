@@ -53,7 +53,8 @@
 
             android:name="com.qiito.umepal.activity.MainActivity"
             android:label="Main Activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name="com.qiito.umepal.activity.Loginactivity"

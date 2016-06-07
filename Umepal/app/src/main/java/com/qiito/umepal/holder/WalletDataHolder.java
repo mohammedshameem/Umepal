@@ -10,7 +10,7 @@ public class WalletDataHolder implements Serializable {
 
     private String total_credit_amount;
     private List<RebateListHolder> rebate;
-    private List<CommissionListHolder> commission;
+    private List<RebateListHolder> commission;
     private String ledger_amount;
 
     public String getTotal_credit_amount() {
@@ -29,11 +29,11 @@ public class WalletDataHolder implements Serializable {
         this.rebate = rebate;
     }
 
-    public List<CommissionListHolder> getCommission() {
+    public List<RebateListHolder> getCommission() {
         return commission;
     }
 
-    public void setCommission(List<CommissionListHolder> commission) {
+    public void setCommission(List<RebateListHolder> commission) {
         this.commission = commission;
     }
 

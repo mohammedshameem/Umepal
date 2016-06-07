@@ -43,7 +43,7 @@ public class MembershipDao implements Membership {
     }
 
 
-    public void insertMembershipDetails(MembershipBaseHolder membershipBaseHolder) {
+    /*public void insertMembershipDetails(MembershipBaseHolder membershipBaseHolder) {
 
         synchronized (DBHelper.lock) {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -69,7 +69,7 @@ public class MembershipDao implements Membership {
             }
         }
 
-    }
+    }*/
     public void deleteMembershipdata() {
 
         synchronized (DBHelper.lock) {

@@ -14,6 +14,7 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -27,12 +28,15 @@ import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.adapter.WalletExpandableListViewAdapter;
 import com.qiito.umepal.adapter.WalletListViewAdapter;
+import com.qiito.umepal.holder.MembershipBaseHolder;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.holder.RebateDetailsHolder;
 import com.qiito.umepal.holder.RebateListHolder;
+import com.qiito.umepal.holder.UserBaseHolder;
 import com.qiito.umepal.holder.WalletBaseHolder;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
+import com.qiito.umepal.managers.UserManager;
 import com.qiito.umepal.managers.WalletManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 import com.qiito.umepal.webservice.WebResponseConstants;
@@ -58,11 +62,8 @@ public class WalletFragment extends Fragment {
     private View commissionsView;
     private ExpandableListView expandableListView;
     private ListView listView;
-    private List<RebateListHolder> listDataHeader;
-    private HashMap<List<RebateListHolder>, List<RebateDetailsHolder>> listDataChild;
     private WalletExpandableListViewAdapter walletExpandableListViewAdapter;
     private WalletListViewAdapter walletListViewAdapter;
-    private List<String> price;
     private WalletCallBack walletCallBack = new WalletCallBack();
     private WalletBaseHolder walletBaseHolder = new WalletBaseHolder();
     private WebView webview_paypal;
@@ -70,6 +71,9 @@ public class WalletFragment extends Fragment {
     private LinearLayout paypal_webviews_layout;
     private ProgressBar progressBar1;
     private RotateLoading rotateLoading;
+    private TopUpCallBack topUpCallBack;
+    private ListAllMembershipCallBack listAllMembershipCallBack;
+    private MembershipBaseHolder membershipBaseHolder;
 
 
     @Override
@@ -83,15 +87,8 @@ public class WalletFragment extends Fragment {
         rebatesLayout.setOnClickListener(rebateClickListener);
         commissionsLayout.setOnClickListener(commissionClickListener);
         topUpLayout.setOnClickListener(topUpListner);
+        upgradeMembershipLayout.setOnClickListener(upgradeListener);
 
-        price = new ArrayList<>();
-
-        price.add("$ 1.00");
-        price.add("$ 5.50");
-        price.add("$ 2.80");
-
-        walletListViewAdapter = new WalletListViewAdapter(getActivity(), price);
-        listView.setAdapter(walletListViewAdapter);
         return content;
     }
 
@@ -112,10 +109,13 @@ public class WalletFragment extends Fragment {
         expandableListView = (ExpandableListView) content.findViewById(R.id.expandable_listview);
         listView = (ListView) content.findViewById(R.id.listview);
         webview_paypal = (WebView) content.findViewById(R.id.webview_paypal);
-        walletMainLayout = (LinearLayout) content.findViewById(R.id.membershipselectionpage);
+        walletMainLayout = (LinearLayout) content.findViewById(R.id.wallet_main_layout);
         paypal_webviews_layout = (LinearLayout) content.findViewById(R.id.paypal_webviews_layout);
         progressBar1 = (ProgressBar) content.findViewById(R.id.progress_bar);
-        rotateLoading = (RotateLoading)content.findViewById(R.id.rotateloading_history);
+        rotateLoading = (RotateLoading) content.findViewById(R.id.rotateloading_history);
+
+        topUpCallBack = new TopUpCallBack();
+        listAllMembershipCallBack = new ListAllMembershipCallBack();
 
     }
 
@@ -145,6 +145,46 @@ public class WalletFragment extends Fragment {
         public void onClick(View view) {
 
             //WalletManager.getInstance().topUp();
+
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View popupView = inflater.inflate(R.layout.top_up_popup, null);
+            final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            popupWindow.update();
+            popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+            final EditText amount = (EditText) popupView.findViewById(R.id.amount_edit_text);
+            final Button done = (Button) popupView.findViewById(R.id.done_button);
+            final Button cancel = (Button) popupView.findViewById(R.id.cancel_button);
+
+            done.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (amount.getText() != null) {
+                        if (!amount.getText().equals("")) {
+                            popupWindow.dismiss();
+                            WalletManager.getInstance().topUp(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), amount.getText().toString(), topUpCallBack);
+
+                        }
+                    }
+                }
+            });
+
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    popupWindow.dismiss();
+                }
+            });
+
+
+        }
+    };
+
+    View.OnClickListener upgradeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            UserManager.getInstance().ListAllMembership(getActivity(), listAllMembershipCallBack);
+
 
         }
     };
@@ -184,14 +224,15 @@ public class WalletFragment extends Fragment {
                                     walletExpandableListViewAdapter = new WalletExpandableListViewAdapter(getActivity(), walletBaseHolder.getData().getRebate());
                                     expandableListView.setAdapter(walletExpandableListViewAdapter);
 
+                                }
+                            }
 
-                                    expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                            if (walletBaseHolder.getData().getCommission() != null) {
 
-                                        @Override
-                                        public void onGroupExpand(int groupPosition) {
+                                if (!walletBaseHolder.getData().getCommission().isEmpty()) {
 
-                                        }
-                                    });
+                                    walletListViewAdapter = new WalletListViewAdapter(getActivity(), walletBaseHolder.getData().getCommission());
+                                    listView.setAdapter(walletListViewAdapter);
 
                                 }
                             }
@@ -211,7 +252,7 @@ public class WalletFragment extends Fragment {
     }
 
 
-    private class MembershipCallBackClass implements AsyncTaskCallBack {
+    private class TopUpCallBack implements AsyncTaskCallBack {
 
         @Override
         public void onFinish(int responseCode, Object result) {
@@ -259,13 +300,14 @@ public class WalletFragment extends Fragment {
                                     @Override
                                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
                                         // TODO Auto-generated method stub
-                                        if (url.contains(ApiConstants.BASE_URL + "api/paypal/nmembersuccess")) {
+                                        if (url.contains(ApiConstants.BASE_URL + "api/paypal/creditnsuccess")) {
                                             view.loadUrl(url);
+                                            Log.e("inside success", ">>>>>>>");
                                             paypal_webviews_layout.setVisibility(View.GONE);
-                                            Toast.makeText(getActivity(), "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
-
-
                                             walletMainLayout.setVisibility(View.VISIBLE);
+                                            Toast.makeText(getActivity(), "Payment Completed Successfully!", Toast.LENGTH_LONG).show();
+                                            rotateLoading.start();
+                                            WalletManager.getInstance().getWalletData(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), walletCallBack);
 
                                             //finish();
                                         } else {
@@ -346,6 +388,44 @@ public class WalletFragment extends Fragment {
 
         @Override
         public void onFinish(int responseCode, String result) {
+
+        }
+    }
+
+
+    private class ListAllMembershipCallBack implements AsyncTaskCallBack {
+        @Override
+        public void onFinish(int responseCode, Object result) {
+            membershipBaseHolder = (MembershipBaseHolder) result;
+            if (membershipBaseHolder.getStatus().equalsIgnoreCase("success")) {
+                Log.e("::::::", "success>>>>>");
+
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View popupView = inflater.inflate(R.layout.membership_upgrade_dialog, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                popupWindow.update();
+                popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+                final Button cancel = (Button) popupView.findViewById(R.id.cancel_button);
+                final LinearLayout membershipDetailLayout = (LinearLayout) popupView.findViewById(R.id.membership_detail_layout);
+
+                if (membershipBaseHolder.getData() != null) {
+                    if (!membershipBaseHolder.getData().isEmpty()) {
+
+                    }
+                }
+
+
+            } else {
+                Log.e("::::::", "error>>>>>");
+
+            }
+
+        }
+
+        @Override
+        public void onFinish(int responseCode, String result) {
+            Log.e("::::::", "finish>>>>>");
 
         }
     }
