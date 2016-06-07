@@ -337,7 +337,7 @@ public class UserManager implements ApiConstants {
 
 
 	public void RequestforpaymentParams(final Activity activity, String reffer_id,String refferee_id,
-										String membership_id,final AsyncTaskCallBack listrefereesCallback) {
+										String membership_id,final AsyncTaskCallBack requestforpaymentCallBack) {
 		// TODO Auto-generated method stub
 		RequestParams params = new RequestParams();
 		params.put(RequestForPaymentParams.REFFER_ID, reffer_id);
@@ -352,9 +352,9 @@ public class UserManager implements ApiConstants {
 				Log.e("RESPONSE", "RESPONSE" + responseBody);
 				userBaseHolder = new UserBaseHolder();
 				Gson gson = new Gson();
-				listRefereeBaseHolder = gson.fromJson(responseBody,ListRefereeBaseHolder.class);
-				if(UtilValidate.isNotNull(listrefereesCallback)){
-					listrefereesCallback.onFinish(i,listRefereeBaseHolder);
+				userBaseHolder = gson.fromJson(responseBody,UserBaseHolder.class);
+				if(UtilValidate.isNotNull(requestforpaymentCallBack)){
+					requestforpaymentCallBack.onFinish(i,userBaseHolder);
 				}
 			}
 
@@ -370,9 +370,9 @@ public class UserManager implements ApiConstants {
 
 				}
 
-				if (UtilValidate.isNotNull(listrefereesCallback)) {
+				if (UtilValidate.isNotNull(requestforpaymentCallBack)) {
 
-					listrefereesCallback.onFinish(1, "No Internet");
+					requestforpaymentCallBack.onFinish(1, "No Internet");
 				}
 			}
 		});
