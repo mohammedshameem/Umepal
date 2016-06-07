@@ -94,6 +94,15 @@ public class NotificationListAdapter extends BaseAdapter {
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
                 }
+                else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
+                    message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
+                    viewHolder.notificationMessage.setText(message);
+                }
+                else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
+                    message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
+                    viewHolder.notificationMessage.setText(message);
+                }
+
 
             } else {
 
