@@ -2,33 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_milky_transparent"
-    android:fitsSystemWindows="true"
+    android:background="@color/semitransparent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:fitsSystemWindows="true"
+        android:gravity="center"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:background="#FFFFFF">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:text="@string/upgrade_your_membership"
-            android:textColor="#000000"
-            android:textSize="21sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/upgrade_your_membership"
+                android:textColor="#000000"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/membership_detail_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
         </LinearLayout>
 
@@ -38,6 +50,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:gravity="bottom"
             android:orientation="vertical">
@@ -53,6 +66,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 </LinearLayout>
