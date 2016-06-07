@@ -50,6 +50,7 @@ public class MembershipSelectionActivity extends Activity {
     private MembershipCallBackClass membershipCallback;
     private RequestForPayment requestForPayment;
     private LoginCallBackClass loginCallBackClass;
+    private UserBaseHolder userBaseHolder;
 
     private Button requestpaymentButton;
     private Button paynowButton;
@@ -117,6 +118,7 @@ public class MembershipSelectionActivity extends Activity {
     private void initManager() {
         membershipCallback = new MembershipCallBackClass();
         requestForPayment = new RequestForPayment();
+        userBaseHolder = new UserBaseHolder();
     }
 
     View.OnClickListener paynow_Listener = new View.OnClickListener() {
@@ -132,13 +134,10 @@ public class MembershipSelectionActivity extends Activity {
     View.OnClickListener requestforpaymentListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.e("UME ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getUmeId());
-            Log.e("Reffer ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferrerId());
-            Log.e("Refferal ID", ":::" + DbManager.getInstance().getCurrentUserDetails().getReferralmember_id());
 
-
-            refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
             reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferrerId();
+
+            refferee_ID = String.valueOf(DbManager.getInstance().getCurrentUserDetails().getId());
 
             UserManager.getInstance().RequestforpaymentParams(MembershipSelectionActivity.this, reffer_ID, refferee_ID, MembershipId, requestForPayment);
 
@@ -244,7 +243,36 @@ public class MembershipSelectionActivity extends Activity {
 
         @Override
         public void onFinish(int responseCode, Object result) {
+           userBaseHolder = (UserBaseHolder)result;
+            if(userBaseHolder.getStatus().equalsIgnoreCase("success")){
 
+                LayoutInflater inflater = (LayoutInflater) MembershipSelectionActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.membership_fee_popup, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                //popupWindow.setAnimationStyle(R.style.dialog_animation);
+                popupWindow.update();
+                popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+                // popupWindow.setAnimationStyle(R.style.dialog_animation);
+                final Button close = (Button) popupView.findViewById(R.id.closeButton);
+                final TextView fee = (TextView) popupView.findViewById(R.id.memFee);
+                final TextView msg = (TextView) popupView.findViewById(R.id.msg);
+                fee.setText("$ "+membershipfeeText.getText().toString());
+                msg.setText(userBaseHolder.getMessage());
+
+
+                close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        popupWindow.dismiss();
+                        refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
+                        Log.e("PASSWORD >> ", "" + password);
+                        LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);
+                    }
+                });
+
+            }
 
         }
 
