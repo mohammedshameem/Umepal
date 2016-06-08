@@ -39,7 +39,8 @@ public class NotificationListAdapter extends BaseAdapter {
     String sessionId;
     Context context;
     private StringBuilder message;
-    Spanned sb=null,sb1=null;
+    Spanned sb = null;
+
     public NotificationListAdapter(Activity activity, List<ProductNotificationBaseHolder> notificationBaseHoldersList, Notifica notifica) {
 
         this.notificationBaseHoldersList = notificationBaseHoldersList;
@@ -103,28 +104,16 @@ public class NotificationListAdapter extends BaseAdapter {
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
-                    // message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.profile_image.setVisibility(View.GONE);
-//                    viewHolder.tvUserName.setVisibility(View.VISIBLE);
 
-                    sb= (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getUser_firstname()),"  ",getColorString( notificationBaseHoldersList.get(position).getUser_lastname())," "," requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
-                    //sb1= (Spanned) TextUtils.concat(getMessageColorString(" requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice()));
-                    // Span to set text color to some RGB value
+                    sb = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getUser_firstname()), "  ", getColorString(notificationBaseHoldersList.get(position).getUser_lastname()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
 
-
-
-
-                    //viewHolder.tvUserName.setText(notificationBaseHoldersList.get(position).getUser_firstname() + " " + notificationBaseHoldersList.get(position).getUser_lastname());
-                   /* message.append(sb);
-                    message.append(sb1);*/
                     viewHolder.notificationMessage.setText(sb);
                     viewHolder.notificationMessage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             switch (v.getId()) {
                                 case R.id.notification_message:
-                                    // Intent newIntent=new Intent(activity,PaymentActivity.class);
-                                    //context.startActivity(newIntent);
 
                                     break;
                             }
@@ -132,25 +121,10 @@ public class NotificationListAdapter extends BaseAdapter {
                     });
 
 
-/*// Span to make text bold
-                    final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD);
-
-// Set the text color for first 4 characters
-                    sb.setSpan(fcs, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-// make them also bold
-                    sb.setSpan(bss, 0, 4, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-                    yourTextView.setText(sb);*/
-
-                }
-
-
-                else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
+                } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
-                   /* viewHolder.tvUserName.setVisibility(View.VISIBLE);
-                    viewHolder.tvUserName.setText(notificationBaseHoldersList.get(position).getUser_firstname() + " " + notificationBaseHoldersList.get(position).getUser_lastname());*/
+
                     message.append("done a membership fee payment");
                 }
 
@@ -196,10 +170,6 @@ public class NotificationListAdapter extends BaseAdapter {
     private Spanned getColorString(String s) {
         return Html.fromHtml("<font color='#E6252A'>" + s + "</font>");
     }
-    private Spanned getMessageColorString(String s) {
-        return Html.fromHtml("<font color='#000000'>" + s + "</font>");
-    }
-
 
 
     private class ViewHolder {
@@ -210,7 +180,7 @@ public class NotificationListAdapter extends BaseAdapter {
         private TextView item_name;
         private TextView type;
         private TextView notificationMessage;
-       // private TextView tvUserName;
+
         private TextView item_quantity_number;
         private TextView item_individual_price_number;
         private TextView item_total_price;
