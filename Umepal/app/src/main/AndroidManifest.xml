@@ -16,143 +16,135 @@
     <uses-permission android:name="com.qiito.umepal.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <permission
         android:name="com.qiito.umepal.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-
     <application
-        android:name="com.qiito.umepal.Application.TodaysParentApp"
+        android:name=".Application.TodaysParentApp"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider993399600701319"
             android:exported="true" />
 
         <activity
-            android:name="com.qiito.umepal.activity.Splashscreen"
+            android:name=".activity.Splashscreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.qiito.umepal.activity.NotificationActivity"
+            android:name=".activity.NotificationActivity"
             android:label="Navigation"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-
-            android:name="com.qiito.umepal.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="Main Activity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.qiito.umepal.activity.Loginactivity"
+            android:name=".activity.Loginactivity"
             android:label="@string/title_activity_loginactivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.Forgotpassword"
+            android:name=".activity.Forgotpassword"
             android:label="@string/title_activity_forgotpassword"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.Signupactivity"
+            android:name=".activity.Signupactivity"
             android:label="@string/title_activity_signupactivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.MembershipSelectionActivity"
+            android:name=".activity.MembershipSelectionActivity"
             android:label="Membership Selection"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.Loginwithfacebook"
+            android:name=".activity.Loginwithfacebook"
             android:label="@string/title_activity_loginwithfacebook"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.ProductDetails"
+            android:name=".activity.ProductDetails"
             android:label="@string/productdetails"
-            android:screenOrientation="portrait"/>
-
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.Checkout"
+            android:name=".activity.Checkout"
             android:label="Checkout"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.EditProfileActivity"
+            android:name=".activity.EditProfileActivity"
             android:label="Edit"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name="com.qiito.umepal.activity.VisitStoreActivity"
+            android:name=".activity.VisitStoreActivity"
             android:label="Visit Store"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.StoreRatingActivity"
+            android:name=".activity.StoreRatingActivity"
             android:label="Store Rating"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.ReturnPolicy"
+            android:name=".activity.ReturnPolicy"
             android:label="Return Policy"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.qiito.umepal.activity.ShoppingCart"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ShoppingCart"
             android:label="Shopping Cart"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.qiito.umepal.activity.QRcodeScanner"
-            android:label="QR code"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.qiito.umepal.activity.QRcodeActivity"
-            android:label="QR code"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.qiito.umepal.activity.NavigationDrawerActivity"
+            android:name=".activity.QRcodeScanner"
+            android:label="QR code"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.QRcodeActivity"
+            android:label="QR code"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NavigationDrawerActivity"
             android:label="Return Policy"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.qiito.umepal.activity.SearchProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SearchProductActivity"
             android:label="Search Product"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.qiito.umepal.activity.SampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SampleActivity"
             android:label="Sample"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.qiito.umepal.activity.PopUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PopUpActivity"
             android:label="Sample"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".activity.TransferPaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TransferPaymentActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <!-- Push Notification Using Parse -->
-     <!--   <service android:name="com.parse.PushService" />-->
+        <!-- <service android:name="com.parse.PushService" /> -->
 
-     <!--   <receiver
+
+        <!--
+        <receiver
             android:name="com.parse.ParseBroadcastReceiver"
             android:exported="false">
             <intent-filter>
@@ -160,8 +152,9 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
--->
-     <!--   <receiver
+        -->
+        <!--
+        <receiver
             android:name="com.parse.ParsePushBroadcastReceiver"
             android:exported="false" >
             <intent-filter>
@@ -169,9 +162,12 @@
                 <action android:name="com.parse.push.intent.DELETE" />
                 <action android:name="com.parse.push.intent.OPEN" />
             </intent-filter>
-        </receiver>-->
+        </receiver>
+        -->
 
-      <!--  <receiver
+
+        <!--
+        <receiver
             android:name="com.parse.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
@@ -181,8 +177,8 @@
                 &lt;!&ndash; IMPORTANT: Change "com.parse.starter" to match your app's package name. &ndash;&gt;
                 <category android:name="com.qiito.umepal" />
             </intent-filter>
-        </receiver>-->
-
+        </receiver>
+        -->
 
     </application>
 

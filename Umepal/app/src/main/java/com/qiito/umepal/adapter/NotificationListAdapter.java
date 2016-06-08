@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.qiito.umepal.Application.TodaysParentApp;
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.fragments.Notifica;
@@ -30,6 +29,7 @@ public class NotificationListAdapter extends BaseAdapter {
     private ViewHolder viewHolder;
     private ImageView remove;
     String sessionId;
+    Context context;
     private StringBuilder message;
 
     public NotificationListAdapter(Activity activity, List<ProductNotificationBaseHolder> notificationBaseHoldersList, Notifica notifica) {
@@ -74,6 +74,7 @@ public class NotificationListAdapter extends BaseAdapter {
             viewHolder.item_image = (ImageView) convertView.findViewById(R.id.notification_product_image);
             viewHolder.item_hours = (TextView) convertView.findViewById(R.id.notification_time);
             viewHolder.notificationMessage = (TextView) convertView.findViewById(R.id.notification_message);
+            viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
             convertView.setTag(viewHolder);
 
         } else {
@@ -93,12 +94,25 @@ public class NotificationListAdapter extends BaseAdapter {
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("3")) {
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
-                }
-                else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
-                    message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
+                } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
+                    // message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
+                    viewHolder.profile_image.setVisibility(View.GONE);
+                    viewHolder.tvUserName.setVisibility(View.VISIBLE);
+                    viewHolder.tvUserName.setText(notificationBaseHoldersList.get(position).getUser_firstname()+" "+notificationBaseHoldersList.get(position).getUser_lastname());
+                    message.append(" requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
                     viewHolder.notificationMessage.setText(message);
-                }
-                else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
+                    viewHolder.notificationMessage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            switch (v.getId()){
+                                case R.id.notification_message:
+                                   // Intent newIntent=new Intent(activity,PaymentActivity.class);
+                                    //context.startActivity(newIntent);
+                                    break;
+                            }
+                        }
+                    });
+                } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
                 }
@@ -151,6 +165,7 @@ public class NotificationListAdapter extends BaseAdapter {
         private TextView item_name;
         private TextView type;
         private TextView notificationMessage;
+        private TextView tvUserName;
         private TextView item_quantity_number;
         private TextView item_individual_price_number;
         private TextView item_total_price;
