@@ -107,7 +107,7 @@ public class NotificationListAdapter extends BaseAdapter {
                     viewHolder.profile_image.setVisibility(View.GONE);
 //                    viewHolder.tvUserName.setVisibility(View.VISIBLE);
 
-                    sb= (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getUser_firstname()),"\\s",getColorString( notificationBaseHoldersList.get(position).getUser_lastname()),"\\s"," requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
+                    sb= (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getUser_firstname()),"  ",getColorString( notificationBaseHoldersList.get(position).getUser_lastname())," "," requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
                     //sb1= (Spanned) TextUtils.concat(getMessageColorString(" requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice()));
                     // Span to set text color to some RGB value
 
