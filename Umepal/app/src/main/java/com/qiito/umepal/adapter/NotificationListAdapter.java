@@ -10,6 +10,8 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.content.Intent;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +23,11 @@ import android.widget.TextView;
 
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
+import com.qiito.umepal.activity.RefererPayment;
 import com.qiito.umepal.fragments.Notifica;
 import com.qiito.umepal.fragments.Notifications;
 import com.qiito.umepal.holder.ProductNotificationBaseHolder;
+import com.qiito.umepal.util.MessagePopup;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,7 +41,7 @@ public class NotificationListAdapter extends BaseAdapter {
     private ViewHolder viewHolder;
     private ImageView remove;
     String sessionId;
-    Context context;
+    //Context context;
     private StringBuilder message;
     Spanned sb = null;
 
@@ -83,7 +87,8 @@ public class NotificationListAdapter extends BaseAdapter {
             viewHolder.item_image = (ImageView) convertView.findViewById(R.id.notification_product_image);
             viewHolder.item_hours = (TextView) convertView.findViewById(R.id.notification_time);
             viewHolder.notificationMessage = (TextView) convertView.findViewById(R.id.notification_message);
-
+            //viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
+            viewHolder.descriptionMainLayout = (LinearLayout)convertView.findViewById(R.id.description_main_layout);
             convertView.setTag(viewHolder);
 
         } else {
@@ -95,37 +100,80 @@ public class NotificationListAdapter extends BaseAdapter {
 
             if (UtilValidate.isNotNull(notificationBaseHoldersList.get(position).getNotification_type())) {
                 if (notificationBaseHoldersList.get(position).getNotification_type().equals("1")) {
+
+                    //viewHolder.tvUserName.setVisibility(View.GONE);
+                    viewHolder.item_image.setVisibility(View.VISIBLE);
                     message.append("You have liked  " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
+
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("2")) {
+
+                    //viewHolder.tvUserName.setVisibility(View.GONE);
+                    viewHolder.item_image.setVisibility(View.VISIBLE);
                     message.append("You have commented on " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
+
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("3")) {
+
+                    //viewHolder.tvUserName.setVisibility(View.GONE);
+                    viewHolder.item_image.setVisibility(View.VISIBLE);
                     message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
-                } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
-                    viewHolder.profile_image.setVisibility(View.GONE);
 
-                    sb = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getUser_firstname()), "  ", getColorString(notificationBaseHoldersList.get(position).getUser_lastname()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
+                } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("5")) {
+
+                    viewHolder.item_image.setVisibility(View.GONE);
+
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,4);
+                    viewHolder.descriptionMainLayout.setLayoutParams(lp);
+
+                    sb = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getReferer().getFirstName()), "  ", getColorString(notificationBaseHoldersList.get(position).getReferer().getLastName()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
 
                     viewHolder.notificationMessage.setText(sb);
+
+
+                    /*StringBuilder sb = new StringBuilder();
+                    if (notificationBaseHoldersList.get(position).getReferer() != null) {
+
+                        if (!notificationBaseHoldersList.get(position).getReferer().getFirstName().equalsIgnoreCase("")) {
+
+                            sb.append(notificationBaseHoldersList.get(position).getReferer().getFirstName());
+
+                            if (!notificationBaseHoldersList.get(position).getReferer().getLastName().equalsIgnoreCase("")) {
+                                sb.append(" " + notificationBaseHoldersList.get(position).getReferer().getLastName());
+                            }
+
+                        }
+                    }*/
+
+
                     viewHolder.notificationMessage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             switch (v.getId()) {
                                 case R.id.notification_message:
 
-                                    break;
+                                    if (notificationBaseHoldersList.get(position).getReferer().getPaymentStatus().equalsIgnoreCase("")){
+
+                                        Intent newIntent = new Intent(activity, RefererPayment.class);
+                                        newIntent.putExtra("notification_object", notificationBaseHoldersList.get(position));
+                                        activity.startActivity(newIntent);
+                                        break;
+
+
+
+                                    }else {
+                                        MessagePopup   messagePopup = new MessagePopup("Error!","You have already done payment",activity);
+                                        messagePopup.show();
+                                    }
                             }
                         }
                     });
 
 
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
-                    message.append("You have purchased " + notificationBaseHoldersList.get(position).getProduct().getName());
-                    viewHolder.notificationMessage.setText(message);
+                    viewHolder.notificationMessage.setText(notificationBaseHoldersList.get(position).getMessage());
 
-                    message.append("done a membership fee payment");
                 }
 
 
@@ -156,9 +204,9 @@ public class NotificationListAdapter extends BaseAdapter {
                 Log.e("pic", "notification" + notificationBaseHoldersList.get(position).getUser_profilePic());
                 if (!notificationBaseHoldersList.get(position).getUser_profilePic().equalsIgnoreCase("")) {
                     Picasso.with(activity).load(notificationBaseHoldersList.get(position).getUser_profilePic()).into(viewHolder.profile_image);
+                }else {
+                    Picasso.with(activity).load(R.drawable.logo_splash).into(viewHolder.profile_image);
                 }
-            } else {
-                Picasso.with(activity).load(R.drawable.logo_splash).into(viewHolder.profile_image);
             }
         }
         notifyDataSetChanged();
@@ -176,21 +224,13 @@ public class NotificationListAdapter extends BaseAdapter {
 
         private ImageView item_image;
         private ImageView profile_image;
-        private TextView profile_name;
-        private TextView item_name;
-        private TextView type;
+        private LinearLayout descriptionMainLayout;
         private TextView notificationMessage;
 
-        private TextView item_quantity_number;
-        private TextView item_individual_price_number;
-        private TextView item_total_price;
-        private TextView item_desc;
-        private LinearLayout item_quantity_layout;
-        private LinearLayout item_individual_price_layout;
-        private TextView item_date;
-        private LinearLayout linearfull;
+        private TextView tvUserName;
+
         private TextView item_hours;
-        private ImageView remove;
+
     }
 
 }

@@ -77,7 +77,8 @@ public class RealTimePaymentFragment extends Fragment implements ZXingScannerVie
         @Override
         public void onClick(View view) {
 
-            RealTimePaymentManager.getInstance().verifyMember(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(),memberID.getText().toString(),verifyCallBack);
+            Log.e("PARAMS >> ",DbManager.getInstance().getSessionId() +"  &&  "+memberID.getText().toString());
+            RealTimePaymentManager.getInstance().verifyMember(getActivity(), DbManager.getInstance().getSessionId(),memberID.getText().toString(),verifyCallBack);
 
         }
     };

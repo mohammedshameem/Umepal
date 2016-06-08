@@ -25,8 +25,8 @@
         </style>
 
         <style name="dialog_animation">
-            <item name="android:windowEnterAnimation">@anim/slide_down_speed</item>
-            <item name="android:windowExitAnimation">@anim/zoom_out</item>
+            <item name="android:windowEnterAnimation">@anim/anim_in</item>
+            <item name="android:windowExitAnimation">@anim/anim_out</item>
         </style>
 
     </resources>

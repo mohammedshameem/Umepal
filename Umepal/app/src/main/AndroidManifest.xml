@@ -135,6 +135,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.RefererPayment"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

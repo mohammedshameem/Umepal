@@ -28,7 +28,8 @@
         android:layout_marginTop="@dimen/margin_small"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:id="@+id/description_main_layout">
 
         <LinearLayout
             android:id="@+id/item_description_layout"

@@ -169,7 +169,7 @@ public class WalletFragment extends Fragment {
                     if (amount.getText() != null) {
                         if (!amount.getText().equals("")) {
                             popupWindow.dismiss();
-                            WalletManager.getInstance().topUp(getActivity(), DbManager.getInstance().getCurrentUserDetails().getSession_id(), amount.getText().toString(), topUpCallBack);
+                            WalletManager.getInstance().topUp(getActivity(),DbManager.getInstance().getSessionId(), amount.getText().toString(), topUpCallBack);
 
                         }
                     }

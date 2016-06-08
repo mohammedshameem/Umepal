@@ -170,7 +170,7 @@
     <string name="store_address">Xminds Info \nAyurveda College Jn \nTrivandrum</string>
 
     <!-- Product detail-->
-    <string name="uploadICpic">Pleace Upload \nYour IC photo</string>
+    <string name="uploadICpic">Please Upload \nYour IC photo</string>
 
     <!-- Wallet -->
     <string name="top_up">TOP UP</string>
@@ -193,6 +193,10 @@
     <!-- Sell My Item -->
     <string name="cant_sell">Oops, you can\'t sell your item yet!</string>
     <string name="upgrade_text">Upgrade your membership and start selling now!</string>
+
+    <!-- Referee Payment -->
+    <string name="make_payment">Make payment for\n</string>
+    <string name="make_payment_continuation">\'s membership fee</string>
     <!--RETURN POLICY-->
 
      <string name="return_policy">

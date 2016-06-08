@@ -174,8 +174,7 @@ public class Loginactivity extends Activity {
 
                     dialogTransparent.dismiss();
                     DbManager.getInstance().deleteCurrentlyLoggedUserTable();
-                    DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getUser().getId(),
-                            userBaseHolder.getUser().getSession_id());
+                    DbManager.getInstance().insertIntoCurrentUser(userBaseHolder.getUser().getId(), userBaseHolder.getUser().getSession_id());
                     DbManager.getInstance().deleteAllRowsFromUserTable();
                     DbManager.getInstance().insertIntoUserTable(userBaseHolder.getUser());
                     DbManager.getInstance().deleteShippingData();

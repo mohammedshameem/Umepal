@@ -118,7 +118,7 @@ public class TransferPaymentActivity extends Activity {
         @Override
         public void onClick(View view) {
 
-            RealTimePaymentManager.getInstance().RealTimePayment(TransferPaymentActivity.this, DbManager.getInstance().getCurrentUserDetails().getSession_id(), member_id, amountEditText.getText().toString(), paymentCallBack);
+            RealTimePaymentManager.getInstance().RealTimePayment(TransferPaymentActivity.this, DbManager.getInstance().getSessionId(), member_id, amountEditText.getText().toString(), paymentCallBack);
 
 
         }

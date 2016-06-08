@@ -92,14 +92,14 @@
                                 android:id="@+id/uncheckA"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/uncheck_white"
+                                android:src="@drawable/radio_nosel"
                                 android:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/checkA"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/success"
+                                android:src="@drawable/radio_sel"
                                 android:visibility="gone" />
 
                         </LinearLayout>
@@ -142,14 +142,14 @@
                                 android:id="@+id/uncheckB"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/uncheck_white"
+                                android:src="@drawable/radio_nosel"
                                 android:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/checkB"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/success"
+                                android:src="@drawable/radio_sel"
                                 android:visibility="gone" />
 
                         </LinearLayout>
@@ -194,14 +194,14 @@
                                 android:id="@+id/uncheckC"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/uncheck_white"
+                                android:src="@drawable/radio_nosel"
                                 android:visibility="visible" />
 
                             <ImageView
                                 android:id="@+id/checkC"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@drawable/success"
+                                android:src="@drawable/radio_sel"
                                 android:visibility="gone" />
 
                         </LinearLayout>
@@ -231,15 +231,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center"
-                    android:text="MEMBERSHIP FEE : $"
+                    android:text=" MEMBERSHIP FEE : $"
                     android:textColor="@color/white" />
-
                 <TextView
                     android:id="@+id/membershipfeeText"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:gravity="center"
-                    android:text=" 50.00"
+                    android:text=" 00.00"
                     android:textColor="@color/white" />
 
             </LinearLayout>

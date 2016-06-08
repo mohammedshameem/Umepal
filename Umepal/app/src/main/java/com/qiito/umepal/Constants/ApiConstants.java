@@ -325,4 +325,11 @@ public interface ApiConstants {
     interface ListAllMembershipParams {
         String LIST_ALL_MEMBERSHIP = BASE_URL +"api/list-all-memberships";
     }
+
+    interface PayFromCredit{
+        String PAY_FROM_CREDIT_URL = BASE_URL +"api/member-credit";
+        String SESSION_ID = "session_id";
+        String MEMBERSHIP_ID = "membership_id";
+        String REFFEREE_ID = "refferee_id";
+    }
 }

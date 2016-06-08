@@ -92,8 +92,8 @@ public class MyAccountFragment extends Fragment {
     private MyLikesAdapter myLikesAdapter;
     private MyPurchasesAdapter myPurchasesAdapter;
     private UserObjectHolder userObjectHolder;
-    private CallbackManager callbackManager;
-    private ShareDialog shareDialog;
+    //private CallbackManager callbackManager;
+    //private ShareDialog shareDialog;
     private FragmentTransaction myAccountFragmentTransaction;
     private TextView my_likes_btn;
     private TextView my_purchaces_btn;
@@ -659,12 +659,12 @@ public class MyAccountFragment extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        //callbackManager.onActivityResult(requestCode, resultCode, data);
 
-    }
+    }*/
 
     private class ListAllMembershipCallBack implements AsyncTaskCallBack{
         @Override

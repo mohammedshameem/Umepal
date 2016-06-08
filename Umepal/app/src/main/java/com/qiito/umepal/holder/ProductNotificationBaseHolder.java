@@ -1,6 +1,8 @@
 package com.qiito.umepal.holder;
 
-public class ProductNotificationBaseHolder {
+import java.io.Serializable;
+
+public class ProductNotificationBaseHolder implements Serializable {
 
 	private int id;
 	private ProductObject product;
@@ -17,6 +19,7 @@ public class ProductNotificationBaseHolder {
 	private String membershipType;
 	private String membershipId;
 	private int user_id;
+	private UserObjectHolder referer;
 
 	public String getPaymentStatus() {
 		return paymentStatus;
@@ -128,5 +131,13 @@ public class ProductNotificationBaseHolder {
 
 	public void setNotification_type(String notification_type) {
 		this.notification_type = notification_type;
+	}
+
+	public UserObjectHolder getReferer() {
+		return referer;
+	}
+
+	public void setReferer(UserObjectHolder referer) {
+		this.referer = referer;
 	}
 }

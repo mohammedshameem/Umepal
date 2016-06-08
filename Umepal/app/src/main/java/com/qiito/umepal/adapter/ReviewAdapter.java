@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.ReviewObject;
@@ -19,9 +20,9 @@ import java.util.List;
 /**
  * Created by abin on 22/9/15.
  */
-public class ReviewAdapter extends BaseAdapter{
+public class ReviewAdapter extends BaseAdapter {
 
-    List<ReviewObject>reviewlist=new ArrayList<ReviewObject>();
+    List<ReviewObject> reviewlist = new ArrayList<ReviewObject>();
 
     private Activity activity;
     private LayoutInflater inflater;
@@ -31,7 +32,7 @@ public class ReviewAdapter extends BaseAdapter{
         // TODO Auto-generated constructor stub
         this.activity = activity;
         this.reviewlist = reviewList;
-        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
@@ -53,54 +54,59 @@ public class ReviewAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        if(view==null){
+        if (view == null) {
             viewholder = new ViewHolder();
 
             view = inflater.inflate(R.layout.review_list_item, null);
-            viewholder.profile_name=(TextView)view.findViewById(R.id.profile_name);
-            viewholder.like_comment_txtview=(TextView)view.findViewById(R.id.like_comment_txtview);
-            viewholder.item_hours=(TextView)view.findViewById(R.id.item_hours);
-            viewholder.profile_image=(ImageView)view.findViewById(R.id.profile_image);
-
-
+            viewholder.profile_name = (TextView) view.findViewById(R.id.profile_name);
+            viewholder.like_comment_txtview = (TextView) view.findViewById(R.id.like_comment_txtview);
+            viewholder.item_hours = (TextView) view.findViewById(R.id.item_hours);
+            viewholder.profile_image = (ImageView) view.findViewById(R.id.profile_image);
 
 
             view.setTag(viewholder);
-        }else {
-            viewholder = (ViewHolder)view.getTag();
+        } else {
+            viewholder = (ViewHolder) view.getTag();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (UtilValidate.isNotNull(reviewlist.get(position).getUserFirstName())) {
+            if (!reviewlist.get(position).getUserFirstName().equalsIgnoreCase("")) {
+                sb.append(reviewlist.get(position).getUserFirstName());
+
+                if (reviewlist.get(position).getUserLastName() != null) {
+
+
+                    if (!reviewlist.get(position).getUserLastName().equalsIgnoreCase("")) {
+                        sb.append(" " + reviewlist.get(position).getUserLastName());
+                    }
+                }
+            }
+
+            viewholder.profile_name.setText(sb.toString());
+        }
+
+        if (UtilValidate.isNotNull(reviewlist.get(position).getReview())) {
+            viewholder.like_comment_txtview.setText(reviewlist.get(position).getReview());
+        }
+
+        if (UtilValidate.isNotNull(reviewlist.get(position).getUserImage()) && UtilValidate.isNotEmpty(reviewlist.get(position).getUserImage())) {
+            if (!reviewlist.get(position).getUserImage().equals("")) {
+                Picasso.with(activity).load(reviewlist.get(position).getUserImage()).into(viewholder.profile_image);
+            } else {
+                Picasso.with(activity).load(R.drawable.logo_splash).into(viewholder.profile_image);
+            }
+        } else {
+            Picasso.with(activity).load(R.drawable.logo_splash).into(viewholder.profile_image);
         }
 
 
-        if(UtilValidate.isNotNull(reviewlist.get(position).getUserFirstName()))
-        {
-            viewholder.profile_name.setText(reviewlist.get(position).getUserFirstName()+" "+reviewlist.get(position).getUserLastName());
-        } else
-        {viewholder.profile_name.setText("Unknown");}
-
-       if(UtilValidate.isNotNull(reviewlist.get(position).getReview())){
-           viewholder.like_comment_txtview.setText(reviewlist.get(position).getReview());
-       }
-        if(UtilValidate.isNotNull(reviewlist.get(position).getUserImage()) && UtilValidate.isNotEmpty(reviewlist.get(position).getUserImage()))
-        {
-            if(!reviewlist.get(position).getUserImage().equals(""))
-            {
-                Picasso.with(activity).load(reviewlist.get(position).getUserImage()).into(viewholder.profile_image);
-            }
-            else
-            {Picasso.with(activity).load(R.drawable.logo_splash).into(viewholder.profile_image);}
-        } else
-        {Picasso.with(activity).load(R.drawable.logo_splash).into(viewholder.profile_image);}
-
-
-
-
-        if(UtilValidate.isNotNull(reviewlist.get(position).getCreated())){
-            if(reviewlist.get(position).getCreated()!="") {
-               String time = reviewlist.get(position).getCreated();
+        if (UtilValidate.isNotNull(reviewlist.get(position).getCreated())) {
+            if (reviewlist.get(position).getCreated() != "") {
+                String time = reviewlist.get(position).getCreated();
                 viewholder.item_hours.setText(time);
             }
         }
-
 
 
         return view;

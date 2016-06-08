@@ -49,7 +49,7 @@ public class MembershipSelectionActivity extends Activity {
 
     private MembershipCallBackClass membershipCallback;
     private RequestForPayment requestForPayment;
-    private LoginCallBackClass loginCallBackClass;
+    //private LoginCallBackClass loginCallBackClass;
     private UserBaseHolder userBaseHolder;
 
     private Button requestpaymentButton;
@@ -248,7 +248,7 @@ public class MembershipSelectionActivity extends Activity {
 
                 LayoutInflater inflater = (LayoutInflater) MembershipSelectionActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.membership_fee_popup, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
                 //popupWindow.setAnimationStyle(R.style.dialog_animation);
                 popupWindow.update();
                 popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
@@ -266,9 +266,12 @@ public class MembershipSelectionActivity extends Activity {
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
                         popupWindow.dismiss();
-                        refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
+                        /*refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
                         Log.e("PASSWORD >> ", "" + password);
-                        LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);
+                        LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);*/
+
+                        Intent intent = new Intent(MembershipSelectionActivity.this,Loginactivity.class);
+                        startActivity(intent);
                     }
                 });
 
@@ -355,9 +358,12 @@ public class MembershipSelectionActivity extends Activity {
                                                 public void onClick(View v) {
                                                     // TODO Auto-generated method stub
                                                     popupWindow.dismiss();
-                                                    refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
+                                                    /*refferee_ID = DbManager.getInstance().getCurrentUserDetails().getUmeId();
                                                     Log.e("PASSWORD >> ", "" + password);
-                                                    LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);
+                                                    LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);*/
+
+                                                    Intent intent = new Intent(MembershipSelectionActivity.this, Loginactivity.class);
+                                                    startActivity(intent);
                                                 }
                                             });
 
@@ -445,7 +451,7 @@ public class MembershipSelectionActivity extends Activity {
         }
     }
 
-    public class LoginCallBackClass implements AsyncTaskCallBack {
+    /*public class LoginCallBackClass implements AsyncTaskCallBack {
 
 
         @Override
@@ -500,5 +506,5 @@ public class MembershipSelectionActivity extends Activity {
 
             //dialogTransparent.dismiss();
         }
-    }
+    }*/
 }
