@@ -309,7 +309,7 @@ public class UserManager implements ApiConstants {
 			public void onSuccess(int i, Header[] headers, byte[] bytes) {
 				String responseBody = UtilValidate.getStringFromInputStream(new ByteArrayInputStream(bytes));
 				Log.e("RESPONSE", "RESPONSE" + responseBody);
-				userBaseHolder = new UserBaseHolder();
+				//userBaseHolder = new UserBaseHolder();
 				Gson gson = new Gson();
 				listRefereeBaseHolder = gson.fromJson(responseBody,ListRefereeBaseHolder.class);
 				if(UtilValidate.isNotNull(listrefereesCallback)){

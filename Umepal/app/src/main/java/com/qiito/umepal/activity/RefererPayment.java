@@ -28,6 +28,7 @@ import com.qiito.umepal.Utilvalidate.UtilValidate;
 import com.qiito.umepal.holder.PayPalTransactionResponseHolder;
 import com.qiito.umepal.holder.ProductNotificationBaseHolder;
 import com.qiito.umepal.holder.UserBaseHolder;
+import com.qiito.umepal.holder.UserObjectHolder;
 import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.managers.UserManager;
@@ -47,6 +48,7 @@ public class RefererPayment extends Activity {
     private TextView makePaymentText;
     private TextView makePaymentAmount;
     private ProductNotificationBaseHolder notificationDetails;
+    private UserObjectHolder refererDetails;
     private UserBaseHolder userBaseHolder;
     private PayFromCreditCallBack payFromCreditCallBack;
     private String membershipId;
@@ -64,13 +66,70 @@ public class RefererPayment extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_layout);
         initViews();
+        if(getIntent().hasExtra("referee_object")){
+            refererDetails=(UserObjectHolder)getIntent().getSerializableExtra("referee_object");
+        }
+        if (refererDetails!=null){
+            if(refererDetails.getMembershipId()>=1){
+                membershipId=String.valueOf(refererDetails.getMembershipId());
+
+            }
+            if (refererDetails.getMembershipPrice().equalsIgnoreCase("")){
+                makePaymentAmount.setText("$ "+refererDetails.getMembershipPrice());
+            }
+
+
+                StringBuilder sb = new StringBuilder();
+                if (refererDetails.getFirstName() != null) {
+
+                    if (!refererDetails.getFirstName().equalsIgnoreCase("")) {
+
+                        sb.append(getString(R.string.make_payment) + refererDetails.getFirstName());
+                        if (!refererDetails.getLastName().equalsIgnoreCase("")) {
+                            sb.append(" " + refererDetails.getLastName() + getString(R.string.make_payment_continuation));
+                        } else {
+                            sb.append(getString(R.string.make_payment_continuation));
+                        }
+                        makePaymentText.setText(sb.toString());
+                    }
+
+                }
+
+            if (refererDetails.getId() >0){
+                refereeUserId = String.valueOf(refererDetails.getId());
+            }
+
+            if (refererDetails.getUmeId() != null){
+
+                if (!refererDetails.getUmeId().equalsIgnoreCase("")){
+                    refereeId = refererDetails.getUmeId();
+                }
+
+            }
+        }
+        backIcon.setOnClickListener(backListener);
+        payNowLayout.setOnClickListener(payNowListener);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (getIntent().hasExtra("notification_object")) {
 
             notificationDetails = (ProductNotificationBaseHolder) getIntent().getSerializableExtra("notification_object");
         }
 
         if (notificationDetails != null) {
-            if (notificationDetails.getId() >= 0) {
+            if (!notificationDetails.getMembershipId().equalsIgnoreCase("")) {
                 membershipId = notificationDetails.getMembershipId().toString();
             }
 
@@ -152,8 +211,7 @@ public class RefererPayment extends Activity {
             } else {
 
                 Log.e("is not checked >> ", " >>> " + notificationDetails.getMembershipId().toString() + " && " + String.valueOf(notificationDetails.getReferer().getId()));
-                LoginManager.getInstance().membershipPaypal(RefererPayment.this, notificationDetails.getMembershipId().toString(),
-                        String.valueOf(notificationDetails.getReferer().getId()), membershipPaymentCallBack);
+                LoginManager.getInstance().membershipPaypal(RefererPayment.this, membershipId, refereeUserId, membershipPaymentCallBack);
             }
         }
     };

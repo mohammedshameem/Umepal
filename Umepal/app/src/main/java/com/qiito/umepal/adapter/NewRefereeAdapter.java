@@ -2,6 +2,7 @@ package com.qiito.umepal.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.qiito.umepal.R;
 import com.qiito.umepal.Utilvalidate.UtilValidate;
+import com.qiito.umepal.activity.RefererPayment;
 import com.qiito.umepal.holder.UserObjectHolder;
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +57,7 @@ public class NewRefereeAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = inflater.inflate(R.layout.new_reffree_listitem, null);
@@ -88,15 +90,14 @@ public class NewRefereeAdapter extends BaseAdapter {
             viewHolder.name.setText(newRefereeList.get(position).getFirstName());
         }
         //lastName
-      /* if (UtilValidate.isNotNull(newRefereeList.get(position).getLastName())){
-            viewHolder.name.setText(newRefereeList.get(position).getLastName());
-        }*/
+
         if (UtilValidate.isNotNull(newRefereeList.get(position).getPaymentStatus())) {
             if (newRefereeList.get(position).getPaymentStatus() != null) {
-                if (newRefereeList.get(position).getPaymentStatus() != "") {
+                if (!newRefereeList.get(position).getPaymentStatus().equalsIgnoreCase( "")) {
                     Log.e("PAYMENT STATUS", newRefereeList.get(position).getPaymentStatus());
                     viewHolder.confirmButton.setVisibility(View.GONE);
                     viewHolder.confirmedButton.setVisibility(View.VISIBLE);
+
                 }else {
                     viewHolder.confirmButton.setVisibility(View.VISIBLE);
                     viewHolder.confirmedButton.setVisibility(View.GONE);
@@ -105,6 +106,22 @@ public class NewRefereeAdapter extends BaseAdapter {
 
 
         }
+
+        viewHolder.confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.confirmButton:
+                        if (newRefereeList.get(position).getPaymentStatus().equalsIgnoreCase("")){
+                            Intent refereeIntent=new Intent(activity, RefererPayment.class);
+                            refereeIntent.putExtra("referee_object",newRefereeList.get(position));
+                            activity.startActivity(refereeIntent);
+                        }
+                        break;
+                }
+
+            }
+        });
 
         return convertView;
     }
