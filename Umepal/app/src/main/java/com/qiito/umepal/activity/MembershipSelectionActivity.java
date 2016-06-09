@@ -125,8 +125,9 @@ public class MembershipSelectionActivity extends Activity {
         @Override
         public void onClick(View v) {
             refferee_ID = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
+            reffer_ID = DbManager.getInstance().getCurrentUserDetails().getReferrerId();
             Log.e("ID ID ID", "" + DbManager.getInstance().getCurrentUserDetails().getId());
-            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this, MembershipId, refferee_ID, membershipCallback);
+            LoginManager.getInstance().membershipPaypal(MembershipSelectionActivity.this, MembershipId, refferee_ID, reffer_ID, membershipCallback);
 
         }
     };
@@ -243,8 +244,8 @@ public class MembershipSelectionActivity extends Activity {
 
         @Override
         public void onFinish(int responseCode, Object result) {
-           userBaseHolder = (UserBaseHolder)result;
-            if(userBaseHolder.getStatus().equalsIgnoreCase("success")){
+            userBaseHolder = (UserBaseHolder) result;
+            if (userBaseHolder.getStatus().equalsIgnoreCase("success")) {
 
                 LayoutInflater inflater = (LayoutInflater) MembershipSelectionActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(R.layout.membership_fee_popup, null);
@@ -256,7 +257,7 @@ public class MembershipSelectionActivity extends Activity {
                 final Button close = (Button) popupView.findViewById(R.id.closeButton);
                 final TextView fee = (TextView) popupView.findViewById(R.id.memFee);
                 final TextView msg = (TextView) popupView.findViewById(R.id.msg);
-                fee.setText("$ "+membershipfeeText.getText().toString());
+                fee.setText("$ " + membershipfeeText.getText().toString());
                 msg.setText(userBaseHolder.getMessage());
 
 
@@ -270,7 +271,7 @@ public class MembershipSelectionActivity extends Activity {
                         Log.e("PASSWORD >> ", "" + password);
                         LoginManager.getInstance().emailLogin(MembershipSelectionActivity.this, refferee_ID, password, loginCallBackClass, requestcode);*/
 
-                        Intent intent = new Intent(MembershipSelectionActivity.this,Loginactivity.class);
+                        Intent intent = new Intent(MembershipSelectionActivity.this, Loginactivity.class);
                         startActivity(intent);
                     }
                 });

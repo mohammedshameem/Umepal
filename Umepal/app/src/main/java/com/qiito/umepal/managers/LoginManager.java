@@ -180,10 +180,11 @@ public class LoginManager implements ApiConstants, User {
 
 
     public void membershipPaypal(final Activity activity,
-                                 String membershipID, String reffereeID, final AsyncTaskCallBack asyncTaskCallBack) {
+                                 String membershipID, String reffereeID,String refererId, final AsyncTaskCallBack asyncTaskCallBack) {
         RequestParams params = new RequestParams();
         params.put(MembershipPaypalParams.MEMBERSHIPID, membershipID);
         params.put(MembershipPaypalParams.REFFEREE_ID, reffereeID);
+        params.put(MembershipPaypalParams.REFFERER_ID,refererId);
 
 
         UMEPALAppRestClient.post(

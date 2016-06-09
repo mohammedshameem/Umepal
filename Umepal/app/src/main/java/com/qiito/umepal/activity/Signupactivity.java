@@ -2,12 +2,19 @@ package com.qiito.umepal.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings.Secure;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +22,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -26,22 +35,32 @@ import com.qiito.umepal.managers.DbManager;
 import com.qiito.umepal.managers.LoginManager;
 import com.qiito.umepal.webservice.AsyncTaskCallBack;
 
+import java.io.ByteArrayOutputStream;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static com.qiito.umepal.R.drawable.logo_splash;
 
 
 public class Signupactivity extends Activity implements ZXingScannerView.ResultHandler {
 
+
+    private static final int CAMERA_REQUEST = 1888;
+    private static int RESULT_LOAD_IMG = 1;
     private SignUpCallBack signUpCallBack;
     private LoginCallBackClass loginCallBackClass;
 
-    private LinearLayout loginWithFacebok;
+    //private LinearLayout loginWithFacebok;
+    
 
     // private Button loginButton;
     // private Button signupButton;
+    private LinearLayout uploadImageLayout;
+    private PopupWindow pwindo;
     private Button cancelButton;
     private Button scanQRquoteButton;
     private Button nextButton;
-    private ImageButton uploadPicButton;
+    private ImageView uploadPicButton;
 
     private EditText nameEditText;
     private EditText emailEditText;
@@ -67,6 +86,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     private String refferalmemberID;
     private String profilePic;
     private ZXingScannerView mScannerView;
+    private String picturePath = null;
 
     private final int requestCode = 200;
     private int requestcode = 1;
@@ -143,6 +163,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         });*/
         scanQRquoteButton.setOnClickListener(scanQRcodeListener);
         cancelButton.setOnClickListener(cancelListener);
+        
+        uploadImageLayout.setOnClickListener(uploadImageListener);
     }
 
     private void setText() {
@@ -226,8 +248,193 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
     }
+    
+    View.OnClickListener uploadImageListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            try {
+                LayoutInflater inflater = (LayoutInflater) Signupactivity.this
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.activity_edit_profile_pic, null);
+
+                pwindo = new PopupWindow(layout, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT, true);
+                pwindo.showAtLocation(layout, Gravity.FILL, 0, 0);
+
+            /*  POPUP MENU  */
+
+            /*CANCEL*/
+                LinearLayout cancel = (LinearLayout) layout.findViewById(R.id.linear_cancel_change_pic);
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pwindo.dismiss();
+
+                    }
+                });
+
+            /*REMOVE PHOTO*/
+
+                LinearLayout remove = (LinearLayout) layout.findViewById(R.id.linear_remove_photo);
+                remove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ImageView i = (ImageView) findViewById(R.id.image_editprofile);
+                    /*if empty*/
+                        if (i.getDrawable().getConstantState() == getResources().getDrawable(logo_splash).getConstantState()) {
+                            Toast.makeText(Signupactivity.this, "Empty !", Toast.LENGTH_SHORT).show();
+                            pwindo.dismiss();
+                        } else if (Integer.parseInt((String) i.getTag()) != logo_splash) {
+                            i.setImageResource(logo_splash);
+                            Toast.makeText(Signupactivity.this, "Removed..", Toast.LENGTH_SHORT).show();
+                            pwindo.dismiss();
+                        } else {
+                            Toast.makeText(Signupactivity.this, "error..", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            /*TAKE FROM CAMERA*/
+                LinearLayout cam = (LinearLayout) layout.findViewById(R.id.linear_take_photo_from_camera);
+                cam.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    
+                        Log.e(" >>>  ", "cameraa>>" + CAMERA_REQUEST);
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, CAMERA_REQUEST);
+                        pwindo.dismiss();
+
+                    }
+                });
+
+
+            /*CHOOSE FROM GALLARY*/
+                LinearLayout gal = (LinearLayout) layout.findViewById(R.id.linear_choose_from_gallery);
+                gal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.e(">>>  ","gallery>>"+RESULT_LOAD_IMG);
+                        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
+                        pwindo.dismiss();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i("", "in onActivityResult()");
+        Log.i("", "requestCode $$$$ " + requestCode);
+        Log.i("", "resultCode $$$$ " + resultCode);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            // String picturePath contains the path of selected Image
+
+            try {
+
+                if (UtilValidate.isNotEmpty(picturePath)) {
+
+					/*
+					 * Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+					 * profileimage.setImageBitmap(bitmap);
+					 */
+                    final BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 8;
+
+                    Bitmap bm = BitmapFactory.decodeFile(picturePath, options);
+                    uploadPicButton.setImageBitmap(bm);
+
+                    if (bm != null && !bm.isRecycled()) {
+                        // bm.recycle();
+                        bm = null;
+                    }
+
+                } else {
+
+                    Toast.makeText(Signupactivity.this,
+                            "No file choosed...", Toast.LENGTH_SHORT).show();
+
+                }
+
+            } catch (Exception e) {
+
+                Log.e("#$$", "Exception occured while decodeFile" + e);
+            }
+
+        }else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK && data !=null) {
+            Log.e("%%%","in Camera");
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            uploadPicButton.setImageBitmap(photo);
+            Log.e("image>>", String.valueOf(photo));
+            Log.e("image1>>",String.valueOf(uploadPicButton));
+
+            Uri selectedImage = getImageUri(getApplicationContext(), photo);
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            // String picturePath contains the path of selected Image
+
+            try {
+
+                if (UtilValidate.isNotEmpty(picturePath)) {
+
+					/*
+					 * Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+					 * profileimage.setImageBitmap(bitmap);
+					 */
+                    final BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 8;
+
+                    Bitmap bm = BitmapFactory.decodeFile(picturePath, options);
+                    uploadPicButton.setImageBitmap(bm);
+
+                    if (bm != null && !bm.isRecycled()) {
+                        // bm.recycle();
+                        bm = null;
+                    }
+
+                } else {
+
+                    Toast.makeText(Signupactivity.this,
+                            "No file choosed...", Toast.LENGTH_SHORT).show();
+
+                }
+
+            } catch (Exception e) {
+
+                Log.e("!!", "Exception occured while decodeFile" + e);
+            }
+
+        }
+
+    }
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
@@ -249,7 +456,7 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
 
-    }
+    }*/
 
     private void initView() {
 
@@ -262,7 +469,8 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         bankaccountEditText = (EditText) findViewById(R.id.bankaccountEditText);
         refferalmemberidEditText = (EditText) findViewById(R.id.refferalmemberidEditText);
         password = (EditText) findViewById(R.id.passwordEditText);
-
+        uploadPicButton = (ImageView) findViewById(R.id.uploadPicButton);
+        uploadImageLayout = (LinearLayout)findViewById(R.id.upload_image_layout);
         cancelButton = (Button) findViewById(R.id.cancelButton);
         scanQRquoteButton = (Button) findViewById(R.id.scanQRquoteButton);
         nextButton = (Button) findViewById(R.id.nextButton);
@@ -417,7 +625,11 @@ public class Signupactivity extends Activity implements ZXingScannerView.ResultH
         }
     }
 
-    public class refferID {
-
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
+    
 }

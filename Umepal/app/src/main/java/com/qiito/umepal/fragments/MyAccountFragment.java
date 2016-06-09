@@ -720,7 +720,7 @@ public class MyAccountFragment extends Fragment {
                                 public void onClick(View view) {
                                     popupWindow.dismiss();
                                     reffereeId = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
-                                    LoginManager.getInstance().membershipPaypal(getActivity(), String.valueOf(membershipBaseHolder.getData().get(pos).getId()), reffereeId, paymentTransactionDetailCallBack);
+                                    LoginManager.getInstance().membershipPaypal(getActivity(), String.valueOf(membershipBaseHolder.getData().get(pos).getId()), reffereeId,"", paymentTransactionDetailCallBack);
                                 }
                             });
                                 linearLayout.addView(v, i,

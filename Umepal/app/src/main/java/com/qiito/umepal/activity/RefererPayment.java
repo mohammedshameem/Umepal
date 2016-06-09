@@ -211,7 +211,9 @@ public class RefererPayment extends Activity {
             } else {
 
                 Log.e("is not checked >> ", " >>> " + notificationDetails.getMembershipId().toString() + " && " + String.valueOf(notificationDetails.getReferer().getId()));
-                LoginManager.getInstance().membershipPaypal(RefererPayment.this, membershipId, refereeUserId, membershipPaymentCallBack);
+
+                LoginManager.getInstance().membershipPaypal(RefererPayment.this, notificationDetails.getMembershipId().toString(),
+                        String.valueOf(notificationDetails.getReferer().getId()),String.valueOf(notificationDetails.getId()), membershipPaymentCallBack);
             }
         }
     };

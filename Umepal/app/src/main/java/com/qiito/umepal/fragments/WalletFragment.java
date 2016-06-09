@@ -464,7 +464,7 @@ public class WalletFragment extends Fragment {
                                     public void onClick(View view) {
                                         popupWindow.dismiss();
                                         reffereeId = String.valueOf(+DbManager.getInstance().getCurrentUserDetails().getId());
-                                        LoginManager.getInstance().membershipPaypal(getActivity(), String.valueOf(membershipBaseHolder.getData().get(pos).getId()), reffereeId, topUpCallBack);
+                                        LoginManager.getInstance().membershipPaypal(getActivity(), String.valueOf(membershipBaseHolder.getData().get(pos).getId()), reffereeId,"", topUpCallBack);
                                     }
                                 });
 

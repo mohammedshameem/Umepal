@@ -77,7 +77,6 @@ public class NotificationListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
 
-        // Log.e("","in notification adapter"+ TodaysParentApp.getNotification_count());
 
         if (convertView == null) {
 
@@ -87,8 +86,7 @@ public class NotificationListAdapter extends BaseAdapter {
             viewHolder.item_image = (ImageView) convertView.findViewById(R.id.notification_product_image);
             viewHolder.item_hours = (TextView) convertView.findViewById(R.id.notification_time);
             viewHolder.notificationMessage = (TextView) convertView.findViewById(R.id.notification_message);
-            //viewHolder.tvUserName = (TextView) convertView.findViewById(R.id.tvUserName);
-            viewHolder.descriptionMainLayout = (LinearLayout)convertView.findViewById(R.id.description_main_layout);
+            viewHolder.descriptionMainLayout = (LinearLayout) convertView.findViewById(R.id.description_main_layout);
             convertView.setTag(viewHolder);
 
         } else {
@@ -101,7 +99,6 @@ public class NotificationListAdapter extends BaseAdapter {
             if (UtilValidate.isNotNull(notificationBaseHoldersList.get(position).getNotification_type())) {
                 if (notificationBaseHoldersList.get(position).getNotification_type().equals("1")) {
 
-                    //viewHolder.tvUserName.setVisibility(View.GONE);
                     viewHolder.item_image.setVisibility(View.VISIBLE);
                     message.append("You have liked  " + notificationBaseHoldersList.get(position).getProduct().getName());
                     viewHolder.notificationMessage.setText(message);
@@ -124,12 +121,8 @@ public class NotificationListAdapter extends BaseAdapter {
 
                     viewHolder.item_image.setVisibility(View.GONE);
 
-                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,4);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 4);
                     viewHolder.descriptionMainLayout.setLayoutParams(lp);
-
-
-
-
 
 
                     StringBuilder sb = new StringBuilder();
@@ -144,7 +137,7 @@ public class NotificationListAdapter extends BaseAdapter {
                                 //sb1 = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getReferer().getFirstName()), "  ", getColorString(notificationBaseHoldersList.get(position).getReferer().getLastName()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
 
                             }
-                            sb1 = (Spanned) TextUtils.concat(getColorString(sb.toString()),"  ","requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
+                            sb1 = (Spanned) TextUtils.concat(getColorString(sb.toString()), "  ", "requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
                             viewHolder.notificationMessage.setText(sb1);
                         }
                     }
@@ -156,7 +149,7 @@ public class NotificationListAdapter extends BaseAdapter {
                             switch (v.getId()) {
                                 case R.id.notification_message:
 
-                                    if (notificationBaseHoldersList.get(position).getReferer().getPaymentStatus().equalsIgnoreCase("")){
+                                    if (notificationBaseHoldersList.get(position).getReferer().getPaymentStatus().equalsIgnoreCase("")) {
 
                                         Intent newIntent = new Intent(activity, RefererPayment.class);
                                         newIntent.putExtra("notification_object", notificationBaseHoldersList.get(position));
@@ -164,9 +157,8 @@ public class NotificationListAdapter extends BaseAdapter {
                                         break;
 
 
-
-                                    }else {
-                                        MessagePopup   messagePopup = new MessagePopup("Error!","You have already done payment",activity);
+                                    } else {
+                                        MessagePopup messagePopup = new MessagePopup("Error!", "You have already done payment", activity);
                                         messagePopup.show();
                                     }
                             }
@@ -175,7 +167,31 @@ public class NotificationListAdapter extends BaseAdapter {
 
 
                 } else if (notificationBaseHoldersList.get(position).getNotification_type().equals("6")) {
-                    viewHolder.notificationMessage.setText(notificationBaseHoldersList.get(position).getMessage());
+
+                    viewHolder.item_image.setVisibility(View.GONE);
+
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 4);
+                    viewHolder.descriptionMainLayout.setLayoutParams(lp);
+
+
+                    StringBuilder sb = new StringBuilder();
+                    if (notificationBaseHoldersList.get(position).getReferer() != null) {
+
+                        if (!notificationBaseHoldersList.get(position).getReferer().getFirstName().equalsIgnoreCase("")) {
+
+                            sb.append(notificationBaseHoldersList.get(position).getReferer().getFirstName());
+
+                            if (!notificationBaseHoldersList.get(position).getReferer().getLastName().equalsIgnoreCase("")) {
+                                sb.append(" " + notificationBaseHoldersList.get(position).getReferer().getLastName());
+                                //sb1 = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getReferer().getFirstName()), "  ", getColorString(notificationBaseHoldersList.get(position).getReferer().getLastName()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
+
+                            }
+                            sb1 = (Spanned) TextUtils.concat(getColorString(sb.toString()), "  ",notificationBaseHoldersList.get(position).getMessage());
+                            viewHolder.notificationMessage.setText(sb1);
+                        }
+                    }
+
+                    //viewHolder.notificationMessage.setText(notificationBaseHoldersList.get(position).getMessage());
 
                 }
 
@@ -207,7 +223,7 @@ public class NotificationListAdapter extends BaseAdapter {
                 Log.e("pic", "notification" + notificationBaseHoldersList.get(position).getUser_profilePic());
                 if (!notificationBaseHoldersList.get(position).getUser_profilePic().equalsIgnoreCase("")) {
                     Picasso.with(activity).load(notificationBaseHoldersList.get(position).getUser_profilePic()).into(viewHolder.profile_image);
-                }else {
+                } else {
                     Picasso.with(activity).load(R.drawable.logo_splash).into(viewHolder.profile_image);
                 }
             }
