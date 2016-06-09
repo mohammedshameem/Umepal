@@ -279,9 +279,7 @@ public class UtilValidate {
 		long different=0;
 		try {
 			date1 = sdf.parse(currentDateandTime);
-			/*date1=new Date();
-			Calendar c = Calendar.getInstance();
-			formattedDate = sdf.format(c.getTime());*/
+
 			date2 = sdf.parse(start_time);
 		} catch (java.text.ParseException e) {
 			// TODO Auto-generated catch block

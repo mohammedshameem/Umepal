@@ -43,7 +43,7 @@ public class NotificationListAdapter extends BaseAdapter {
     String sessionId;
     //Context context;
     private StringBuilder message;
-    Spanned sb = null;
+    Spanned sb1 = null;
 
     public NotificationListAdapter(Activity activity, List<ProductNotificationBaseHolder> notificationBaseHoldersList, Notifica notifica) {
 
@@ -127,12 +127,12 @@ public class NotificationListAdapter extends BaseAdapter {
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,4);
                     viewHolder.descriptionMainLayout.setLayoutParams(lp);
 
-                    sb = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getReferer().getFirstName()), "  ", getColorString(notificationBaseHoldersList.get(position).getReferer().getLastName()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
-
-                    viewHolder.notificationMessage.setText(sb);
 
 
-                    /*StringBuilder sb = new StringBuilder();
+
+
+
+                    StringBuilder sb = new StringBuilder();
                     if (notificationBaseHoldersList.get(position).getReferer() != null) {
 
                         if (!notificationBaseHoldersList.get(position).getReferer().getFirstName().equalsIgnoreCase("")) {
@@ -141,10 +141,13 @@ public class NotificationListAdapter extends BaseAdapter {
 
                             if (!notificationBaseHoldersList.get(position).getReferer().getLastName().equalsIgnoreCase("")) {
                                 sb.append(" " + notificationBaseHoldersList.get(position).getReferer().getLastName());
-                            }
+                                //sb1 = (Spanned) TextUtils.concat(getColorString(notificationBaseHoldersList.get(position).getReferer().getFirstName()), "  ", getColorString(notificationBaseHoldersList.get(position).getReferer().getLastName()), " ", " requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
 
+                            }
+                            sb1 = (Spanned) TextUtils.concat(getColorString(sb.toString()),"  ","requested a membership fee payment of $ " + notificationBaseHoldersList.get(position).getMembershipPrice());
+                            viewHolder.notificationMessage.setText(sb1);
                         }
-                    }*/
+                    }
 
 
                     viewHolder.notificationMessage.setOnClickListener(new View.OnClickListener() {
