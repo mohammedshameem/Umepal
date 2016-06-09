@@ -113,6 +113,8 @@ public class NewRefereeAdapter extends BaseAdapter {
                 switch (v.getId()){
                     case R.id.confirmButton:
                         if (newRefereeList.get(position).getPaymentStatus().equalsIgnoreCase("")){
+
+                            Log.e("Inside click","  >>> ");
                             Intent refereeIntent=new Intent(activity, RefererPayment.class);
                             refereeIntent.putExtra("referee_object",newRefereeList.get(position));
                             activity.startActivity(refereeIntent);
