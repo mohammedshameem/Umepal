@@ -74,7 +74,7 @@ public class RefererPayment extends Activity {
                 membershipId=String.valueOf(refererDetails.getMembershipId());
 
             }
-            if (refererDetails.getMembershipPrice().equalsIgnoreCase("")){
+            if (!refererDetails.getMembershipPrice().equalsIgnoreCase("")){
                 makePaymentAmount.setText("$ "+refererDetails.getMembershipPrice());
             }
 

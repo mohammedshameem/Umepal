@@ -66,6 +66,12 @@ public class NewRefereeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        UserManager.getInstance().ListReferees(getActivity(), session, listRefereesCallBack);
+    }
+
     public class ListRefereesCallBack implements AsyncTaskCallBack {
 
         @Override
