@@ -57,7 +57,7 @@ public class RefererPayment extends Activity {
     private LinearLayout paymentMainLayout;
     private LinearLayout paypal_webviews_layout;
     private ProgressBar progressBar1;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +70,12 @@ public class RefererPayment extends Activity {
         }
 
         if (notificationDetails != null) {
-            if (notificationDetails.getId() <= 0) {
+            if (notificationDetails.getId() >= 0) {
                 membershipId = notificationDetails.getMembershipId().toString();
             }
 
-            if(notificationDetails.getMembershipPrice() != null){
-                makePaymentAmount.setText(notificationDetails.getMembershipPrice());
+            if (notificationDetails.getMembershipPrice() != null) {
+                makePaymentAmount.setText("$ " + notificationDetails.getMembershipPrice());
             }
             if (notificationDetails.getReferer() != null) {
 
@@ -84,20 +84,20 @@ public class RefererPayment extends Activity {
                     refereeId = notificationDetails.getReferer().getUmeId();
 
                 }
-                
-                if (notificationDetails.getReferer().getId() <= 0){
+
+                if (notificationDetails.getReferer().getId() <= 0) {
                     refereeUserId = String.valueOf(notificationDetails.getReferer().getId());
                 }
 
                 StringBuilder sb = new StringBuilder();
-                if (notificationDetails.getReferer().getFirstName() != null){
+                if (notificationDetails.getReferer().getFirstName() != null) {
 
-                    if (!notificationDetails.getReferer().getFirstName().equalsIgnoreCase("")){
+                    if (!notificationDetails.getReferer().getFirstName().equalsIgnoreCase("")) {
 
                         sb.append(getString(R.string.make_payment) + notificationDetails.getReferer().getFirstName());
-                        if (!notificationDetails.getReferer().getLastName().equalsIgnoreCase("")){
-                            sb.append(" " + notificationDetails.getReferer().getLastName()+getString(R.string.make_payment_continuation));
-                        }else{
+                        if (!notificationDetails.getReferer().getLastName().equalsIgnoreCase("")) {
+                            sb.append(" " + notificationDetails.getReferer().getLastName() + getString(R.string.make_payment_continuation));
+                        } else {
                             sb.append(getString(R.string.make_payment_continuation));
                         }
                         makePaymentText.setText(sb.toString());
@@ -145,14 +145,14 @@ public class RefererPayment extends Activity {
 
             if (checkCredit.isChecked()) {
 
-                Log.e("is checked >> ",DbManager.getInstance().getSessionId() + " "+membershipId +" "+  refereeId);
+                Log.e("is checked >> ", DbManager.getInstance().getSessionId() + " " + membershipId + " " + refereeId);
 
                 UserManager.getInstance().payFromCredit(RefererPayment.this, DbManager.getInstance().getSessionId(), membershipId, refereeId, payFromCreditCallBack);
 
             } else {
 
-                Log.e("is not checked >> "," >>> "+notificationDetails.getMembershipId().toString() +" && "+  String.valueOf(notificationDetails.getReferer().getId()));
-                LoginManager.getInstance().membershipPaypal(RefererPayment.this,notificationDetails.getMembershipId().toString(),
+                Log.e("is not checked >> ", " >>> " + notificationDetails.getMembershipId().toString() + " && " + String.valueOf(notificationDetails.getReferer().getId()));
+                LoginManager.getInstance().membershipPaypal(RefererPayment.this, notificationDetails.getMembershipId().toString(),
                         String.valueOf(notificationDetails.getReferer().getId()), membershipPaymentCallBack);
             }
         }
@@ -163,14 +163,14 @@ public class RefererPayment extends Activity {
         public void onFinish(int responseCode, Object result) {
 
             userBaseHolder = (UserBaseHolder) result;
-            if (userBaseHolder!= null){
-                if (userBaseHolder.getStatus().equalsIgnoreCase("success")){
+            if (userBaseHolder != null) {
+                if (userBaseHolder.getStatus().equalsIgnoreCase("success")) {
 
-                    MessagePopup messagePopup =new MessagePopup("Success!",userBaseHolder.getMessage(),RefererPayment.this);
+                    MessagePopup messagePopup = new MessagePopup("Success!", userBaseHolder.getMessage(), RefererPayment.this);
                     messagePopup.show();
 
-                }else{
-                    MessagePopup messagePopup =new MessagePopup("Error!",userBaseHolder.getMessage(),RefererPayment.this);
+                } else {
+                    MessagePopup messagePopup = new MessagePopup("Error!", userBaseHolder.getMessage(), RefererPayment.this);
                     messagePopup.show();
                 }
             }
@@ -182,8 +182,8 @@ public class RefererPayment extends Activity {
 
         }
     }
-    
-    private class MembershipPaymentCallBack implements AsyncTaskCallBack{
+
+    private class MembershipPaymentCallBack implements AsyncTaskCallBack {
         @Override
         public void onFinish(int responseCode, Object result) {
 
@@ -338,7 +338,7 @@ public class RefererPayment extends Activity {
 
 
             }
-            
+
         }
 
         @Override
